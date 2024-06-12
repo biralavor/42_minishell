@@ -6,7 +6,7 @@
 #    By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/12 11:04:11 by umeneses          #+#    #+#              #
-#    Updated: 2024/06/12 11:28:40 by umeneses         ###   ########.fr        #
+#    Updated: 2024/06/12 11:34:26 by umeneses         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -41,8 +41,11 @@ jobs:
       - name: Building Program with MiniShell Makefile
         run: make
       
+      - name: Setup Aptitude
+        run: sudo apt-get install aptitude | sudo aptitude update
+      
       - name: Setup Valgrind
-        run: sudo apt-get update | sudo apt-get install -y valgrind
+        run: sudo aptitude upgrade | sudo aptitude install -y valgrind
       
       - name: Running Valgrind
         run: valgrind --track-origins=yes --leak-check=full -q ./minishell
