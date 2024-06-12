@@ -6,7 +6,7 @@
 #    By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/12 11:46:52 by umeneses          #+#    #+#              #
-#    Updated: 2024/06/12 14:13:40 by umeneses         ###   ########.fr        #
+#    Updated: 2024/06/12 14:14:42 by umeneses         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,7 +31,6 @@ BONUS_D					= ./bonus/
 BUILD_D					= ./build/
 LIBS_D					= ./libs/
 LIBFT_D					= $(LIBS_D)libft/
-FT_PRINTF_D				= $(LIBS_D)ft_printf
 HEADERS_ADDED			= $(LIBFT_D)includes/
 HEADERS_ADDED			+= $(FT_PRINTF)includes/
 HEADERS_ADDED			+= $(BONUS_D)headers/
@@ -42,8 +41,7 @@ HEADERS					= ./headers/ $(HEADERS_ADDED)
 # **************************************************************************** #
 
 LIBFT					= $(addprefix $(LIBFT_D), libft.a)
-FT_PRINTF				= $(addprefix $(FT_PRINTF_D), ft_printf.a)
-LIBS					= $(LIBFT) $(FT_PRINTF)
+LIBS					= $(LIBFT)
 
 NAME					= minishell
 
@@ -163,7 +161,7 @@ $(BUILD_D)%.o:		%.c
 					@echo "Compiling: $(notdir $<)"
 					@printf "$(RESET)"
 
-$(NAME):			libft_lib ft_printf_lib $(OBJS_FILES)
+$(NAME):			libft_lib $(OBJS_FILES)
 					@$(COMP_EXE)
 					@printf "$(GREEN)"
 					@echo "$(NAME) Ready!"
@@ -178,15 +176,6 @@ libft_lib:
 					@printf "$(CYAN)"
 					@$(MAKE) -C $(LIBFT_D) --no-print-directory
 					@printf "$(YELLOW)"
-					@printf "$(RESET)"
-
-ft_printf_lib:
-					@printf "$(YELLOW)"
-					@echo ">>> Checking FT_PRINTF"
-					@printf "$(CYAN)"
-					@$(MAKE) -C $(FT_PRINTF_D) --no-print-directory
-					@printf "$(YELLOW)"
-					@echo "Next target >>> $(NAME)..."
 					@printf "$(RESET)"
 
 bonus:

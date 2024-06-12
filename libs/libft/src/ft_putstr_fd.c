@@ -1,30 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_puthexa_up_fd.c                                 :+:      :+:    :+:   */
+/*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 09:11:02 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/06/11 15:02:19 by tmalheir         ###   ########.fr       */
+/*   Updated: 2024/06/12 14:16:13 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/ft_printf.h"
+#include "../includes/libft.h"
 
-int	ft_puthexa_up_fd(unsigned int nbr, int fd)
+int	ft_putstr_fd(char *str, int fd)
 {
-	int		count;
-	char	*hexa_up;
+	int	idx;
 
-	count = 0;
-	hexa_up = "0123456789ABCDEF";
-	if (nbr < 16)
-		count += write(1, &hexa_up[nbr], fd);
+	idx = 0;
+	if (!str)
+		return (write(1, "(null)", 6));
 	else
 	{
-		count += ft_puthexa_up_fd((nbr / 16), fd);
-		count += ft_puthexa_up_fd((nbr % 16), fd);
+		while (str && str[idx])
+		{
+			write(1, &str[idx], fd);
+			idx++;
+		}
 	}
-	return (count);
+	return (idx);
 }

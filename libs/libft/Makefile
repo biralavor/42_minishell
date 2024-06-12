@@ -56,6 +56,14 @@ FILES			+= ft_strtrim.c
 FILES			+= ft_substr.c
 FILES			+= ft_toupper.c
 FILES			+= ft_tolower.c
+FILES			+= ft_printf.c
+FILES			+= ft_putchar_fd.c
+FILES			+= ft_puthexa_low_fd.c
+FILES			+= ft_puthexa_up_fd.c
+FILES			+= ft_putnbr_fd.c
+FILES			+= ft_putnbr_unsg_fd.c
+FILES			+= ft_putptr_fd.c
+FILES			+= ft_putstr_fd.c
 
 SRC_FILES		= $(addprefix $(SRC_D), $(FILES))
 
@@ -83,8 +91,8 @@ DFLAGS			= -g3
 #                             COMPILATION                                     #
 #!----------------------------------------------------------------------------#
 
-COMP_OBJS		= $(CC) $(CFLAGS) $(CPPFLAGS) -c $< -o $@
-COMP_LIB		= @$(AR) $(NAME) $(OBJS)
+COMPILE_OBJS		= $(CC) $(CFLAGS) $(CPPFLAGS) -c $< -o $@
+COMPILE_LIB		= @$(AR) $(NAME) $(OBJS)
 
 #!----------------------------------------------------------------------------#
 #                              TARGETS                                        #
