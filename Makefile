@@ -1,4 +1,16 @@
 # **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2024/06/12 11:46:52 by umeneses          #+#    #+#              #
+#    Updated: 2024/06/12 14:13:40 by umeneses         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
+# **************************************************************************** #
 #								COLORS										   #
 # **************************************************************************** #
 
@@ -43,15 +55,15 @@ SRC_FILES_ALL			= $(addprefix $(SRC_D), $(SRC_FILES))
 OBJS_FILES				= $(addprefix $(BUILD_D), $(SRC_FILES_ALL:%.c=%.o))
 OBJS_ALL				= $(OBJS_FILES)
 
-# **************************************************************************** #
-#								BONUS										   #
-# **************************************************************************** #
+# **************************** #
+#			BONUS			   #
+# **************************** #
 
 NAME_BONUS				= minishell_bonus
 
 SRC_FILES_BONUS			=
 
-SRC_BONUS_ALL			= $(addprefix $(SRC_SV_BONUS_D), $(SRC_FILES_BONUS))
+SRC_BONUS_ALL			= $(addprefix $(SRC_BONUS_D), $(SRC_FILES_BONUS))
 
 OBJS_FILES_BONUS		= $(addprefix $(BUILD_D), $(SRC_BONUS_ALL:%.c=%.o))
 OBJS_ALL_BONUS			= $(OBJS_FILES_BONUS)
@@ -124,6 +136,19 @@ endif
 define					bonus
 						$(MAKE) WITH_BONUS=TRUE --no-print-directory
 endef
+
+# **************************************************************************** #
+#								COMPILATION									   #
+# **************************************************************************** #
+
+AUTHOR		= tmalheir && umeneses
+CC			= cc
+CFLAGS		= -Wall -Wextra -Werror -g3
+CPPFLAGS	= $(addprefix -I, $(HEADERS)) -MMD -MP
+LDFLAGS		= $(addprefix -L, $(dir $(LIBS)))
+LDLIBS		= -lft -ldl -lreadline
+COMP_OBJS	= $(CC) $(CFLAGS) $(CPPFLAGS) -c $< -o $@
+COMP_EXE	= $(CC) $(LDFLAGS) $(OBJS_FILES) $(LDLIBS) -o $(NAME)
 
 # **************************************************************************** #
 #								TARGETS										   #
