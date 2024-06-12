@@ -6,7 +6,7 @@
 #    By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/12 11:46:22 by umeneses          #+#    #+#              #
-#    Updated: 2024/06/12 17:16:55 by umeneses         ###   ########.fr        #
+#    Updated: 2024/06/12 17:59:07 by umeneses         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,7 +31,7 @@ BUILD_D				= ./test_build/
 PROGRAM_TO_TEST_D	= ../
 LIBFT_D				= $(PROGRAM_TO_TEST_D)libs/libft/
 HEADERS_ADDED		= $(PROGRAM_TO_TEST_D)headers/
-HEADERS				= $(TEST_D) $(HEADERS_ADDED)
+HEADERS				= ./headers/ $(HEADERS_ADDED)
 
 # **************************************************************************** #
 #								FILES										   #
@@ -44,7 +44,8 @@ LIBS				= $(LIBFT) $(PROGRAM_TO_TEST_D)
 NAME				= minishell.tests
 
 SRC_FILES			= minishell_tester.c
-#SRC_FILES			+= minunit_utils.c
+SRC_FILES			+= minunit_utils.c
+SRC_FILES			+= testing_01_suite.c
 
 SRC_FILES_ALL		= $(addprefix $(TEST_D), $(SRC_FILES))
 
