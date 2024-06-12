@@ -1,0 +1,42 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    program_builder.yml                                :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2024/06/12 11:04:11 by umeneses          #+#    #+#              #
+#    Updated: 2024/06/12 11:06:19 by umeneses         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
+name: program_builder
+
+on:
+  push:
+    branches:
+    - main
+    - 'feature/**'
+    - 'feat/**'
+    - 'bugfix/**'
+    - 'release/**'
+  pull_request:
+    branches:
+    - main
+    - 'feature/**'
+    - 'feat/**'
+    - 'bugfix/**'
+    - 'release/**'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./
+    steps:
+      - name: Starting Github Actions
+        uses: actions/checkout@v4.1.4
+      
+      - name: Building Program with MiniShell Makefile
+        run: make
