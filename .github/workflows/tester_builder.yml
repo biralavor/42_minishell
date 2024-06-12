@@ -1,0 +1,55 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    tester_builder.yml                                 :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2024/06/12 11:07:38 by umeneses          #+#    #+#              #
+#    Updated: 2024/06/12 17:19:07 by umeneses         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
+name: tester_builder
+
+on:
+  push:
+    branches:
+    - main
+    - 'feature/**'
+    - 'feat/**'
+    - 'bugfix/**'
+    - 'release/**'
+  pull_request:
+    branches:
+    - main
+    - 'feature/**'
+    - 'feat/**'
+    - 'bugfix/**'
+    - 'release/**'
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./_ci_cd/
+    steps:
+      - name: Starting Github Actions
+        uses: actions/checkout@v4.1.4
+
+      - name: Setup CUnit
+        run: sudo apt-get update && sudo apt-get install -y libcunit1 libcunit1-doc libcunit1-dev
+
+      - name: Running Tester Makefile
+        run: make
+        
+      - name: Setup Valgrind
+        run: sudo apt-get update | sudo apt-get install -y valgrind
+      
+      - name: Running Valgrind
+        run: valgrind --track-origins=yes --leak-check=full -q --suppressions=../readline.sup ../minishell
+
+
+# :: github actions documentation ::
+# https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions
