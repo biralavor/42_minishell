@@ -6,7 +6,7 @@
 #    By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/12 11:04:11 by umeneses          #+#    #+#              #
-#    Updated: 2024/06/12 11:25:53 by umeneses         ###   ########.fr        #
+#    Updated: 2024/06/12 11:28:40 by umeneses         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -45,7 +45,7 @@ jobs:
         run: sudo apt-get update | sudo apt-get install -y valgrind
       
       - name: Running Valgrind
-        run: valgrind --track-origins=yes --leak-check=full -q ./push_swap.tests
+        run: valgrind --track-origins=yes --leak-check=full -q ./minishell
 
       - name: Install Python for Norminette
         uses: actions/setup-python@v5.1.0
