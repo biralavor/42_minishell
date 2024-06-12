@@ -6,7 +6,7 @@
 #    By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/12 11:46:52 by umeneses          #+#    #+#              #
-#    Updated: 2024/06/12 14:14:42 by umeneses         ###   ########.fr        #
+#    Updated: 2024/06/12 16:23:23 by umeneses         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -45,7 +45,8 @@ LIBS					= $(LIBFT)
 
 NAME					= minishell
 
-SRC_FILES				= minishell_main.c
+SRC_FILES				= simple_main.c
+#SRC_FILES				= minishell_main.c
 #SRC_FILES				+= ft_lexical_analysis.c
 
 SRC_FILES_ALL			= $(addprefix $(SRC_D), $(SRC_FILES))
