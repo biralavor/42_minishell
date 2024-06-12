@@ -1,36 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putptr_fd.c                                     :+:      :+:    :+:   */
+/*   ft_puthexa_up_fd.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 09:11:02 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/06/11 15:02:29 by tmalheir         ###   ########.fr       */
+/*   Updated: 2024/06/12 14:16:01 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/ft_printf.h"
+#include "../includes/libft.h"
 
-int	ft_putptr_fd(unsigned long long ptr, int fd)
+int	ft_puthexa_up_fd(unsigned int nbr, int fd)
 {
 	int		count;
-	char	*hexa_low;
+	char	*hexa_up;
 
 	count = 0;
-	hexa_low = "0123456789abcdef";
-	if (!ptr)
-	{
-		count += write(1, "(nil)", 5);
-		return (count);
-	}
-	count += write(1, "0x", 2);
-	if (ptr < 16)
-		count += write(1, &hexa_low[ptr], 1);
+	hexa_up = "0123456789ABCDEF";
+	if (nbr < 16)
+		count += write(1, &hexa_up[nbr], fd);
 	else
 	{
-		count += ft_puthexa_low_fd((ptr / 16), fd);
-		count += ft_puthexa_low_fd((ptr % 16), fd);
+		count += ft_puthexa_up_fd((nbr / 16), fd);
+		count += ft_puthexa_up_fd((nbr % 16), fd);
 	}
 	return (count);
 }

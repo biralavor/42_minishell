@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/19 14:20:18 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/04/09 14:30:14 by tmalheir         ###   ########.fr       */
+/*   Updated: 2024/06/12 14:08:36 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,5 +51,15 @@ char	*ft_strjoin(char const *str1, char const *str2);
 char	*ft_strmapi(char const *str, char (*f)(unsigned int, char));
 char	*ft_strtrim(char const *str, char const *set);
 char	*ft_substr(char const *str, unsigned int start, size_t len);
+
+/* ft_printf functions */
+int				ft_printf(const char *arg, ...);
+int				ft_putchar_fd(char c, int fd);
+int				ft_putnbr_fd(int nbr, int fd);
+unsigned int	ft_putnbr_unsg_fd(unsigned int nbr, int fd);
+int				ft_putstr_fd(char *str, int fd);
+int				ft_puthexa_low_fd(unsigned long long nbr, int fd);
+int				ft_puthexa_up_fd(unsigned int nbr, int fd);
+int				ft_putptr_fd(unsigned long long ptr, int fd);
 
 #endif

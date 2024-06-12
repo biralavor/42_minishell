@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_isdigit.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 10:36:12 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/06/11 12:21:29 by tmalheir         ###   ########.fr       */
+/*   Updated: 2024/06/12 14:26:13 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ character c falls into the tested class, and zero if not.*/
 
 int	ft_isdigit(int c)
 {
-	if (c >= '0' & c <= '9')
+	if (c >= '0' && c <= '9')
 		return (1);
 	else
 		return (0);

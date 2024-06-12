@@ -1,30 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_puthexa_low_fd.c                                :+:      :+:    :+:   */
+/*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 09:11:02 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/06/11 15:02:16 by tmalheir         ###   ########.fr       */
+/*   Updated: 2024/06/12 14:16:04 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/ft_printf.h"
+#include "../includes/libft.h"
 
-int	ft_puthexa_low_fd(unsigned long long nbr, int fd)
+int	ft_putnbr_fd(int nbr, int fd)
 {
+	char	n_char;
+	long	n_long;
 	int		count;
-	char	*hexa_low;
 
+	n_long = nbr;
 	count = 0;
-	hexa_low = "0123456789abcdef";
-	if (nbr < 16)
-		count += write(1, &hexa_low[nbr], 1);
+	if (n_long < 0)
+	{
+		count += write(1, "-", 1);
+		n_long = -n_long;
+	}
+	if (n_long >= 0 && n_long <= 9)
+	{
+		n_char = n_long + '0';
+		count += write(1, &n_char, 1);
+	}
 	else
 	{
-		count += ft_puthexa_low_fd((nbr / 16), fd);
-		count += ft_puthexa_low_fd((nbr % 16), fd);
+		count += ft_putnbr_fd((n_long / 10), fd);
+		count += ft_putnbr_fd((n_long % 10), fd);
 	}
 	return (count);
 }
