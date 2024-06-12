@@ -6,11 +6,13 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 10:53:12 by umeneses          #+#    #+#             */
-/*   Updated: 2024/06/12 15:42:41 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/06/12 16:27:16 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+/*
 
 int	main(void)
 {
@@ -43,3 +45,5 @@ int	main(void)
 	free (input);
 	return (0);
 }
+
+*/
