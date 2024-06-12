@@ -6,10 +6,11 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 15:19:35 by umeneses          #+#    #+#             */
-/*   Updated: 2024/06/12 18:04:06 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/06/12 18:58:07 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "minunit.h"
 #include "minishell.h"
 
 int	ft_minunit_array_counter(char **array)
