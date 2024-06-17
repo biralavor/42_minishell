@@ -6,7 +6,7 @@
 #    By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/12 11:46:22 by umeneses          #+#    #+#              #
-#    Updated: 2024/06/12 18:58:23 by umeneses         ###   ########.fr        #
+#    Updated: 2024/06/17 12:02:30 by umeneses         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -67,7 +67,7 @@ CC			= cc
 CFLAGS		= -Wall -Wextra -Werror -g3
 CPPFLAGS	= $(addprefix -I, $(HEADERS)) -MMD -MP
 LDFLAGS		= $(addprefix -L, $(dir $(LIBS)))
-LDLIBS		= -lft -ldl
+LDLIBS		= -lft -ldl -lreadline
 COMP_OBJS	= $(CC) $(CFLAGS) $(CPPFLAGS) -c $< -o $@
 COMP_EXE	= $(CC) $(LDFLAGS) $(OBJ_FILES) $(LDLIBS) -o $(NAME)
 
@@ -102,14 +102,15 @@ $(BUILD_D)%.o:		%.c
 $(NAME):			fclean minishell $(OBJ_FILES)
 					@$(COMP_EXE)
 					@printf "$(PURPLE)"
-					@echo ">>> Running MINI_SHELL with default arguments:"
-					@echo "$(call arguments)"
-					@printf "$(CYAN)"
-					$(PROGRAM_TO_TEST_D)./minishell $(call arguments)
+#					@echo ">>> Running MINI_SHELL with default arguments:"
+#					@echo "$(call arguments)"
+#					@printf "$(CYAN)"
+#					$(PROGRAM_TO_TEST_D)./minishell $(call arguments)
 					@printf "$(GREEN)"
 					@echo "$(NAME) Ready!"
 					@printf "$(RESET)"
 					@./$(NAME) 
+					@echo "$(call arguments)"
 
 minishell:
 					@printf "$(YELLOW)"
