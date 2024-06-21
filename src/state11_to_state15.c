@@ -6,7 +6,7 @@
 /*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/20 10:35:11 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/06/21 14:38:39 by tmalheir         ###   ########.fr       */
+/*   Updated: 2024/06/21 15:05:31 by tmalheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,9 +34,9 @@ int	state_12(t_token_list **lst, int idx)
 
 int	state_13(t_token_list **lst, char *str, int idx)
 {
-	size_t	start;
-	size_t	end;
-	char	*double_quotes;
+	size_t			start;
+	size_t			end;
+	char			*double_quotes;
 	t_token_list	*double_quotes_node;
 
 	start = (size_t)idx;
@@ -55,9 +55,9 @@ int	state_13(t_token_list **lst, char *str, int idx)
 
 int	state_14(t_token_list **lst, char *str, int idx)
 {
-	size_t	start;
-	size_t	end;
-	char	*single_quotes;
+	size_t			start;
+	size_t			end;
+	char			*single_quotes;
 	t_token_list	*single_quotes_node;
 
 	start = (size_t)idx;
@@ -76,9 +76,9 @@ int	state_14(t_token_list **lst, char *str, int idx)
 
 int	state_15(t_token_list **lst, char *str, int idx)
 {
-	size_t	start;
-	size_t	end;
-	char	*just_str;
+	size_t			start;
+	size_t			end;
+	char			*just_str;
 	t_token_list	*just_str_node;
 
 	if (str[idx] == ' ')

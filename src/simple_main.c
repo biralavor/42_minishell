@@ -6,7 +6,7 @@
 /*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 10:53:12 by umeneses          #+#    #+#             */
-/*   Updated: 2024/06/21 11:46:35 by tmalheir         ###   ########.fr       */
+/*   Updated: 2024/06/21 14:58:10 by tmalheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,8 @@ int	main(void)
 {
 	char	*input;
 
-	input = "&&(This) < < | > || \"is\" \'a\' test&&";
+	input = "Test";
+//	input = "&&(This) < < | > || \"is\" \'a\' test&&";
 	printf("%s\n", input);
 	check_userinput(input);
 	return (0);
