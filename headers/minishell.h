@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 10:53:20 by umeneses          #+#    #+#             */
-/*   Updated: 2024/06/21 15:04:16 by tmalheir         ###   ########.fr       */
+/*   Updated: 2024/06/21 17:00:46 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -136,6 +136,11 @@ void	lexer_error(void);
  * @brief Free the used memory to create the token list.
 */
 void	free_token_list(t_token_list **lst);
+
+/**
+ * @brief Get the size of the token list.
+*/
+int	ft_lst_size(t_token_list *lst);
 
 /**
  * @brief APAGAR ESTA FUNÇÃO NO FINAL DO PROJETO.
