@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+         #
+#    By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/12 11:46:22 by umeneses          #+#    #+#              #
-#    Updated: 2024/06/19 13:41:45 by tmalheir         ###   ########.fr        #
+#    Updated: 2024/06/21 15:01:57 by umeneses         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -76,7 +76,7 @@ COMP_EXE	= $(CC) $(LDFLAGS) $(OBJ_FILES) $(LDLIBS) -o $(NAME)
 # **************************************************************************** #
 
 define		arguments
-		exit
+		"this is a test"
 endef
 
 define 		bonus
@@ -110,7 +110,6 @@ $(NAME):			clean minishell $(OBJ_FILES)
 					@echo "$(NAME) Ready!"
 					@printf "$(RESET)"
 					@./$(NAME)
-					@echo "$(call arguments)"
 
 minishell:
 					@printf "$(YELLOW)"
