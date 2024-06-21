@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell_tester.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 11:12:53 by umeneses          #+#    #+#             */
-/*   Updated: 2024/06/17 13:26:30 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/06/21 10:28:15 by tmalheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,18 @@
 
 #define FILE_INPUT_READLINE_01 "./test_files/input_readline_01.txt"
 // #include "./minunit_utils.c"
+#include "../../src/check_userinput.c"
+#include "../../src/check_initial_errors.c"
+#include "../../src/create_token_list.c"
+#include "../../src/get_state.c"
+#include "../../src/lexer_utils.c"
+#include "../../src/state1_to_state5.c"
+#include "../../src/state6_to_state10.c"
+#include "../../src/state11_to_state15.c"
 
-int	ft_minunit_array_counter(char **array);
+int		ft_minunit_array_counter(char **array);
 void	ft_array_clear(char **array, int arr_size);
-void	ft_array_printer(char **array, int arr_size);
+void	ft_array_printer(char **array_lexeme, int *array_type, int arr_size);
 
 MU_TEST(argv_simulation_test)
 {
@@ -41,7 +49,7 @@ MU_TEST(argv_simulation_test)
 	expected_arr_lastcontent = "testing";
 
 	actual_arr_size = ft_minunit_array_counter(argv_simulation);
-	actual_arr_lastcontent = argv_simulation[expected_arr_size];
+	actual_arr_lastcontent = argv_simulation[actual_arr_size];
 
 	// ASSERT -> check if the function worked as expected
 	mu_assert_int_eq(expected_arr_size, actual_arr_size);
@@ -83,15 +91,148 @@ MU_TEST(input_readline_01_txt_test)
 	mu_assert_int_eq(expected_size, actual_size);
 }
 
-MU_TEST_SUITE(first_suite)
+MU_TEST(check_double_quoting_error_test)
+{
+	// ARRANGE -> organize the necessary data for the test
+	char	*userinput_double_quotes;
+	int		expected_return_double_quotes;
+	int		actual_return_double_quotes;
+
+	// ACT -> execute the function to be tested
+	userinput_double_quotes = "\"This test tests double quotes\"";
+	expected_return_double_quotes = 0;
+
+	actual_return_double_quotes = check_double_quotes(userinput_double_quotes);
+
+	// ASSERT -> check if the function worked as expected
+	mu_assert_int_eq(expected_return_double_quotes, actual_return_double_quotes);
+}
+
+MU_TEST(check_single_quoting_error_test)
+{
+	// ARRANGE -> organize the necessary data for the test
+	char	*userinput_single_quotes;
+	int		expected_return_single_quotes;
+	int		actual_return_single_quotes;
+
+	// ACT -> execute the function to be tested
+	userinput_single_quotes = "'This' test 'tests single quotes";
+	expected_return_single_quotes = 1;
+
+	actual_return_single_quotes = check_single_quotes(userinput_single_quotes);
+
+	// ASSERT -> check if the function worked as expected
+	mu_assert_int_eq(expected_return_single_quotes, actual_return_single_quotes);
+}
+
+MU_TEST(check_single_ampersand_error_test)
+{
+	// ARRANGE -> organize the necessary data for the test
+	char	*userinput_single_ampersand;
+	int		expected_return_single_ampersand;
+	int		actual_return_single_ampersand;
+
+	// ACT -> execute the function to be tested
+	userinput_single_ampersand = "This is&&  a test &&";
+	expected_return_single_ampersand = 0;
+
+	actual_return_single_ampersand = check_single_ampersand(userinput_single_ampersand);
+
+	// ASSERT -> check if the function worked as expected
+	mu_assert_int_eq(expected_return_single_ampersand, actual_return_single_ampersand);
+}
+
+MU_TEST(check_initial_errors_test)
+{
+	// ARRANGE -> organize the necessary data for the test
+	char	*userinput;
+	int		expected_return;
+	int		actual_return;
+
+	// ACT -> execute the function to be tested
+	userinput = "'This' \"is\"  a test &&";
+	expected_return = 0;
+
+	actual_return = check_initial_errors(userinput);
+
+	// ASSERT -> check if the function worked as expected
+	mu_assert_int_eq(expected_return, actual_return	);
+}
+
+MU_TEST(check_pipe_simulation_test)
+{
+	// ARRANGE -> organize the necessary data for the test
+	char	*argv_simulation;
+	char	*userinput;
+	int		expected_arr_size;
+	char	*expected_arr_content;
+	int		actual_arr_size;
+	char	*actual_arr_content;
+
+	// ACT -> execute the function to be tested
+	userinput = "|";
+	argv_simulation = ft_strdup(userinput);
+	expected_arr_size = 1;
+	expected_arr_content = "|";
+
+	actual_arr_size = ft_strlen(argv_simulation);
+	actual_arr_content = argv_simulation;
+
+	// ASSERT -> check if the function worked as expected
+	mu_assert_int_eq(expected_arr_size, actual_arr_size);
+	mu_assert_string_eq(expected_arr_content, actual_arr_content);
+}
+
+MU_TEST(check_userinput_v01)
+{
+	// ARRANGE
+	char			**userinput;
+	int				index;
+	int				size;
+	t_token_list	*token;
+
+	//ACT
+	userinput = "|<";
+	index = 1;
+	size = ft_minunit_array_counter(userinput);
+	create_token_list(userinput);
+
+	//ASSERT
+	while (index <= size)
+	{
+		mu_assert_string_eq(userinput[index], token[]);
+		index++;
+	}
+
+	"[%d.]\tlexeme = %s\ttype = %d\n", index, (array_lexeme[index]), array_type[index]);
+
+}
+
+MU_TEST_SUITE(check_initial_errors_suite)
 {
 	MU_RUN_TEST(argv_simulation_test);
 	MU_RUN_TEST(input_readline_01_txt_test);
+	MU_RUN_TEST(check_single_quoting_error_test);
+	MU_RUN_TEST(check_double_quoting_error_test);
+	MU_RUN_TEST(check_single_ampersand_error_test);
+	MU_RUN_TEST(check_initial_errors_test);
+}
+
+MU_TEST_SUITE(token_simulation_errors_suite)
+{
+	MU_RUN_TEST(check_pipe_simulation_test);
+}
+
+MU_TEST_SUITE(check_userinput_tests)
+{
+	MU_RUN_TEST(check_userinput_v01);
 }
 
 int	main(void)
 {
-	MU_RUN_SUITE(first_suite);
+	MU_RUN_SUITE(check_initial_errors_suite);
+	MU_RUN_SUITE(token_simulation_errors_suite);
+	MU_RUN_SUITE(check_userinput_tests);
 	MU_REPORT();
 	return (MU_EXIT_CODE);
 }
@@ -134,14 +275,15 @@ void	ft_array_clear(char **array, int arr_size)
 /* munUnit helper functions
 *  To printf the array inside the minunit tester
 */
-void	ft_array_printer(char **array, int arr_size)
+void	ft_array_printer(char **array_lexeme, int *array_type, int arr_size)
 {
 	int	index;
 
 	index = arr_size;
+	ft_printf("Printing the List:\n");
 	while (index >= 0)
 	{
-		ft_printf("argv_simulation = %s\n", (array[index]));
+		ft_printf("[%d.]\tlexeme = %s\ttype = %d\n", index, (array_lexeme[index]), array_type[index]);
 		index--;
 	}
 }

@@ -1,24 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   simple_main.c                                      :+:      :+:    :+:   */
+/*   check_userinput.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/12 10:53:12 by umeneses          #+#    #+#             */
-/*   Updated: 2024/06/21 14:58:10 by tmalheir         ###   ########.fr       */
+/*   Created: 2024/06/19 09:20:45 by tmalheir          #+#    #+#             */
+/*   Updated: 2024/06/21 13:33:05 by tmalheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	main(void)
+void	check_userinput(char *str)
 {
-	char	*input;
-
-	input = "Test";
-//	input = "&&(This) < < | > || \"is\" \'a\' test&&";
-	printf("%s\n", input);
-	check_userinput(input);
-	return (0);
+	if (check_initial_errors(str))
+		exit (EXIT_FAILURE);
+	create_token_list(str);
 }

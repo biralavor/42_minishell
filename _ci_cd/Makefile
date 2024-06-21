@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+         #
+#    By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/12 11:46:22 by umeneses          #+#    #+#              #
-#    Updated: 2024/06/17 12:02:30 by umeneses         ###   ########.fr        #
+#    Updated: 2024/06/19 13:41:45 by tmalheir         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -99,7 +99,7 @@ $(BUILD_D)%.o:		%.c
 					@echo "Compiling: $(notdir $<)"
 					@printf "$(RESET)"
 
-$(NAME):			fclean minishell $(OBJ_FILES)
+$(NAME):			clean minishell $(OBJ_FILES)
 					@$(COMP_EXE)
 					@printf "$(PURPLE)"
 #					@echo ">>> Running MINI_SHELL with default arguments:"
@@ -109,7 +109,7 @@ $(NAME):			fclean minishell $(OBJ_FILES)
 					@printf "$(GREEN)"
 					@echo "$(NAME) Ready!"
 					@printf "$(RESET)"
-					@./$(NAME) 
+					@./$(NAME)
 					@echo "$(call arguments)"
 
 minishell:
@@ -127,7 +127,6 @@ clean:
 					@printf "$(PURPLE)"
 					$(RM) $(OBJ_FILES)
 					$(RM) $(BUILD_D)
-					$(MAKE) -C $(PROGRAM_TO_TEST_D) fclean
 					@printf "$(RESET)"
 
 fclean:				clean
@@ -136,6 +135,7 @@ fclean:				clean
 					@printf "$(PURPLE)"
 					$(RM) $(NAME)
 					$(RM) $(NAME_BONUS)
+					$(MAKE) -C $(PROGRAM_TO_TEST_D) fclean
 					@printf "$(RESET)"
 
 re:					fclean all
