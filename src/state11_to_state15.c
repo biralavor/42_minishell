@@ -6,7 +6,7 @@
 /*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/20 10:35:11 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/06/21 15:05:31 by tmalheir         ###   ########.fr       */
+/*   Updated: 2024/06/21 16:01:25 by tmalheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,6 @@ int	state_13(t_token_list **lst, char *str, int idx)
 	double_quotes_node->lexeme = double_quotes;
 	double_quotes_node->type = WORD;
 	create_new_node(lst, double_quotes_node);
-	free(double_quotes);
 	return (end + 1);
 }
 
@@ -70,7 +69,6 @@ int	state_14(t_token_list **lst, char *str, int idx)
 	single_quotes_node->lexeme = single_quotes;
 	single_quotes_node->type = WORD;
 	create_new_node(lst, single_quotes_node);
-	free(single_quotes);
 	return (end + 1);
 }
 
@@ -95,6 +93,5 @@ int	state_15(t_token_list **lst, char *str, int idx)
 	just_str_node->lexeme = just_str;
 	just_str_node->type = WORD;
 	create_new_node(lst, just_str_node);
-	free(just_str);
 	return (end + 1);
 }
