@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   simple_main.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 10:53:12 by umeneses          #+#    #+#             */
-/*   Updated: 2024/06/12 16:26:44 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/06/21 09:47:41 by tmalheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,8 @@ int	main(void)
 {
 	char	*input;
 
-	input = "Hi, this is a simple main, using ft_printf from LIBFT.\n";
-	ft_printf("%s\n", input);
+	input = "&&(This) < < | > || \"is\" \'a\' test&&";
+	printf("%s\n", input);
+	check_userinput(input);
 	return (0);
 }
