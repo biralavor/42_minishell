@@ -6,7 +6,7 @@
 /*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/20 10:12:37 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/06/21 14:57:12 by tmalheir         ###   ########.fr       */
+/*   Updated: 2024/06/21 16:00:41 by tmalheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,8 @@ void	free_token_list(t_token_list **lst)
 	{
 		temp = curr;
 		curr = curr->next;
+		if (temp->lexeme)
+			free(temp->lexeme);
 		free(temp);
 	}
 }
