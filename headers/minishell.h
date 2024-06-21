@@ -6,7 +6,7 @@
 /*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 10:53:20 by umeneses          #+#    #+#             */
-/*   Updated: 2024/06/21 10:41:01 by tmalheir         ###   ########.fr       */
+/*   Updated: 2024/06/21 14:48:14 by tmalheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,15 +28,10 @@
 # define BLUE    "\x1b[34m"
 # define RESET   "\x1b[0m"
 
-typedef struct s_token
+typedef struct s_token_list
 {
 	int		type;
 	char	*lexeme;
-}			t_token;
-
-typedef struct s_token_list
-{
-	t_token				*token;
 	struct s_token_list	*prev;
 	struct s_token_list	*next;
 }						t_token_list;
@@ -98,7 +93,7 @@ void	create_token_list(char *str);
  * @param **root -> The token list.
  * @param token -> Each of the tokens to be created.
 */
-void	create_new_node(t_token_list **root, t_token *token);
+void	create_new_node(t_token_list **root, t_token_list *token);
 
 /*STATE FUNCTIONS*/
 
@@ -136,6 +131,11 @@ int	check_next_char(char curr, char next);
  * @brief Print a message error in case of error in get_state.
 */
 void	lexer_error(void);
+
+/**
+ * @brief Free the used memory to create the token list.
+*/
+void	free_token_list(t_token_list **lst);
 
 void	ft_lst_printf_content(char *str, t_token_list *lst); //APAGAR ESTA FUNÇÃO NO FINAL DO PROJETO!
 
