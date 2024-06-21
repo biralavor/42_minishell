@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lexer_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/20 10:12:37 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/06/21 16:00:41 by tmalheir         ###   ########.fr       */
+/*   Updated: 2024/06/21 18:33:31 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,60 +42,112 @@ void	free_token_list(t_token_list **lst)
 	}
 }
 
-// APAGAR ESTA FUNÇÃO QUANDO O PROJETO ESTIVER PRONTO!
+int	ft_lst_size(t_token_list *lst)
+{
+	int				size;
+	t_token_list	*tmp;
 
+	tmp = lst;
+	size = 0;
+	while (tmp)
+	{
+		size++;
+		tmp = tmp->next;
+	}
+	return (size);
+}
+
+/**
+ * @brief TODO: This function should be deleted when the project is finished.
+*/
 void	ft_lst_printf_content(char *str, t_token_list *lst)
 {
 	t_token_list	*tmp;
+	t_token_list	*future_node;
 	int				index;
+	char			*word_from_lexeme;
+	int				lst_size;
 	char			*type_as_str;
 
 	tmp = lst;
+	lst_size = ft_lst_size(lst);
 	index = 0;
 	ft_printf("\nPrinting the List:\n");
-	while (tmp)
+	while (tmp || index <= lst_size)
 	{
 		if (tmp->type == 0)
 		{
 			type_as_str = "WORD";
-			// index = index + ft_strlen(lst->lexeme);
-		}
-		else if (tmp->type == 1)
-			type_as_str = "PIPE";
-		else if (tmp->type == 2)
-			type_as_str = "REDIRECT_INPUT";
-		else if (tmp->type == 3)
-		{
-			type_as_str = "REDIRECT_HEREDOC";
-			index++;
-		}
-		else if (tmp->type == 4)
-			type_as_str = "REDIRECT_OUTPUT";
-		else if (tmp->type == 5)
-		{
-			type_as_str = "REDIRECT_OUTPUT_APPEND";
-			index++;
+			printf(RED"str [%0.2d] = [", index);
+			future_node = tmp->next;
+			if (future_node->type != 0)
+			{
+				word_from_lexeme = ft_strdup(tmp->lexeme);
+				printf("%s", word_from_lexeme);
+			}
+			printf("]");
+			printf(RESET "\t\t");
+			printf(BLUE"type = %s", type_as_str);
+			printf(RESET "\t\t\t\t");
+			printf(GREEN"lexeme = %s\n", tmp->lexeme);
+			printf(RESET);
+			index = index + ft_strlen(tmp->lexeme);
 		}
 		else if (tmp->type == 6)
 		{
 			type_as_str = "OR";
+			printf(RED"str [%0.2d] = [", index);
+			printf("%c%c]\t", str[index], str[index + 1]);
+			printf(RESET "\t\t");
+			printf(BLUE"type = %s", type_as_str);
+			printf(RESET "\t\t\t\t");
+			printf(GREEN"lexeme = %s\n", tmp->lexeme);
+			printf(RESET);
 			index++;
 		}
 		else if (tmp->type == 7)
 		{
 			type_as_str = "AND";
+			printf(RED"str [%0.2d] = [", index);
+			printf("%c%c]\t", str[index], str[index + 1]);
+			printf(RESET "\t\t");
+			printf(BLUE"type = %s", type_as_str);
+			printf(RESET "\t\t\t\t");
+			printf(GREEN"lexeme = %s\n", tmp->lexeme);
+			printf(RESET);
 			index++;
 		}
-		else if (tmp->type == 8)
-			type_as_str = "OPEN_()";
-		else if (tmp->type == 9)
-			type_as_str = "CLOSE_()";
-		printf(RED"str [%0.2d] = [%c]", index, str[index]);
-		printf(BLUE"\ttype = %s", type_as_str);
-		printf(GREEN"\t\t\tlexeme = %s\n", tmp->lexeme);
-		printf(RESET);
+		else
+		{
+			if (tmp->type == 1)
+				type_as_str = "PIPE";
+			else if (tmp->type == 2)
+				type_as_str = "REDIRECT_INPUT";
+			else if (tmp->type == 3)
+			{
+				type_as_str = "REDIRECT_HEREDOC";
+				index++;
+			}
+			else if (tmp->type == 4)
+				type_as_str = "REDIRECT_OUTPUT";
+			else if (tmp->type == 5)
+			{
+				type_as_str = "REDIRECT_OUTPUT_APPEND";
+				index++;
+			}		
+			else if (tmp->type == 8)
+				type_as_str = "OPEN_()";
+			else if (tmp->type == 9)
+				type_as_str = "CLOSE_()";
+			printf(RED"str [%0.2d] = [%c]", index, str[index]);
+			printf(RESET "\t\t\t");
+			printf(BLUE"type = %s", type_as_str);
+			printf(RESET "\t\t\t");
+			printf(GREEN"lexeme = %s\n", tmp->lexeme);
+			printf(RESET);
+		}
 		tmp = tmp->next;
 		index++;
 	}
-	printf("Total str size = %zu\n", ft_strlen(str));
+	printf("Total lst size = %d\n", ft_lst_size(lst));
 }
