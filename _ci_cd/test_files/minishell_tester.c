@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 11:12:53 by umeneses          #+#    #+#             */
-/*   Updated: 2024/06/21 15:07:04 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/06/21 18:34:17 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -185,7 +185,7 @@ MU_TEST(check_pipe_simulation_test)
 	mu_assert_string_eq(expected_arr_content, actual_arr_content);
 }
 
-MU_TEST(check_userinput_v01)
+MU_TEST(check_userinput_token_05)
 {
 	// ARRANGE
 	char			*userinput;
@@ -215,33 +215,33 @@ MU_TEST(check_userinput_v01)
 	t_token_list	*lst;
 
 	//ACT
-	userinput = "     &&( Olá) <     ";
+	userinput = ">t2 ls | \"'hello world'\"";
 
+	xpect_node_01_type = get_token_string(REDIRECT_OUTPUT);
 	xpect_node_01_lexeme = NULL;
-	xpect_node_01_type = get_token_string(AND);
-	xpect_node_02_lexeme = NULL;
-	xpect_node_02_type = get_token_string(OPEN_PARENTHESIS);
-	xpect_node_03_lexeme = "Olá";
+	xpect_node_02_type = get_token_string(WORD);
+	xpect_node_02_lexeme = "t2";
 	xpect_node_03_type = get_token_string(WORD);
+	xpect_node_03_lexeme = "ls";
+	xpect_node_04_type = get_token_string(PIPE);
 	xpect_node_04_lexeme = NULL;
-	xpect_node_04_type = get_token_string(CLOSE_PARENTHESIS);
-	xpect_node_05_lexeme = NULL;
-	xpect_node_05_type = get_token_string(REDIRECT_INPUT);
+	xpect_node_05_type = get_token_string(WORD);
+	xpect_node_05_lexeme = "\"'hello world'\"";
 	xpect_lst_size = 5;
 	idx = 0;
 	lst = NULL;
 	get_state(idx, userinput, &lst);
 	
-	actual_node_01_lexeme = lst->token->lexeme;
-	actual_node_01_type = get_token_string(lst->token->type);
-	actual_node_02_lexeme = lst->next->token->lexeme;
-	actual_node_02_type = get_token_string(lst->next->token->type);
-	actual_node_03_lexeme = lst->next->next->token->lexeme;
-	actual_node_03_type = get_token_string(lst->next->next->token->type);
-	actual_node_04_lexeme = lst->next->next->next->token->lexeme;
-	actual_node_04_type = get_token_string(lst->next->next->next->token->type);
-	actual_node_05_lexeme = lst->next->next->next->next->token->lexeme;
-	actual_node_05_type = get_token_string(lst->next->next->next->next->token->type);
+	actual_node_01_lexeme = lst->lexeme;
+	actual_node_01_type = get_token_string(lst->type);
+	actual_node_02_lexeme = lst->next->lexeme;
+	actual_node_02_type = get_token_string(lst->next->type);
+	actual_node_03_lexeme = lst->next->next->lexeme;
+	actual_node_03_type = get_token_string(lst->next->next->type);
+	actual_node_04_lexeme = lst->next->next->next->lexeme;
+	actual_node_04_type = get_token_string(lst->next->next->next->type);
+	actual_node_05_lexeme = lst->next->next->next->next->lexeme;
+	actual_node_05_type = get_token_string(lst->next->next->next->next->type);
 	actual_lst_size = ft_lst_size(lst);
 	//ASSERT
 
@@ -255,6 +255,138 @@ MU_TEST(check_userinput_v01)
 	mu_assert_string_eq(xpect_node_04_type, actual_node_04_type);
 	mu_assert_string_eq(xpect_node_05_lexeme, actual_node_05_lexeme);
 	mu_assert_string_eq(xpect_node_05_type, actual_node_05_type);
+	mu_assert_int_eq(xpect_lst_size, actual_lst_size);
+}
+
+MU_TEST(check_userinput_token_10)
+{
+	// ARRANGE
+	char			*userinput;
+	int				idx;
+	int				xpect_lst_size;
+	int				actual_lst_size;
+	char			*xpect_node_01_lexeme;
+	char			*xpect_node_01_type;
+	char			*xpect_node_02_lexeme;
+	char			*xpect_node_02_type;
+	char			*xpect_node_03_lexeme;
+	char			*xpect_node_03_type;
+	char			*xpect_node_04_lexeme;
+	char			*xpect_node_04_type;
+	char			*xpect_node_05_lexeme;
+	char			*xpect_node_05_type;
+	char			*xpect_node_06_lexeme;
+	char			*xpect_node_06_type;
+	char			*xpect_node_07_lexeme;
+	char			*xpect_node_07_type;
+	char			*xpect_node_08_lexeme;
+	char			*xpect_node_08_type;
+	char			*xpect_node_09_lexeme;
+	char			*xpect_node_09_type;
+	char			*xpect_node_10_lexeme;
+	char			*xpect_node_10_type;
+	char			*actual_node_01_lexeme;
+	char			*actual_node_01_type;
+	char			*actual_node_02_lexeme;
+	char			*actual_node_02_type;
+	char			*actual_node_03_lexeme;
+	char			*actual_node_03_type;
+	char			*actual_node_04_lexeme;
+	char			*actual_node_04_type;
+	char			*actual_node_05_lexeme;
+	char			*actual_node_05_type;
+	char			*actual_node_06_lexeme;
+	char			*actual_node_06_type;
+	char			*actual_node_07_lexeme;
+	char			*actual_node_07_type;
+	char			*actual_node_08_lexeme;
+	char			*actual_node_08_type;
+	char			*actual_node_09_lexeme;
+	char			*actual_node_09_type;
+	char			*actual_node_10_lexeme;
+	char			*actual_node_10_type;
+	t_token_list	*lst;
+
+	//ACT
+	userinput = "/bin/ls | pwd | grep >> teste.txt > teste1.txt cat";
+
+	xpect_node_01_type = get_token_string(WORD);
+	xpect_node_01_lexeme = "/bin/ls";
+	xpect_node_02_type = get_token_string(PIPE);
+	xpect_node_02_lexeme = NULL;
+	xpect_node_03_type = get_token_string(WORD);
+	xpect_node_03_lexeme = "pwd";
+	xpect_node_04_type = get_token_string(PIPE);
+	xpect_node_04_lexeme = NULL;
+	xpect_node_05_type = get_token_string(WORD);
+	xpect_node_05_lexeme = "grep";
+	xpect_node_06_type = get_token_string(REDIRECT_OUTPUT_APPEND);
+	xpect_node_06_lexeme = NULL;
+	xpect_node_07_type = get_token_string(WORD);
+	xpect_node_07_lexeme = "teste.txt";
+	xpect_node_08_type = get_token_string(REDIRECT_OUTPUT);
+	xpect_node_08_lexeme = NULL;
+	xpect_node_09_type = get_token_string(WORD);
+	xpect_node_09_lexeme = "teste1.txt";
+	xpect_node_10_type = get_token_string(WORD);
+	xpect_node_10_lexeme = "cat";
+	xpect_lst_size = 10;
+	idx = 0;
+	lst = NULL;
+	get_state(idx, userinput, &lst);
+	
+	actual_lst_size = ft_lst_size(lst);
+	actual_node_01_lexeme = lst->lexeme;
+	actual_node_01_type = get_token_string(lst->type);
+	lst = lst->next;
+	actual_node_02_lexeme = lst->lexeme;
+	actual_node_02_type = get_token_string(lst->type);
+	lst = lst->next;
+	actual_node_03_lexeme = lst->lexeme;
+	actual_node_03_type = get_token_string(lst->type);
+	lst = lst->next;
+	actual_node_04_lexeme = lst->lexeme;
+	actual_node_04_type = get_token_string(lst->type);
+	lst = lst->next;
+	actual_node_05_lexeme = lst->lexeme;
+	actual_node_05_type = get_token_string(lst->type);
+	lst = lst->next;
+	actual_node_06_lexeme = lst->lexeme;
+	actual_node_06_type = get_token_string(lst->type);
+	lst = lst->next;
+	actual_node_07_lexeme = lst->lexeme;
+	actual_node_07_type = get_token_string(lst->type);
+	lst = lst->next;
+	actual_node_08_lexeme = lst->lexeme;
+	actual_node_08_type = get_token_string(lst->type);
+	lst = lst->next;
+	actual_node_09_lexeme = lst->lexeme;
+	actual_node_09_type = get_token_string(lst->type);
+	lst = lst->next;
+	actual_node_10_lexeme = lst->lexeme;
+	actual_node_10_type = get_token_string(lst->type);
+	//ASSERT
+
+	mu_assert_string_eq(xpect_node_01_lexeme, actual_node_01_lexeme);
+	mu_assert_string_eq(xpect_node_01_type, actual_node_01_type);
+	mu_assert_string_eq(xpect_node_02_lexeme, actual_node_02_lexeme);
+	mu_assert_string_eq(xpect_node_02_type, actual_node_02_type);
+	mu_assert_string_eq(xpect_node_03_lexeme, actual_node_03_lexeme);
+	mu_assert_string_eq(xpect_node_03_type, actual_node_03_type);
+	mu_assert_string_eq(xpect_node_04_lexeme, actual_node_04_lexeme);
+	mu_assert_string_eq(xpect_node_04_type, actual_node_04_type);
+	mu_assert_string_eq(xpect_node_05_lexeme, actual_node_05_lexeme);
+	mu_assert_string_eq(xpect_node_05_type, actual_node_05_type);
+	mu_assert_string_eq(xpect_node_06_lexeme, actual_node_06_lexeme);
+	mu_assert_string_eq(xpect_node_06_type, actual_node_06_type);
+	mu_assert_string_eq(xpect_node_07_lexeme, actual_node_07_lexeme);
+	mu_assert_string_eq(xpect_node_07_type, actual_node_07_type);
+	mu_assert_string_eq(xpect_node_08_lexeme, actual_node_08_lexeme);
+	mu_assert_string_eq(xpect_node_08_type, actual_node_08_type);
+	mu_assert_string_eq(xpect_node_09_lexeme, actual_node_09_lexeme);
+	mu_assert_string_eq(xpect_node_09_type, actual_node_09_type);
+	mu_assert_string_eq(xpect_node_10_lexeme, actual_node_10_lexeme);
+	mu_assert_string_eq(xpect_node_10_type, actual_node_10_type);
 	mu_assert_int_eq(xpect_lst_size, actual_lst_size);
 }
 
@@ -275,7 +407,8 @@ MU_TEST_SUITE(token_simulation_errors_suite)
 
 MU_TEST_SUITE(check_userinput_tests)
 {
-	MU_RUN_TEST(check_userinput_v01);
+	MU_RUN_TEST(check_userinput_token_05);
+	MU_RUN_TEST(check_userinput_token_10);
 }
 
 int	main(void)
@@ -336,21 +469,6 @@ void	ft_array_printer(char **array_lexeme, int *array_type, int arr_size)
 		ft_printf("[%d.]\tlexeme = %s\ttype = %d\n", index, (array_lexeme[index]), array_type[index]);
 		index--;
 	}
-}
-
-int	ft_lst_size(t_token_list *list)
-{
-	int	size;
-
-	size = 0;
-	if (!list)
-		return (size);
-	while (list)
-	{
-		size++;
-		list = list->next;
-	}
-	return (size);
 }
 
 char	*get_token_string(enum e_token token)
