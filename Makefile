@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+         #
+#    By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/12 11:46:52 by umeneses          #+#    #+#              #
-#    Updated: 2024/06/12 16:23:23 by umeneses         ###   ########.fr        #
+#    Updated: 2024/06/21 09:38:57 by tmalheir         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -46,6 +46,14 @@ LIBS					= $(LIBFT)
 NAME					= minishell
 
 SRC_FILES				= simple_main.c
+SRC_FILES				+= check_userinput.c
+SRC_FILES				+= check_initial_errors.c
+SRC_FILES				+= create_token_list.c
+SRC_FILES				+= get_state.c
+SRC_FILES				+= lexer_utils.c
+SRC_FILES				+= state1_to_state5.c
+SRC_FILES				+= state6_to_state10.c
+SRC_FILES				+= state11_to_state15.c
 #SRC_FILES				= minishell_main.c
 #SRC_FILES				+= ft_lexical_analysis.c
 
