@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/20 10:12:37 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/06/24 10:03:49 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/06/24 12:00:10 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,6 @@ int	ft_lst_size(t_token_list *lst)
 void	ft_lst_printf_content(char *str, t_token_list *lst)
 {
 	t_token_list	*tmp;
-	t_token_list	*future_node;
 	int				index;
 	char			*word_from_lexeme;
 	int				lst_size;
@@ -79,12 +78,8 @@ void	ft_lst_printf_content(char *str, t_token_list *lst)
 		{
 			type_as_str = "WORD";
 			ft_printf(RED"str [%d] = [", index);
-			future_node = tmp->next;
-			if (future_node->type != 0)
-			{
-				word_from_lexeme = ft_strdup(tmp->lexeme);
-				ft_printf("%s", word_from_lexeme);
-			}
+			word_from_lexeme = ft_strdup(tmp->lexeme);
+			ft_printf("%s", word_from_lexeme);
 			ft_printf("]");
 			ft_printf(RESET "\t\t");
 			ft_printf(BLUE"type = %s", type_as_str);
