@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/20 10:12:37 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/06/24 09:07:02 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/06/24 10:03:49 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ void	ft_lst_printf_content(char *str, t_token_list *lst)
 		if (tmp->type == 0)
 		{
 			type_as_str = "WORD";
-			ft_printf(RED"str [%0.2d] = [", index);
+			ft_printf(RED"str [%d] = [", index);
 			future_node = tmp->next;
 			if (future_node->type != 0)
 			{
@@ -96,7 +96,7 @@ void	ft_lst_printf_content(char *str, t_token_list *lst)
 		else if (tmp->type == 6)
 		{
 			type_as_str = "OR";
-			ft_printf(RED"str [%0.2d] = [", index);
+			ft_printf(RED"str [%d] = [", index);
 			ft_printf("%c%c]\t", str[index], str[index + 1]);
 			ft_printf(RESET "\t\t");
 			ft_printf(BLUE"type = %s", type_as_str);
@@ -108,7 +108,7 @@ void	ft_lst_printf_content(char *str, t_token_list *lst)
 		else if (tmp->type == 7)
 		{
 			type_as_str = "AND";
-			ft_printf(RED"str [%0.2d] = [", index);
+			ft_printf(RED"str [%d] = [", index);
 			ft_printf("%c%c]\t", str[index], str[index + 1]);
 			ft_printf(RESET "\t\t");
 			ft_printf(BLUE"type = %s", type_as_str);
@@ -139,7 +139,7 @@ void	ft_lst_printf_content(char *str, t_token_list *lst)
 				type_as_str = "OPEN_()";
 			else if (tmp->type == 9)
 				type_as_str = "CLOSE_()";
-			ft_printf(RED"str [%0.2d] = [%c]", index, str[index]);
+			ft_printf(RED"str [%d] = [%c]", index, str[index]);
 			ft_printf(RESET "\t\t\t");
 			ft_printf(BLUE"type = %s", type_as_str);
 			ft_printf(RESET "\t\t\t");
