@@ -16,17 +16,17 @@ on:
   push:
     branches:
     - main
-    - '**feature/**'
-    - '**feat/**'
-    - '**bugfix/**'
-    - '**release/**'
+    - '**-feature-**'
+    - '**-feat-**'
+    - '**-bugfix-**'
+    - '**-release-**'
   pull_request:
     branches:
     - main
-    - '**feature/**'
-    - '**feat/**'
-    - '**bugfix/**'
-    - '**release/**'
+    - '**-feature-**'
+    - '**-feat-**'
+    - '**-bugfix-**'
+    - '**-release-**'
 
 jobs:
   build:
