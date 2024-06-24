@@ -6,7 +6,7 @@
 /*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/20 10:19:45 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/06/21 14:21:41 by tmalheir         ###   ########.fr       */
+/*   Updated: 2024/06/24 10:09:37 by tmalheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ int	state_6(t_token_list **lst, int idx)
 
 	and_node = (t_token_list *)ft_calloc(1, sizeof(t_token_list));
 	and_node->type = AND;
+	and_node->next = NULL;
 	create_new_node(lst, and_node);
 	return (idx + 2);
 }
@@ -37,6 +38,7 @@ int	state_8(t_token_list **lst, int idx)
 
 	output_node = (t_token_list *)ft_calloc(1, sizeof(t_token_list));
 	output_node->type = REDIRECT_OUTPUT;
+	output_node->next = NULL;
 	create_new_node(lst, output_node);
 	return (idx + 1);
 }
@@ -47,6 +49,7 @@ int	state_9(t_token_list **lst, int idx)
 
 	append_node = (t_token_list *)ft_calloc(1, sizeof(t_token_list));
 	append_node->type = REDIRECT_OUTPUT_APPEND;
+	append_node->next = NULL;
 	create_new_node(lst, append_node);
 	return (idx + 2);
 }
