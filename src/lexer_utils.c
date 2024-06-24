@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/20 10:12:37 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/06/21 18:33:31 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/06/24 09:07:02 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,43 +78,43 @@ void	ft_lst_printf_content(char *str, t_token_list *lst)
 		if (tmp->type == 0)
 		{
 			type_as_str = "WORD";
-			printf(RED"str [%0.2d] = [", index);
+			ft_printf(RED"str [%0.2d] = [", index);
 			future_node = tmp->next;
 			if (future_node->type != 0)
 			{
 				word_from_lexeme = ft_strdup(tmp->lexeme);
-				printf("%s", word_from_lexeme);
+				ft_printf("%s", word_from_lexeme);
 			}
-			printf("]");
-			printf(RESET "\t\t");
-			printf(BLUE"type = %s", type_as_str);
-			printf(RESET "\t\t\t\t");
-			printf(GREEN"lexeme = %s\n", tmp->lexeme);
-			printf(RESET);
+			ft_printf("]");
+			ft_printf(RESET "\t\t");
+			ft_printf(BLUE"type = %s", type_as_str);
+			ft_printf(RESET "\t\t\t\t");
+			ft_printf(GREEN"lexeme = %s\n", tmp->lexeme);
+			ft_printf(RESET);
 			index = index + ft_strlen(tmp->lexeme);
 		}
 		else if (tmp->type == 6)
 		{
 			type_as_str = "OR";
-			printf(RED"str [%0.2d] = [", index);
-			printf("%c%c]\t", str[index], str[index + 1]);
-			printf(RESET "\t\t");
-			printf(BLUE"type = %s", type_as_str);
-			printf(RESET "\t\t\t\t");
-			printf(GREEN"lexeme = %s\n", tmp->lexeme);
-			printf(RESET);
+			ft_printf(RED"str [%0.2d] = [", index);
+			ft_printf("%c%c]\t", str[index], str[index + 1]);
+			ft_printf(RESET "\t\t");
+			ft_printf(BLUE"type = %s", type_as_str);
+			ft_printf(RESET "\t\t\t\t");
+			ft_printf(GREEN"lexeme = %s\n", tmp->lexeme);
+			ft_printf(RESET);
 			index++;
 		}
 		else if (tmp->type == 7)
 		{
 			type_as_str = "AND";
-			printf(RED"str [%0.2d] = [", index);
-			printf("%c%c]\t", str[index], str[index + 1]);
-			printf(RESET "\t\t");
-			printf(BLUE"type = %s", type_as_str);
-			printf(RESET "\t\t\t\t");
-			printf(GREEN"lexeme = %s\n", tmp->lexeme);
-			printf(RESET);
+			ft_printf(RED"str [%0.2d] = [", index);
+			ft_printf("%c%c]\t", str[index], str[index + 1]);
+			ft_printf(RESET "\t\t");
+			ft_printf(BLUE"type = %s", type_as_str);
+			ft_printf(RESET "\t\t\t\t");
+			ft_printf(GREEN"lexeme = %s\n", tmp->lexeme);
+			ft_printf(RESET);
 			index++;
 		}
 		else
@@ -139,15 +139,15 @@ void	ft_lst_printf_content(char *str, t_token_list *lst)
 				type_as_str = "OPEN_()";
 			else if (tmp->type == 9)
 				type_as_str = "CLOSE_()";
-			printf(RED"str [%0.2d] = [%c]", index, str[index]);
-			printf(RESET "\t\t\t");
-			printf(BLUE"type = %s", type_as_str);
-			printf(RESET "\t\t\t");
-			printf(GREEN"lexeme = %s\n", tmp->lexeme);
-			printf(RESET);
+			ft_printf(RED"str [%0.2d] = [%c]", index, str[index]);
+			ft_printf(RESET "\t\t\t");
+			ft_printf(BLUE"type = %s", type_as_str);
+			ft_printf(RESET "\t\t\t");
+			ft_printf(GREEN"lexeme = %s\n", tmp->lexeme);
+			ft_printf(RESET);
 		}
 		tmp = tmp->next;
 		index++;
 	}
-	printf("Total lst size = %d\n", ft_lst_size(lst));
+	ft_printf("Total lst size = %d\n", ft_lst_size(lst));
 }

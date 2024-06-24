@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 10:53:20 by umeneses          #+#    #+#             */
-/*   Updated: 2024/06/21 17:00:46 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/06/24 09:00:15 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,13 @@
 # include <errno.h>
 # include <unistd.h>
 
-# define RED     "\x1b[31m"
-# define GREEN   "\x1b[32m"
-# define BLUE    "\x1b[34m"
-# define RESET   "\x1b[0m"
+# define RED	"\033[0;31m"
+# define GREEN	"\033[0;32m"
+# define YELLOW	"\033[0;33m"
+# define BLUE	"\033[0;34m"
+# define PURPLE	"\033[0;35m"
+# define CYAN	"\033[0;36m"
+# define RESET	"\033[0m"
 
 typedef struct s_token_list
 {
