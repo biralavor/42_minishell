@@ -6,7 +6,7 @@
 #    By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/12 11:46:22 by umeneses          #+#    #+#              #
-#    Updated: 2024/06/24 15:24:15 by umeneses         ###   ########.fr        #
+#    Updated: 2024/06/24 16:35:42 by umeneses         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -70,8 +70,8 @@ CFLAGS		= -Wall -Wextra -Werror -g3
 CPPFLAGS	= $(addprefix -I, $(HEADERS)) -MMD -MP
 LDFLAGS		= $(addprefix -L, $(dir $(LIBS)))
 LDLIBS		= -lft -ldl -lreadline
-COMP_OBJS	= $(CC) $(CFLAGS) $(CPPFLAGS) -c $< -o $@
-COMP_EXE	= $(CC) $(LDFLAGS) $(OBJ_FILES) $(LDLIBS) -o $(NAME)
+COMP_OBJS	= $(CC) $(CFLAGS) $(CPPFLAGS) -o $@ -c $<
+COMP_EXE	= $(CC) $(CFLAGS) $(CPPFLAGS) -o $(NAME) $(OBJ_FILES) $(LDFLAGS) $(LDLIBS) 
 
 # **************************************************************************** #
 #								DEFINES										   #

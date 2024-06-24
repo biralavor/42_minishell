@@ -6,26 +6,14 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 11:12:53 by umeneses          #+#    #+#             */
-/*   Updated: 2024/06/24 15:23:06 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/06/24 16:41:31 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minunit.h"
 #include "minishell.h"
-#include <stdio.h>
-#include <stdlib.h>
-#include <unistd.h>
 
 #define FILE_INPUT_READLINE_01 "./test_files/input_readline_01.txt"
-// #include "./minunit_utils.c"
-#include "../../src/check_userinput.c"
-#include "../../src/check_initial_errors.c"
-#include "../../src/create_token_list.c"
-#include "../../src/get_state.c"
-#include "../../src/lexer_utils.c"
-#include "../../src/state1_to_state5.c"
-#include "../../src/state6_to_state10.c"
-#include "../../src/state11_to_state15.c"
 
 int		ft_minunit_array_counter(char **array);
 void	ft_array_clear(char **array, int arr_size);
