@@ -6,7 +6,7 @@
 /*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/20 10:35:11 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/06/24 10:32:55 by tmalheir         ###   ########.fr       */
+/*   Updated: 2024/06/24 14:07:31 by tmalheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ int	state_15(t_token_list **lst, char *str, int idx)
 	char			*just_str;
 	t_token_list	*just_str_node;
 
-	if (str[idx] == ' ')
+	if (str[idx] == ' ' || str[idx] == '\t')
 		return (idx + 1);
 	start = (size_t)idx;
 	idx++;
@@ -91,7 +91,7 @@ int	state_15(t_token_list **lst, char *str, int idx)
 	while ((str[idx] != '(') && (str[idx] != ')') && (str[idx] != '|')
 		&& (str[idx] != '&') && (str[idx] != '>') && (str[idx] != '<')
 		&& (str[idx] != '"') && (str[idx] != '\'') && (str[idx] != ' ')
-		&& (str[idx]))
+		&& (str[idx] != '\t') && (str[idx]))
 			idx++;
 	end = (size_t)(idx - 1);
 	just_str = ft_substr((char const *)str, start, ((end - start) + 1));
