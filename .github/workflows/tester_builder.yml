@@ -45,7 +45,7 @@ jobs:
         run: make
         
       - name: Setup Valgrind
-        run: sudo apt-get update | sudo apt-get install -y valgrind
+        run: sudo apt-get install -y valgrind
       
       - name: Running Valgrind
         run: valgrind --track-origins=yes --leak-check=full -q --suppressions=../readline.sup ../minishell
