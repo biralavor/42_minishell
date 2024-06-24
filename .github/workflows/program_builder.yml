@@ -16,17 +16,17 @@ on:
   push:
     branches:
     - main
-    - 'feature/**'
-    - 'feat/**'
-    - 'bugfix/**'
-    - 'release/**'
+    - '**-feature-**'
+    - '**-feat-**'
+    - '**-bugfix-**'
+    - '**-release-**'
   pull_request:
     branches:
     - main
-    - 'feature/**'
-    - 'feat/**'
-    - 'bugfix/**'
-    - 'release/**'
+    - '**-feature-**'
+    - '**-feat-**'
+    - '**-bugfix-**'
+    - '**-release-**'
 
 jobs:
   build:
@@ -42,7 +42,7 @@ jobs:
         run: make
       
       - name: Setup Aptitude
-        run: sudo apt install aptitude -y && sudo aptitude update -y && sudo aptitude upgrade -y
+        run: sudo apt-get update && sudo apt install aptitude -y
       
       - name: Setup Valgrind
         run: sudo aptitude install -y valgrind

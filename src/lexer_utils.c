@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/20 10:12:37 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/06/21 18:33:31 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/06/24 12:01:54 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,6 @@ int	ft_lst_size(t_token_list *lst)
 void	ft_lst_printf_content(char *str, t_token_list *lst)
 {
 	t_token_list	*tmp;
-	t_token_list	*future_node;
 	int				index;
 	char			*word_from_lexeme;
 	int				lst_size;
@@ -72,19 +71,15 @@ void	ft_lst_printf_content(char *str, t_token_list *lst)
 	tmp = lst;
 	lst_size = ft_lst_size(lst);
 	index = 0;
-	ft_printf("\nPrinting the List:\n");
+	printf("\nPrinting the List:\n");
 	while (tmp || index <= lst_size)
 	{
 		if (tmp->type == 0)
 		{
 			type_as_str = "WORD";
-			printf(RED"str [%0.2d] = [", index);
-			future_node = tmp->next;
-			if (future_node->type != 0)
-			{
-				word_from_lexeme = ft_strdup(tmp->lexeme);
-				printf("%s", word_from_lexeme);
-			}
+			printf(RED"str [%2d] = [", index);
+			word_from_lexeme = ft_strdup(tmp->lexeme);
+			printf("%s", word_from_lexeme);
 			printf("]");
 			printf(RESET "\t\t");
 			printf(BLUE"type = %s", type_as_str);
@@ -96,7 +91,7 @@ void	ft_lst_printf_content(char *str, t_token_list *lst)
 		else if (tmp->type == 6)
 		{
 			type_as_str = "OR";
-			printf(RED"str [%0.2d] = [", index);
+			printf(RED"str [%2d] = [", index);
 			printf("%c%c]\t", str[index], str[index + 1]);
 			printf(RESET "\t\t");
 			printf(BLUE"type = %s", type_as_str);
@@ -108,7 +103,7 @@ void	ft_lst_printf_content(char *str, t_token_list *lst)
 		else if (tmp->type == 7)
 		{
 			type_as_str = "AND";
-			printf(RED"str [%0.2d] = [", index);
+			printf(RED"str [%2d] = [", index);
 			printf("%c%c]\t", str[index], str[index + 1]);
 			printf(RESET "\t\t");
 			printf(BLUE"type = %s", type_as_str);
@@ -139,7 +134,7 @@ void	ft_lst_printf_content(char *str, t_token_list *lst)
 				type_as_str = "OPEN_()";
 			else if (tmp->type == 9)
 				type_as_str = "CLOSE_()";
-			printf(RED"str [%0.2d] = [%c]", index, str[index]);
+			printf(RED"str [%2d] = [%c]", index, str[index]);
 			printf(RESET "\t\t\t");
 			printf(BLUE"type = %s", type_as_str);
 			printf(RESET "\t\t\t");
