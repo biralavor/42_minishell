@@ -3,15 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   create_token_list.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 14:44:18 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/06/21 14:57:25 by tmalheir         ###   ########.fr       */
+/*   Updated: 2024/06/25 11:27:32 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
+/**
+ * @brief TODO: delete ft_lst_printf_content function
+*/
 void	create_token_list(char *str)
 {
 	int				idx;
@@ -20,7 +23,6 @@ void	create_token_list(char *str)
 	idx = 0;
 	lst = NULL;
 	get_state(idx, str, &lst);
-//	Apagar esta função quando o projeto estiver finalizado.
 	ft_lst_printf_content(str, lst);
 	free_token_list(&lst);
 }

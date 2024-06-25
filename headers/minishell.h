@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 10:53:20 by umeneses          #+#    #+#             */
-/*   Updated: 2024/06/24 09:00:15 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/06/25 11:25:45 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -143,7 +143,7 @@ void	free_token_list(t_token_list **lst);
 /**
  * @brief Get the size of the token list.
 */
-int	ft_lst_size(t_token_list *lst);
+int		ft_lst_size(t_token_list *lst);
 
 /**
  * @brief APAGAR ESTA FUNÇÃO NO FINAL DO PROJETO.

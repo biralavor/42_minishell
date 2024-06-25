@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+         #
+#    By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/12 11:46:52 by umeneses          #+#    #+#              #
-#    Updated: 2024/06/21 09:38:57 by tmalheir         ###   ########.fr        #
+#    Updated: 2024/06/25 11:51:31 by umeneses         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,6 +36,7 @@ HEADERS_ADDED			+= $(FT_PRINTF)includes/
 HEADERS_ADDED			+= $(BONUS_D)headers/
 HEADERS					= ./headers/ $(HEADERS_ADDED)
 
+TDD_UTILS_D				= ./_tdd_utils/
 # **************************************************************************** #
 #								FILES										   #
 # **************************************************************************** #
@@ -59,8 +60,12 @@ SRC_FILES				+= state11_to_state15.c
 
 SRC_FILES_ALL			= $(addprefix $(SRC_D), $(SRC_FILES))
 
+TDD_FILES				= ft_lst_print_content.c
+TDD_FILES_ALL			= $(addprefix $(TDD_UTILS_D), $(TDD_FILES))
+TDD_OBJS_FILES			= $(addprefix $(BUILD_D), $(TDD_FILES_ALL:%.c=%.o))
+
 OBJS_FILES				= $(addprefix $(BUILD_D), $(SRC_FILES_ALL:%.c=%.o))
-OBJS_ALL				= $(OBJS_FILES)
+OBJS_ALL				= $(TDD_OBJS_FILES) $(OBJS_FILES)
 
 # **************************** #
 #			BONUS			   #
@@ -155,7 +160,7 @@ CPPFLAGS	= $(addprefix -I, $(HEADERS)) -MMD -MP
 LDFLAGS		= $(addprefix -L, $(dir $(LIBS)))
 LDLIBS		= -lft -ldl -lreadline
 COMP_OBJS	= $(CC) $(CFLAGS) $(CPPFLAGS) -c $< -o $@
-COMP_EXE	= $(CC) $(LDFLAGS) $(OBJS_FILES) $(LDLIBS) -o $(NAME)
+COMP_EXE	= $(CC) $(LDFLAGS) $(OBJS_ALL) $(LDLIBS) -o $(NAME)
 
 # **************************************************************************** #
 #								TARGETS										   #
@@ -170,7 +175,7 @@ $(BUILD_D)%.o:		%.c
 					@echo "Compiling: $(notdir $<)"
 					@printf "$(RESET)"
 
-$(NAME):			libft_lib $(OBJS_FILES)
+$(NAME):			libft_lib $(OBJS_ALL)
 					@$(COMP_EXE)
 					@printf "$(GREEN)"
 					@echo "$(NAME) Ready!"
