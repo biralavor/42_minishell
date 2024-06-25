@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 11:12:53 by umeneses          #+#    #+#             */
-/*   Updated: 2024/06/24 16:41:31 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/06/24 22:21:52 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,8 @@
 #include "minishell.h"
 
 #define FILE_INPUT_READLINE_01 "./test_files/input_readline_01.txt"
-
-int		ft_minunit_array_counter(char **array);
-void	ft_array_clear(char **array, int arr_size);
-void	ft_array_printer(char **array_lexeme, int *array_type, int arr_size);
-int		ft_lst_size(t_token_list *list);
-char	*get_token_string(enum e_token token);
+#include "minunit_utils.c"
+#include "../../src/check_initial_errors.c"
 
 MU_TEST(argv_simulation_test)
 {
