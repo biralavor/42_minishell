@@ -14,7 +14,7 @@
 # Minishell
 > The terminal is a file, therefor it treats all as ```strings```
 
-![Screenshot from 2024-06-13 12-06-12](https://github.com/biralavor/42_minishell/assets/80487147/f569f23a-6b77-4c1f-9a2f-c8dc00696d38)
+![Screenshot from 2024-06-25 10-43-38](https://github.com/biralavor/42_minishell/assets/80487147/c33a8f94-2e34-4864-8f76-90fa89ad2ec6)
 
 
 ## Lexer
