@@ -6,7 +6,7 @@
 #    By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/12 11:46:22 by umeneses          #+#    #+#              #
-#    Updated: 2024/06/21 15:01:57 by umeneses         ###   ########.fr        #
+#    Updated: 2024/06/24 22:23:17 by umeneses         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -43,8 +43,7 @@ LIBS				= $(LIBFT) $(PROGRAM_TO_TEST_D)
 
 NAME				= minishell.tests
 
-SRC_FILES			= minishell_tester.c
-#SRC_FILES			+= minunit_utils.c
+SRC_FILES			= minishell_main_tester.c
 
 SRC_FILES_ALL		= $(addprefix $(TEST_D), $(SRC_FILES))
 
@@ -68,8 +67,8 @@ CFLAGS		= -Wall -Wextra -Werror -g3
 CPPFLAGS	= $(addprefix -I, $(HEADERS)) -MMD -MP
 LDFLAGS		= $(addprefix -L, $(dir $(LIBS)))
 LDLIBS		= -lft -ldl -lreadline
-COMP_OBJS	= $(CC) $(CFLAGS) $(CPPFLAGS) -c $< -o $@
-COMP_EXE	= $(CC) $(LDFLAGS) $(OBJ_FILES) $(LDLIBS) -o $(NAME)
+COMP_OBJS	= $(CC) $(CFLAGS) $(CPPFLAGS) -o $@ -c $<
+COMP_EXE	= $(CC) $(CFLAGS) $(CPPFLAGS) -o $(NAME) $(OBJ_FILES) $(LDFLAGS) $(LDLIBS) 
 
 # **************************************************************************** #
 #								DEFINES										   #
