@@ -2,11 +2,13 @@
 
 - [x] Makefile working and calling minUnit tester :tada: [https://github.com/biralavor/42_minishell/releases/tag/v0.0.1]
 
-- [ ]	Project Planning - Phase 1
+- [x] Test development with multiple files call, avoiding a monolith file :tada: [https://github.com/biralavor/42_minishell/pull/31]
 
-- [ ]	Project Planning - Phase 2
+- [x] Project Planning - Lexer :tada: [https://github.com/biralavor/42_minishell/releases/tag/v0.2]
 
-- [ ]	Project Planning - Phase 3
+- [ ] Project Planning - Parser
+
+- [ ] Project Planning - Exectution
 
 
 # Minishell
