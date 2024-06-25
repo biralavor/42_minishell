@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 11:12:53 by umeneses          #+#    #+#             */
-/*   Updated: 2024/06/24 22:21:52 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/06/24 22:42:49 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,6 @@
 #include "minishell.h"
 
 #define FILE_INPUT_READLINE_01 "./test_files/input_readline_01.txt"
-#include "minunit_utils.c"
-#include "../../src/check_initial_errors.c"
 
 MU_TEST(argv_simulation_test)
 {
