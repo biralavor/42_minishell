@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 10:53:20 by umeneses          #+#    #+#             */
-/*   Updated: 2024/06/25 11:25:45 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/06/26 11:40:53 by tmalheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,6 +129,11 @@ int		state_15(t_token_list **lst, char *str, int idx);
  * @brief Compare the current character to the next.
 */
 int		check_next_char(char curr, char next);
+
+/**
+ * @brief Verifies if the character is space.
+*/
+int	is_space(char c);
 
 /**
  * @brief Print a message error in case of error in get_state.
