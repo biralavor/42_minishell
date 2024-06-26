@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lexer_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/20 10:12:37 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/06/25 11:35:24 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/06/26 11:39:11 by tmalheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,4 +55,13 @@ int	ft_lst_size(t_token_list *lst)
 		tmp = tmp->next;
 	}
 	return (size);
+}
+
+int	is_space(char c)
+{
+	if ((c == ' ') || (c == '\t') || (c == '\n')
+	|| (c == '\r') || (c == '\v'))
+		return (1);
+	else
+		return (0);
 }
