@@ -1,31 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   simple_main.c                                      :+:      :+:    :+:   */
+/*   check_userinput.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/12 10:53:12 by umeneses          #+#    #+#             */
-/*   Updated: 2024/06/27 10:15:47 by tmalheir         ###   ########.fr       */
+/*   Created: 2024/06/19 09:20:45 by tmalheir          #+#    #+#             */
+/*   Updated: 2024/06/26 13:37:31 by tmalheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
 #include "lexer.h"
 
-/**
- * @brief Check user input
- * Other input examples:
- * "&&Test"
- * "ls -al a* | grep me > file1"
- * "&&(This) < < | > || \"is\" \'a\' test&&"
-*/
-int	main(void)
+void	check_userinput(char *str)
 {
-	char	*input;
-
-	input = "&&(This) < < | > || \"is\" \'a\' test&&";
-	printf("%s\n", input);
-	check_userinput(input);
-	return (0);
+	if (check_initial_errors(str))
+		exit (EXIT_FAILURE);
+	create_token_list(str);
 }

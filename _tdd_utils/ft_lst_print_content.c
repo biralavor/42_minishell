@@ -3,14 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lst_print_content.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/25 11:35:49 by umeneses          #+#    #+#             */
-/*   Updated: 2024/06/25 11:36:05 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/06/26 13:40:53 by tmalheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+#include "lexer.h"
 
 void	ft_lst_printf_content(char *str, t_token_list *lst)
 {
