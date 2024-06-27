@@ -6,7 +6,7 @@
 /*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 13:32:19 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/06/26 14:36:46 by tmalheir         ###   ########.fr       */
+/*   Updated: 2024/06/27 11:20:54 by tmalheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,12 @@ int		check_double_quotes(char *str);
  * @param *str -> User input in command line.
 */
 int		check_single_quotes(char *str);
+
+/**
+ * @brief Check for semicolon: (1) means error.
+ * @param *str -> User input in command line.
+*/
+int		(check_semicolon(char *str));
 
 /**
  * @brief Check for single ampersand error: (1) means error.

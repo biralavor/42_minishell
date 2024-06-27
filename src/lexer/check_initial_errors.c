@@ -6,7 +6,7 @@
 /*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 07:45:31 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/06/26 13:37:25 by tmalheir         ###   ########.fr       */
+/*   Updated: 2024/06/27 11:20:26 by tmalheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int	check_initial_errors(char *str)
 {
 	if ((check_double_quotes(str)) || (check_single_quotes(str))
-		|| (check_single_ampersand(str)))
+		|| (check_single_ampersand(str)) || (check_semicolon(str)))
 	{
 		ft_printf("Syntax error");
 		return (1);
@@ -64,6 +64,20 @@ int	check_single_quotes(char *str)
 		idx++;
 	}
 	return (inside_quotes);
+}
+
+int	(check_semicolon(char *str))
+{
+	int	idx;
+
+	idx = 0;
+	while (str[idx])
+	{
+		if (str[idx] == ';')
+			return (1);
+		idx++;
+	}
+	return (0);
 }
 
 int	check_single_ampersand(char *str)
