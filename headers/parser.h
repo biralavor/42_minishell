@@ -1,31 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   simple_main.c                                      :+:      :+:    :+:   */
+/*   parser.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/12 10:53:12 by umeneses          #+#    #+#             */
-/*   Updated: 2024/06/27 14:46:57 by tmalheir         ###   ########.fr       */
+/*   Created: 2024/06/27 12:53:52 by tmalheir          #+#    #+#             */
+/*   Updated: 2024/06/27 13:56:44 by tmalheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
-#include "lexer.h"
+#ifndef PARSER_H
+# define PARSER_H
 
-/**
- * @brief Check user input
- * Other input examples:
- * "&&Test"
- * "ls -al a* | grep me > file1"
- * "&&(This) < < | > || \"is\" \'a\' test&&"
-*/
-int	main(void)
-{
-	char	*input;
+# include "minishell.h"
+# include "lexer.h"
 
-	input = "&&(This) < < | > || \"is\" \'a\' test&&";
-	printf("%s\n", input);
-	check_userinput(input);
-	return (0);
-}
+int	check_syntax_errors(t_token_list **lst);
+
+#endif

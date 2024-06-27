@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   test_initial_errors.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 11:12:53 by umeneses          #+#    #+#             */
-/*   Updated: 2024/06/24 22:42:49 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/06/27 14:26:06 by tmalheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,7 @@ MU_TEST(check_double_quoting_error_test)
 	userinput_double_quotes = "\"This test tests double quotes\"";
 	expected_return_double_quotes = 0;
 
-	actual_return_double_quotes = check_double_quotes(userinput_double_quotes);
+	actual_return_double_quotes = check_closed_double_quotes(userinput_double_quotes);
 
 	// ASSERT -> check if the function worked as expected
 	mu_assert_int_eq(expected_return_double_quotes, actual_return_double_quotes);
@@ -103,7 +103,7 @@ MU_TEST(check_single_quoting_error_test)
 	userinput_single_quotes = "'This' test 'tests single quotes";
 	expected_return_single_quotes = 1;
 
-	actual_return_single_quotes = check_single_quotes(userinput_single_quotes);
+	actual_return_single_quotes = check_closed_single_quotes(userinput_single_quotes);
 
 	// ASSERT -> check if the function worked as expected
 	mu_assert_int_eq(expected_return_single_quotes, actual_return_single_quotes);
@@ -120,7 +120,7 @@ MU_TEST(check_single_ampersand_error_test)
 	userinput_single_ampersand = "This is&&  a test &&";
 	expected_return_single_ampersand = 0;
 
-	actual_return_single_ampersand = check_single_ampersand(userinput_single_ampersand);
+	actual_return_single_ampersand = check_double_ampersand(userinput_single_ampersand);
 
 	// ASSERT -> check if the function worked as expected
 	mu_assert_int_eq(expected_return_single_ampersand, actual_return_single_ampersand);

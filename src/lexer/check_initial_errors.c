@@ -6,67 +6,66 @@
 /*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 07:45:31 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/06/27 11:20:26 by tmalheir         ###   ########.fr       */
+/*   Updated: 2024/06/27 14:39:40 by tmalheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "minishell.h"
 #include "lexer.h"
 
-int	check_initial_errors(char *str)
+bool	check_initial_errors(char *str)
 {
-	if ((check_double_quotes(str)) || (check_single_quotes(str))
-		|| (check_single_ampersand(str)) || (check_semicolon(str)))
-	{
-		ft_printf("Syntax error");
-		return (1);
-	}
+	if (!(check_closed_double_quotes(str))
+		|| !(check_closed_single_quotes(str))
+		|| !(check_double_ampersand(str)) || !(check_semicolon(str)))
+		return (false);
 	else
-		return (0);
+		return (true);
 }
 
-int	check_double_quotes(char *str)
+bool	check_closed_double_quotes(char *str)
 {
 	int		idx;
-	int		inside_quotes;
+	bool	inside_quotes;
 
 	idx = 0;
-	inside_quotes = 0;
+	inside_quotes = true;
 	while (str[idx])
 	{
 		if (str[idx] == '"')
 		{
-			if (inside_quotes == 0)
-				inside_quotes = 1;
+			if (inside_quotes == true)
+				inside_quotes = false;
 			else
-				inside_quotes = 0;
+				inside_quotes = true;
 		}
 		idx++;
 	}
 	return (inside_quotes);
 }
 
-int	check_single_quotes(char *str)
+bool	check_closed_single_quotes(char *str)
 {
-	int	idx;
-	int	inside_quotes;
+	int		idx;
+	bool	inside_quotes;
 
 	idx = 0;
-	inside_quotes = 0;
+	inside_quotes = true;
 	while (str[idx])
 	{
 		if (str[idx] == '\'')
 		{
-			if (inside_quotes == 0)
-				inside_quotes = 1;
+			if (inside_quotes == true)
+				inside_quotes = false;
 			else
-				inside_quotes = 0;
+				inside_quotes = true;
 		}
 		idx++;
 	}
 	return (inside_quotes);
 }
 
-int	(check_semicolon(char *str))
+bool	check_semicolon(char *str)
 {
 	int	idx;
 
@@ -74,27 +73,27 @@ int	(check_semicolon(char *str))
 	while (str[idx])
 	{
 		if (str[idx] == ';')
-			return (1);
+			return (false);
 		idx++;
 	}
-	return (0);
+	return (true);
 }
 
-int	check_single_ampersand(char *str)
+bool	check_double_ampersand(char *str)
 {
-	int	idx;
-	int	prev_is_ampersand;
+	int		idx;
+	bool	prev_is_ampersand;
 
 	idx = 0;
-	prev_is_ampersand = 0;
+	prev_is_ampersand = true;
 	while (str[idx])
 	{
 		if (str[idx] == '&')
 		{
-			if (prev_is_ampersand == 0)
-				prev_is_ampersand = 1;
+			if (prev_is_ampersand == true)
+				prev_is_ampersand = false;
 			else
-				prev_is_ampersand = 0;
+				prev_is_ampersand = true;
 		}
 		idx++;
 	}
