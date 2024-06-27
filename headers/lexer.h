@@ -6,7 +6,7 @@
 /*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 13:32:19 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/06/27 11:20:54 by tmalheir         ###   ########.fr       */
+/*   Updated: 2024/06/27 14:34:51 by tmalheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,31 +47,31 @@ void	check_userinput(char *str);
  * @brief Calls for initial error checking functions.
  * @param *str -> User input in command line.
 */
-int		check_initial_errors(char *str);
+bool	check_initial_errors(char *str);
 
 /**
- * @brief Check for double quoting errors: (1) means error.
+ * @brief Check for double quoting errors.
  * @param *str -> User input in command line.
 */
-int		check_double_quotes(char *str);
+bool	check_closed_double_quotes(char *str);
 
 /**
- * @brief Check for single quoting errors: (1) means error.
+ * @brief Check for single quoting errors.
  * @param *str -> User input in command line.
 */
-int		check_single_quotes(char *str);
+bool	check_closed_single_quotes(char *str);
 
 /**
- * @brief Check for semicolon: (1) means error.
+ * @brief Check for semicolon.
  * @param *str -> User input in command line.
 */
-int		(check_semicolon(char *str));
+bool	check_semicolon(char *str);
 
 /**
- * @brief Check for single ampersand error: (1) means error.
+ * @brief Check for single ampersand error.
  * @param *str -> User input in command line.
 */
-int		check_single_ampersand(char *str);
+bool	check_double_ampersand(char *str);
 
 /*TOKEN LIST CREATION FUNCTIONS*/
 
@@ -79,7 +79,7 @@ int		check_single_ampersand(char *str);
  * @brief Create token list by calling the get_state function.
  * @param *str -> User input in command line.
 */
-void	create_token_list(char *str);
+void	create_token_list(char *str, t_token_list **lst);
 
 /**
  * @brief Create each token according to the present state.

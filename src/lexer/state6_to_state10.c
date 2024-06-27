@@ -6,10 +6,11 @@
 /*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/20 10:19:45 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/06/26 13:37:58 by tmalheir         ###   ########.fr       */
+/*   Updated: 2024/06/27 14:00:42 by tmalheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "minishell.h"
 #include "lexer.h"
 
 int	state_6(t_token_list **lst, int idx)

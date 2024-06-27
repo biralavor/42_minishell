@@ -6,10 +6,11 @@
 /*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/20 10:12:37 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/06/26 13:37:48 by tmalheir         ###   ########.fr       */
+/*   Updated: 2024/06/27 14:29:13 by tmalheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "minishell.h"
 #include "lexer.h"
 
 int	check_next_char(char curr, char next)
@@ -60,7 +61,7 @@ int	ft_lst_size(t_token_list *lst)
 int	is_space(char c)
 {
 	if ((c == ' ') || (c == '\t') || (c == '\n')
-	|| (c == '\r') || (c == '\v'))
+		|| (c == '\r') || (c == '\v'))
 		return (1);
 	else
 		return (0);
