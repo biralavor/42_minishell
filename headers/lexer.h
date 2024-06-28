@@ -6,7 +6,7 @@
 /*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 13:32:19 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/06/27 14:34:51 by tmalheir         ###   ########.fr       */
+/*   Updated: 2024/06/28 12:25:32 by tmalheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ enum e_token
 
 void	check_userinput(char *str);
 
-/*ERROR CHECKING FUNCTIONS*/
+/*QUOTING ERROR CHECKING FUNCTIONS*/
 
 /**
  * @brief Calls for initial error checking functions.
@@ -60,18 +60,6 @@ bool	check_closed_double_quotes(char *str);
  * @param *str -> User input in command line.
 */
 bool	check_closed_single_quotes(char *str);
-
-/**
- * @brief Check for semicolon.
- * @param *str -> User input in command line.
-*/
-bool	check_semicolon(char *str);
-
-/**
- * @brief Check for single ampersand error.
- * @param *str -> User input in command line.
-*/
-bool	check_double_ampersand(char *str);
 
 /*TOKEN LIST CREATION FUNCTIONS*/
 
@@ -123,7 +111,7 @@ int		check_next_char(char curr, char next);
 /**
  * @brief Verifies if the character is space.
 */
-int	is_space(char c);
+int		is_space(char c);
 
 /**
  * @brief Print a message error in case of error in get_state.
