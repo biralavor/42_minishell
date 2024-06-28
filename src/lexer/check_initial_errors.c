@@ -6,7 +6,7 @@
 /*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 07:45:31 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/06/27 14:39:40 by tmalheir         ###   ########.fr       */
+/*   Updated: 2024/06/28 12:24:35 by tmalheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,7 @@
 bool	check_initial_errors(char *str)
 {
 	if (!(check_closed_double_quotes(str))
-		|| !(check_closed_single_quotes(str))
-		|| !(check_double_ampersand(str)) || !(check_semicolon(str)))
+		|| !(check_closed_single_quotes(str)))
 		return (false);
 	else
 		return (true);
@@ -63,39 +62,4 @@ bool	check_closed_single_quotes(char *str)
 		idx++;
 	}
 	return (inside_quotes);
-}
-
-bool	check_semicolon(char *str)
-{
-	int	idx;
-
-	idx = 0;
-	while (str[idx])
-	{
-		if (str[idx] == ';')
-			return (false);
-		idx++;
-	}
-	return (true);
-}
-
-bool	check_double_ampersand(char *str)
-{
-	int		idx;
-	bool	prev_is_ampersand;
-
-	idx = 0;
-	prev_is_ampersand = true;
-	while (str[idx])
-	{
-		if (str[idx] == '&')
-		{
-			if (prev_is_ampersand == true)
-				prev_is_ampersand = false;
-			else
-				prev_is_ampersand = true;
-		}
-		idx++;
-	}
-	return (prev_is_ampersand);
 }
