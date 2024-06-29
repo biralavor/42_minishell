@@ -3,16 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   minishell_main_tester.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 11:12:53 by umeneses          #+#    #+#             */
-/*   Updated: 2024/06/26 13:40:31 by tmalheir         ###   ########.fr       */
+/*   Updated: 2024/06/29 17:28:17 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minunit.h"
 #include "minishell.h"
-#include "lexer.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
@@ -24,6 +23,8 @@
 #include "../../src/lexer/state11_to_state15.c"
 #include "../../src/lexer/create_token_list.c"
 #include "../../src/lexer/lexer_utils.c"
+#include "../../src/parser/check_syntax_errors.c"
+#include "../../src/parser/parser_utils.c"
 
 #include "minunit_utils.c"
 #include "test_initial_errors.c"

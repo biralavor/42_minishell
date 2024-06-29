@@ -6,12 +6,13 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 11:12:53 by umeneses          #+#    #+#             */
-/*   Updated: 2024/06/29 15:36:35 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/06/29 17:26:50 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minunit.h"
 #include "minishell.h"
+#include "parser.h"
 
 #define FILE_INPUT_READLINE_01 "./test_files/input_readline_01.txt"
 
