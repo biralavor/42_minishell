@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   test_initial_errors.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 11:12:53 by umeneses          #+#    #+#             */
-/*   Updated: 2024/06/27 14:26:06 by tmalheir         ###   ########.fr       */
+/*   Updated: 2024/06/29 15:36:35 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,23 +75,6 @@ MU_TEST(input_readline_01_txt_test)
 	mu_assert_int_eq(expected_size, actual_size);
 }
 
-MU_TEST(check_double_quoting_error_test)
-{
-	// ARRANGE -> organize the necessary data for the test
-	char	*userinput_double_quotes;
-	int		expected_return_double_quotes;
-	int		actual_return_double_quotes;
-
-	// ACT -> execute the function to be tested
-	userinput_double_quotes = "\"This test tests double quotes\"";
-	expected_return_double_quotes = 0;
-
-	actual_return_double_quotes = check_closed_double_quotes(userinput_double_quotes);
-
-	// ASSERT -> check if the function worked as expected
-	mu_assert_int_eq(expected_return_double_quotes, actual_return_double_quotes);
-}
-
 MU_TEST(check_single_quoting_error_test)
 {
 	// ARRANGE -> organize the necessary data for the test
@@ -101,12 +84,29 @@ MU_TEST(check_single_quoting_error_test)
 
 	// ACT -> execute the function to be tested
 	userinput_single_quotes = "'This' test 'tests single quotes";
-	expected_return_single_quotes = 1;
+	expected_return_single_quotes = false;
 
 	actual_return_single_quotes = check_closed_single_quotes(userinput_single_quotes);
 
 	// ASSERT -> check if the function worked as expected
 	mu_assert_int_eq(expected_return_single_quotes, actual_return_single_quotes);
+}
+
+MU_TEST(check_double_quoting_error_test)
+{
+	// ARRANGE -> organize the necessary data for the test
+	char	*userinput_double_quotes;
+	int		expected_return_double_quotes;
+	int		actual_return_double_quotes;
+
+	// ACT -> execute the function to be tested
+	userinput_double_quotes = "\"This test tests double quotes\"";
+	expected_return_double_quotes = true;
+
+	actual_return_double_quotes = check_closed_double_quotes(userinput_double_quotes);
+
+	// ASSERT -> check if the function worked as expected
+	mu_assert_int_eq(expected_return_double_quotes, actual_return_double_quotes);
 }
 
 MU_TEST(check_single_ampersand_error_test)
@@ -118,7 +118,7 @@ MU_TEST(check_single_ampersand_error_test)
 
 	// ACT -> execute the function to be tested
 	userinput_single_ampersand = "This is&&  a test &&";
-	expected_return_single_ampersand = 0;
+	expected_return_single_ampersand = true;
 
 	actual_return_single_ampersand = check_double_ampersand(userinput_single_ampersand);
 
@@ -135,7 +135,7 @@ MU_TEST(check_initial_errors_test)
 
 	// ACT -> execute the function to be tested
 	userinput = "'This' \"is\"  a test &&";
-	expected_return = 0;
+	expected_return = true;
 
 	actual_return = check_initial_errors(userinput);
 
