@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lexer.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 13:32:19 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/06/27 14:34:51 by tmalheir         ###   ########.fr       */
+/*   Updated: 2024/06/29 15:26:48 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -141,7 +141,7 @@ void	free_token_list(t_token_list **lst);
 int		ft_lst_size(t_token_list *lst);
 
 /**
- * @brief APAGAR ESTA FUNÇÃO NO FINAL DO PROJETO.
+ * @brief TODO: APAGAR ESTA FUNÇÃO NO FINAL DO PROJETO.
 */
 void	ft_lst_printf_content(char *str, t_token_list *lst);
 
