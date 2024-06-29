@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/27 12:53:52 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/06/28 14:12:52 by tmalheir         ###   ########.fr       */
+/*   Updated: 2024/06/29 17:37:36 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,5 @@ bool	check_closed_parenthesis(t_token_list *lst);
  * @brief Print a message error in case of error in parser.
 */
 bool	parser_error(void);
-
 
 #endif
