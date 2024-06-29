@@ -6,7 +6,7 @@
 /*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 15:49:51 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/06/27 14:00:20 by tmalheir         ###   ########.fr       */
+/*   Updated: 2024/06/28 13:48:21 by tmalheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	get_state(int idx, char *str, t_token_list **lst)
 			idx = state_2(lst, idx);
 		else if (str[idx] == '|')
 			idx = state_3(lst, str[idx], str[idx + 1], idx);
-		else if (str[idx] == '&')
+		else if (str[idx] == '&' && str[idx + 1] == '&')
 			idx = state_6(lst, idx);
 		else if (str[idx] == '>')
 			idx = state_7(lst, str[idx], str[idx + 1], idx);

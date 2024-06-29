@@ -6,7 +6,7 @@
 #    By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/12 11:46:52 by umeneses          #+#    #+#              #
-#    Updated: 2024/06/27 14:54:37 by tmalheir         ###   ########.fr        #
+#    Updated: 2024/06/28 13:09:46 by tmalheir         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -55,6 +55,8 @@ SRC_FILES				+= ./lexer/lexer_utils.c
 SRC_FILES				+= ./lexer/state1_to_state5.c
 SRC_FILES				+= ./lexer/state6_to_state10.c
 SRC_FILES				+= ./lexer/state11_to_state15.c
+SRC_FILES				+= ./parser/check_syntax_errors.c
+SRC_FILES				+= ./parser/parser_utils.c
 #SRC_FILES				= minishell_main.c
 #SRC_FILES				+= ft_lexical_analysis.c
 

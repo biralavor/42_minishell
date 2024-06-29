@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   simple_main.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 10:53:12 by umeneses          #+#    #+#             */
-/*   Updated: 2024/06/27 14:46:57 by tmalheir         ###   ########.fr       */
+/*   Updated: 2024/06/29 17:43:05 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,16 @@
 #include "lexer.h"
 
 /**
- * @brief Check user input
- * Other input examples:
- * "&&Test"
- * "ls -al a* | grep me > file1"
- * "&&(This) < < | > || \"is\" \'a\' test&&"
+ * @brief Others fast-test for check_userinput()
+ * input = "&&Test";
+ * input = "ls -al a* | grep me > file1";
+ * input = "&&(This) < < | > || \"is\" \'a\' test&&";
 */
 int	main(void)
 {
 	char	*input;
 
-	input = "&&(This) < < | > || \"is\" \'a\' test&&";
+	input = "(This)&&&& \"\" \'&\'< < | > || \"is\" \'a\' test&&";
 	printf("%s\n", input);
 	check_userinput(input);
 	return (0);
