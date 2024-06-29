@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 13:32:19 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/06/29 17:21:44 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/06/29 17:34:46 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ enum e_token
 
 void	check_userinput(char *str);
 
+/*QUOTING ERROR CHECKING FUNCTIONS*/
 /*QUOTING ERROR CHECKING FUNCTIONS*/
 
 /**
@@ -111,6 +112,7 @@ int		check_next_char(char curr, char next);
 /**
  * @brief Verifies if the character is space.
 */
+int		is_space(char c);
 int		is_space(char c);
 
 /**
