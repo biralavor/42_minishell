@@ -6,7 +6,7 @@
 /*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/27 15:03:18 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/06/28 14:33:20 by tmalheir         ###   ########.fr       */
+/*   Updated: 2024/07/01 16:24:00 by tmalheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,8 +63,26 @@ bool	check_empty_quotes(char *str)
 	return (true);
 }
 
-bool	parser_error(void)
+char	*check_next_token(int unexpected_token)
 {
-	ft_printf("parser error\n");
-	return (false);
+	char	*token_type;
+
+	token_type = NULL;
+	if (unexpected_token == PIPE)
+		token_type = ft_strdup ("\'|\'");
+	else if (unexpected_token == REDIRECT_INPUT)
+		token_type = ft_strdup ("\'<\'");
+	else if (unexpected_token == REDIRECT_HEREDOC)
+		token_type = ft_strdup ("\'<<\'");
+	else if (unexpected_token == REDIRECT_OUTPUT)
+		token_type = ft_strdup ("\'>\'");
+	else if (unexpected_token == REDIRECT_OUTPUT_APPEND)
+		token_type = ft_strdup ("\'>>\'");
+	else if (unexpected_token == OR)
+		token_type = ft_strdup ("\'||\'");
+	else if (unexpected_token == AND)
+		token_type = ft_strdup ("\'&&\'");
+	else if (unexpected_token == OPEN_PARENTHESIS)
+		token_type = ft_strdup ("\'(\'");
+	return (token_type);
 }

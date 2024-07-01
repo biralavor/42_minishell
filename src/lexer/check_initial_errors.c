@@ -6,7 +6,7 @@
 /*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 07:45:31 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/06/28 12:24:35 by tmalheir         ###   ########.fr       */
+/*   Updated: 2024/07/01 10:12:53 by tmalheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,41 +25,41 @@ bool	check_initial_errors(char *str)
 bool	check_closed_double_quotes(char *str)
 {
 	int		idx;
-	bool	inside_quotes;
+	bool	flag;
 
 	idx = 0;
-	inside_quotes = true;
+	flag = true;
 	while (str[idx])
 	{
 		if (str[idx] == '"')
 		{
-			if (inside_quotes == true)
-				inside_quotes = false;
+			if (flag == true)
+				flag = false;
 			else
-				inside_quotes = true;
+				flag = true;
 		}
 		idx++;
 	}
-	return (inside_quotes);
+	return (flag);
 }
 
 bool	check_closed_single_quotes(char *str)
 {
 	int		idx;
-	bool	inside_quotes;
+	bool	flag;
 
 	idx = 0;
-	inside_quotes = true;
+	flag = true;
 	while (str[idx])
 	{
 		if (str[idx] == '\'')
 		{
-			if (inside_quotes == true)
-				inside_quotes = false;
+			if (flag == true)
+				flag = false;
 			else
-				inside_quotes = true;
+				flag = true;
 		}
 		idx++;
 	}
-	return (inside_quotes);
+	return (flag);
 }

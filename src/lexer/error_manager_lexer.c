@@ -1,42 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   create_token_list.c                                :+:      :+:    :+:   */
+/*   error_manager_lexer.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/19 14:44:18 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/07/01 16:13:22 by tmalheir         ###   ########.fr       */
+/*   Created: 2024/07/01 11:01:38 by tmalheir          #+#    #+#             */
+/*   Updated: 2024/07/01 16:10:07 by tmalheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 #include "lexer.h"
+#include "parser.h"
 
-bool	create_token_list(char *str, t_token_list **lst)
+void	error_manager_lexer(int error_id)
 {
-	int	idx;
-
-	idx = 0;
-	get_state(idx, str, lst);
-//	ft_lst_printf_content(str, *lst);
-	if (lst)
-		return (true);
-	else
-		return (false);
+	if (error_id == LEXER_ERROR)
+		lexer_error();
+	else if (error_id == LIST_NOT_CREATED)
+		list_not_created();
 }
 
-void	create_new_node(t_token_list **root, t_token_list *token)
+void	lexer_error(void)
 {
-	t_token_list	*curr;
+	ft_printf("Error in first lexer verifications");
+	exit (EXIT_FAILURE);
+}
 
-	if (*root == NULL)
-		*root = token;
-	else
-	{
-		curr = *root;
-		while (curr->next)
-			curr = curr->next;
-		curr->next = token;
-	}
+void	list_not_created(void)
+{
+	ft_printf("Error in creating the token list");
+	exit(EXIT_FAILURE);
 }
