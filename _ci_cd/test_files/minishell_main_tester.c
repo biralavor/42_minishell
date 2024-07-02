@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 11:12:53 by umeneses          #+#    #+#             */
-/*   Updated: 2024/06/29 17:28:17 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/07/01 22:00:00 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,9 @@
 #include <stdlib.h>
 #include <unistd.h>
 
+#include "../../src/lexer/check_userinput.c"
 #include "../../src/lexer/check_initial_errors.c"
+#include "../../src/lexer/error_manager_lexer.c"
 #include "../../src/lexer/get_state.c"
 #include "../../src/lexer/state1_to_state5.c"
 #include "../../src/lexer/state6_to_state10.c"
