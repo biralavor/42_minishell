@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 11:12:53 by umeneses          #+#    #+#             */
-/*   Updated: 2024/07/02 01:46:38 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/07/02 10:22:31 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ MU_TEST(input_readline_01_txt_test)
 	mu_assert_int_eq(expected_size, actual_size);
 }
 
-MU_TEST(check_single_quoting_error_test)
+MU_TEST(check_single_quoting_error_test_tobe_false)
 {
 	// ARRANGE -> organize the necessary data for the test
 	char	*userinput_single_quotes;
@@ -86,6 +86,23 @@ MU_TEST(check_single_quoting_error_test)
 	// ACT -> execute the function to be tested
 	userinput_single_quotes = "'This' test 'tests single quotes";
 	expected_return_single_quotes = false;
+
+	actual_return_single_quotes = check_closed_single_quotes(userinput_single_quotes);
+
+	// ASSERT -> check if the function worked as expected
+	mu_assert_int_eq(expected_return_single_quotes, actual_return_single_quotes);
+}
+
+MU_TEST(check_single_quoting_error_test_tobe_true)
+{
+	// ARRANGE -> organize the necessary data for the test
+	char	*userinput_single_quotes;
+	int		expected_return_single_quotes;
+	int		actual_return_single_quotes;
+
+	// ACT -> execute the function to be tested
+	userinput_single_quotes = "'This' test 'tests single' quotes";
+	expected_return_single_quotes = true;
 
 	actual_return_single_quotes = check_closed_single_quotes(userinput_single_quotes);
 
@@ -189,7 +206,8 @@ MU_TEST_SUITE(check_initial_errors_suite)
 {
 	MU_RUN_TEST(argv_simulation_test);
 	MU_RUN_TEST(input_readline_01_txt_test);
-	MU_RUN_TEST(check_single_quoting_error_test);
+	MU_RUN_TEST(check_single_quoting_error_test_tobe_false);
+	MU_RUN_TEST(check_single_quoting_error_test_tobe_true);
 	MU_RUN_TEST(check_double_quoting_error_test);
 	MU_RUN_TEST(check_single_ampersand_error_test);
 	MU_RUN_TEST(check_double_ampersand_error_test);
