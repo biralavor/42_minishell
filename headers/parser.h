@@ -6,14 +6,14 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/27 12:53:52 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/06/29 17:37:36 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/07/01 21:46:13 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PARSER_H
 # define PARSER_H
 
-# include "minishell.h"
+// # include "minishell.h"
 # include "lexer.h"
 
 /*SYNTAX ERROR CHECKING FUNCTIONS*/

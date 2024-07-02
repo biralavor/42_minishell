@@ -6,14 +6,14 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 13:32:19 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/06/29 17:34:46 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/07/01 21:33:31 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LEXER_H
 # define LEXER_H
 
-# include "minishell.h"
+// # include "minishell.h"
 
 typedef struct s_token_list
 {
