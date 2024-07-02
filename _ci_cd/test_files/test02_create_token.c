@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   test_lexer.c                                       :+:      :+:    :+:   */
+/*   test02_create_token.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/02 00:00:11 by umeneses          #+#    #+#             */
-/*   Updated: 2024/07/02 10:08:25 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/07/02 11:12:04 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ MU_TEST(testing_create_token_list)
 	mu_assert_string_eq(xpect_node_04_type, actual_node_04_type);
 }
 
-MU_TEST_SUITE(testing_lexer_tests)
+MU_TEST_SUITE(testing_create_token_suite)
 {
 	MU_RUN_TEST(testing_create_token_list);
 }
