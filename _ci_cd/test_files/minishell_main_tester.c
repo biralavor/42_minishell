@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 11:12:53 by umeneses          #+#    #+#             */
-/*   Updated: 2024/07/02 14:22:01 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/07/02 18:18:08 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,13 +31,14 @@
 #include "../_tdd_utils/ft_lst_print_content.c"
 
 #include "minunit_utils.c"
-#include "test_parser_utils.c"
 #include "test01_initial_errors.c"
 #include "test02_create_token.c"
 #include "test03_tokens_01_to_02.c"
 #include "test03_tokens_03_to_05.c"
 #include "test03_tokens_06_to_10.c"
-#include "test04_syntax_errors.c"
+#include "test03_tokens_cadet.c"
+#include "test04_syntax_first_last_node.c"
+#include "test04_syntax_lexeme.c"
 
 int	main(void)
 {
@@ -47,8 +48,9 @@ int	main(void)
 	MU_RUN_SUITE(testing_01_to_02_tokens_suite);
 	MU_RUN_SUITE(testing_03_to_05_tokens_suite);
 	MU_RUN_SUITE(testing_06_to_10_tokens_suite);
-	MU_RUN_SUITE(testing_syntax_errors_suite);
-	// MU_RUN_SUITE(testing_double_ampersand_suite);
+	MU_RUN_SUITE(testing_syntax_first_last_node_errors_suite);
+	MU_RUN_SUITE(testing_syntax_lemexe_errors_suite);
+	MU_RUN_SUITE(testing_tokens_cadet_suite);
 	MU_REPORT();
 	return (MU_EXIT_CODE);
 }
