@@ -3,16 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   check_userinput.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 09:20:45 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/07/01 16:07:17 by tmalheir         ###   ########.fr       */
+/*   Updated: 2024/07/01 22:19:05 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "minishell.h"
 #include "lexer.h"
 #include "parser.h"
-#include "minishell.h"
+#include "error_manager.h"
 
 void	check_userinput(char *str)
 {
