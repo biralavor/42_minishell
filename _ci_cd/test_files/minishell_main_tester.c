@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 11:12:53 by umeneses          #+#    #+#             */
-/*   Updated: 2024/07/01 22:00:00 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/07/01 22:13:06 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@
 #include "../../src/lexer/create_token_list.c"
 #include "../../src/lexer/lexer_utils.c"
 #include "../../src/parser/check_syntax_errors.c"
+#include "../../src/parser/error_manager_parser.c"
 #include "../../src/parser/parser_utils.c"
 
 #include "minunit_utils.c"
