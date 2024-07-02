@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 11:12:53 by umeneses          #+#    #+#             */
-/*   Updated: 2024/07/01 22:13:06 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/07/02 01:35:16 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,14 +34,18 @@
 #include "test_tokens_01_to_02.c"
 #include "test_tokens_03_to_05.c"
 #include "test_tokens_06_to_10.c"
+#include "test_lexer.c"
+#include "test_parser_utils.c"
 
 int	main(void)
 {
 	MU_RUN_SUITE(check_initial_errors_suite);
 	MU_RUN_SUITE(token_simulation_errors_suite);
-	MU_RUN_SUITE(check_01_to_02_tokens_tests);
-	MU_RUN_SUITE(check_03_to_05_tokens_tests);
-	MU_RUN_SUITE(check_06_to_10_tokens_tests);
+	MU_RUN_SUITE(testing_01_to_02_tokens_suite);
+	MU_RUN_SUITE(testing_03_to_05_tokens_suite);
+	MU_RUN_SUITE(testing_06_to_10_tokens_suite);
+	MU_RUN_SUITE(testing_lexer_tests);
+	MU_RUN_SUITE(testing_double_ampersand_suite);
 	MU_REPORT();
 	return (MU_EXIT_CODE);
 }

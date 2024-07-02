@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 11:12:53 by umeneses          #+#    #+#             */
-/*   Updated: 2024/06/29 17:26:50 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/07/02 01:46:38 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,13 +118,30 @@ MU_TEST(check_single_ampersand_error_test)
 	int		actual_return_single_ampersand;
 
 	// ACT -> execute the function to be tested
-	userinput_single_ampersand = "This is&&  a test &&";
-	expected_return_single_ampersand = true;
+	userinput_single_ampersand = "This is&  a test &&";
+	expected_return_single_ampersand = false;
 
 	actual_return_single_ampersand = check_double_ampersand(userinput_single_ampersand);
 
 	// ASSERT -> check if the function worked as expected
 	mu_assert_int_eq(expected_return_single_ampersand, actual_return_single_ampersand);
+}
+
+MU_TEST(check_double_ampersand_error_test)
+{
+	// ARRANGE -> organize the necessary data for the test
+	char	*userinput;
+	int		expected_return;
+	int		actual_return;
+
+	// ACT -> execute the function to be tested
+	userinput = "This is&&  a test &&";
+	expected_return = true;
+
+	actual_return = check_double_ampersand(userinput);
+
+	// ASSERT -> check if the function worked as expected
+	mu_assert_int_eq(expected_return, actual_return);
 }
 
 MU_TEST(check_initial_errors_test)
@@ -175,6 +192,7 @@ MU_TEST_SUITE(check_initial_errors_suite)
 	MU_RUN_TEST(check_single_quoting_error_test);
 	MU_RUN_TEST(check_double_quoting_error_test);
 	MU_RUN_TEST(check_single_ampersand_error_test);
+	MU_RUN_TEST(check_double_ampersand_error_test);
 	MU_RUN_TEST(check_initial_errors_test);
 }
 
