@@ -6,19 +6,18 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 11:12:53 by umeneses          #+#    #+#             */
-/*   Updated: 2024/06/24 22:49:30 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/07/02 00:49:42 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minunit.h"
 #include "minishell.h"
+#include "lexer.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
 
-
-
-MU_TEST(check_userinput_token_10)
+MU_TEST(testing_userinput_token_10)
 {
 	// ARRANGE
 	char			*userinput;
@@ -150,7 +149,7 @@ MU_TEST(check_userinput_token_10)
 	mu_assert_string_eq(xpect_node_10_type, actual_node_10_type);
 }
 
-MU_TEST_SUITE(check_06_to_10_tokens_tests)
+MU_TEST_SUITE(testing_06_to_10_tokens_suite)
 {
-	MU_RUN_TEST(check_userinput_token_10);
+	MU_RUN_TEST(testing_userinput_token_10);
 }
