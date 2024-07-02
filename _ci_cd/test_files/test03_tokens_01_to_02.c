@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   test_tokens_01_to_02.c                             :+:      :+:    :+:   */
+/*   test03_tokens_01_to_02.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 11:12:53 by umeneses          #+#    #+#             */
-/*   Updated: 2024/07/02 00:50:13 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/07/02 17:58:39 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ MU_TEST(testing_userinput_token_empty)
 	mu_assert_string_eq(xpect_node_01_type, actual_node_01_type);
 }
 
-MU_TEST(testing_userinput_token_01_word_with_space)
+MU_TEST(testing_userinput_token_02_word_with_space)
 {
 	// ARRANGE
 	char			*userinput;
@@ -123,7 +123,7 @@ MU_TEST(testing_userinput_token_01_word_with_space)
 	mu_assert_string_eq(xpect_node3_type, actual_node3_type);
 }
 
-MU_TEST(testing_userinput_token_01_word_with_tab_v01)
+MU_TEST(testing_userinput_token_02_word_with_tab_v01)
 {
 	// ARRANGE
 	char			*userinput;
@@ -191,7 +191,7 @@ MU_TEST(testing_userinput_token_01_word_with_tab_v01)
 	mu_assert_string_eq(xpect_node3_type, actual_node3_type);
 }
 
-MU_TEST(testing_userinput_token_01_word_with_tab_v02)
+MU_TEST(testing_userinput_token_02_word_with_tab_v02)
 {
 	// ARRANGE
 	char			*userinput;
@@ -259,7 +259,7 @@ MU_TEST(testing_userinput_token_01_word_with_tab_v02)
 	mu_assert_string_eq(xpect_node3_type, actual_node3_type);
 }
 
-MU_TEST(testing_userinput_token_01_pipe_at_begin)
+MU_TEST(testing_userinput_token_03_pipe_at_begin)
 {
 	// ARRANGE
 	char			*userinput;
@@ -314,7 +314,7 @@ MU_TEST(testing_userinput_token_01_pipe_at_begin)
 	mu_assert_string_eq(xpect_node3_type, actual_node3_type);
 }
 
-MU_TEST(testing_userinput_token_01_pipe_at_middle)
+MU_TEST(testing_userinput_token_03_pipe_at_middle)
 {
 	// ARRANGE
 	char			*userinput;
@@ -369,7 +369,7 @@ MU_TEST(testing_userinput_token_01_pipe_at_middle)
 	mu_assert_string_eq(xpect_node3_type, actual_node3_type);
 }
 
-MU_TEST(testing_userinput_token_01_pipe_at_end)
+MU_TEST(testing_userinput_token_03_pipe_at_end)
 {
 	// ARRANGE
 	char			*userinput;
@@ -424,7 +424,7 @@ MU_TEST(testing_userinput_token_01_pipe_at_end)
 	mu_assert_string_eq(xpect_node3_type, actual_node3_type);
 }
 
-MU_TEST(testing_userinput_token_01_redirect_input_at_begin)
+MU_TEST(testing_userinput_token_03_redirect_input_at_begin)
 {
 	// ARRANGE
 	char			*userinput;
@@ -479,7 +479,7 @@ MU_TEST(testing_userinput_token_01_redirect_input_at_begin)
 	mu_assert_string_eq(xpect_node3_type, actual_node3_type);
 }
 
-MU_TEST(testing_userinput_token_01_redirect_input_at_middle)
+MU_TEST(testing_userinput_token_03_redirect_input_at_middle)
 {
 	// ARRANGE
 	char			*userinput;
@@ -534,7 +534,7 @@ MU_TEST(testing_userinput_token_01_redirect_input_at_middle)
 	mu_assert_string_eq(xpect_node3_type, actual_node3_type);
 }
 
-MU_TEST(testing_userinput_token_01_redirect_input_at_end)
+MU_TEST(testing_userinput_token_03_redirect_input_at_end)
 {
 	// ARRANGE
 	char			*userinput;
@@ -589,7 +589,7 @@ MU_TEST(testing_userinput_token_01_redirect_input_at_end)
 	mu_assert_string_eq(xpect_node3_type, actual_node3_type);
 }
 
-MU_TEST(testing_userinput_token_01_redirect_heredoc_at_begin)
+MU_TEST(testing_userinput_token_03_redirect_heredoc_at_begin)
 {
 	// ARRANGE
 	char			*userinput;
@@ -644,7 +644,7 @@ MU_TEST(testing_userinput_token_01_redirect_heredoc_at_begin)
 	mu_assert_string_eq(xpect_node3_type, actual_node3_type);
 }
 
-MU_TEST(testing_userinput_token_01_redirect_heredoc_at_middle)
+MU_TEST(testing_userinput_token_03_redirect_heredoc_at_middle)
 {
 	// ARRANGE
 	char			*userinput;
@@ -699,7 +699,7 @@ MU_TEST(testing_userinput_token_01_redirect_heredoc_at_middle)
 	mu_assert_string_eq(xpect_node3_type, actual_node3_type);
 }
 
-MU_TEST(testing_userinput_token_01_redirect_heredoc_at_end)
+MU_TEST(testing_userinput_token_03_redirect_heredoc_at_end)
 {
 	// ARRANGE
 	char			*userinput;
@@ -754,7 +754,7 @@ MU_TEST(testing_userinput_token_01_redirect_heredoc_at_end)
 	mu_assert_string_eq(xpect_node3_type, actual_node3_type);
 }
 
-MU_TEST(testing_userinput_token_01_redirect_output_at_begin)
+MU_TEST(testing_userinput_token_03_redirect_output_at_begin)
 {
 	// ARRANGE
 	char			*userinput;
@@ -809,7 +809,7 @@ MU_TEST(testing_userinput_token_01_redirect_output_at_begin)
 	mu_assert_string_eq(xpect_node3_type, actual_node3_type);
 }
 
-MU_TEST(testing_userinput_token_01_redirect_output_at_middle)
+MU_TEST(testing_userinput_token_03_redirect_output_at_middle)
 {
 	// ARRANGE
 	char			*userinput;
@@ -864,7 +864,7 @@ MU_TEST(testing_userinput_token_01_redirect_output_at_middle)
 	mu_assert_string_eq(xpect_node3_type, actual_node3_type);
 }
 
-MU_TEST(testing_userinput_token_01_redirect_output_at_end)
+MU_TEST(testing_userinput_token_03_redirect_output_at_end)
 {
 	// ARRANGE
 	char			*userinput;
@@ -919,7 +919,7 @@ MU_TEST(testing_userinput_token_01_redirect_output_at_end)
 	mu_assert_string_eq(xpect_node3_type, actual_node3_type);
 }
 
-MU_TEST(testing_userinput_token_01_redirect_output_append_at_begin)
+MU_TEST(testing_userinput_token_03_redirect_output_append_at_begin)
 {
 	// ARRANGE
 	char			*userinput;
@@ -974,7 +974,7 @@ MU_TEST(testing_userinput_token_01_redirect_output_append_at_begin)
 	mu_assert_string_eq(xpect_node3_type, actual_node3_type);
 }
 
-MU_TEST(testing_userinput_token_01_redirect_output_append_at_middle)
+MU_TEST(testing_userinput_token_03_redirect_output_append_at_middle)
 {
 	// ARRANGE
 	char			*userinput;
@@ -1029,7 +1029,7 @@ MU_TEST(testing_userinput_token_01_redirect_output_append_at_middle)
 	mu_assert_string_eq(xpect_node3_type, actual_node3_type);
 }
 
-MU_TEST(testing_userinput_token_01_redirect_output_append_at_end)
+MU_TEST(testing_userinput_token_03_redirect_output_append_at_end)
 {
 	// ARRANGE
 	char			*userinput;
@@ -1084,7 +1084,7 @@ MU_TEST(testing_userinput_token_01_redirect_output_append_at_end)
 	mu_assert_string_eq(xpect_node3_type, actual_node3_type);
 }
 
-MU_TEST(testing_userinput_token_01_OR_at_begin)
+MU_TEST(testing_userinput_token_03_OR_at_begin)
 {
 	// ARRANGE
 	char			*userinput;
@@ -1139,7 +1139,7 @@ MU_TEST(testing_userinput_token_01_OR_at_begin)
 	mu_assert_string_eq(xpect_node3_type, actual_node3_type);
 }
 
-MU_TEST(testing_userinput_token_01_OR_at_middle)
+MU_TEST(testing_userinput_token_03_OR_at_middle)
 {
 	// ARRANGE
 	char			*userinput;
@@ -1194,7 +1194,7 @@ MU_TEST(testing_userinput_token_01_OR_at_middle)
 	mu_assert_string_eq(xpect_node3_type, actual_node3_type);
 }
 
-MU_TEST(testing_userinput_token_01_OR_at_end)
+MU_TEST(testing_userinput_token_03_OR_at_end)
 {
 	// ARRANGE
 	char			*userinput;
@@ -1249,7 +1249,7 @@ MU_TEST(testing_userinput_token_01_OR_at_end)
 	mu_assert_string_eq(xpect_node3_type, actual_node3_type);
 }
 
-MU_TEST(testing_userinput_token_01_AND_at_begin)
+MU_TEST(testing_userinput_token_03_AND_at_begin)
 {
 	// ARRANGE
 	char			*userinput;
@@ -1304,7 +1304,7 @@ MU_TEST(testing_userinput_token_01_AND_at_begin)
 	mu_assert_string_eq(xpect_node3_type, actual_node3_type);
 }
 
-MU_TEST(testing_userinput_token_01_AND_at_middle)
+MU_TEST(testing_userinput_token_03_AND_at_middle)
 {
 	// ARRANGE
 	char			*userinput;
@@ -1359,7 +1359,7 @@ MU_TEST(testing_userinput_token_01_AND_at_middle)
 	mu_assert_string_eq(xpect_node3_type, actual_node3_type);
 }
 
-MU_TEST(testing_userinput_token_01_AND_at_end)
+MU_TEST(testing_userinput_token_03_AND_at_end)
 {
 	// ARRANGE
 	char			*userinput;
@@ -1414,7 +1414,7 @@ MU_TEST(testing_userinput_token_01_AND_at_end)
 	mu_assert_string_eq(xpect_node3_type, actual_node3_type);
 }
 
-MU_TEST(testing_userinput_token_01_open_parenthesis_at_begin)
+MU_TEST(testing_userinput_token_03_open_parenthesis_at_begin)
 {
 	// ARRANGE
 	char			*userinput;
@@ -1469,7 +1469,7 @@ MU_TEST(testing_userinput_token_01_open_parenthesis_at_begin)
 	mu_assert_string_eq(xpect_node3_type, actual_node3_type);
 }
 
-MU_TEST(testing_userinput_token_01_open_parenthesis_at_middle)
+MU_TEST(testing_userinput_token_03_open_parenthesis_at_middle)
 {
 	// ARRANGE
 	char			*userinput;
@@ -1524,7 +1524,7 @@ MU_TEST(testing_userinput_token_01_open_parenthesis_at_middle)
 	mu_assert_string_eq(xpect_node3_type, actual_node3_type);
 }
 
-MU_TEST(testing_userinput_token_01_open_parenthesis_at_end)
+MU_TEST(testing_userinput_token_03_open_parenthesis_at_end)
 {
 	// ARRANGE
 	char			*userinput;
@@ -1579,7 +1579,7 @@ MU_TEST(testing_userinput_token_01_open_parenthesis_at_end)
 	mu_assert_string_eq(xpect_node3_type, actual_node3_type);
 }
 
-MU_TEST(testing_userinput_token_01_close_parenthesis_at_begin)
+MU_TEST(testing_userinput_token_03_close_parenthesis_at_begin)
 {
 	// ARRANGE
 	char			*userinput;
@@ -1634,7 +1634,7 @@ MU_TEST(testing_userinput_token_01_close_parenthesis_at_begin)
 	mu_assert_string_eq(xpect_node3_type, actual_node3_type);
 }
 
-MU_TEST(testing_userinput_token_01_close_parenthesis_at_middle)
+MU_TEST(testing_userinput_token_03_close_parenthesis_at_middle)
 {
 	// ARRANGE
 	char			*userinput;
@@ -1689,7 +1689,7 @@ MU_TEST(testing_userinput_token_01_close_parenthesis_at_middle)
 	mu_assert_string_eq(xpect_node3_type, actual_node3_type);
 }
 
-MU_TEST(testing_userinput_token_01_close_parenthesis_at_end)
+MU_TEST(testing_userinput_token_03_close_parenthesis_at_end)
 {
 	// ARRANGE
 	char			*userinput;
@@ -1747,34 +1747,36 @@ MU_TEST(testing_userinput_token_01_close_parenthesis_at_end)
 MU_TEST_SUITE(testing_01_to_02_tokens_suite)
 {
 	MU_RUN_TEST(testing_userinput_token_empty);
-	MU_RUN_TEST(testing_userinput_token_01_word_with_space);
-	MU_RUN_TEST(testing_userinput_token_01_word_with_tab_v01);
-	MU_RUN_TEST(testing_userinput_token_01_word_with_tab_v02);
-	MU_RUN_TEST(testing_userinput_token_01_pipe_at_begin);
-	MU_RUN_TEST(testing_userinput_token_01_pipe_at_middle);
-	MU_RUN_TEST(testing_userinput_token_01_pipe_at_end);
-	MU_RUN_TEST(testing_userinput_token_01_redirect_input_at_begin);
-	MU_RUN_TEST(testing_userinput_token_01_redirect_input_at_middle);
-	MU_RUN_TEST(testing_userinput_token_01_redirect_input_at_end);
-	MU_RUN_TEST(testing_userinput_token_01_redirect_heredoc_at_begin);
-	MU_RUN_TEST(testing_userinput_token_01_redirect_heredoc_at_middle);
-	MU_RUN_TEST(testing_userinput_token_01_redirect_heredoc_at_end);
-	MU_RUN_TEST(testing_userinput_token_01_redirect_output_at_begin);
-	MU_RUN_TEST(testing_userinput_token_01_redirect_output_at_middle);
-	MU_RUN_TEST(testing_userinput_token_01_redirect_output_at_end);
-	MU_RUN_TEST(testing_userinput_token_01_redirect_output_append_at_begin);
-	MU_RUN_TEST(testing_userinput_token_01_redirect_output_append_at_middle);
-	MU_RUN_TEST(testing_userinput_token_01_redirect_output_append_at_end);
-	MU_RUN_TEST(testing_userinput_token_01_OR_at_begin);
-	MU_RUN_TEST(testing_userinput_token_01_OR_at_middle);
-	MU_RUN_TEST(testing_userinput_token_01_OR_at_end);
-	MU_RUN_TEST(testing_userinput_token_01_AND_at_begin);
-	MU_RUN_TEST(testing_userinput_token_01_AND_at_middle);
-	MU_RUN_TEST(testing_userinput_token_01_AND_at_end);
-	MU_RUN_TEST(testing_userinput_token_01_open_parenthesis_at_begin);
-	MU_RUN_TEST(testing_userinput_token_01_open_parenthesis_at_middle);
-	MU_RUN_TEST(testing_userinput_token_01_open_parenthesis_at_end);
-	MU_RUN_TEST(testing_userinput_token_01_close_parenthesis_at_begin);
-	MU_RUN_TEST(testing_userinput_token_01_close_parenthesis_at_middle);
-	MU_RUN_TEST(testing_userinput_token_01_close_parenthesis_at_end);
+	MU_RUN_TEST(testing_userinput_token_02_word_with_space);
+	MU_RUN_TEST(testing_userinput_token_02_word_with_tab_v01);
+	MU_RUN_TEST(testing_userinput_token_02_word_with_tab_v02);
+	MU_RUN_TEST(testing_userinput_token_03_pipe_at_begin);
+	MU_RUN_TEST(testing_userinput_token_03_pipe_at_middle);
+	MU_RUN_TEST(testing_userinput_token_03_pipe_at_end);
+	MU_RUN_TEST(testing_userinput_token_03_redirect_input_at_begin);
+	MU_RUN_TEST(testing_userinput_token_03_redirect_input_at_middle);
+	MU_RUN_TEST(testing_userinput_token_03_redirect_input_at_end);
+	MU_RUN_TEST(testing_userinput_token_03_redirect_heredoc_at_begin);
+	MU_RUN_TEST(testing_userinput_token_03_redirect_heredoc_at_middle);
+	MU_RUN_TEST(testing_userinput_token_03_redirect_heredoc_at_end);
+	MU_RUN_TEST(testing_userinput_token_03_redirect_output_at_begin);
+	MU_RUN_TEST(testing_userinput_token_03_redirect_output_at_middle);
+	MU_RUN_TEST(testing_userinput_token_03_redirect_output_at_end);
+	MU_RUN_TEST(testing_userinput_token_03_redirect_output_append_at_begin);
+	MU_RUN_TEST(testing_userinput_token_03_redirect_output_append_at_middle);
+	MU_RUN_TEST(testing_userinput_token_03_redirect_output_append_at_end);
+	MU_RUN_TEST(testing_userinput_token_03_OR_at_begin);
+	MU_RUN_TEST(testing_userinput_token_03_OR_at_middle);
+	MU_RUN_TEST(testing_userinput_token_03_OR_at_end);
+	MU_RUN_TEST(testing_userinput_token_03_AND_at_begin);
+	MU_RUN_TEST(testing_userinput_token_03_AND_at_middle);
+	MU_RUN_TEST(testing_userinput_token_03_AND_at_end);
+	MU_RUN_TEST(testing_userinput_token_03_open_parenthesis_at_begin);
+	MU_RUN_TEST(testing_userinput_token_03_open_parenthesis_at_middle);
+	MU_RUN_TEST(testing_userinput_token_03_open_parenthesis_at_end);
+	MU_RUN_TEST(testing_userinput_token_03_close_parenthesis_at_begin);
+	MU_RUN_TEST(testing_userinput_token_03_close_parenthesis_at_middle);
+	MU_RUN_TEST(testing_userinput_token_03_close_parenthesis_at_end);
+
+
 }
