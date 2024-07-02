@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/27 12:53:52 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/07/01 22:37:13 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/07/02 07:56:17 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ void	parenthesis_error(t_token_list *lst);
  * @brief Checks token after parenthesis error and displays it in a msg error.
  * @param *lst -> the token list.
 */
-char	*check_next_token(int	unexpected_token);
+char	*check_next_token(int unexpected_token);
 
 /*ERROR MANAGER FUNCTIONS*/
 

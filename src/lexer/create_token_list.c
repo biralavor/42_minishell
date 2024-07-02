@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   create_token_list.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 14:44:18 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/07/01 16:13:22 by tmalheir         ###   ########.fr       */
+/*   Updated: 2024/07/02 07:57:08 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ bool	create_token_list(char *str, t_token_list **lst)
 
 	idx = 0;
 	get_state(idx, str, lst);
-//	ft_lst_printf_content(str, *lst);
+	ft_lst_printf_content(str, *lst);
 	if (lst)
 		return (true);
 	else
