@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 10:53:20 by umeneses          #+#    #+#             */
-/*   Updated: 2024/06/27 13:56:16 by tmalheir         ###   ########.fr       */
+/*   Updated: 2024/07/01 22:18:16 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,5 +30,13 @@
 # define PURPLE	"\033[0;35m"
 # define CYAN	"\033[0;36m"
 # define RESET	"\033[0m"
+
+typedef struct s_token_list
+{
+	int					type;
+	char				*lexeme;
+	struct s_token_list	*prev;
+	struct s_token_list	*next;
+}						t_token_list;
 
 #endif

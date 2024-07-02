@@ -6,7 +6,7 @@
 /*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/27 13:06:03 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/06/28 14:31:18 by tmalheir         ###   ########.fr       */
+/*   Updated: 2024/07/01 16:12:14 by tmalheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,18 @@
 #include "lexer.h"
 #include "parser.h"
 
-bool	check_initial_syntax_errors(t_token_list *lst)
+bool	check_first_node(t_token_list *lst)
+{
+	t_token_list	*temp;
+
+	temp = lst;
+	if (temp->type == PIPE || temp->type == OR || temp->type == AND
+		|| temp->type == CLOSE_PARENTHESIS)
+		return (false);
+	return (true);
+}
+
+bool	check_lexeme(t_token_list *lst)
 {
 	t_token_list	*temp;
 
@@ -25,33 +36,10 @@ bool	check_initial_syntax_errors(t_token_list *lst)
 				&& (*temp->lexeme) != '\''))
 		{
 			if (!(check_lexeme_errors(temp->lexeme)))
-			{
-				parser_error();
-				break ;
-			}
-		}
-		else if (temp->type == WORD && (((*temp->lexeme) == '"')
-				|| (*temp->lexeme) == '\''))
-		{
-			if (!(check_empty_quotes(temp->lexeme)))
-			{
-				parser_error();
-				break ;
-			}
+				return (false);
 		}
 		temp = temp->next;
 	}
-	return (true);
-}
-
-bool	check_first_node_errors(t_token_list *lst)
-{
-	t_token_list	*temp;
-
-	temp = lst;
-	if (temp->type == PIPE || temp->type == OR || temp->type == AND
-		|| temp->type == CLOSE_PARENTHESIS)
-		return (false);
 	return (true);
 }
 
@@ -71,4 +59,40 @@ bool	check_lexeme_errors(char *str)
 		idx++;
 	}
 	return (error_free);
+}
+
+bool	check_quotes(t_token_list *lst)
+{
+	t_token_list	*temp;
+
+	temp = lst;
+	while (temp)
+	{
+		if (temp->type == WORD && (((*temp->lexeme) == '"')
+				|| (*temp->lexeme) == '\''))
+		{
+			if (!(check_empty_quotes(temp->lexeme)))
+				return (false);
+		}
+		temp = temp->next;
+	}
+	return (true);
+}
+
+bool	check_closed_parenthesis(t_token_list *lst)
+{
+	bool			close_parenthesis;
+	t_token_list	*temp;
+
+	close_parenthesis = true;
+	temp = lst;
+	while (temp)
+	{
+		if (temp->type == OPEN_PARENTHESIS)
+			close_parenthesis = false;
+		if (temp->type == CLOSE_PARENTHESIS)
+			close_parenthesis = true;
+		temp = temp->next;
+	}
+	return (close_parenthesis);
 }

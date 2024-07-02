@@ -1,31 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   simple_main.c                                      :+:      :+:    :+:   */
+/*   error_manager.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/12 10:53:12 by umeneses          #+#    #+#             */
-/*   Updated: 2024/07/02 07:51:26 by umeneses         ###   ########.fr       */
+/*   Created: 2024/07/01 22:17:27 by umeneses          #+#    #+#             */
+/*   Updated: 2024/07/01 22:18:26 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
-#include "lexer.h"
-#include "parser.h"
+#ifndef ERROR_MANAGER_H
+# define ERROR_MANAGER_H
 
-/**
- * @brief Others fast-test for check_userinput()
- * input = "&&Test";
- * input = "ls -al a* | grep me > file1";
- * input = "&&(This) < < | > || \"is\" \'a\' test&&";
-*/
-int	main(void)
+enum e_error
 {
-	char	*input;
+	LEXER_ERROR,
+	LIST_NOT_CREATED,
+	UNEXPECTED_TOKEN,
+	SYNTAX_ERROR,
+	COMMAND_NOT_FOUND,
+	PARENTHESIS_ERROR
+};
 
-	input = "ls -al a* | grep me > file1";
-	printf("%s\n", input);
-	check_userinput(input);
-	return (0);
-}
+#endif
