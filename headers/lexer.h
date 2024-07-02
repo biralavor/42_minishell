@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lexer.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 13:32:19 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/06/29 17:34:46 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/07/01 16:03:53 by tmalheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,6 @@
 # define LEXER_H
 
 # include "minishell.h"
-
-typedef struct s_token_list
-{
-	int					type;
-	char				*lexeme;
-	struct s_token_list	*prev;
-	struct s_token_list	*next;
-}						t_token_list;
 
 enum e_token
 {
@@ -41,7 +33,6 @@ enum e_token
 
 void	check_userinput(char *str);
 
-/*QUOTING ERROR CHECKING FUNCTIONS*/
 /*QUOTING ERROR CHECKING FUNCTIONS*/
 
 /**
@@ -68,7 +59,7 @@ bool	check_closed_single_quotes(char *str);
  * @brief Create token list by calling the get_state function.
  * @param *str -> User input in command line.
 */
-void	create_token_list(char *str, t_token_list **lst);
+bool	create_token_list(char *str, t_token_list **lst);
 
 /**
  * @brief Create each token according to the present state.
@@ -116,11 +107,6 @@ int		is_space(char c);
 int		is_space(char c);
 
 /**
- * @brief Print a message error in case of error in get_state.
-*/
-void	lexer_error(void);
-
-/**
  * @brief Free the used memory to create the token list.
 */
 void	free_token_list(t_token_list **lst);
@@ -134,5 +120,23 @@ int		ft_lst_size(t_token_list *lst);
  * @brief TODO: APAGAR ESTA FUNÇÃO NO FINAL DO PROJETO.
 */
 void	ft_lst_printf_content(char *str, t_token_list *lst);
+
+/*ERROR MANAGER FUNCTIONS*/
+
+/**
+ * @brief Manages errors throughout the project before token list creation.
+ * @param error_id -> error number defined in enum e_error in this header.
+*/
+void	error_manager_lexer(int error_id);
+
+/**
+ * @brief Indicates error in initial lexer quoting verifications.
+*/
+void	lexer_error(void);
+
+/**
+ * @brief Indicates error in token list creation.
+*/
+void	list_not_created(void);
 
 #endif

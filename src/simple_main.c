@@ -3,15 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   simple_main.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 10:53:12 by umeneses          #+#    #+#             */
-/*   Updated: 2024/06/29 17:43:05 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/07/01 16:22:56 by tmalheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 #include "lexer.h"
+#include "parser.h"
 
 /**
  * @brief Others fast-test for check_userinput()
@@ -23,7 +24,7 @@ int	main(void)
 {
 	char	*input;
 
-	input = "(This)&&&& \"\" \'&\'< < | > || \"is\" \'a\' test&&";
+	input = "(|";
 	printf("%s\n", input);
 	check_userinput(input);
 	return (0);
