@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 10:53:20 by umeneses          #+#    #+#             */
-/*   Updated: 2024/07/01 16:04:19 by tmalheir         ###   ########.fr       */
+/*   Updated: 2024/07/01 22:18:16 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,15 +38,5 @@ typedef struct s_token_list
 	struct s_token_list	*prev;
 	struct s_token_list	*next;
 }						t_token_list;
-
-enum e_error
-{
-	LEXER_ERROR,
-	LIST_NOT_CREATED,
-	UNEXPECTED_TOKEN,
-	SYNTAX_ERROR,
-	COMMAND_NOT_FOUND,
-	PARENTHESIS_ERROR
-};
 
 #endif
