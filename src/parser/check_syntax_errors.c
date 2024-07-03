@@ -6,7 +6,7 @@
 /*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/27 13:06:03 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/07/01 16:12:14 by tmalheir         ###   ########.fr       */
+/*   Updated: 2024/07/02 14:39:55 by tmalheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,18 @@
 #include "lexer.h"
 #include "parser.h"
 
-bool	check_first_node(t_token_list *lst)
+bool	check_first_and_last_node(t_token_list *lst)
 {
 	t_token_list	*temp;
 
 	temp = lst;
 	if (temp->type == PIPE || temp->type == OR || temp->type == AND
 		|| temp->type == CLOSE_PARENTHESIS)
+		return (false);
+	while (temp->next)
+		temp = temp->next;
+	if (temp->type == PIPE || temp->type == OR || temp->type == AND
+		|| temp->type == OPEN_PARENTHESIS)
 		return (false);
 	return (true);
 }

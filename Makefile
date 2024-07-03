@@ -6,7 +6,7 @@
 #    By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/12 11:46:52 by umeneses          #+#    #+#              #
-#    Updated: 2024/07/01 15:47:06 by tmalheir         ###   ########.fr        #
+#    Updated: 2024/07/02 11:56:39 by tmalheir         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -46,16 +46,16 @@ LIBS					= $(LIBFT)
 
 NAME					= minishell
 
-SRC_FILES				= simple_main.c
-SRC_FILES				+= ./lexer/check_userinput.c
-SRC_FILES				+= ./lexer/check_initial_errors.c
-SRC_FILES				+= ./lexer/error_manager_lexer.c
-SRC_FILES				+= ./lexer/create_token_list.c
-SRC_FILES				+= ./lexer/get_state.c
-SRC_FILES				+= ./lexer/lexer_utils.c
-SRC_FILES				+= ./lexer/state1_to_state5.c
-SRC_FILES				+= ./lexer/state6_to_state10.c
-SRC_FILES				+= ./lexer/state11_to_state15.c
+SRC_FILES				= 01.simple_main.c
+SRC_FILES				+= 02.check_userinput.c
+SRC_FILES				+= ./lexer/03.check_initial_errors.c
+SRC_FILES				+= ./lexer/04.create_token_list.c
+SRC_FILES				+= ./lexer/05.get_state.c
+SRC_FILES				+= ./lexer/06.state1_to_state5.c
+SRC_FILES				+= ./lexer/07.state6_to_state10.c
+SRC_FILES				+= ./lexer/08.state11_to_state15.c
+SRC_FILES				+= ./lexer/09.error_manager_lexer.c
+SRC_FILES				+= ./lexer/10.lexer_utils.c
 SRC_FILES				+= ./parser/check_syntax_errors.c
 SRC_FILES				+= ./parser/error_manager_parser.c
 SRC_FILES				+= ./parser/parser_utils.c

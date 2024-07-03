@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   simple_main.c                                      :+:      :+:    :+:   */
+/*   01.simple_main.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 10:53:12 by umeneses          #+#    #+#             */
-/*   Updated: 2024/07/02 07:51:26 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/07/02 14:51:33 by tmalheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,13 @@
  * input = "&&Test";
  * input = "ls -al a* | grep me > file1";
  * input = "&&(This) < < | > || \"is\" \'a\' test&&";
+ * input = "\"o\"\"i\""
 */
 int	main(void)
 {
 	char	*input;
 
-	input = "ls -al a* | grep me > file1";
+	input = "(teste(";
 	printf("%s\n", input);
 	check_userinput(input);
 	return (0);
