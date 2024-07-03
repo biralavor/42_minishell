@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/02 18:16:24 by umeneses          #+#    #+#             */
-/*   Updated: 2024/07/03 11:16:22 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/07/03 12:11:17 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -1261,9 +1261,6 @@ MU_TEST(testing_tokens_cadet_input_ls_echo_18)
 	mu_assert_string_eq(xpect_node19_lexeme, actual_node19_lexeme);
 	mu_assert_string_eq(xpect_node19_type, actual_node19_type);
 }
-
-// TO BE CONTINUED:
-// https://github.com/DanielSurf10/minishell/blob/lexing/tests/token/expected.txt
 
 MU_TEST_SUITE(testing_tokens_cadet_suite)
 {
