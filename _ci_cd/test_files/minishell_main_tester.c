@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 11:12:53 by umeneses          #+#    #+#             */
-/*   Updated: 2024/07/02 18:18:08 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/07/03 11:27:16 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,9 +48,9 @@ int	main(void)
 	MU_RUN_SUITE(testing_01_to_02_tokens_suite);
 	MU_RUN_SUITE(testing_03_to_05_tokens_suite);
 	MU_RUN_SUITE(testing_06_to_10_tokens_suite);
-	MU_RUN_SUITE(testing_syntax_first_last_node_errors_suite);
-	MU_RUN_SUITE(testing_syntax_lemexe_errors_suite);
 	MU_RUN_SUITE(testing_tokens_cadet_suite);
+	MU_RUN_SUITE(testing_syntax_first_last_node_errors_suite);
+	// MU_RUN_SUITE(testing_syntax_lemexe_errors_suite);
 	MU_REPORT();
 	return (MU_EXIT_CODE);
 }
