@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   error_manager_lexer.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 11:01:38 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/07/01 22:25:33 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/07/02 10:04:43 by tmalheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,12 +25,12 @@ void	error_manager_lexer(int error_id)
 
 void	lexer_error(void)
 {
-	ft_printf("Error in first lexer verifications");
+	ft_printf("Unmatched open quotes");
 	exit (EXIT_FAILURE);
 }
 
 void	list_not_created(void)
 {
-	ft_printf("Error in creating the token list");
+	ft_printf("Failed to create token linked list");
 	exit(EXIT_FAILURE);
 }

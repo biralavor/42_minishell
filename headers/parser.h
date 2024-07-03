@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/27 12:53:52 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/07/02 07:56:17 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/07/02 13:10:58 by tmalheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ bool	check_initial_syntax(t_token_list *lst);
  * @brief Check syntax error in the first token.
  * @param *lst -> the token list.
 */
-bool	check_first_node(t_token_list *lst);
+bool	check_first_and_last_node(t_token_list *lst);
 
 /**
  * @brief Check for single ampersand and semicolon.

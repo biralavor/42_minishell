@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_state.c                                        :+:      :+:    :+:   */
+/*   05.get_state.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 15:49:51 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/07/01 15:06:06 by tmalheir         ###   ########.fr       */
+/*   Updated: 2024/07/02 12:46:35 by tmalheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,13 @@ void	get_state(int idx, char *str, t_token_list **lst)
 	while (str[idx])
 	{
 		if (str[idx] == '(')
-			idx = state_1(lst, idx);
+			idx = state_1(lst, idx, str[idx + 1]);
 		else if (str[idx] == ')')
-			idx = state_2(lst, idx);
+			idx = state_2(lst, idx, str[idx + 1]);
 		else if (str[idx] == '|')
 			idx = state_3(lst, str[idx], str[idx + 1], idx);
 		else if (str[idx] == '&' && str[idx + 1] == '&')
-			idx = state_6(lst, idx);
+			idx = state_6(lst, idx, str[idx + 1]);
 		else if (str[idx] == '>')
 			idx = state_7(lst, str[idx], str[idx + 1], idx);
 		else if (str[idx] == '<')

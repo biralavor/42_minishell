@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_userinput.c                                  :+:      :+:    :+:   */
+/*   02.check_userinput.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 09:20:45 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/07/01 22:19:05 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/07/02 13:10:25 by tmalheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	check_userinput(char *str)
 		error_manager_lexer(LEXER_ERROR);
 	else if (!create_token_list(str, &lst))
 		error_manager_lexer(LIST_NOT_CREATED);
-	else if (!check_first_node(lst))
+	else if (!check_first_and_last_node(lst))
 		error_manager_parser(UNEXPECTED_TOKEN, lst);
 	else if (!check_lexeme(lst))
 		error_manager_parser(SYNTAX_ERROR, lst);
