@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/02 11:01:23 by umeneses          #+#    #+#             */
-/*   Updated: 2024/07/02 17:36:42 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/07/03 12:13:41 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ MU_TEST(testing_syntax_first_node_pipe_simple_space)
 	get_state(idx, userinput, &lst);
 
 	actual_lst_size = ft_lst_size(lst);
-	actual_syntax_validation = check_first_node(lst);
+	actual_syntax_validation = check_first_and_last_node(lst);
 
 	// ASSERT
 	mu_assert_int_eq(xpect_lst_size, actual_lst_size);
@@ -61,7 +61,7 @@ MU_TEST(testing_syntax_first_node_pipe_space_after)
 	get_state(idx, userinput, &lst);
 
 	actual_lst_size = ft_lst_size(lst);
-	actual_syntax_validation = check_first_node(lst);
+	actual_syntax_validation = check_first_and_last_node(lst);
 
 	// ASSERT
 	mu_assert_int_eq(xpect_lst_size, actual_lst_size);
@@ -88,7 +88,7 @@ MU_TEST(testing_syntax_first_node_pipe_space_before)
 	get_state(idx, userinput, &lst);
 
 	actual_lst_size = ft_lst_size(lst);
-	actual_syntax_validation = check_first_node(lst);
+	actual_syntax_validation = check_first_and_last_node(lst);
 
 	// ASSERT
 	mu_assert_int_eq(xpect_lst_size, actual_lst_size);
@@ -115,7 +115,7 @@ MU_TEST(testing_syntax_first_node_OR_simple_space)
 	get_state(idx, userinput, &lst);
 
 	actual_lst_size = ft_lst_size(lst);
-	actual_syntax_validation = check_first_node(lst);
+	actual_syntax_validation = check_first_and_last_node(lst);
 
 	// ASSERT
 	mu_assert_int_eq(xpect_lst_size, actual_lst_size);
@@ -142,7 +142,7 @@ MU_TEST(testing_syntax_first_node_OR_space_after)
 	get_state(idx, userinput, &lst);
 
 	actual_lst_size = ft_lst_size(lst);
-	actual_syntax_validation = check_first_node(lst);
+	actual_syntax_validation = check_first_and_last_node(lst);
 
 	// ASSERT
 	mu_assert_int_eq(xpect_lst_size, actual_lst_size);
@@ -169,7 +169,7 @@ MU_TEST(testing_syntax_first_node_OR_space_before)
 	get_state(idx, userinput, &lst);
 
 	actual_lst_size = ft_lst_size(lst);
-	actual_syntax_validation = check_first_node(lst);
+	actual_syntax_validation = check_first_and_last_node(lst);
 
 	// ASSERT
 	mu_assert_int_eq(xpect_lst_size, actual_lst_size);
@@ -196,7 +196,7 @@ MU_TEST(testing_syntax_first_node_AND_simple_space)
 	get_state(idx, userinput, &lst);
 
 	actual_lst_size = ft_lst_size(lst);
-	actual_syntax_validation = check_first_node(lst);
+	actual_syntax_validation = check_first_and_last_node(lst);
 
 	// ASSERT
 	mu_assert_int_eq(xpect_lst_size, actual_lst_size);
@@ -223,7 +223,7 @@ MU_TEST(testing_syntax_first_node_AND_space_after)
 	get_state(idx, userinput, &lst);
 
 	actual_lst_size = ft_lst_size(lst);
-	actual_syntax_validation = check_first_node(lst);
+	actual_syntax_validation = check_first_and_last_node(lst);
 
 	// ASSERT
 	mu_assert_int_eq(xpect_lst_size, actual_lst_size);
@@ -250,7 +250,7 @@ MU_TEST(testing_syntax_first_node_AND_space_before)
 	get_state(idx, userinput, &lst);
 
 	actual_lst_size = ft_lst_size(lst);
-	actual_syntax_validation = check_first_node(lst);
+	actual_syntax_validation = check_first_and_last_node(lst);
 
 	// ASSERT
 	mu_assert_int_eq(xpect_lst_size, actual_lst_size);
@@ -277,7 +277,7 @@ MU_TEST(testing_syntax_first_node_close_parentis_simple_space)
 	get_state(idx, userinput, &lst);
 
 	actual_lst_size = ft_lst_size(lst);
-	actual_syntax_validation = check_first_node(lst);
+	actual_syntax_validation = check_first_and_last_node(lst);
 
 	// ASSERT
 	mu_assert_int_eq(xpect_lst_size, actual_lst_size);
@@ -304,7 +304,7 @@ MU_TEST(testing_syntax_first_node_close_parentis_space_after)
 	get_state(idx, userinput, &lst);
 
 	actual_lst_size = ft_lst_size(lst);
-	actual_syntax_validation = check_first_node(lst);
+	actual_syntax_validation = check_first_and_last_node(lst);
 
 	// ASSERT
 	mu_assert_int_eq(xpect_lst_size, actual_lst_size);
@@ -331,7 +331,7 @@ MU_TEST(testing_syntax_first_node_close_parentis_space_before)
 	get_state(idx, userinput, &lst);
 
 	actual_lst_size = ft_lst_size(lst);
-	actual_syntax_validation = check_first_node(lst);
+	actual_syntax_validation = check_first_and_last_node(lst);
 
 	// ASSERT
 	mu_assert_int_eq(xpect_lst_size, actual_lst_size);
@@ -358,7 +358,7 @@ MU_TEST(testing_syntax_last_node_pipe_simple_space)
 	get_state(idx, userinput, &lst);
 
 	actual_lst_size = ft_lst_size(lst);
-	actual_syntax_validation = check_first_node(lst);
+	actual_syntax_validation = check_first_and_last_node(lst);
 
 	// ASSERT
 	mu_assert_int_eq(xpect_lst_size, actual_lst_size);
@@ -385,7 +385,7 @@ MU_TEST(testing_syntax_last_node_pipe_space_after)
 	get_state(idx, userinput, &lst);
 
 	actual_lst_size = ft_lst_size(lst);
-	actual_syntax_validation = check_first_node(lst);
+	actual_syntax_validation = check_first_and_last_node(lst);
 
 	// ASSERT
 	mu_assert_int_eq(xpect_lst_size, actual_lst_size);
@@ -412,7 +412,7 @@ MU_TEST(testing_syntax_last_node_pipe_space_before)
 	get_state(idx, userinput, &lst);
 
 	actual_lst_size = ft_lst_size(lst);
-	actual_syntax_validation = check_first_node(lst);
+	actual_syntax_validation = check_first_and_last_node(lst);
 
 	// ASSERT
 	mu_assert_int_eq(xpect_lst_size, actual_lst_size);
@@ -439,7 +439,7 @@ MU_TEST(testing_syntax_last_node_OR_simple_space)
 	get_state(idx, userinput, &lst);
 
 	actual_lst_size = ft_lst_size(lst);
-	actual_syntax_validation = check_first_node(lst);
+	actual_syntax_validation = check_first_and_last_node(lst);
 
 	// ASSERT
 	mu_assert_int_eq(xpect_lst_size, actual_lst_size);
@@ -466,7 +466,7 @@ MU_TEST(testing_syntax_last_node_OR_space_after)
 	get_state(idx, userinput, &lst);
 
 	actual_lst_size = ft_lst_size(lst);
-	actual_syntax_validation = check_first_node(lst);
+	actual_syntax_validation = check_first_and_last_node(lst);
 
 	// ASSERT
 	mu_assert_int_eq(xpect_lst_size, actual_lst_size);
@@ -493,7 +493,7 @@ MU_TEST(testing_syntax_last_node_OR_space_before)
 	get_state(idx, userinput, &lst);
 
 	actual_lst_size = ft_lst_size(lst);
-	actual_syntax_validation = check_first_node(lst);
+	actual_syntax_validation = check_first_and_last_node(lst);
 
 	// ASSERT
 	mu_assert_int_eq(xpect_lst_size, actual_lst_size);
@@ -520,7 +520,7 @@ MU_TEST(testing_syntax_last_node_AND_simple_space)
 	get_state(idx, userinput, &lst);
 
 	actual_lst_size = ft_lst_size(lst);
-	actual_syntax_validation = check_first_node(lst);
+	actual_syntax_validation = check_first_and_last_node(lst);
 
 	// ASSERT
 	mu_assert_int_eq(xpect_lst_size, actual_lst_size);
@@ -547,7 +547,7 @@ MU_TEST(testing_syntax_last_node_AND_space_after)
 	get_state(idx, userinput, &lst);
 
 	actual_lst_size = ft_lst_size(lst);
-	actual_syntax_validation = check_first_node(lst);
+	actual_syntax_validation = check_first_and_last_node(lst);
 
 	// ASSERT
 	mu_assert_int_eq(xpect_lst_size, actual_lst_size);
@@ -574,7 +574,7 @@ MU_TEST(testing_syntax_last_node_AND_space_before)
 	get_state(idx, userinput, &lst);
 
 	actual_lst_size = ft_lst_size(lst);
-	actual_syntax_validation = check_first_node(lst);
+	actual_syntax_validation = check_first_and_last_node(lst);
 
 	// ASSERT
 	mu_assert_int_eq(xpect_lst_size, actual_lst_size);
@@ -601,7 +601,7 @@ MU_TEST(testing_syntax_last_node_close_parentis_simple_space)
 	get_state(idx, userinput, &lst);
 
 	actual_lst_size = ft_lst_size(lst);
-	actual_syntax_validation = check_first_node(lst);
+	actual_syntax_validation = check_first_and_last_node(lst);
 
 	// ASSERT
 	mu_assert_int_eq(xpect_lst_size, actual_lst_size);
@@ -628,7 +628,7 @@ MU_TEST(testing_syntax_last_node_close_parentis_space_after)
 	get_state(idx, userinput, &lst);
 
 	actual_lst_size = ft_lst_size(lst);
-	actual_syntax_validation = check_first_node(lst);
+	actual_syntax_validation = check_first_and_last_node(lst);
 
 	// ASSERT
 	mu_assert_int_eq(xpect_lst_size, actual_lst_size);
@@ -655,7 +655,7 @@ MU_TEST(testing_syntax_last_node_close_parentis_space_before)
 	get_state(idx, userinput, &lst);
 
 	actual_lst_size = ft_lst_size(lst);
-	actual_syntax_validation = check_first_node(lst);
+	actual_syntax_validation = check_first_and_last_node(lst);
 
 	// ASSERT
 	mu_assert_int_eq(xpect_lst_size, actual_lst_size);

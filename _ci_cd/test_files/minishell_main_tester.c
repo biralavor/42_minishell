@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 11:12:53 by umeneses          #+#    #+#             */
-/*   Updated: 2024/07/03 11:27:16 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/07/03 12:12:51 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,15 +16,15 @@
 #include <stdlib.h>
 #include <unistd.h>
 
-#include "../../src/lexer/check_userinput.c"
-#include "../../src/lexer/check_initial_errors.c"
-#include "../../src/lexer/error_manager_lexer.c"
-#include "../../src/lexer/get_state.c"
-#include "../../src/lexer/state1_to_state5.c"
-#include "../../src/lexer/state6_to_state10.c"
-#include "../../src/lexer/state11_to_state15.c"
-#include "../../src/lexer/create_token_list.c"
-#include "../../src/lexer/lexer_utils.c"
+#include "../../src/02.check_userinput.c"
+#include "../../src/lexer/03.check_initial_errors.c"
+#include "../../src/lexer/04.create_token_list.c"
+#include "../../src/lexer/05.get_state.c"
+#include "../../src/lexer/06.state1_to_state5.c"
+#include "../../src/lexer/07.state6_to_state10.c"
+#include "../../src/lexer/08.state11_to_state15.c"
+#include "../../src/lexer/09.error_manager_lexer.c"
+#include "../../src/lexer/10.lexer_utils.c"
 #include "../../src/parser/check_syntax_errors.c"
 #include "../../src/parser/error_manager_parser.c"
 #include "../../src/parser/parser_utils.c"
