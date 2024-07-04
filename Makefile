@@ -6,7 +6,7 @@
 #    By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/12 11:46:52 by umeneses          #+#    #+#              #
-#    Updated: 2024/07/02 11:56:39 by tmalheir         ###   ########.fr        #
+#    Updated: 2024/07/04 16:39:19 by tmalheir         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -51,14 +51,16 @@ SRC_FILES				+= 02.check_userinput.c
 SRC_FILES				+= ./lexer/03.check_initial_errors.c
 SRC_FILES				+= ./lexer/04.create_token_list.c
 SRC_FILES				+= ./lexer/05.get_state.c
-SRC_FILES				+= ./lexer/06.state1_to_state5.c
-SRC_FILES				+= ./lexer/07.state6_to_state10.c
-SRC_FILES				+= ./lexer/08.state11_to_state15.c
+SRC_FILES				+= ./lexer/06.state10_to_state30.c
+SRC_FILES				+= ./lexer/07.state40_to_state60.c
+SRC_FILES				+= ./lexer/08.state61_to_state90.c
 SRC_FILES				+= ./lexer/09.error_manager_lexer.c
 SRC_FILES				+= ./lexer/10.lexer_utils.c
-SRC_FILES				+= ./parser/check_syntax_errors.c
+SRC_FILES				+= ./parser/11.syntax_analysis.c
+SRC_FILES				+= ./parser/12.state100.c
+SRC_FILES				+= ./parser/13.state200.c
+SRC_FILES				+= ./parser/19.state800.c
 SRC_FILES				+= ./parser/error_manager_parser.c
-SRC_FILES				+= ./parser/parser_utils.c
 #SRC_FILES				= minishell_main.c
 #SRC_FILES				+= ft_lexical_analysis.c
 

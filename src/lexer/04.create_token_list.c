@@ -6,7 +6,7 @@
 /*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 14:44:18 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/07/02 13:08:00 by tmalheir         ###   ########.fr       */
+/*   Updated: 2024/07/04 14:33:07 by tmalheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,13 +30,18 @@ void	create_new_node(t_token_list **root, t_token_list *token)
 {
 	t_token_list	*curr;
 
+	token->next = NULL;
 	if (*root == NULL)
+	{
 		*root = token;
+		token->prev = NULL;
+	}
 	else
 	{
 		curr = *root;
 		while (curr->next)
 			curr = curr->next;
 		curr->next = token;
+		token->prev = curr;
 	}
 }

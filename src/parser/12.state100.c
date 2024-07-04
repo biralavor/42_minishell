@@ -1,18 +1,61 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parser_utils.c                                     :+:      :+:    :+:   */
+/*   12.state100.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/27 15:03:18 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/07/01 16:24:00 by tmalheir         ###   ########.fr       */
+/*   Created: 2024/07/04 16:20:31 by tmalheir          #+#    #+#             */
+/*   Updated: 2024/07/04 16:40:18 by tmalheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 #include "lexer.h"
 #include "parser.h"
+#include "error_manager.h"
+
+int	state_100(t_token_list *lst, int syntax_state)
+{
+	if (lst->type == WORD && (((*lst->lexeme) != '"')
+			&& (*lst->lexeme) != '\''))
+	{
+		if (!(check_lexeme_errors(lst->lexeme)))
+		{
+			error_manager_parser(SYNTAX_ERROR, lst);
+			syntax_state = 101;
+		}
+	}
+	else if (lst->type == WORD && (((*lst->lexeme) == '"')
+			|| (*lst->lexeme) == '\''))
+	{
+		if (!(check_empty_quotes(lst->lexeme)))
+		{
+			error_manager_parser(SYNTAX_ERROR, lst);
+			syntax_state = 101;
+		}
+	}
+	syntax_state = 100;
+	return (syntax_state);
+}
+
+bool	check_lexeme_errors(char *str)
+{
+	int		idx;
+	bool	error_free;
+
+	idx = 0;
+	error_free = true;
+	while (str[idx])
+	{
+		if (str[idx] == '&')
+			error_free = check_double_ampersand(str);
+		else if (str[idx] == ';')
+			error_free = check_semicolon(str);
+		idx++;
+	}
+	return (error_free);
+}
 
 bool	check_double_ampersand(char *str)
 {
@@ -56,33 +99,6 @@ bool	check_empty_quotes(char *str)
 	idx = 0;
 	if ((str[idx] == '"' && str[idx + 1] == '"')
 		|| (str[idx] == '\'' && str[idx + 1] == '\''))
-	{
-		ft_printf("Command %c not found\n", str[idx]);
 		return (false);
-	}
 	return (true);
-}
-
-char	*check_next_token(int unexpected_token)
-{
-	char	*token_type;
-
-	token_type = NULL;
-	if (unexpected_token == PIPE)
-		token_type = ft_strdup ("\'|\'");
-	else if (unexpected_token == REDIRECT_INPUT)
-		token_type = ft_strdup ("\'<\'");
-	else if (unexpected_token == REDIRECT_HEREDOC)
-		token_type = ft_strdup ("\'<<\'");
-	else if (unexpected_token == REDIRECT_OUTPUT)
-		token_type = ft_strdup ("\'>\'");
-	else if (unexpected_token == REDIRECT_OUTPUT_APPEND)
-		token_type = ft_strdup ("\'>>\'");
-	else if (unexpected_token == OR)
-		token_type = ft_strdup ("\'||\'");
-	else if (unexpected_token == AND)
-		token_type = ft_strdup ("\'&&\'");
-	else if (unexpected_token == OPEN_PARENTHESIS)
-		token_type = ft_strdup ("\'(\'");
-	return (token_type);
 }

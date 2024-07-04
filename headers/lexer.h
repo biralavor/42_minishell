@@ -6,7 +6,7 @@
 /*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 13:32:19 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/07/02 12:48:36 by tmalheir         ###   ########.fr       */
+/*   Updated: 2024/07/03 14:29:34 by tmalheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,21 +77,21 @@ void	create_new_node(t_token_list **root, t_token_list *token);
 */
 void	get_state(int idx, char *str, t_token_list **lst);
 
-int		state_1(t_token_list **lst, int idx, char next);
-int		state_2(t_token_list **lst, int idx, char next);
-int		state_3(t_token_list **lst, char curr, char next, int idx);
-int		state_4(t_token_list **lst, int idx, char next);
-int		state_5(t_token_list **lst, int idx, char next);
-int		state_6(t_token_list **lst, int idx, char next);
-int		state_7(t_token_list **lst, char curr, char next, int idx);
-int		state_8(t_token_list **lst, int idx, char next);
-int		state_9(t_token_list **lst, int idx, char next);
-int		state_10(t_token_list **lst, char curr, char next, int idx);
-int		state_11(t_token_list **lst, int idx, char next);
-int		state_12(t_token_list **lst, int idx, char next);
-int		state_13(t_token_list **lst, char *str, int idx);
-int		state_14(t_token_list **lst, char *str, int idx);
-int		state_15(t_token_list **lst, char *str, int idx);
+int		state_10(t_token_list **lst, int idx, char next);
+int		state_20(t_token_list **lst, int idx, char next);
+int		state_30(t_token_list **lst, char curr, char next, int idx);
+int		state_31(t_token_list **lst, int idx, char next);
+int		state_32(t_token_list **lst, int idx, char next);
+int		state_40(t_token_list **lst, int idx, char next);
+int		state_50(t_token_list **lst, char curr, char next, int idx);
+int		state_51(t_token_list **lst, int idx, char next);
+int		state_52(t_token_list **lst, int idx, char next);
+int		state_60(t_token_list **lst, char curr, char next, int idx);
+int		state_61(t_token_list **lst, int idx, char next);
+int		state_62(t_token_list **lst, int idx, char next);
+int		state_70(t_token_list **lst, char *str, int idx);
+int		state_80(t_token_list **lst, char *str, int idx);
+int		state_90(t_token_list **lst, char *str, int idx);
 
 /*UTILS*/
 

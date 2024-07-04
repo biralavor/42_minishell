@@ -1,0 +1,27 @@
+<command> ::= <pipeline> | <compound_command>
+<pipeline> ::= <command> ['|' <pipeline>]
+<compound_command> ::= <brace_group> | <subshell> | <for_clause> | <case_clause> | <if_clause> | <while_clause> | <until_clause> | <function_definition>
+<brace_group> ::= '{' <compound_list> '}'
+<subshell> ::= '(' <compound_list> ')'
+<compound_list> ::= <list> [';' <compound_list>]
+<list> ::= <list_element> | <list> ';' <list_element>
+<list_element> ::= <and_or>
+<and_or> ::= <pipeline> | <and_or> '&&' <pipeline> | <and_or> '||' <pipeline>
+<for_clause> ::= 'for' <name> 'in' <word_list> ';' <do_group> 'done'
+<case_clause> ::= 'case' <word> 'in' <case_list> 'esac'
+<case_list> ::= <case_item> [';' <case_list>]
+<case_item> ::= <pattern> ')' <compound_list> '('
+<if_clause> ::= 'if' <compound_list> 'then' <compound_list> ['elif' <compound_list> 'then' <compound_list>] ['else' <compound_list>] 'fi'
+<while_clause> ::= 'while' <compound_list> 'do' <compound_list> 'done'
+<until_clause> ::= 'until' <compound_list> 'do' <compound_list> 'done'
+<function_definition> ::= <name> '(' ')' '{' <compound_list> '}'
+<name> ::= <word>
+<word_list> ::= <word> | <word_list> <word>
+<word> ::= <string> | <variable>
+<string> ::= <quoted_string> | <unquoted_string>
+<quoted_string> ::= '"' <characters> '"'
+<unquoted_string> ::= <characters>
+<characters> ::= <character> | <characters> <character>
+<character> ::= any valid shell character
+<variable> ::= '$' <name>
+
