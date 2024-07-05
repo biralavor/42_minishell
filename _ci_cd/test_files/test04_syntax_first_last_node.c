@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/02 11:01:23 by umeneses          #+#    #+#             */
-/*   Updated: 2024/07/03 13:59:00 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/07/05 17:09:58 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -1002,7 +1002,7 @@ MU_TEST(testing_syntax_echo_hi_pipe_double_quotes)
 	mu_assert_int_eq(xpect_syntax_validation, actual_syntax_validation);
 }
 
-MU_TEST_SUITE(testing_syntax_first_last_node_errors_suite)
+MU_TEST_SUITE(testing_syntax_first_node_errors_suite)
 {
 	MU_RUN_TEST(testing_syntax_first_node_pipe_simple_space);
 	MU_RUN_TEST(testing_syntax_first_node_pipe_space_after);
@@ -1016,7 +1016,10 @@ MU_TEST_SUITE(testing_syntax_first_last_node_errors_suite)
 	MU_RUN_TEST(testing_syntax_first_node_close_parentis_simple_space);
 	MU_RUN_TEST(testing_syntax_first_node_close_parentis_space_after);
 	MU_RUN_TEST(testing_syntax_first_node_close_parentis_space_before);
+}
 
+MU_TEST_SUITE(testing_syntax_last_node_errors_suite)
+{
 	MU_RUN_TEST(testing_syntax_last_node_pipe_simple_space);
 	MU_RUN_TEST(testing_syntax_last_node_pipe_space_after);
 	MU_RUN_TEST(testing_syntax_last_node_pipe_space_before);
@@ -1029,16 +1032,27 @@ MU_TEST_SUITE(testing_syntax_first_last_node_errors_suite)
 	MU_RUN_TEST(testing_syntax_last_node_close_parentis_simple_space);
 	MU_RUN_TEST(testing_syntax_last_node_close_parentis_space_after);
 	MU_RUN_TEST(testing_syntax_last_node_close_parentis_space_before);
-	
+}
+
+MU_TEST_SUITE(testing_syntax_few_nodes_pipe_errors_suite)
+{
 	MU_RUN_TEST(testing_syntax_pipe_pipe);
 	MU_RUN_TEST(testing_syntax_pipe_dollar_sign);
 	MU_RUN_TEST(testing_syntax_pipe_redirect_output);
+}
+
+MU_TEST_SUITE(testing_syntax_few_nodes_redirect_errors_suite)
+{
 	MU_RUN_TEST(testing_syntax_redirect_output);
 	MU_RUN_TEST(testing_syntax_redirect_output_append);
 	MU_RUN_TEST(testing_syntax_redirect_input);
 	MU_RUN_TEST(testing_syntax_redirect_heredoc);
 	MU_RUN_TEST(testing_syntax_echo_hi_redirect_input);
 	MU_RUN_TEST(testing_syntax_cat_redirect_input_ls);
+}
+
+MU_TEST_SUITE(testing_syntax_few_nodes_mix_errors_suite)
+{
 	MU_RUN_TEST(testing_syntax_echo_hi_pipe_redirect_output);
 	MU_RUN_TEST(testing_syntax_echo_hi_pipe_redirect_output_output_append);
 	MU_RUN_TEST(testing_syntax_echo_hi_pipe_redirect_input_pipe);
