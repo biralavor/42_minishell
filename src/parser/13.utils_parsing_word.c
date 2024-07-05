@@ -1,18 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parser_utils.c                                     :+:      :+:    :+:   */
+/*   13.utils_parsing_word.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/27 15:03:18 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/07/01 16:24:00 by tmalheir         ###   ########.fr       */
+/*   Created: 2024/07/05 10:36:08 by tmalheir          #+#    #+#             */
+/*   Updated: 2024/07/05 10:39:07 by tmalheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 #include "lexer.h"
 #include "parser.h"
+#include "error_manager.h"
+
+bool	check_backlash(char *str)
+{
+	int	idx;
+
+	idx = 0;
+	while (str[idx])
+	{
+		if (str[idx] == '\\')
+			return (false);
+		idx++;
+	}
+	return (true);
+}
 
 bool	check_double_ampersand(char *str)
 {
@@ -56,33 +71,6 @@ bool	check_empty_quotes(char *str)
 	idx = 0;
 	if ((str[idx] == '"' && str[idx + 1] == '"')
 		|| (str[idx] == '\'' && str[idx + 1] == '\''))
-	{
-		ft_printf("Command %c not found\n", str[idx]);
 		return (false);
-	}
 	return (true);
-}
-
-char	*check_next_token(int unexpected_token)
-{
-	char	*token_type;
-
-	token_type = NULL;
-	if (unexpected_token == PIPE)
-		token_type = ft_strdup ("\'|\'");
-	else if (unexpected_token == REDIRECT_INPUT)
-		token_type = ft_strdup ("\'<\'");
-	else if (unexpected_token == REDIRECT_HEREDOC)
-		token_type = ft_strdup ("\'<<\'");
-	else if (unexpected_token == REDIRECT_OUTPUT)
-		token_type = ft_strdup ("\'>\'");
-	else if (unexpected_token == REDIRECT_OUTPUT_APPEND)
-		token_type = ft_strdup ("\'>>\'");
-	else if (unexpected_token == OR)
-		token_type = ft_strdup ("\'||\'");
-	else if (unexpected_token == AND)
-		token_type = ft_strdup ("\'&&\'");
-	else if (unexpected_token == OPEN_PARENTHESIS)
-		token_type = ft_strdup ("\'(\'");
-	return (token_type);
 }

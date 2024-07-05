@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   02.check_userinput.c                               :+:      :+:    :+:   */
+/*   14.state200.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/19 09:20:45 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/07/05 10:43:26 by tmalheir         ###   ########.fr       */
+/*   Created: 2024/07/03 14:37:37 by tmalheir          #+#    #+#             */
+/*   Updated: 2024/07/05 11:33:24 by tmalheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,14 +15,16 @@
 #include "parser.h"
 #include "error_manager.h"
 
-void	check_userinput(char *str)
+int	state_200(t_token_list *lst, int syntax_state)
 {
-	t_token_list	*lst;
-
-	lst = NULL;
-	if (!(check_initial_errors(str)))
-		error_manager_lexer(LEXER_ERROR);
-	else if (!create_token_list(str, &lst))
-		error_manager_lexer(LIST_NOT_CREATED);
-	syntax_analysis(lst);
+	if (lst->next && lst->prev && (lst->next->type == WORD
+			|| lst->next->type == CLOSE_PARENTHESIS || lst->prev->type == WORD
+			|| lst->prev->type == OPEN_PARENTHESIS))
+		syntax_state = 200;
+	else
+	{
+		error_manager_parser(UNEXPECTED_TOKEN, lst);
+		syntax_state = 201;
+	}
+	return (syntax_state);
 }
