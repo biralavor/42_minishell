@@ -6,7 +6,7 @@
 /*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 13:32:19 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/07/03 14:29:34 by tmalheir         ###   ########.fr       */
+/*   Updated: 2024/07/05 12:24:17 by tmalheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,13 +42,13 @@ void	check_userinput(char *str);
 bool	check_initial_errors(char *str);
 
 /**
- * @brief Check for double quoting errors.
+ * @brief Checks for double quoting errors.
  * @param *str -> User input in command line.
 */
 bool	check_closed_double_quotes(char *str);
 
 /**
- * @brief Check for single quoting errors.
+ * @brief Checks for single quoting errors.
  * @param *str -> User input in command line.
 */
 bool	check_closed_single_quotes(char *str);
@@ -56,13 +56,13 @@ bool	check_closed_single_quotes(char *str);
 /*TOKEN LIST CREATION FUNCTIONS*/
 
 /**
- * @brief Create token list by calling the get_state function.
+ * @brief Creates token list by calling the get_state function.
  * @param *str -> User input in command line.
 */
 bool	create_token_list(char *str, t_token_list **lst);
 
 /**
- * @brief Create each token according to the present state.
+ * @brief Creates each token according to the present state.
  * @param **root -> The token list.
  * @param token -> Each of the tokens to be created.
 */
@@ -71,7 +71,7 @@ void	create_new_node(t_token_list **root, t_token_list *token);
 /*STATE FUNCTIONS*/
 
 /**
- * @brief Find out the state of each token.
+ * @brief Finds out the state of each token.
  * @param *str -> User input in command line.
  * @param **root -> The token list.
 */
@@ -96,7 +96,7 @@ int		state_90(t_token_list **lst, char *str, int idx);
 /*UTILS*/
 
 /**
- * @brief Compare the current character to the next.
+ * @brief Compares the current character to the next.
 */
 int		check_next_char(char curr, char next);
 
@@ -107,12 +107,12 @@ int		is_space(char c);
 int		is_space(char c);
 
 /**
- * @brief Free the used memory to create the token list.
+ * @brief Frees the used memory to create the token list.
 */
 void	free_token_list(t_token_list **lst);
 
 /**
- * @brief Get the size of the token list.
+ * @brief Gets the size of the token list.
 */
 int		ft_lst_size(t_token_list *lst);
 

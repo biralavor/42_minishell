@@ -6,7 +6,7 @@
 /*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/27 12:53:52 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/07/05 11:34:18 by tmalheir         ###   ########.fr       */
+/*   Updated: 2024/07/05 12:34:57 by tmalheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,40 +17,58 @@
 
 /*SYNTAX VALIDATIONS FUNCTIONS*/
 
+/**
+ * @brief Checks each node of the token list calling for syntax_validation.
+ * @param *lst -> The token list.
+*/
 void	syntax_analysis(t_token_list *lst);
 
+/**
+ * @brief Checks for any grammar errors.
+ * @param *lst -> The token list.
+*/
 int		syntax_validations(t_token_list *lst);
 
+/**
+ * @brief Checks the grammar rules associated with the respective token.
+ * @param *lst -> The token list.
+ * @param syntax_state -> a number that indicates if there is a grammar error.
+*/
 void	check_syntax_state(t_token_list *lst, int syntax_state);
 
 int	state_100(t_token_list *lst, int syntax_state);
-
 int	state_200(t_token_list *lst, int syntax_state);
-
 int	state_300(t_token_list *lst, int syntax_state);
-
 int	state_400(t_token_list *lst, int syntax_state);
-
 int	state_401(t_token_list *lst);
-
 int	state_402(t_token_list *lst);
 
+/**
+ * @brief Checks if the number of open and close parenthesis token is equal.
+ * @param open_par -> the number of open parenthesis token.
+ * @param close_par -> the number of close parenthesis token.
+ * @param *lst -> The token list.
+*/
 int	match_parenthesis(int open_par, int close_par, t_token_list *lst);
 
 /*SYNTAX ERROR CHECKING FUNCTIONS*/
 
 /**
- * @brief Check for single ampersand and semicolon.
+ * @brief Check for single ampersand, semicolon and backlash.
  * @param *lst -> the token list.
 */
 bool	check_lexeme(t_token_list *lst);
 
 /**
- * @brief Auxiliar function to check for single ampersand and semicolon.
+ * @brief Auxiliar function to check for single ampersand, semicolon and backlash.
  * @param *str -> User input in command line.
 */
 bool	check_lexeme_errors(char *str);
 
+/**
+ * @brief Check for backlash.
+ * @param *str -> User input in command line.
+*/
 bool	check_backlash(char *str);
 
 /**
@@ -86,16 +104,9 @@ bool	check_empty_quotes(char *str);
 */
 void	error_manager_parser(int error_id, t_token_list *lst);
 
-/**
- * @brief Manages semicolon and ampersand errors.
- * @param lst -> the token list.
-*/
 void	syntax_error(t_token_list *lst);
-
 void	command_not_found(t_token_list *lst);
-
 void	parenthesis_error(void);
-
 void	unexpected_token_error(void);
 
 #endif

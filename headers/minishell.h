@@ -6,7 +6,7 @@
 /*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 10:53:20 by umeneses          #+#    #+#             */
-/*   Updated: 2024/07/02 12:41:54 by tmalheir         ###   ########.fr       */
+/*   Updated: 2024/07/05 11:54:27 by tmalheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,14 @@
 # define CYAN	"\033[0;36m"
 # define RESET	"\033[0m"
 
+/**
+ * @brief Basic token structure.
+ * @param type      = token type.
+ * @param lexeme    = actual string saved in token WORD.
+ * @param next_char = to check for spaces.
+ * @param prev      = previous node in token list.
+ * @param next      = next node in token list.
+*/
 typedef struct s_token_list
 {
 	int					type;
