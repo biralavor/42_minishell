@@ -6,14 +6,12 @@
 /*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 13:32:19 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/07/05 12:24:17 by tmalheir         ###   ########.fr       */
+/*   Updated: 2024/07/05 14:13:26 by tmalheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LEXER_H
 # define LEXER_H
-
-# include "minishell.h"
 
 enum e_token
 {
@@ -39,7 +37,7 @@ void	check_userinput(char *str);
  * @brief Calls for initial error checking functions.
  * @param *str -> User input in command line.
 */
-bool	check_initial_errors(char *str);
+void	check_initial_errors(char *str);
 
 /**
  * @brief Checks for double quoting errors.
