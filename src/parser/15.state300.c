@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   02.check_userinput.c                               :+:      :+:    :+:   */
+/*   15.state300.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/19 09:20:45 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/07/05 10:43:26 by tmalheir         ###   ########.fr       */
+/*   Created: 2024/07/05 11:13:10 by tmalheir          #+#    #+#             */
+/*   Updated: 2024/07/05 11:39:58 by tmalheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,14 +15,14 @@
 #include "parser.h"
 #include "error_manager.h"
 
-void	check_userinput(char *str)
+int	state_300(t_token_list *lst, int syntax_state)
 {
-	t_token_list	*lst;
-
-	lst = NULL;
-	if (!(check_initial_errors(str)))
-		error_manager_lexer(LEXER_ERROR);
-	else if (!create_token_list(str, &lst))
-		error_manager_lexer(LIST_NOT_CREATED);
-	syntax_analysis(lst);
+	if (lst->next && lst->next->type == WORD)
+		syntax_state = 300;
+	else
+	{
+		error_manager_parser(UNEXPECTED_TOKEN, lst);
+		syntax_state = 301;
+	}
+	return (syntax_state);
 }

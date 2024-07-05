@@ -6,7 +6,7 @@
 /*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/27 12:53:52 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/07/04 16:21:50 by tmalheir         ###   ########.fr       */
+/*   Updated: 2024/07/05 11:34:18 by tmalheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,21 +19,23 @@
 
 void	syntax_analysis(t_token_list *lst);
 
-void	syntax_validations(t_token_list *lst);
+int		syntax_validations(t_token_list *lst);
 
-void	check_syntax_state(int syntax_state, t_token_list *lst);
+void	check_syntax_state(t_token_list *lst, int syntax_state);
 
 int	state_100(t_token_list *lst, int syntax_state);
 
 int	state_200(t_token_list *lst, int syntax_state);
 
-int	state_800(t_token_list *lst, int syntax_state);
+int	state_300(t_token_list *lst, int syntax_state);
 
-int	state_801(t_token_list *lst);
+int	state_400(t_token_list *lst, int syntax_state);
 
-int	state_802(t_token_list *lst);
+int	state_401(t_token_list *lst);
 
-int	matched_parenthesis(int open_par, int close_par, t_token_list *lst);
+int	state_402(t_token_list *lst);
+
+int	match_parenthesis(int open_par, int close_par, t_token_list *lst);
 
 /*SYNTAX ERROR CHECKING FUNCTIONS*/
 
@@ -48,6 +50,8 @@ bool	check_lexeme(t_token_list *lst);
  * @param *str -> User input in command line.
 */
 bool	check_lexeme_errors(char *str);
+
+bool	check_backlash(char *str);
 
 /**
  * @brief Check for single ampersand error.

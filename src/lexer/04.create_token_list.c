@@ -6,7 +6,7 @@
 /*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 14:44:18 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/07/04 14:33:07 by tmalheir         ###   ########.fr       */
+/*   Updated: 2024/07/05 10:17:07 by tmalheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ bool	create_token_list(char *str, t_token_list **lst)
 
 	idx = 0;
 	get_state(idx, str, lst);
-	ft_lst_printf_content(str, *lst);
+//	ft_lst_printf_content(str, *lst);
 	if (lst)
 		return (true);
 	else
