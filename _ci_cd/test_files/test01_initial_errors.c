@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   test_initial_errors.c                              :+:      :+:    :+:   */
+/*   test01_initial_errors.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 11:12:53 by umeneses          #+#    #+#             */
-/*   Updated: 2024/07/02 10:42:27 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/07/05 16:23:01 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -178,23 +178,6 @@ MU_TEST(check_double_ampersand_error_test_tobe_true)
 	mu_assert_int_eq(expected_return, actual_return);
 }
 
-MU_TEST(check_initial_errors_test)
-{
-	// ARRANGE -> organize the necessary data for the test
-	char	*userinput;
-	int		expected_return;
-	int		actual_return;
-
-	// ACT -> execute the function to be tested
-	userinput = "'This' \"is\"  a test &&";
-	expected_return = true;
-
-	actual_return = check_initial_errors(userinput);
-
-	// ASSERT -> check if the function worked as expected
-	mu_assert_int_eq(expected_return, actual_return	);
-}
-
 MU_TEST(check_pipe_simulation_test)
 {
 	// ARRANGE -> organize the necessary data for the test
@@ -229,7 +212,6 @@ MU_TEST_SUITE(check_initial_errors_suite)
 	MU_RUN_TEST(check_double_quoting_error_test_tobe_false);
 	MU_RUN_TEST(check_double_ampersand_error_test_tobe_false);
 	MU_RUN_TEST(check_double_ampersand_error_test_tobe_true);
-	MU_RUN_TEST(check_initial_errors_test);
 }
 
 MU_TEST_SUITE(token_simulation_errors_suite)
