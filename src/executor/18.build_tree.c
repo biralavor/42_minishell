@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   02.check_userinput.c                               :+:      :+:    :+:   */
+/*   18.build_tree.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/19 09:20:45 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/07/05 14:18:03 by tmalheir         ###   ########.fr       */
+/*   Created: 2024/07/05 13:55:37 by tmalheir          #+#    #+#             */
+/*   Updated: 2024/07/05 14:39:31 by tmalheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,14 +16,23 @@
 #include "executor.h"
 #include "error_manager.h"
 
-void	check_userinput(char *str)
+void	build_tree(t_token_list *lst)
 {
-	t_token_list	*lst;
+	t_token_list	*temp;
+	t_tree			*exec_tree;
 
-	lst = NULL;
-	check_initial_errors(str);
-	if (!create_token_list(str, &lst))
-		error_manager_lexer(LIST_NOT_CREATED);
-	syntax_analysis(lst);
-	build_tree(lst);
+	temp = lst;
+	exec_tree = NULL;
+	while (temp)
+		temp = temp->next;
+	while(temp)
+	{
+		search_logical_operator(temp);
+		temp = temp->prev;
+	}
+}
+
+void	search_logical_operator(t_token_list *lst)
+{
+
 }

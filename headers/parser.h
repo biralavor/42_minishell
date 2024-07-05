@@ -6,14 +6,12 @@
 /*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/27 12:53:52 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/07/05 12:34:57 by tmalheir         ###   ########.fr       */
+/*   Updated: 2024/07/05 13:57:19 by tmalheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PARSER_H
 # define PARSER_H
-
-# include "lexer.h"
 
 /*SYNTAX VALIDATIONS FUNCTIONS*/
 
