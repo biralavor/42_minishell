@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   18.build_tree.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/05 13:55:37 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/07/05 14:39:31 by tmalheir         ###   ########.fr       */
+/*   Updated: 2024/07/05 16:08:32 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,12 +27,12 @@ void	build_tree(t_token_list *lst)
 		temp = temp->next;
 	while(temp)
 	{
-		search_logical_operator(temp);
+		// search_logical_operator(temp);
 		temp = temp->prev;
 	}
 }
 
-void	search_logical_operator(t_token_list *lst)
-{
+// void	search_logical_operator(t_token_list *lst)
+// {
 
-}
+// }
