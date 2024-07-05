@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/02 11:01:23 by umeneses          #+#    #+#             */
-/*   Updated: 2024/07/05 18:05:16 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/07/05 18:08:57 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,12 @@ MU_TEST(testing_syntax_first_node_pipe_simple_space)
 	int				actual_lst_size;
 	int				xpect_syntax_validation;
 	int				actual_syntax_validation;
+	int				fd;
 	t_token_list	*lst;
 
 	//ACT
+	fd = 0;
+	open_redirect_stderr_to_dev_null(fd);
 	userinput = "| Mussum|Ipsum";
 	xpect_syntax_validation = 201; // begining with pipe, OR or AND
 	xpect_lst_size = 4;
@@ -35,6 +38,7 @@ MU_TEST(testing_syntax_first_node_pipe_simple_space)
 	actual_lst_size = ft_lst_size(lst);
 	actual_syntax_validation = syntax_validations(lst);
 
+	close_redirect_stderr_to_dev_null(fd);
 	// ASSERT
 	mu_assert_int_eq(xpect_lst_size, actual_lst_size);
 	mu_assert_int_eq(xpect_syntax_validation, actual_syntax_validation);
@@ -49,9 +53,12 @@ MU_TEST(testing_syntax_first_node_pipe_space_after)
 	int				actual_lst_size;
 	int				xpect_syntax_validation;
 	int				actual_syntax_validation;
+	int				fd;
 	t_token_list	*lst;
 
 	//ACT
+	fd = 0;
+	open_redirect_stderr_to_dev_null(fd);
 	userinput = "|			                          Mussum|Ipsum";
 	xpect_syntax_validation = 201; // begining with pipe, OR or AND
 	xpect_lst_size = 4;
@@ -61,6 +68,7 @@ MU_TEST(testing_syntax_first_node_pipe_space_after)
 	actual_lst_size = ft_lst_size(lst);
 	actual_syntax_validation = syntax_validations(lst);
 
+	close_redirect_stderr_to_dev_null(fd);
 	// ASSERT
 	mu_assert_int_eq(xpect_lst_size, actual_lst_size);
 	mu_assert_int_eq(xpect_syntax_validation, actual_syntax_validation);
@@ -75,9 +83,12 @@ MU_TEST(testing_syntax_first_node_pipe_space_before)
 	int				actual_lst_size;
 	int				xpect_syntax_validation;
 	int				actual_syntax_validation;
+	int				fd;
 	t_token_list	*lst;
 
 	//ACT
+	fd = 0;
+	open_redirect_stderr_to_dev_null(fd);
 	userinput = "			                          |Mussum|Ipsum";
 	xpect_syntax_validation = 201; // begining with pipe, OR or AND
 	xpect_lst_size = 4;
@@ -87,6 +98,7 @@ MU_TEST(testing_syntax_first_node_pipe_space_before)
 	actual_lst_size = ft_lst_size(lst);
 	actual_syntax_validation = syntax_validations(lst);
 
+	close_redirect_stderr_to_dev_null(fd);
 	// ASSERT
 	mu_assert_int_eq(xpect_lst_size, actual_lst_size);
 	mu_assert_int_eq(xpect_syntax_validation, actual_syntax_validation);
@@ -101,9 +113,12 @@ MU_TEST(testing_syntax_first_node_OR_simple_space)
 	int				actual_lst_size;
 	int				xpect_syntax_validation;
 	int				actual_syntax_validation;
+	int				fd;
 	t_token_list	*lst;
 
 	//ACT
+	fd = 0;
+	open_redirect_stderr_to_dev_null(fd);
 	userinput = "|| Mussum|Ipsum";
 	xpect_syntax_validation = 201; // begining with pipe, OR or AND
 	xpect_lst_size = 4;
@@ -113,6 +128,7 @@ MU_TEST(testing_syntax_first_node_OR_simple_space)
 	actual_lst_size = ft_lst_size(lst);
 	actual_syntax_validation = syntax_validations(lst);
 
+	close_redirect_stderr_to_dev_null(fd);
 	// ASSERT
 	mu_assert_int_eq(xpect_lst_size, actual_lst_size);
 	mu_assert_int_eq(xpect_syntax_validation, actual_syntax_validation);
@@ -127,9 +143,12 @@ MU_TEST(testing_syntax_first_node_OR_space_after)
 	int				actual_lst_size;
 	int				xpect_syntax_validation;
 	int				actual_syntax_validation;
+	int				fd;
 	t_token_list	*lst;
 
 	//ACT
+	fd = 0;
+	open_redirect_stderr_to_dev_null(fd);
 	userinput = "||			                          Mussum|Ipsum";
 	xpect_syntax_validation = 201; // begining with pipe, OR or AND
 	xpect_lst_size = 4;
@@ -139,6 +158,7 @@ MU_TEST(testing_syntax_first_node_OR_space_after)
 	actual_lst_size = ft_lst_size(lst);
 	actual_syntax_validation = syntax_validations(lst);
 
+	close_redirect_stderr_to_dev_null(fd);
 	// ASSERT
 	mu_assert_int_eq(xpect_lst_size, actual_lst_size);
 	mu_assert_int_eq(xpect_syntax_validation, actual_syntax_validation);
@@ -153,9 +173,12 @@ MU_TEST(testing_syntax_first_node_OR_space_before)
 	int				actual_lst_size;
 	int				xpect_syntax_validation;
 	int				actual_syntax_validation;
+	int				fd;
 	t_token_list	*lst;
 
 	//ACT
+	fd = 0;
+	open_redirect_stderr_to_dev_null(fd);
 	userinput = "			                          ||Mussum|Ipsum";
 	xpect_syntax_validation = 201; // begining with pipe, OR or AND
 	xpect_lst_size = 4;
@@ -165,6 +188,7 @@ MU_TEST(testing_syntax_first_node_OR_space_before)
 	actual_lst_size = ft_lst_size(lst);
 	actual_syntax_validation = syntax_validations(lst);
 
+	close_redirect_stderr_to_dev_null(fd);
 	// ASSERT
 	mu_assert_int_eq(xpect_lst_size, actual_lst_size);
 	mu_assert_int_eq(xpect_syntax_validation, actual_syntax_validation);
@@ -179,9 +203,12 @@ MU_TEST(testing_syntax_first_node_AND_simple_space)
 	int				actual_lst_size;
 	int				xpect_syntax_validation;
 	int				actual_syntax_validation;
+	int				fd;
 	t_token_list	*lst;
 
 	//ACT
+	fd = 0;
+	open_redirect_stderr_to_dev_null(fd);
 	userinput = "&& Mussum|Ipsum";
 	xpect_syntax_validation = 201; // begining with pipe, OR or AND
 	xpect_lst_size = 4;
@@ -191,6 +218,7 @@ MU_TEST(testing_syntax_first_node_AND_simple_space)
 	actual_lst_size = ft_lst_size(lst);
 	actual_syntax_validation = syntax_validations(lst);
 
+	close_redirect_stderr_to_dev_null(fd);
 	// ASSERT
 	mu_assert_int_eq(xpect_lst_size, actual_lst_size);
 	mu_assert_int_eq(xpect_syntax_validation, actual_syntax_validation);
