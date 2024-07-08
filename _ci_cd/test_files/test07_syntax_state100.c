@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/02 11:01:23 by umeneses          #+#    #+#             */
-/*   Updated: 2024/07/08 17:34:33 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/07/08 19:48:35 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -151,7 +151,7 @@ MU_TEST(testing_syntax_state101_single_quote_broken_space_after_first_node)
 	open_redirect_stderr_to_dev_null(fd);
 	userinput = "\'   			   			Mussum|     Ipsum";
 	xpect_syntax_validation = 101; // begining with single quote - broken
-	xpect_lst_size = 3;
+	xpect_lst_size = 4;
 	idx = 0;
 	lst = NULL;
 	get_state(idx, userinput, &lst);
@@ -216,7 +216,7 @@ MU_TEST(testing_syntax_state100_single_quote_working_simple_space_last_node)
 	open_redirect_stderr_to_dev_null(fd);
 	userinput = "\' Mussum| Ipsum\'";
 	xpect_syntax_validation = 100; // ending with single quote - working
-	xpect_lst_size = 2;
+	xpect_lst_size = 1;
 	idx = 0;
 	lst = NULL;
 	get_state(idx, userinput, &lst);
@@ -246,7 +246,7 @@ MU_TEST(testing_syntax_state100_single_quote_working_space_after_last_node)
 	open_redirect_stderr_to_dev_null(fd);
 	userinput = "\'   			   			Mussum|     Ipsum\'";
 	xpect_syntax_validation = 100; // ending with single quote - working
-	xpect_lst_size = 2;
+	xpect_lst_size = 1;
 	idx = 0;
 	lst = NULL;
 	get_state(idx, userinput, &lst);
@@ -276,7 +276,7 @@ MU_TEST(testing_syntax_state100_single_quote_working_space_before_last_node)
 	open_redirect_stderr_to_dev_null(fd);
 	userinput = "		    					\' Mussum|		Ipsum\'";
 	xpect_syntax_validation = 100; // ending with single quote - working
-	xpect_lst_size = 2;
+	xpect_lst_size = 1;
 	idx = 0;
 	lst = NULL;
 	get_state(idx, userinput, &lst);
@@ -336,7 +336,7 @@ MU_TEST(testing_syntax_state101_single_quote_broken_space_after_last_node)
 	open_redirect_stderr_to_dev_null(fd);
 	userinput = "Mussum|     Ipsum\'   			   			";
 	xpect_syntax_validation = 101; // ending with single quote - broken
-	xpect_lst_size = 3;
+	xpect_lst_size = 4;
 	idx = 0;
 	lst = NULL;
 	get_state(idx, userinput, &lst);
@@ -523,7 +523,7 @@ MU_TEST(testing_syntax_state101_double_quote_broken_space_after_first_node)
 	open_redirect_stderr_to_dev_null(fd);
 	userinput = "\"   			   			Mussum|     Ipsum";
 	xpect_syntax_validation = 101; // begining with double quote - broken
-	xpect_lst_size = 3;
+	xpect_lst_size = 4;
 	idx = 0;
 	lst = NULL;
 	get_state(idx, userinput, &lst);
@@ -552,7 +552,7 @@ MU_TEST(testing_syntax_state101_double_quote_broken_space_before_first_node)
 	open_redirect_stderr_to_dev_null(fd);
 	userinput = "		    					\" Mussum|		Ipsum";
 	xpect_syntax_validation = 101; // begining with double quote - broken
-	xpect_lst_size = 3;
+	xpect_lst_size = 4;
 	lst = NULL;
 	if (create_token_list(userinput, &lst))
 	{
@@ -589,7 +589,7 @@ MU_TEST(testing_syntax_state100_double_quote_working_simple_space_last_node)
 	open_redirect_stderr_to_dev_null(fd);
 	userinput = "\" Mussum| Ipsum \"";
 	xpect_syntax_validation = 100; // ending with double quote - working
-	xpect_lst_size = 2;
+	xpect_lst_size = 1;
 	idx = 0;
 	lst = NULL;
 	get_state(idx, userinput, &lst);
@@ -619,7 +619,7 @@ MU_TEST(testing_syntax_state100_double_quote_working_space_after_last_node)
 	open_redirect_stderr_to_dev_null(fd);
 	userinput = "Mussum|\"     Ipsum\"   			   			";
 	xpect_syntax_validation = 100; // ending with double quote - working
-	xpect_lst_size = 2;
+	xpect_lst_size = 3;
 	idx = 0;
 	lst = NULL;
 	get_state(idx, userinput, &lst);
@@ -649,7 +649,7 @@ MU_TEST(testing_syntax_state100_double_quote_working_space_before_last_node)
 	open_redirect_stderr_to_dev_null(fd);
 	userinput = " Mussum|		\"Ipsum		    					\"";
 	xpect_syntax_validation = 100; // ending with double quote - working
-	xpect_lst_size = 2;
+	xpect_lst_size = 3;
 	idx = 0;
 	lst = NULL;
 	get_state(idx, userinput, &lst);
@@ -709,7 +709,7 @@ MU_TEST(testing_syntax_state101_double_quote_broken_space_after_last_node)
 	open_redirect_stderr_to_dev_null(fd);
 	userinput = "Mussum|     Ipsum\"   			   			";
 	xpect_syntax_validation = 101; // ending with double quote - broken
-	xpect_lst_size = 3;
+	xpect_lst_size = 4;
 	idx = 0;
 	lst = NULL;
 	get_state(idx, userinput, &lst);
@@ -738,7 +738,7 @@ MU_TEST(testing_syntax_state101_double_quote_broken_space_before_last_node)
 	open_redirect_stderr_to_dev_null(fd);
 	userinput = " Mussum|		Ipsum		    					\"";
 	xpect_syntax_validation = 101; // ending with double quote - broken
-	xpect_lst_size = 3;
+	xpect_lst_size = 4;
 	lst = NULL;
 	if (create_token_list(userinput, &lst))
 	{

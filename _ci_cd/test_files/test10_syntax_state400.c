@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/02 11:01:23 by umeneses          #+#    #+#             */
-/*   Updated: 2024/07/08 19:16:05 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/07/08 19:36:00 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -391,7 +391,7 @@ MU_TEST(testing_syntax_state400_OPEN_PARENTHESIS_odd_counter_first_node)
 	open_redirect_stderr_to_dev_null(fd);
 	userinput = "( Mussum|(Ipsum)";
 	xpect_syntax_validation = 402; // begining with OPEN parenthesis, odd counter
-	xpect_lst_size = 4;
+	xpect_lst_size = 6;
 	idx = 0;
 	lst = NULL;
 	get_state(idx, userinput, &lst);
@@ -421,7 +421,7 @@ MU_TEST(testing_syntax_state400_CLOSE_PARENTHESIS_odd_counter_first_node)
 	open_redirect_stderr_to_dev_null(fd);
 	userinput = "( Mussum)|Ipsum)";
 	xpect_syntax_validation = 402; // begining with CLOSE parenthesis, odd counter
-	xpect_lst_size = 4;
+	xpect_lst_size = 6;
 	idx = 0;
 	lst = NULL;
 	get_state(idx, userinput, &lst);

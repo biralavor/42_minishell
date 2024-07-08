@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/02 11:01:23 by umeneses          #+#    #+#             */
-/*   Updated: 2024/07/08 19:13:33 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/07/08 19:36:46 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -752,7 +752,7 @@ MU_TEST(testing_syntax_state300_cadet_REDIRECT_OUTPUT_solo)
 	open_redirect_stderr_to_dev_null(fd);
 	userinput = ">";
 	xpect_syntax_validation = 201; // cadet test
-	xpect_lst_size = 4;
+	xpect_lst_size = 1;
 	idx = 0;
 	lst = NULL;
 	get_state(idx, userinput, &lst);
@@ -782,7 +782,7 @@ MU_TEST(testing_syntax_state300_cadet_REDIRECT_OUTPUT_APPEND_solo)
 	open_redirect_stderr_to_dev_null(fd);
 	userinput = ">>";
 	xpect_syntax_validation = 201; // cadet test
-	xpect_lst_size = 4;
+	xpect_lst_size = 1;
 	idx = 0;
 	lst = NULL;
 	get_state(idx, userinput, &lst);
@@ -812,7 +812,7 @@ MU_TEST(testing_syntax_state300_cadet_REDIRECT_INPUT_solo)
 	open_redirect_stderr_to_dev_null(fd);
 	userinput = "<";
 	xpect_syntax_validation = 201; // cadet test
-	xpect_lst_size = 4;
+	xpect_lst_size = 1;
 	idx = 0;
 	lst = NULL;
 	get_state(idx, userinput, &lst);
@@ -842,7 +842,7 @@ MU_TEST(testing_syntax_state300_cadet_REDIRECT_HEREDOC_solo)
 	open_redirect_stderr_to_dev_null(fd);
 	userinput = "<<";
 	xpect_syntax_validation = 201; // cadet test
-	xpect_lst_size = 4;
+	xpect_lst_size = 1;
 	idx = 0;
 	lst = NULL;
 	get_state(idx, userinput, &lst);
@@ -872,7 +872,7 @@ MU_TEST(testing_syntax_state300_cadet_echo_hi_REDIRECT_INPUT)
 	open_redirect_stderr_to_dev_null(fd);
 	userinput = "echo hi <";
 	xpect_syntax_validation = 201; // cadet test
-	xpect_lst_size = 4;
+	xpect_lst_size = 3;
 	idx = 0;
 	lst = NULL;
 	get_state(idx, userinput, &lst);
