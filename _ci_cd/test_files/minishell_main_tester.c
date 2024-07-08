@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 11:12:53 by umeneses          #+#    #+#             */
-/*   Updated: 2024/07/08 17:19:42 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/07/08 17:38:34 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,8 +62,11 @@ int	main(void)
 	MU_RUN_SUITE(test07___syntax_state100_double_quote_errors_first_node_suite);
 	MU_RUN_SUITE(test07___syntax_state100_double_quote_errors_last_node_suite);
 	MU_RUN_SUITE(test07___syntax_state200_PIPE_errors_first_node_suite);
+	MU_RUN_SUITE(test07___syntax_state200_PIPE_errors_last_node_suite);
 	MU_RUN_SUITE(test07___syntax_state200_OR_errors_first_node_suite);
+	MU_RUN_SUITE(test07___syntax_state200_OR_errors_last_node_suite);
 	MU_RUN_SUITE(test07___syntax_state200_AND_errors_first_node_suite);
+	MU_RUN_SUITE(test07___syntax_state200_AND_errors_last_node_suite);
 	MU_RUN_SUITE(test07___syntax_state300_REDIRECT_INPUT_errors_suite);
 	MU_RUN_SUITE(test07___syntax_state300_REDIRECT_OUTPUT_errors_suite);
 	MU_RUN_SUITE(test07___syntax_state300_REDIRECT_OUTPUT_APPEND_errors_suite);
