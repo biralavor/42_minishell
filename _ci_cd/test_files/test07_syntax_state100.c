@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/02 11:01:23 by umeneses          #+#    #+#             */
-/*   Updated: 2024/07/08 16:13:13 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/07/08 16:51:03 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "minishell.h"
 #include "lexer.h"
 
-MU_TEST(testing_syntax_state100_single_quote_working_simple_space)
+MU_TEST(testing_syntax_state100_single_quote_working_simple_space_first_node)
 {
 	// ARRANGE
 	char			*userinput;
@@ -44,7 +44,7 @@ MU_TEST(testing_syntax_state100_single_quote_working_simple_space)
 	mu_assert_int_eq(xpect_syntax_validation, actual_syntax_validation);
 }
 
-MU_TEST(testing_syntax_state100_single_quote_working_space_after)
+MU_TEST(testing_syntax_state100_single_quote_working_space_after_first_node)
 {
 	// ARRANGE
 	char			*userinput;
@@ -74,7 +74,7 @@ MU_TEST(testing_syntax_state100_single_quote_working_space_after)
 	mu_assert_int_eq(xpect_syntax_validation, actual_syntax_validation);
 }
 
-MU_TEST(testing_syntax_state100_single_quote_working_space_before)
+MU_TEST(testing_syntax_state100_single_quote_working_space_before_first_node)
 {
 	// ARRANGE
 	char			*userinput;
@@ -104,7 +104,7 @@ MU_TEST(testing_syntax_state100_single_quote_working_space_before)
 	mu_assert_int_eq(xpect_syntax_validation, actual_syntax_validation);
 }
 
-MU_TEST(testing_syntax_state101_single_quote_broken_simple_space)
+MU_TEST(testing_syntax_state101_single_quote_broken_simple_space_first_node)
 {
 	// ARRANGE
 	char			*userinput;
@@ -134,7 +134,7 @@ MU_TEST(testing_syntax_state101_single_quote_broken_simple_space)
 	mu_assert_int_eq(xpect_syntax_validation, actual_syntax_validation);
 }
 
-MU_TEST(testing_syntax_state101_single_quote_broken_space_after)
+MU_TEST(testing_syntax_state101_single_quote_broken_space_after_first_node)
 {
 	// ARRANGE
 	char			*userinput;
@@ -164,7 +164,7 @@ MU_TEST(testing_syntax_state101_single_quote_broken_space_after)
 	mu_assert_int_eq(xpect_syntax_validation, actual_syntax_validation);
 }
 
-// MU_TEST(testing_syntax_state101_single_quote_broken_space_before)
+// MU_TEST(testing_syntax_state101_single_quote_broken_space_before_first_node)
 // {
 // 	// ARRANGE
 // 	char			*userinput;
@@ -199,7 +199,7 @@ MU_TEST(testing_syntax_state101_single_quote_broken_space_after)
 // 	mu_assert_int_eq(xpect_syntax_validation, actual_syntax_validation);
 // }
 
-MU_TEST(testing_syntax_state100_double_quote_working_simple_space)
+MU_TEST(testing_syntax_state100_double_quote_working_simple_space_first_node)
 {
 	// ARRANGE
 	char			*userinput;
@@ -229,7 +229,7 @@ MU_TEST(testing_syntax_state100_double_quote_working_simple_space)
 	mu_assert_int_eq(xpect_syntax_validation, actual_syntax_validation);
 }
 
-MU_TEST(testing_syntax_state100_double_quote_working_space_after)
+MU_TEST(testing_syntax_state100_double_quote_working_space_after_first_node)
 {
 	// ARRANGE
 	char			*userinput;
@@ -259,7 +259,7 @@ MU_TEST(testing_syntax_state100_double_quote_working_space_after)
 	mu_assert_int_eq(xpect_syntax_validation, actual_syntax_validation);
 }
 
-MU_TEST(testing_syntax_state100_double_quote_working_space_before)
+MU_TEST(testing_syntax_state100_double_quote_working_space_before_first_node)
 {
 	// ARRANGE
 	char			*userinput;
@@ -289,7 +289,7 @@ MU_TEST(testing_syntax_state100_double_quote_working_space_before)
 	mu_assert_int_eq(xpect_syntax_validation, actual_syntax_validation);
 }
 
-MU_TEST(testing_syntax_state101_double_quote_broken_simple_space)
+MU_TEST(testing_syntax_state101_double_quote_broken_simple_space_first_node)
 {
 	// ARRANGE
 	char			*userinput;
@@ -319,7 +319,7 @@ MU_TEST(testing_syntax_state101_double_quote_broken_simple_space)
 	mu_assert_int_eq(xpect_syntax_validation, actual_syntax_validation);
 }
 
-MU_TEST(testing_syntax_state101_double_quote_broken_space_after)
+MU_TEST(testing_syntax_state101_double_quote_broken_space_after_first_node)
 {
 	// ARRANGE
 	char			*userinput;
@@ -349,7 +349,7 @@ MU_TEST(testing_syntax_state101_double_quote_broken_space_after)
 	mu_assert_int_eq(xpect_syntax_validation, actual_syntax_validation);
 }
 
-MU_TEST(testing_syntax_state101_double_quote_broken_space_before)
+MU_TEST(testing_syntax_state101_double_quote_broken_space_before_first_node)
 {
 	// ARRANGE
 	char			*userinput;
@@ -384,22 +384,22 @@ MU_TEST(testing_syntax_state101_double_quote_broken_space_before)
 	mu_assert_int_eq(xpect_syntax_validation, actual_syntax_validation);
 }
 
-MU_TEST_SUITE(test07___syntax_state100_single_quote_errors_suite)
+MU_TEST_SUITE(test07___syntax_state100_single_quote_errors_first_node_suite)
 {
-	MU_RUN_TEST(testing_syntax_state100_single_quote_working_simple_space);
-	MU_RUN_TEST(testing_syntax_state100_single_quote_working_space_after);
-	MU_RUN_TEST(testing_syntax_state100_single_quote_working_space_before);
-	MU_RUN_TEST(testing_syntax_state101_single_quote_broken_simple_space);
-	MU_RUN_TEST(testing_syntax_state101_single_quote_broken_space_after);
-	// MU_RUN_TEST(testing_syntax_state101_single_quote_broken_space_before);
+	MU_RUN_TEST(testing_syntax_state100_single_quote_working_simple_space_first_node);
+	MU_RUN_TEST(testing_syntax_state100_single_quote_working_space_after_first_node);
+	MU_RUN_TEST(testing_syntax_state100_single_quote_working_space_before_first_node);
+	MU_RUN_TEST(testing_syntax_state101_single_quote_broken_simple_space_first_node);
+	MU_RUN_TEST(testing_syntax_state101_single_quote_broken_space_after_first_node);
+	// MU_RUN_TEST(testing_syntax_state101_single_quote_broken_space_before_first_node);
 }
 
-MU_TEST_SUITE(test07___syntax_state100_double_quote_errors_suite)
+MU_TEST_SUITE(test07___syntax_state100_double_quote_errors_first_node_suite)
 {
-	MU_RUN_TEST(testing_syntax_state100_double_quote_working_simple_space);
-	MU_RUN_TEST(testing_syntax_state100_double_quote_working_space_after);
-	MU_RUN_TEST(testing_syntax_state100_double_quote_working_space_before);
-	MU_RUN_TEST(testing_syntax_state101_double_quote_broken_simple_space);
-	MU_RUN_TEST(testing_syntax_state101_double_quote_broken_space_after);
-	MU_RUN_TEST(testing_syntax_state101_double_quote_broken_space_before);
+	MU_RUN_TEST(testing_syntax_state100_double_quote_working_simple_space_first_node);
+	MU_RUN_TEST(testing_syntax_state100_double_quote_working_space_after_first_node);
+	MU_RUN_TEST(testing_syntax_state100_double_quote_working_space_before_first_node);
+	MU_RUN_TEST(testing_syntax_state101_double_quote_broken_simple_space_first_node);
+	MU_RUN_TEST(testing_syntax_state101_double_quote_broken_space_after_first_node);
+	MU_RUN_TEST(testing_syntax_state101_double_quote_broken_space_before_first_node);
 }
