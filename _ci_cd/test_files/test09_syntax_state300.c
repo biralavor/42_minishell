@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/02 11:01:23 by umeneses          #+#    #+#             */
-/*   Updated: 2024/07/08 16:43:05 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/07/08 18:11:10 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 #include "lexer.h"
 
 
-MU_TEST(testing_syntax_state300_REDIRECT_INPUT_simple_space)
+MU_TEST(testing_syntax_state300_REDIRECT_INPUT_simple_space_first_node)
 {
 	// ARRANGE
 	char			*userinput;
@@ -45,7 +45,7 @@ MU_TEST(testing_syntax_state300_REDIRECT_INPUT_simple_space)
 	mu_assert_int_eq(xpect_syntax_validation, actual_syntax_validation);
 }
 
-MU_TEST(testing_syntax_state300_REDIRECT_INPUT_space_after)
+MU_TEST(testing_syntax_state300_REDIRECT_INPUT_space_after_first_node)
 {
 	// ARRANGE
 	char			*userinput;
@@ -75,7 +75,7 @@ MU_TEST(testing_syntax_state300_REDIRECT_INPUT_space_after)
 	mu_assert_int_eq(xpect_syntax_validation, actual_syntax_validation);
 }
 
-MU_TEST(testing_syntax_state300_REDIRECT_INPUT_space_before)
+MU_TEST(testing_syntax_state300_REDIRECT_INPUT_space_before_first_node)
 {
 	// ARRANGE
 	char			*userinput;
@@ -105,7 +105,7 @@ MU_TEST(testing_syntax_state300_REDIRECT_INPUT_space_before)
 	mu_assert_int_eq(xpect_syntax_validation, actual_syntax_validation);
 }
 
-MU_TEST(testing_syntax_state300_REDIRECT_OUTPUT_simple_space)
+MU_TEST(testing_syntax_state300_REDIRECT_OUTPUT_simple_space_first_node)
 {
 	// ARRANGE
 	char			*userinput;
@@ -135,7 +135,7 @@ MU_TEST(testing_syntax_state300_REDIRECT_OUTPUT_simple_space)
 	mu_assert_int_eq(xpect_syntax_validation, actual_syntax_validation);
 }
 
-MU_TEST(testing_syntax_state300_REDIRECT_OUTPUT_space_after)
+MU_TEST(testing_syntax_state300_REDIRECT_OUTPUT_space_after_first_node)
 {
 	// ARRANGE
 	char			*userinput;
@@ -165,7 +165,7 @@ MU_TEST(testing_syntax_state300_REDIRECT_OUTPUT_space_after)
 	mu_assert_int_eq(xpect_syntax_validation, actual_syntax_validation);
 }
 
-MU_TEST(testing_syntax_state300_REDIRECT_OUTPUT_space_before)
+MU_TEST(testing_syntax_state300_REDIRECT_OUTPUT_space_before_first_node)
 {
 	// ARRANGE
 	char			*userinput;
@@ -195,7 +195,7 @@ MU_TEST(testing_syntax_state300_REDIRECT_OUTPUT_space_before)
 	mu_assert_int_eq(xpect_syntax_validation, actual_syntax_validation);
 }
 
-MU_TEST(testing_syntax_state300_REDIRECT_OUTPUT_APPEND_simple_space)
+MU_TEST(testing_syntax_state300_REDIRECT_OUTPUT_APPEND_simple_space_first_node)
 {
 	// ARRANGE
 	char			*userinput;
@@ -225,7 +225,7 @@ MU_TEST(testing_syntax_state300_REDIRECT_OUTPUT_APPEND_simple_space)
 	mu_assert_int_eq(xpect_syntax_validation, actual_syntax_validation);
 }
 
-MU_TEST(testing_syntax_state300_REDIRECT_OUTPUT_APPEND_space_after)
+MU_TEST(testing_syntax_state300_REDIRECT_OUTPUT_APPEND_space_after_first_node)
 {
 	// ARRANGE
 	char			*userinput;
@@ -255,7 +255,7 @@ MU_TEST(testing_syntax_state300_REDIRECT_OUTPUT_APPEND_space_after)
 	mu_assert_int_eq(xpect_syntax_validation, actual_syntax_validation);
 }
 
-MU_TEST(testing_syntax_state300_REDIRECT_OUTPUT_APPEND_space_before)
+MU_TEST(testing_syntax_state300_REDIRECT_OUTPUT_APPEND_space_before_first_node)
 {
 	// ARRANGE
 	char			*userinput;
@@ -285,7 +285,7 @@ MU_TEST(testing_syntax_state300_REDIRECT_OUTPUT_APPEND_space_before)
 	mu_assert_int_eq(xpect_syntax_validation, actual_syntax_validation);
 }
 
-MU_TEST(testing_syntax_state300_REDIRECT_HEREDOC_simple_space)
+MU_TEST(testing_syntax_state300_REDIRECT_HEREDOC_simple_space_first_node)
 {
 	// ARRANGE
 	char			*userinput;
@@ -315,7 +315,7 @@ MU_TEST(testing_syntax_state300_REDIRECT_HEREDOC_simple_space)
 	mu_assert_int_eq(xpect_syntax_validation, actual_syntax_validation);
 }
 
-MU_TEST(testing_syntax_state300_REDIRECT_HEREDOC_space_after)
+MU_TEST(testing_syntax_state300_REDIRECT_HEREDOC_space_after_first_node)
 {
 	// ARRANGE
 	char			*userinput;
@@ -345,7 +345,7 @@ MU_TEST(testing_syntax_state300_REDIRECT_HEREDOC_space_after)
 	mu_assert_int_eq(xpect_syntax_validation, actual_syntax_validation);
 }
 
-MU_TEST(testing_syntax_state300_REDIRECT_HEREDOC_space_before)
+MU_TEST(testing_syntax_state300_REDIRECT_HEREDOC_space_before_first_node)
 {
 	// ARRANGE
 	char			*userinput;
@@ -375,30 +375,30 @@ MU_TEST(testing_syntax_state300_REDIRECT_HEREDOC_space_before)
 	mu_assert_int_eq(xpect_syntax_validation, actual_syntax_validation);
 }
 
-MU_TEST_SUITE(test07___syntax_state300_REDIRECT_INPUT_errors_suite)
+MU_TEST_SUITE(test07___syntax_state300_REDIRECT_INPUT_errors_first_node_suite)
 {
-	MU_RUN_TEST(testing_syntax_state300_REDIRECT_INPUT_simple_space);
-	MU_RUN_TEST(testing_syntax_state300_REDIRECT_INPUT_space_after);
-	MU_RUN_TEST(testing_syntax_state300_REDIRECT_INPUT_space_before);
+	MU_RUN_TEST(testing_syntax_state300_REDIRECT_INPUT_simple_space_first_node);
+	MU_RUN_TEST(testing_syntax_state300_REDIRECT_INPUT_space_after_first_node);
+	MU_RUN_TEST(testing_syntax_state300_REDIRECT_INPUT_space_before_first_node);
 }
 
-MU_TEST_SUITE(test07___syntax_state300_REDIRECT_OUTPUT_errors_suite)
+MU_TEST_SUITE(test07___syntax_state300_REDIRECT_OUTPUT_errors_first_node_suite)
 {
-	MU_RUN_TEST(testing_syntax_state300_REDIRECT_OUTPUT_simple_space);
-	MU_RUN_TEST(testing_syntax_state300_REDIRECT_OUTPUT_space_after);
-	MU_RUN_TEST(testing_syntax_state300_REDIRECT_OUTPUT_space_before);
+	MU_RUN_TEST(testing_syntax_state300_REDIRECT_OUTPUT_simple_space_first_node);
+	MU_RUN_TEST(testing_syntax_state300_REDIRECT_OUTPUT_space_after_first_node);
+	MU_RUN_TEST(testing_syntax_state300_REDIRECT_OUTPUT_space_before_first_node);
 }
 
-MU_TEST_SUITE(test07___syntax_state300_REDIRECT_OUTPUT_APPEND_errors_suite)
+MU_TEST_SUITE(test07___syntax_state300_REDIRECT_OUTPUT_APPEND_errors_first_node_suite)
 {
-	MU_RUN_TEST(testing_syntax_state300_REDIRECT_OUTPUT_APPEND_simple_space);
-	MU_RUN_TEST(testing_syntax_state300_REDIRECT_OUTPUT_APPEND_space_after);
-	MU_RUN_TEST(testing_syntax_state300_REDIRECT_OUTPUT_APPEND_space_before);
+	MU_RUN_TEST(testing_syntax_state300_REDIRECT_OUTPUT_APPEND_simple_space_first_node);
+	MU_RUN_TEST(testing_syntax_state300_REDIRECT_OUTPUT_APPEND_space_after_first_node);
+	MU_RUN_TEST(testing_syntax_state300_REDIRECT_OUTPUT_APPEND_space_before_first_node);
 }
 
-MU_TEST_SUITE(test07___syntax_state300_REDIRECT_HEREDOC_errors_suite)
+MU_TEST_SUITE(test07___syntax_state300_REDIRECT_HEREDOC_errors_first_node_suite)
 {
-	MU_RUN_TEST(testing_syntax_state300_REDIRECT_HEREDOC_simple_space);
-	MU_RUN_TEST(testing_syntax_state300_REDIRECT_HEREDOC_space_after);
-	MU_RUN_TEST(testing_syntax_state300_REDIRECT_HEREDOC_space_before);
+	MU_RUN_TEST(testing_syntax_state300_REDIRECT_HEREDOC_simple_space_first_node);
+	MU_RUN_TEST(testing_syntax_state300_REDIRECT_HEREDOC_space_after_first_node);
+	MU_RUN_TEST(testing_syntax_state300_REDIRECT_HEREDOC_space_before_first_node);
 }
