@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 11:12:53 by umeneses          #+#    #+#             */
-/*   Updated: 2024/07/08 19:15:47 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/07/08 20:23:30 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,8 @@ int	main(void)
 {
 	MU_RUN_SUITE(test01___initial_errors_suite);
 	MU_RUN_SUITE(test01___token_simulation_errors_suite);
+	MU_RUN_SUITE(test01___lexeme_MIXED_quotes_errors_suite);
+
 	MU_RUN_SUITE(test02___create_token_suite);
 	
 	MU_RUN_SUITE(test03___01_to_02_tokens_suite);
