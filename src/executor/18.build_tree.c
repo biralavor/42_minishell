@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/05 13:55:37 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/07/05 16:08:32 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/07/08 11:08:31 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,10 @@
 void	build_tree(t_token_list *lst)
 {
 	t_token_list	*temp;
-	t_tree			*exec_tree;
+	// t_tree			*exec_tree;
 
 	temp = lst;
-	exec_tree = NULL;
+	// exec_tree = NULL;
 	while (temp)
 		temp = temp->next;
 	while(temp)
