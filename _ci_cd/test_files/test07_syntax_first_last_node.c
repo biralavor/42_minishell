@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/02 11:01:23 by umeneses          #+#    #+#             */
-/*   Updated: 2024/07/08 11:42:03 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/07/08 11:44:28 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "minishell.h"
 #include "lexer.h"
 
-MU_TEST(testing_syntax_first_node_pipe_simple_space)
+MU_TEST(testing_syntax_first_node_PIPE_simple_space)
 {
 	// ARRANGE
 	char			*userinput;
@@ -30,7 +30,7 @@ MU_TEST(testing_syntax_first_node_pipe_simple_space)
 	fd = 0;
 	open_redirect_stderr_to_dev_null(fd);
 	userinput = "| Mussum|Ipsum";
-	xpect_syntax_validation = 201; // begining with pipe, OR or AND
+	xpect_syntax_validation = 201; // begining with PIPE, OR or AND
 	xpect_lst_size = 4;
 	idx = 0;
 	lst = NULL;
@@ -44,7 +44,7 @@ MU_TEST(testing_syntax_first_node_pipe_simple_space)
 	mu_assert_int_eq(xpect_syntax_validation, actual_syntax_validation);
 }
 
-MU_TEST(testing_syntax_first_node_pipe_space_after)
+MU_TEST(testing_syntax_first_node_PIPE_space_after)
 {
 	// ARRANGE
 	char			*userinput;
@@ -60,7 +60,7 @@ MU_TEST(testing_syntax_first_node_pipe_space_after)
 	fd = 0;
 	open_redirect_stderr_to_dev_null(fd);
 	userinput = "|			                          Mussum|Ipsum";
-	xpect_syntax_validation = 201; // begining with pipe, OR or AND
+	xpect_syntax_validation = 201; // begining with PIPE, OR or AND
 	xpect_lst_size = 4;
 	idx = 0;
 	lst = NULL;
@@ -74,7 +74,7 @@ MU_TEST(testing_syntax_first_node_pipe_space_after)
 	mu_assert_int_eq(xpect_syntax_validation, actual_syntax_validation);
 }
 
-MU_TEST(testing_syntax_first_node_pipe_space_before)
+MU_TEST(testing_syntax_first_node_PIPE_space_before)
 {
 	// ARRANGE
 	char			*userinput;
@@ -90,7 +90,7 @@ MU_TEST(testing_syntax_first_node_pipe_space_before)
 	fd = 0;
 	open_redirect_stderr_to_dev_null(fd);
 	userinput = "			                          |Mussum|Ipsum";
-	xpect_syntax_validation = 201; // begining with pipe, OR or AND
+	xpect_syntax_validation = 201; // begining with PIPE, OR or AND
 	xpect_lst_size = 4;
 	idx = 0;
 	lst = NULL;
@@ -120,7 +120,7 @@ MU_TEST(testing_syntax_first_node_OR_simple_space)
 	fd = 0;
 	open_redirect_stderr_to_dev_null(fd);
 	userinput = "|| Mussum|Ipsum";
-	xpect_syntax_validation = 201; // begining with pipe, OR or AND
+	xpect_syntax_validation = 201; // begining with PIPE, OR or AND
 	xpect_lst_size = 4;
 	idx = 0;
 	lst = NULL;
@@ -150,7 +150,7 @@ MU_TEST(testing_syntax_first_node_OR_space_after)
 	fd = 0;
 	open_redirect_stderr_to_dev_null(fd);
 	userinput = "||			                          Mussum|Ipsum";
-	xpect_syntax_validation = 201; // begining with pipe, OR or AND
+	xpect_syntax_validation = 201; // begining with PIPE, OR or AND
 	xpect_lst_size = 4;
 	idx = 0;
 	lst = NULL;
@@ -180,7 +180,7 @@ MU_TEST(testing_syntax_first_node_OR_space_before)
 	fd = 0;
 	open_redirect_stderr_to_dev_null(fd);
 	userinput = "			                          ||Mussum|Ipsum";
-	xpect_syntax_validation = 201; // begining with pipe, OR or AND
+	xpect_syntax_validation = 201; // begining with PIPE, OR or AND
 	xpect_lst_size = 4;
 	idx = 0;
 	lst = NULL;
@@ -210,7 +210,7 @@ MU_TEST(testing_syntax_first_node_AND_simple_space)
 	fd = 0;
 	open_redirect_stderr_to_dev_null(fd);
 	userinput = "&& Mussum|Ipsum";
-	xpect_syntax_validation = 201; // begining with pipe, OR or AND
+	xpect_syntax_validation = 201; // begining with PIPE, OR or AND
 	xpect_lst_size = 4;
 	idx = 0;
 	lst = NULL;
@@ -240,7 +240,7 @@ MU_TEST(testing_syntax_first_node_AND_space_after)
 	fd = 0;
 	open_redirect_stderr_to_dev_null(fd);
 	userinput = "&&			                          Mussum|Ipsum";
-	xpect_syntax_validation = 201; // begining with pipe, OR or AND
+	xpect_syntax_validation = 201; // begining with PIPE, OR or AND
 	xpect_lst_size = 4;
 	idx = 0;
 	lst = NULL;
@@ -270,7 +270,7 @@ MU_TEST(testing_syntax_first_node_AND_space_before)
 	fd = 0;
 	open_redirect_stderr_to_dev_null(fd);
 	userinput = "			                          &&Mussum|Ipsum";
-	xpect_syntax_validation = 201; // begining with pipe, OR or AND
+	xpect_syntax_validation = 201; // begining with PIPE, OR or AND
 	xpect_lst_size = 4;
 	idx = 0;
 	lst = NULL;
@@ -377,7 +377,7 @@ MU_TEST(testing_syntax_first_node_REDIRECT_INPUT_space_before)
 
 
 
-MU_TEST(testing_syntax_first_node_close_parentis_simple_space)
+MU_TEST(testing_syntax_first_node_CLOSE_PARENTHESIS_simple_space)
 {
 	// ARRANGE
 	char			*userinput;
@@ -403,7 +403,7 @@ MU_TEST(testing_syntax_first_node_close_parentis_simple_space)
 	mu_assert_int_eq(xpect_syntax_validation, actual_syntax_validation);
 }
 
-MU_TEST(testing_syntax_first_node_close_parentis_space_after)
+MU_TEST(testing_syntax_first_node_CLOSE_PARENTHESIS_space_after)
 {
 	// ARRANGE
 	char			*userinput;
@@ -429,7 +429,7 @@ MU_TEST(testing_syntax_first_node_close_parentis_space_after)
 	mu_assert_int_eq(xpect_syntax_validation, actual_syntax_validation);
 }
 
-MU_TEST(testing_syntax_first_node_close_parentis_space_before)
+MU_TEST(testing_syntax_first_node_CLOSE_PARENTHESIS_space_before)
 {
 	// ARRANGE
 	char			*userinput;
@@ -455,7 +455,7 @@ MU_TEST(testing_syntax_first_node_close_parentis_space_before)
 	mu_assert_int_eq(xpect_syntax_validation, actual_syntax_validation);
 }
 
-// MU_TEST(testing_syntax_last_node_pipe_simple_space)
+// MU_TEST(testing_syntax_last_node_PIPE_simple_space)
 // {
 // 	// ARRANGE
 // 	char			*userinput;
@@ -481,7 +481,7 @@ MU_TEST(testing_syntax_first_node_close_parentis_space_before)
 // 	mu_assert_int_eq(xpect_syntax_validation, actual_syntax_validation);
 // }
 
-// MU_TEST(testing_syntax_last_node_pipe_space_after)
+// MU_TEST(testing_syntax_last_node_PIPE_space_after)
 // {
 // 	// ARRANGE
 // 	char			*userinput;
@@ -507,7 +507,7 @@ MU_TEST(testing_syntax_first_node_close_parentis_space_before)
 // 	mu_assert_int_eq(xpect_syntax_validation, actual_syntax_validation);
 // }
 
-// MU_TEST(testing_syntax_last_node_pipe_space_before)
+// MU_TEST(testing_syntax_last_node_PIPE_space_before)
 // {
 // 	// ARRANGE
 // 	char			*userinput;
@@ -689,7 +689,7 @@ MU_TEST(testing_syntax_first_node_close_parentis_space_before)
 // 	mu_assert_int_eq(xpect_syntax_validation, actual_syntax_validation);
 // }
 
-// MU_TEST(testing_syntax_last_node_close_parentis_simple_space)
+// MU_TEST(testing_syntax_last_node_CLOSE_PARENTHESIS_simple_space)
 // {
 // 	// ARRANGE
 // 	char			*userinput;
@@ -715,7 +715,7 @@ MU_TEST(testing_syntax_first_node_close_parentis_space_before)
 // 	mu_assert_int_eq(xpect_syntax_validation, actual_syntax_validation);
 // }
 
-// MU_TEST(testing_syntax_last_node_close_parentis_space_after)
+// MU_TEST(testing_syntax_last_node_CLOSE_PARENTHESIS_space_after)
 // {
 // 	// ARRANGE
 // 	char			*userinput;
@@ -741,7 +741,7 @@ MU_TEST(testing_syntax_first_node_close_parentis_space_before)
 // 	mu_assert_int_eq(xpect_syntax_validation, actual_syntax_validation);
 // }
 
-// MU_TEST(testing_syntax_last_node_close_parentis_space_before)
+// MU_TEST(testing_syntax_last_node_CLOSE_PARENTHESIS_space_before)
 // {
 // 	// ARRANGE
 // 	char			*userinput;
@@ -767,7 +767,7 @@ MU_TEST(testing_syntax_first_node_close_parentis_space_before)
 // 	mu_assert_int_eq(xpect_syntax_validation, actual_syntax_validation);
 // }
 
-// MU_TEST(testing_syntax_pipe_pipe)
+// MU_TEST(testing_syntax_PIPE_PIPE)
 // {
 // 	// ARRANGE
 // 	char			*userinput;
@@ -793,7 +793,7 @@ MU_TEST(testing_syntax_first_node_close_parentis_space_before)
 // 	mu_assert_int_eq(xpect_syntax_validation, actual_syntax_validation);
 // }
 
-// MU_TEST(testing_syntax_pipe_dollar_sign)
+// MU_TEST(testing_syntax_PIPE_dollar_sign)
 // {
 // 	// ARRANGE
 // 	char			*userinput;
@@ -819,7 +819,7 @@ MU_TEST(testing_syntax_first_node_close_parentis_space_before)
 // 	mu_assert_int_eq(xpect_syntax_validation, actual_syntax_validation);
 // }
 
-// MU_TEST(testing_syntax_pipe_redirect_output)
+// MU_TEST(testing_syntax_PIPE_redirect_output)
 // {
 // 	// ARRANGE
 // 	char			*userinput;
@@ -1001,7 +1001,7 @@ MU_TEST(testing_syntax_first_node_close_parentis_space_before)
 // 	mu_assert_int_eq(xpect_syntax_validation, actual_syntax_validation);
 // }
 
-// MU_TEST(testing_syntax_echo_hi_pipe_redirect_output)
+// MU_TEST(testing_syntax_echo_hi_PIPE_redirect_output)
 // {
 // 	// ARRANGE
 // 	char			*userinput;
@@ -1027,7 +1027,7 @@ MU_TEST(testing_syntax_first_node_close_parentis_space_before)
 // 	mu_assert_int_eq(xpect_syntax_validation, actual_syntax_validation);
 // }
 
-// MU_TEST(testing_syntax_echo_hi_pipe_redirect_output_output_append)
+// MU_TEST(testing_syntax_echo_hi_PIPE_redirect_output_output_append)
 // {
 // 	// ARRANGE
 // 	char			*userinput;
@@ -1053,7 +1053,7 @@ MU_TEST(testing_syntax_first_node_close_parentis_space_before)
 // 	mu_assert_int_eq(xpect_syntax_validation, actual_syntax_validation);
 // }
 
-// MU_TEST(testing_syntax_echo_hi_pipe_redirect_input_pipe)
+// MU_TEST(testing_syntax_echo_hi_PIPE_redirect_input_PIPE)
 // {
 // 	// ARRANGE
 // 	char			*userinput;
@@ -1079,7 +1079,7 @@ MU_TEST(testing_syntax_first_node_close_parentis_space_before)
 // 	mu_assert_int_eq(xpect_syntax_validation, actual_syntax_validation);
 // }
 
-// MU_TEST(testing_syntax_echo_hi_pipe_pipe)
+// MU_TEST(testing_syntax_echo_hi_PIPE_PIPE)
 // {
 // 	// ARRANGE
 // 	char			*userinput;
@@ -1105,7 +1105,7 @@ MU_TEST(testing_syntax_first_node_close_parentis_space_before)
 // 	mu_assert_int_eq(xpect_syntax_validation, actual_syntax_validation);
 // }
 
-// MU_TEST(testing_syntax_echo_hi_pipe_double_quotes)
+// MU_TEST(testing_syntax_echo_hi_PIPE_double_quotes)
 // {
 // 	// ARRANGE
 // 	char			*userinput;
@@ -1133,9 +1133,9 @@ MU_TEST(testing_syntax_first_node_close_parentis_space_before)
 
 MU_TEST_SUITE(test07___syntax_first_node_errors_suite)
 {
-	MU_RUN_TEST(testing_syntax_first_node_pipe_simple_space);
-	MU_RUN_TEST(testing_syntax_first_node_pipe_space_after);
-	MU_RUN_TEST(testing_syntax_first_node_pipe_space_before);
+	MU_RUN_TEST(testing_syntax_first_node_PIPE_simple_space);
+	MU_RUN_TEST(testing_syntax_first_node_PIPE_space_after);
+	MU_RUN_TEST(testing_syntax_first_node_PIPE_space_before);
 	MU_RUN_TEST(testing_syntax_first_node_OR_simple_space);
 	MU_RUN_TEST(testing_syntax_first_node_OR_space_after);
 	MU_RUN_TEST(testing_syntax_first_node_OR_space_before);
@@ -1145,9 +1145,9 @@ MU_TEST_SUITE(test07___syntax_first_node_errors_suite)
 	MU_RUN_TEST(testing_syntax_first_node_REDIRECT_INPUT_simple_space);
 	MU_RUN_TEST(testing_syntax_first_node_REDIRECT_INPUT_space_after);
 	MU_RUN_TEST(testing_syntax_first_node_REDIRECT_INPUT_space_before);
-	MU_RUN_TEST(testing_syntax_first_node_close_parentis_simple_space);
-	MU_RUN_TEST(testing_syntax_first_node_close_parentis_space_after);
-	MU_RUN_TEST(testing_syntax_first_node_close_parentis_space_before);
+	MU_RUN_TEST(testing_syntax_first_node_CLOSE_PARENTHESIS_simple_space);
+	MU_RUN_TEST(testing_syntax_first_node_CLOSE_PARENTHESIS_space_after);
+	MU_RUN_TEST(testing_syntax_first_node_CLOSE_PARENTHESIS_space_before);
 }
 
 // MU_TEST_SUITE(testing_syntax_last_node_errors_suite)
@@ -1161,9 +1161,9 @@ MU_TEST_SUITE(test07___syntax_first_node_errors_suite)
 // 	MU_RUN_TEST(testing_syntax_last_node_AND_simple_space);
 // 	MU_RUN_TEST(testing_syntax_last_node_AND_space_after);
 // 	MU_RUN_TEST(testing_syntax_last_node_AND_space_before);
-// 	MU_RUN_TEST(testing_syntax_last_node_close_parentis_simple_space);
-// 	MU_RUN_TEST(testing_syntax_last_node_close_parentis_space_after);
-// 	MU_RUN_TEST(testing_syntax_last_node_close_parentis_space_before);
+// 	MU_RUN_TEST(testing_syntax_last_node_CLOSE_PARENTHESIS_simple_space);
+// 	MU_RUN_TEST(testing_syntax_last_node_CLOSE_PARENTHESIS_space_after);
+// 	MU_RUN_TEST(testing_syntax_last_node_CLOSE_PARENTHESIS_space_before);
 // }
 
 // MU_TEST_SUITE(testing_syntax_few_nodes_pipe_errors_suite)
