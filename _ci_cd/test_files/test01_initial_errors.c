@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 11:12:53 by umeneses          #+#    #+#             */
-/*   Updated: 2024/07/05 16:23:01 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/07/08 20:23:23 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -202,7 +202,91 @@ MU_TEST(check_pipe_simulation_test)
 	mu_assert_string_eq(expected_arr_content, actual_arr_content);
 }
 
-MU_TEST_SUITE(check_initial_errors_suite)
+MU_TEST(testing_lexeme_MIXED_quotes_double_is_odd_single_is_odd_counter_error)
+{
+	// ARRANGE
+	char			*userinput;
+	int				xpect_lexeme_validation;
+	int				actual_lexeme_validation;
+	int				fd;
+
+	//ACT
+	fd = 0;
+	open_redirect_stderr_to_dev_null(fd);
+	userinput = "Mussum Ipsum \"cacilds \'vidis litro abertis";
+	xpect_lexeme_validation = false; // checking if quotes pass or not
+
+	actual_lexeme_validation = check_initial_errors(userinput);
+
+	close_redirect_stderr_to_dev_null(fd);
+	// ASSERT
+	mu_assert_int_eq(xpect_lexeme_validation, actual_lexeme_validation);
+}
+
+MU_TEST(testing_lexeme_MIXED_quotes_double_is_even_single_is_odd_counter_error)
+{
+	// ARRANGE
+	char			*userinput;
+	int				xpect_lexeme_validation;
+	int				actual_lexeme_validation;
+	int				fd;
+
+	//ACT
+	fd = 0;
+	open_redirect_stderr_to_dev_null(fd);
+	userinput = "Mussum Ipsum \"cacilds\" \'vidis litro abertis";
+	xpect_lexeme_validation = false; // checking if quotes pass or not
+
+	actual_lexeme_validation = check_initial_errors(userinput);
+
+	close_redirect_stderr_to_dev_null(fd);
+	// ASSERT
+	mu_assert_int_eq(xpect_lexeme_validation, actual_lexeme_validation);
+}
+
+MU_TEST(testing_lexeme_MIXED_quotes_double_is_odd_single_is_even_counter_error)
+{
+	// ARRANGE
+	char			*userinput;
+	int				xpect_lexeme_validation;
+	int				actual_lexeme_validation;
+	int				fd;
+
+	//ACT
+	fd = 0;
+	open_redirect_stderr_to_dev_null(fd);
+	userinput = "Mussum Ipsum \"cacilds \'vidis\' litro abertis";
+	xpect_lexeme_validation = false; // checking if quotes pass or not
+
+	actual_lexeme_validation = check_initial_errors(userinput);
+
+	close_redirect_stderr_to_dev_null(fd);
+	// ASSERT
+	mu_assert_int_eq(xpect_lexeme_validation, actual_lexeme_validation);
+}
+
+MU_TEST(testing_lexeme_MIXED_quotes_double_is_even_single_is_even_counter_error)
+{
+	// ARRANGE
+	char			*userinput;
+	int				xpect_lexeme_validation;
+	int				actual_lexeme_validation;
+	int				fd;
+
+	//ACT
+	fd = 0;
+	open_redirect_stderr_to_dev_null(fd);
+	userinput = "Mussum Ipsum \"cacilds\" \'vidis\' litro abertis";
+	xpect_lexeme_validation = true; // checking if quotes pass or not
+
+	actual_lexeme_validation = check_initial_errors(userinput);
+
+	close_redirect_stderr_to_dev_null(fd);
+	// ASSERT
+	mu_assert_int_eq(xpect_lexeme_validation, actual_lexeme_validation);
+}
+
+MU_TEST_SUITE(test01___initial_errors_suite)
 {
 	MU_RUN_TEST(argv_simulation_test);
 	MU_RUN_TEST(input_readline_01_txt_test);
@@ -214,7 +298,15 @@ MU_TEST_SUITE(check_initial_errors_suite)
 	MU_RUN_TEST(check_double_ampersand_error_test_tobe_true);
 }
 
-MU_TEST_SUITE(token_simulation_errors_suite)
+MU_TEST_SUITE(test01___token_simulation_errors_suite)
 {
 	MU_RUN_TEST(check_pipe_simulation_test);
+}
+
+MU_TEST_SUITE(test01___lexeme_MIXED_quotes_errors_suite)
+{
+	MU_RUN_TEST(testing_lexeme_MIXED_quotes_double_is_odd_single_is_odd_counter_error);
+	MU_RUN_TEST(testing_lexeme_MIXED_quotes_double_is_even_single_is_odd_counter_error);
+	MU_RUN_TEST(testing_lexeme_MIXED_quotes_double_is_odd_single_is_even_counter_error);
+	MU_RUN_TEST(testing_lexeme_MIXED_quotes_double_is_even_single_is_even_counter_error);
 }

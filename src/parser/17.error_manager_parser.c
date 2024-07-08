@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error_manager_parser.c                             :+:      :+:    :+:   */
+/*   17.error_manager_parser.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 11:53:52 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/07/03 12:41:51 by tmalheir         ###   ########.fr       */
+/*   Updated: 2024/07/05 17:47:12 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	error_manager_parser(int error_id, t_token_list *lst)
 
 void	unexpected_token_error(void)
 {
-	ft_printf("syntax error near unexpected token\n");
+	ft_putendl_fd("syntax error near unexpected token", STDERR_FILENO);
 }
 
 void	syntax_error(t_token_list *lst)
