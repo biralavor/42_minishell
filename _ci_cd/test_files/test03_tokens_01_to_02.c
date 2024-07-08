@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 11:12:53 by umeneses          #+#    #+#             */
-/*   Updated: 2024/07/02 18:17:55 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/07/08 11:15:36 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -259,7 +259,7 @@ MU_TEST(testing_userinput_token_02_word_with_tab_v02)
 	mu_assert_string_eq(xpect_node3_type, actual_node3_type);
 }
 
-MU_TEST_SUITE(testing_01_to_02_tokens_suite)
+MU_TEST_SUITE(test03___01_to_02_tokens_suite)
 {
 	MU_RUN_TEST(testing_userinput_token_empty);
 	MU_RUN_TEST(testing_userinput_token_02_word_with_space);

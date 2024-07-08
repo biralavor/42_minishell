@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   test03_tokens_03_to_05.c                           :+:      :+:    :+:   */
+/*   test04_tokens_03_to_05.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 11:12:53 by umeneses          #+#    #+#             */
-/*   Updated: 2024/07/02 18:02:10 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/07/08 11:15:47 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -1648,7 +1648,7 @@ MU_TEST(testing_userinput_token_05)
 	mu_assert_string_eq(xpect_node_05_type, actual_node_05_type);
 }
 
-MU_TEST_SUITE(testing_03_to_05_tokens_suite)
+MU_TEST_SUITE(test04___03_to_05_tokens_suite)
 {
 	MU_RUN_TEST(testing_userinput_token_03_pipe_at_begin);
 	MU_RUN_TEST(testing_userinput_token_03_pipe_at_middle);

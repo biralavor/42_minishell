@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   test04_syntax_first_last_node.c                    :+:      :+:    :+:   */
+/*   test07_syntax_first_last_node.c                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/02 11:01:23 by umeneses          #+#    #+#             */
-/*   Updated: 2024/07/05 18:08:57 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/07/08 11:16:15 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -1038,7 +1038,7 @@ MU_TEST(testing_syntax_first_node_AND_space_before)
 // 	mu_assert_int_eq(xpect_syntax_validation, actual_syntax_validation);
 // }
 
-MU_TEST_SUITE(testing_syntax_first_node_errors_suite)
+MU_TEST_SUITE(test07___syntax_first_node_errors_suite)
 {
 	MU_RUN_TEST(testing_syntax_first_node_pipe_simple_space);
 	MU_RUN_TEST(testing_syntax_first_node_pipe_space_after);

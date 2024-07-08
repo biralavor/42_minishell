@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 11:12:53 by umeneses          #+#    #+#             */
-/*   Updated: 2024/07/05 17:48:10 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/07/08 11:15:23 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,22 +39,22 @@
 #include "test01_initial_errors.c"
 #include "test02_create_token.c"
 #include "test03_tokens_01_to_02.c"
-#include "test03_tokens_03_to_05.c"
-#include "test03_tokens_06_to_10.c"
-#include "test03_tokens_cadet.c"
-#include "test04_syntax_first_last_node.c"
-#include "test04_syntax_lexeme.c"
+#include "test04_tokens_03_to_05.c"
+#include "test05_tokens_06_to_10.c"
+#include "test06_tokens_cadet.c"
+#include "test07_syntax_first_last_node.c"
+#include "test08_syntax_lexeme.c"
 
 int	main(void)
 {
-	MU_RUN_SUITE(check_initial_errors_suite);
-	MU_RUN_SUITE(token_simulation_errors_suite);
-	MU_RUN_SUITE(testing_create_token_suite);
-	MU_RUN_SUITE(testing_01_to_02_tokens_suite);
-	MU_RUN_SUITE(testing_03_to_05_tokens_suite);
-	MU_RUN_SUITE(testing_06_to_10_tokens_suite);
-	MU_RUN_SUITE(testing_tokens_cadet_suite);
-	MU_RUN_SUITE(testing_syntax_first_node_errors_suite);
+	MU_RUN_SUITE(test01___initial_errors_suite);
+	MU_RUN_SUITE(test01___token_simulation_errors_suite);
+	MU_RUN_SUITE(test02___create_token_suite);
+	MU_RUN_SUITE(test03___01_to_02_tokens_suite);
+	MU_RUN_SUITE(test04___03_to_05_tokens_suite);
+	MU_RUN_SUITE(test05___06_to_10_tokens_suite);
+	MU_RUN_SUITE(test06___tokens_cadet_suite);
+	MU_RUN_SUITE(test07___syntax_first_node_errors_suite);
 	// MU_RUN_SUITE(testing_syntax_last_node_errors_suite);
 	// MU_RUN_SUITE(testing_syntax_few_nodes_pipe_errors_suite);
 	// MU_RUN_SUITE(testing_syntax_few_nodes_redirect_errors_suite);

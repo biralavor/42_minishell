@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   test03_tokens_cadet.c                              :+:      :+:    :+:   */
+/*   test06_tokens_cadet.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/02 18:16:24 by umeneses          #+#    #+#             */
-/*   Updated: 2024/07/03 12:11:17 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/07/08 11:16:02 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -1262,7 +1262,7 @@ MU_TEST(testing_tokens_cadet_input_ls_echo_18)
 	mu_assert_string_eq(xpect_node19_type, actual_node19_type);
 }
 
-MU_TEST_SUITE(testing_tokens_cadet_suite)
+MU_TEST_SUITE(test06___tokens_cadet_suite)
 {
 	MU_RUN_TEST(testing_tokens_cadet_input_hello_world);
 	MU_RUN_TEST(testing_tokens_cadet_input_ls);

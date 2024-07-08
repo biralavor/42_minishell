@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 11:12:53 by umeneses          #+#    #+#             */
-/*   Updated: 2024/07/05 16:23:01 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/07/08 11:19:45 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -202,7 +202,7 @@ MU_TEST(check_pipe_simulation_test)
 	mu_assert_string_eq(expected_arr_content, actual_arr_content);
 }
 
-MU_TEST_SUITE(check_initial_errors_suite)
+MU_TEST_SUITE(test01___initial_errors_suite)
 {
 	MU_RUN_TEST(argv_simulation_test);
 	MU_RUN_TEST(input_readline_01_txt_test);
@@ -214,7 +214,7 @@ MU_TEST_SUITE(check_initial_errors_suite)
 	MU_RUN_TEST(check_double_ampersand_error_test_tobe_true);
 }
 
-MU_TEST_SUITE(token_simulation_errors_suite)
+MU_TEST_SUITE(test01___token_simulation_errors_suite)
 {
 	MU_RUN_TEST(check_pipe_simulation_test);
 }
