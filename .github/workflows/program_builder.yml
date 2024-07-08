@@ -19,6 +19,7 @@ on:
     - '**-feature-**'
     - '**-feat-**'
     - '**-bugfix-**'
+    - '**-fix-**'
     - '**-release-**'
   pull_request:
     branches:
@@ -26,6 +27,7 @@ on:
     - '**-feature-**'
     - '**-feat-**'
     - '**-bugfix-**'
+    - '**-fix-**'
     - '**-release-**'
 
 jobs:
