@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 11:12:53 by umeneses          #+#    #+#             */
-/*   Updated: 2024/07/08 16:12:18 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/07/08 16:44:54 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,9 @@
 #include "test05_tokens_06_to_10.c"
 #include "test06_tokens_cadet.c"
 #include "test07_syntax_state100.c"
-#include "test07_syntax_first_last_node.c"
+#include "test08_syntax_state200.c"
+#include "test09_syntax_state300.c"
+#include "test10_syntax_state400.c"
 // #include "test99_syntax_lexeme.c"
 
 int	main(void)
@@ -57,14 +59,14 @@ int	main(void)
 	MU_RUN_SUITE(test06___tokens_cadet_suite);
 	MU_RUN_SUITE(test07___syntax_state100_single_quote_errors_suite);
 	MU_RUN_SUITE(test07___syntax_state100_double_quote_errors_suite);
-	MU_RUN_SUITE(test07___syntax_first_node_PIPE_errors_suite);
-	MU_RUN_SUITE(test07___syntax_first_node_OR_errors_suite);
-	MU_RUN_SUITE(test07___syntax_first_node_AND_errors_suite);
-	MU_RUN_SUITE(test07___syntax_first_node_REDIRECT_INPUT_errors_suite);
-	MU_RUN_SUITE(test07___syntax_first_node_REDIRECT_OUTPUT_errors_suite);
-	MU_RUN_SUITE(test07___syntax_first_node_REDIRECT_OUTPUT_APPEND_errors_suite);
-	MU_RUN_SUITE(test07___syntax_first_node_REDIRECT_HEREDOC_errors_suite);
-	MU_RUN_SUITE(test07___syntax_first_node_CLOSE_PARENTHESIS_errors_suite);
+	MU_RUN_SUITE(test07___syntax_state200_PIPE_errors_suite);
+	MU_RUN_SUITE(test07___syntax_state200_OR_errors_suite);
+	MU_RUN_SUITE(test07___syntax_state200_AND_errors_suite);
+	MU_RUN_SUITE(test07___syntax_state300_REDIRECT_INPUT_errors_suite);
+	MU_RUN_SUITE(test07___syntax_state300_REDIRECT_OUTPUT_errors_suite);
+	MU_RUN_SUITE(test07___syntax_state300_REDIRECT_OUTPUT_APPEND_errors_suite);
+	MU_RUN_SUITE(test07___syntax_state300_REDIRECT_HEREDOC_errors_suite);
+	MU_RUN_SUITE(test07___syntax_state400_CLOSE_PARENTHESIS_errors_suite);
 	// MU_RUN_SUITE(testing_syntax_last_node_errors_suite);
 	// MU_RUN_SUITE(testing_syntax_few_nodes_pipe_errors_suite);
 	// MU_RUN_SUITE(testing_syntax_few_nodes_redirect_errors_suite);
