@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 11:12:53 by umeneses          #+#    #+#             */
-/*   Updated: 2024/07/08 16:52:15 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/07/08 17:13:58 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,9 @@ int	main(void)
 	MU_RUN_SUITE(test05___06_to_10_tokens_suite);
 	MU_RUN_SUITE(test06___tokens_cadet_suite);
 	MU_RUN_SUITE(test07___syntax_state100_single_quote_errors_first_node_suite);
+	MU_RUN_SUITE(test07___syntax_state100_single_quote_errors_last_node_suite);
 	MU_RUN_SUITE(test07___syntax_state100_double_quote_errors_first_node_suite);
+	MU_RUN_SUITE(test07___syntax_state100_double_quote_errors_last_node_suite);
 	MU_RUN_SUITE(test07___syntax_state200_PIPE_errors_suite);
 	MU_RUN_SUITE(test07___syntax_state200_OR_errors_suite);
 	MU_RUN_SUITE(test07___syntax_state200_AND_errors_suite);
