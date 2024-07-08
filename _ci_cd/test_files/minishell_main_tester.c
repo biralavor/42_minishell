@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 11:12:53 by umeneses          #+#    #+#             */
-/*   Updated: 2024/07/08 18:33:29 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/07/08 18:43:18 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,6 +93,8 @@ int	main(void)
 	
 	MU_RUN_SUITE(test07___syntax_state400_OPEN_PARENTHESIS_errors_first_node_suite);
 	MU_RUN_SUITE(test07___syntax_state400_OPEN_PARENTHESIS_errors_last_node_suite);
+	
+	MU_RUN_SUITE(test07___syntax_state400_MIXED_PARENTHESIS_odd_counter_errors_suite);
 	
 	// MU_RUN_SUITE(testing_syntax_last_node_errors_suite);
 	// MU_RUN_SUITE(testing_syntax_few_nodes_pipe_errors_suite);
