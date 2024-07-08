@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lexer.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 13:32:19 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/07/05 14:13:26 by tmalheir         ###   ########.fr       */
+/*   Updated: 2024/07/08 20:14:11 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void	check_userinput(char *str);
  * @brief Calls for initial error checking functions.
  * @param *str -> User input in command line.
 */
-void	check_initial_errors(char *str);
+bool	check_initial_errors(char *str);
 
 /**
  * @brief Checks for double quoting errors.

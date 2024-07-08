@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error_manager_lexer.c                              :+:      :+:    :+:   */
+/*   09.error_manager_lexer.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 11:01:38 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/07/02 10:04:43 by tmalheir         ###   ########.fr       */
+/*   Updated: 2024/07/08 20:25:35 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,12 +25,12 @@ void	error_manager_lexer(int error_id)
 
 void	lexer_error(void)
 {
-	ft_printf("Unmatched open quotes");
+	ft_putendl_fd("Unmatched open quotes", STDERR_FILENO);
 	exit (EXIT_FAILURE);
 }
 
 void	list_not_created(void)
 {
-	ft_printf("Failed to create token linked list");
+	ft_putendl_fd("Failed to create token linked list", STDERR_FILENO);
 	exit(EXIT_FAILURE);
 }

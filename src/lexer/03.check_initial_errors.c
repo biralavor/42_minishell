@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   03.check_initial_errors.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 07:45:31 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/07/05 14:12:34 by tmalheir         ###   ########.fr       */
+/*   Updated: 2024/07/08 20:13:38 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,13 @@
 #include "lexer.h"
 #include "error_manager.h"
 
-void	check_initial_errors(char *str)
+bool	check_initial_errors(char *str)
 {
 	if (!(check_closed_double_quotes(str))
 		|| !(check_closed_single_quotes(str)))
-		error_manager_lexer(LEXER_ERROR);
+		return (false);
+	else
+		return (true);
 }
 
 bool	check_closed_double_quotes(char *str)
