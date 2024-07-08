@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 11:12:53 by umeneses          #+#    #+#             */
-/*   Updated: 2024/07/08 12:22:21 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/07/08 16:08:56 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,9 @@
 #include "test04_tokens_03_to_05.c"
 #include "test05_tokens_06_to_10.c"
 #include "test06_tokens_cadet.c"
+#include "test07_syntax_state100.c"
 #include "test07_syntax_first_last_node.c"
-#include "test08_syntax_lexeme.c"
+// #include "test99_syntax_lexeme.c"
 
 int	main(void)
 {
@@ -54,6 +55,7 @@ int	main(void)
 	MU_RUN_SUITE(test04___03_to_05_tokens_suite);
 	MU_RUN_SUITE(test05___06_to_10_tokens_suite);
 	MU_RUN_SUITE(test06___tokens_cadet_suite);
+	MU_RUN_SUITE(test07___syntax_state100_single_quote_errors_suite);
 	MU_RUN_SUITE(test07___syntax_first_node_PIPE_errors_suite);
 	MU_RUN_SUITE(test07___syntax_first_node_OR_errors_suite);
 	MU_RUN_SUITE(test07___syntax_first_node_AND_errors_suite);
