@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/02 11:01:23 by umeneses          #+#    #+#             */
-/*   Updated: 2024/07/08 12:15:23 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/07/08 12:17:13 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -300,7 +300,7 @@ MU_TEST(testing_syntax_first_node_REDIRECT_INPUT_simple_space)
 	//ACT
 	fd = 0;
 	open_redirect_stderr_to_dev_null(fd);
-	userinput = "> Mussum|Ipsum";
+	userinput = "< Mussum|Ipsum";
 	xpect_syntax_validation = 301; // begining with redirect input
 	xpect_lst_size = 4;
 	idx = 0;
@@ -330,7 +330,7 @@ MU_TEST(testing_syntax_first_node_REDIRECT_INPUT_space_after)
 	//ACT
 	fd = 0;
 	open_redirect_stderr_to_dev_null(fd);
-	userinput = ">			                          Mussum|Ipsum";
+	userinput = "<			                          Mussum|Ipsum";
 	xpect_syntax_validation = 301; // begining with redirect input
 	xpect_lst_size = 4;
 	idx = 0;
@@ -360,7 +360,7 @@ MU_TEST(testing_syntax_first_node_REDIRECT_INPUT_space_before)
 	//ACT
 	fd = 0;
 	open_redirect_stderr_to_dev_null(fd);
-	userinput = "			                          >Mussum|Ipsum";
+	userinput = "			                          <Mussum|Ipsum";
 	xpect_syntax_validation = 301; // begining with redirect input
 	xpect_lst_size = 4;
 	idx = 0;
