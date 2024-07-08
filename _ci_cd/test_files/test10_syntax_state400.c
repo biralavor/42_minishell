@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/02 11:01:23 by umeneses          #+#    #+#             */
-/*   Updated: 2024/07/08 18:46:24 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/07/08 19:16:05 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -434,35 +434,35 @@ MU_TEST(testing_syntax_state400_CLOSE_PARENTHESIS_odd_counter_first_node)
 	mu_assert_int_eq(xpect_syntax_validation, actual_syntax_validation);
 }
 
-MU_TEST_SUITE(test07___syntax_state400_CLOSE_PARENTHESIS_errors_first_node_suite)
+MU_TEST_SUITE(test10___syntax_state400_CLOSE_PARENTHESIS_errors_first_node_suite)
 {
 	MU_RUN_TEST(testing_syntax_state400_CLOSE_PARENTHESIS_simple_space_first_node);
 	MU_RUN_TEST(testing_syntax_state400_CLOSE_PARENTHESIS_space_after_first_node);
 	MU_RUN_TEST(testing_syntax_state400_CLOSE_PARENTHESIS_space_before_first_node);
 }
 
-MU_TEST_SUITE(test07___syntax_state400_CLOSE_PARENTHESIS_errors_last_node_suite)
+MU_TEST_SUITE(test10___syntax_state400_CLOSE_PARENTHESIS_errors_last_node_suite)
 {
 	MU_RUN_TEST(testing_syntax_state400_CLOSE_PARENTHESIS_simple_space_last_node);
 	MU_RUN_TEST(testing_syntax_state400_CLOSE_PARENTHESIS_space_after_last_node);
 	MU_RUN_TEST(testing_syntax_state400_CLOSE_PARENTHESIS_space_before_last_node);
 }
 
-MU_TEST_SUITE(test07___syntax_state400_OPEN_PARENTHESIS_errors_first_node_suite)
+MU_TEST_SUITE(test10___syntax_state400_OPEN_PARENTHESIS_errors_first_node_suite)
 {
 	MU_RUN_TEST(testing_syntax_state400_OPEN_PARENTHESIS_simple_space_first_node);
 	MU_RUN_TEST(testing_syntax_state400_OPEN_PARENTHESIS_space_after_first_node);
 	MU_RUN_TEST(testing_syntax_state400_OPEN_PARENTHESIS_space_before_first_node);
 }
 
-MU_TEST_SUITE(test07___syntax_state400_OPEN_PARENTHESIS_errors_last_node_suite)
+MU_TEST_SUITE(test10___syntax_state400_OPEN_PARENTHESIS_errors_last_node_suite)
 {
 	MU_RUN_TEST(testing_syntax_state400_OPEN_PARENTHESIS_simple_space_last_node);
 	MU_RUN_TEST(testing_syntax_state400_OPEN_PARENTHESIS_space_after_last_node);
 	MU_RUN_TEST(testing_syntax_state400_OPEN_PARENTHESIS_space_before_last_node);
 }
 
-MU_TEST_SUITE(test07___syntax_state400_MIXED_PARENTHESIS_odd_counter_errors_suite)
+MU_TEST_SUITE(test10___syntax_state400_MIXED_PARENTHESIS_odd_counter_errors_suite)
 {
 	MU_RUN_TEST(testing_syntax_state400_OPEN_PARENTHESIS_odd_counter_first_node);
 	MU_RUN_TEST(testing_syntax_state400_CLOSE_PARENTHESIS_odd_counter_first_node);
