@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lexer.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 13:32:19 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/07/12 17:00:03 by tmalheir         ###   ########.fr       */
+/*   Updated: 2024/07/15 09:52:58 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,7 +123,8 @@ void	assign_lst_idx(t_token_list *lst);
 /**
  * @brief TODO: APAGAR ESTA FUNÇÃO NO FINAL DO PROJETO.
 */
-void	ft_lst_printf_content(char *str, t_token_list *lst);
+void	ft_lst_printer(t_token_list *lst);
+char	*get_token_string(enum e_token token);
 
 /*ERROR MANAGER FUNCTIONS*/
 
