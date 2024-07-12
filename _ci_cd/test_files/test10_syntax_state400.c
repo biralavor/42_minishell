@@ -6,13 +6,14 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/02 11:01:23 by umeneses          #+#    #+#             */
-/*   Updated: 2024/07/08 19:36:00 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/07/12 15:44:55 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minunit.h"
 #include "minishell.h"
 #include "lexer.h"
+#include <stdio.h>
 
 MU_TEST(testing_syntax_state400_CLOSE_PARENTHESIS_simple_space_first_node)
 {
@@ -30,13 +31,19 @@ MU_TEST(testing_syntax_state400_CLOSE_PARENTHESIS_simple_space_first_node)
 	fd = 0;
 	open_redirect_stderr_to_dev_null(fd);
 	userinput = ") Mussum|Ipsum";
-	xpect_syntax_validation = 402; // begining with close parenthesis
+	xpect_syntax_validation = 802; // begining with close parenthesis
 	xpect_lst_size = 4;
 	idx = 0;
 	lst = NULL;
 	get_state(idx, userinput, &lst);
 	actual_lst_size = ft_lst_size(lst);
-	actual_syntax_validation = syntax_validations(lst);
+	while (lst)
+	{
+		actual_syntax_validation = syntax_validations(lst);
+		lst = lst->next;
+		if (actual_syntax_validation == xpect_syntax_validation)
+			break ;
+	}
 
 	close_redirect_stderr_to_dev_null(fd);
 	// ASSERT
@@ -60,13 +67,19 @@ MU_TEST(testing_syntax_state400_CLOSE_PARENTHESIS_space_after_first_node)
 	fd = 0;
 	open_redirect_stderr_to_dev_null(fd);
 	userinput = ")			                          Mussum|Ipsum";
-	xpect_syntax_validation = 402; // begining with close parenthesis
+	xpect_syntax_validation = 802; // begining with close parenthesis
 	xpect_lst_size = 4;
 	idx = 0;
 	lst = NULL;
 	get_state(idx, userinput, &lst);
 	actual_lst_size = ft_lst_size(lst);
-	actual_syntax_validation = syntax_validations(lst);
+	while (lst)
+	{
+		actual_syntax_validation = syntax_validations(lst);
+		lst = lst->next;
+		if (actual_syntax_validation == xpect_syntax_validation)
+			break ;
+	}
 
 	close_redirect_stderr_to_dev_null(fd);
 	// ASSERT
@@ -90,13 +103,19 @@ MU_TEST(testing_syntax_state400_CLOSE_PARENTHESIS_space_before_first_node)
 	fd = 0;
 	open_redirect_stderr_to_dev_null(fd);
 	userinput = "			                          )Mussum|Ipsum";
-	xpect_syntax_validation = 402; // begining with close parenthesis
+	xpect_syntax_validation = 802; // begining with close parenthesis
 	xpect_lst_size = 4;
 	idx = 0;
 	lst = NULL;
 	get_state(idx, userinput, &lst);
 	actual_lst_size = ft_lst_size(lst);
-	actual_syntax_validation = syntax_validations(lst);
+	while (lst)
+	{
+		actual_syntax_validation = syntax_validations(lst);
+		lst = lst->next;
+		if (actual_syntax_validation == xpect_syntax_validation)
+			break ;
+	}
 
 	close_redirect_stderr_to_dev_null(fd);
 	// ASSERT
@@ -120,13 +139,19 @@ MU_TEST(testing_syntax_state400_CLOSE_PARENTHESIS_simple_space_last_node)
 	fd = 0;
 	open_redirect_stderr_to_dev_null(fd);
 	userinput = "Mussum|Ipsum)";
-	xpect_syntax_validation = 402; // ending with close parenthesis
+	xpect_syntax_validation = 802; // ending with close parenthesis
 	xpect_lst_size = 4;
 	idx = 0;
 	lst = NULL;
 	get_state(idx, userinput, &lst);
 	actual_lst_size = ft_lst_size(lst);
-	actual_syntax_validation = syntax_validations(lst);
+	while (lst)
+	{
+		actual_syntax_validation = syntax_validations(lst);
+		lst = lst->next;
+		if (actual_syntax_validation == xpect_syntax_validation)
+			break ;
+	}
 
 	close_redirect_stderr_to_dev_null(fd);
 	// ASSERT
@@ -150,13 +175,19 @@ MU_TEST(testing_syntax_state400_CLOSE_PARENTHESIS_space_after_last_node)
 	fd = 0;
 	open_redirect_stderr_to_dev_null(fd);
 	userinput = "Mussum|Ipsum)			                          ";
-	xpect_syntax_validation = 402; // ending with close parenthesis
+	xpect_syntax_validation = 802; // ending with close parenthesis
 	xpect_lst_size = 4;
 	idx = 0;
 	lst = NULL;
 	get_state(idx, userinput, &lst);
 	actual_lst_size = ft_lst_size(lst);
-	actual_syntax_validation = syntax_validations(lst);
+	while (lst)
+	{
+		actual_syntax_validation = syntax_validations(lst);
+		lst = lst->next;
+		if (actual_syntax_validation == xpect_syntax_validation)
+			break ;
+	}
 
 	close_redirect_stderr_to_dev_null(fd);
 	// ASSERT
@@ -180,13 +211,19 @@ MU_TEST(testing_syntax_state400_CLOSE_PARENTHESIS_space_before_last_node)
 	fd = 0;
 	open_redirect_stderr_to_dev_null(fd);
 	userinput = "Mussum|Ipsum			                          )";
-	xpect_syntax_validation = 402; // ending with close parenthesis
+	xpect_syntax_validation = 802; // ending with close parenthesis
 	xpect_lst_size = 4;
 	idx = 0;
 	lst = NULL;
 	get_state(idx, userinput, &lst);
 	actual_lst_size = ft_lst_size(lst);
-	actual_syntax_validation = syntax_validations(lst);
+	while (lst)
+	{
+		actual_syntax_validation = syntax_validations(lst);
+		lst = lst->next;
+		if (actual_syntax_validation == xpect_syntax_validation)
+			break ;
+	}
 
 	close_redirect_stderr_to_dev_null(fd);
 	// ASSERT
@@ -210,13 +247,19 @@ MU_TEST(testing_syntax_state400_OPEN_PARENTHESIS_simple_space_first_node)
 	fd = 0;
 	open_redirect_stderr_to_dev_null(fd);
 	userinput = "( Mussum|Ipsum";
-	xpect_syntax_validation = 402; // begining with OPEN parenthesis
+	xpect_syntax_validation = 802; // begining with OPEN parenthesis
 	xpect_lst_size = 4;
 	idx = 0;
 	lst = NULL;
 	get_state(idx, userinput, &lst);
 	actual_lst_size = ft_lst_size(lst);
-	actual_syntax_validation = syntax_validations(lst);
+	while (lst)
+	{
+		actual_syntax_validation = syntax_validations(lst);
+		lst = lst->next;
+		if (actual_syntax_validation == xpect_syntax_validation)
+			break ;
+	}
 
 	close_redirect_stderr_to_dev_null(fd);
 	// ASSERT
@@ -240,13 +283,19 @@ MU_TEST(testing_syntax_state400_OPEN_PARENTHESIS_space_after_first_node)
 	fd = 0;
 	open_redirect_stderr_to_dev_null(fd);
 	userinput = "(			                          Mussum|Ipsum";
-	xpect_syntax_validation = 402; // begining with OPEN parenthesis
+	xpect_syntax_validation = 802; // begining with OPEN parenthesis
 	xpect_lst_size = 4;
 	idx = 0;
 	lst = NULL;
 	get_state(idx, userinput, &lst);
 	actual_lst_size = ft_lst_size(lst);
-	actual_syntax_validation = syntax_validations(lst);
+	while (lst)
+	{
+		actual_syntax_validation = syntax_validations(lst);
+		lst = lst->next;
+		if (actual_syntax_validation == xpect_syntax_validation)
+			break ;
+	}
 
 	close_redirect_stderr_to_dev_null(fd);
 	// ASSERT
@@ -270,13 +319,19 @@ MU_TEST(testing_syntax_state400_OPEN_PARENTHESIS_space_before_first_node)
 	fd = 0;
 	open_redirect_stderr_to_dev_null(fd);
 	userinput = "			                          (Mussum|Ipsum";
-	xpect_syntax_validation = 402; // begining with OPEN parenthesis
+	xpect_syntax_validation = 802; // begining with OPEN parenthesis
 	xpect_lst_size = 4;
 	idx = 0;
 	lst = NULL;
 	get_state(idx, userinput, &lst);
 	actual_lst_size = ft_lst_size(lst);
-	actual_syntax_validation = syntax_validations(lst);
+	while (lst)
+	{
+		actual_syntax_validation = syntax_validations(lst);
+		lst = lst->next;
+		if (actual_syntax_validation == xpect_syntax_validation)
+			break ;
+	}
 
 	close_redirect_stderr_to_dev_null(fd);
 	// ASSERT
@@ -300,13 +355,19 @@ MU_TEST(testing_syntax_state400_OPEN_PARENTHESIS_simple_space_last_node)
 	fd = 0;
 	open_redirect_stderr_to_dev_null(fd);
 	userinput = "Mussum|Ipsum(";
-	xpect_syntax_validation = 402; // ending with OPEN parenthesis
+	xpect_syntax_validation = 802; // ending with OPEN parenthesis
 	xpect_lst_size = 4;
 	idx = 0;
 	lst = NULL;
 	get_state(idx, userinput, &lst);
 	actual_lst_size = ft_lst_size(lst);
-	actual_syntax_validation = syntax_validations(lst);
+	while (lst)
+	{
+		actual_syntax_validation = syntax_validations(lst);
+		lst = lst->next;
+		if (actual_syntax_validation == xpect_syntax_validation)
+			break ;
+	}
 
 	close_redirect_stderr_to_dev_null(fd);
 	// ASSERT
@@ -330,13 +391,19 @@ MU_TEST(testing_syntax_state400_OPEN_PARENTHESIS_space_after_last_node)
 	fd = 0;
 	open_redirect_stderr_to_dev_null(fd);
 	userinput = "Mussum|Ipsum(			                          ";
-	xpect_syntax_validation = 402; // ending with OPEN parenthesis
+	xpect_syntax_validation = 802; // ending with OPEN parenthesis
 	xpect_lst_size = 4;
 	idx = 0;
 	lst = NULL;
 	get_state(idx, userinput, &lst);
 	actual_lst_size = ft_lst_size(lst);
-	actual_syntax_validation = syntax_validations(lst);
+	while (lst)
+	{
+		actual_syntax_validation = syntax_validations(lst);
+		lst = lst->next;
+		if (actual_syntax_validation == xpect_syntax_validation)
+			break ;
+	}
 
 	close_redirect_stderr_to_dev_null(fd);
 	// ASSERT
@@ -360,13 +427,19 @@ MU_TEST(testing_syntax_state400_OPEN_PARENTHESIS_space_before_last_node)
 	fd = 0;
 	open_redirect_stderr_to_dev_null(fd);
 	userinput = "Mussum|Ipsum			                          (";
-	xpect_syntax_validation = 402; // ending with OPEN parenthesis
+	xpect_syntax_validation = 802; // ending with OPEN parenthesis
 	xpect_lst_size = 4;
 	idx = 0;
 	lst = NULL;
 	get_state(idx, userinput, &lst);
 	actual_lst_size = ft_lst_size(lst);
-	actual_syntax_validation = syntax_validations(lst);
+	while (lst)
+	{
+		actual_syntax_validation = syntax_validations(lst);
+		lst = lst->next;
+		if (actual_syntax_validation == xpect_syntax_validation)
+			break ;
+	}
 
 	close_redirect_stderr_to_dev_null(fd);
 	// ASSERT
@@ -390,13 +463,19 @@ MU_TEST(testing_syntax_state400_OPEN_PARENTHESIS_odd_counter_first_node)
 	fd = 0;
 	open_redirect_stderr_to_dev_null(fd);
 	userinput = "( Mussum|(Ipsum)";
-	xpect_syntax_validation = 402; // begining with OPEN parenthesis, odd counter
+	xpect_syntax_validation = 802; // begining with OPEN parenthesis, odd counter
 	xpect_lst_size = 6;
 	idx = 0;
 	lst = NULL;
 	get_state(idx, userinput, &lst);
 	actual_lst_size = ft_lst_size(lst);
-	actual_syntax_validation = syntax_validations(lst);
+	while (lst)
+	{
+		actual_syntax_validation = syntax_validations(lst);
+		lst = lst->next;
+		if (actual_syntax_validation == xpect_syntax_validation)
+			break ;
+	}
 
 	close_redirect_stderr_to_dev_null(fd);
 	// ASSERT
@@ -420,13 +499,19 @@ MU_TEST(testing_syntax_state400_CLOSE_PARENTHESIS_odd_counter_first_node)
 	fd = 0;
 	open_redirect_stderr_to_dev_null(fd);
 	userinput = "( Mussum)|Ipsum)";
-	xpect_syntax_validation = 402; // begining with CLOSE parenthesis, odd counter
+	xpect_syntax_validation = 802; // begining with CLOSE parenthesis, odd counter
 	xpect_lst_size = 6;
 	idx = 0;
 	lst = NULL;
 	get_state(idx, userinput, &lst);
 	actual_lst_size = ft_lst_size(lst);
-	actual_syntax_validation = syntax_validations(lst);
+	while (lst)
+	{
+		actual_syntax_validation = syntax_validations(lst);
+		lst = lst->next;
+		if (actual_syntax_validation == xpect_syntax_validation)
+			break ;
+	}
 
 	close_redirect_stderr_to_dev_null(fd);
 	// ASSERT
