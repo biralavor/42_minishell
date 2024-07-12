@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/25 11:35:49 by umeneses          #+#    #+#             */
-/*   Updated: 2024/07/12 19:30:45 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/07/12 19:37:32 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@ void	ft_lst_printer(t_token_list *lst)
 	aux = lst;
 	idx = 0;
 	lst_size = ft_lst_size(aux);
-	printf("\nTotal lst size: %d\n", lst_size);
-	printf("\033[0;33mPrinting the List Now \033[0m \n");
+	fprintf(stderr, "\nTotal lst size: %d\n", lst_size);
+	fprintf(stderr, "\033[0;33mPrinting the List Now \033[0m \n");
 	fprintf(stderr, "|-------|-------------------------|---------------|-----------------|-----------------|\n");
 	fprintf(stderr, "| index |       token  type       | token  lexeme |     previous    |       next      |\n");
 	fprintf(stderr, "|-------|-------------------------|---------------|-----------------|-----------------|\n");
