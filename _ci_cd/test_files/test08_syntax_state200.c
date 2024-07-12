@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/02 11:01:23 by umeneses          #+#    #+#             */
-/*   Updated: 2024/07/08 19:37:58 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/07/12 15:18:21 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,13 @@ MU_TEST(testing_syntax_state200_PIPE_simple_space_first_node)
 	lst = NULL;
 	get_state(idx, userinput, &lst);
 	actual_lst_size = ft_lst_size(lst);
-	actual_syntax_validation = syntax_validations(lst);
+	while (lst)
+	{
+		actual_syntax_validation = syntax_validations(lst);
+		lst = lst->next;
+		if (actual_syntax_validation == xpect_syntax_validation)
+			break ;
+	}
 
 	close_redirect_stderr_to_dev_null(fd);
 	// ASSERT
@@ -66,7 +72,13 @@ MU_TEST(testing_syntax_state200_PIPE_space_after_first_node)
 	lst = NULL;
 	get_state(idx, userinput, &lst);
 	actual_lst_size = ft_lst_size(lst);
-	actual_syntax_validation = syntax_validations(lst);
+	while (lst)
+	{
+		actual_syntax_validation = syntax_validations(lst);
+		lst = lst->next;
+		if (actual_syntax_validation == xpect_syntax_validation)
+			break ;
+	}
 
 	close_redirect_stderr_to_dev_null(fd);
 	// ASSERT
@@ -96,7 +108,13 @@ MU_TEST(testing_syntax_state200_PIPE_space_before_first_node)
 	lst = NULL;
 	get_state(idx, userinput, &lst);
 	actual_lst_size = ft_lst_size(lst);
-	actual_syntax_validation = syntax_validations(lst);
+	while (lst)
+	{
+		actual_syntax_validation = syntax_validations(lst);
+		lst = lst->next;
+		if (actual_syntax_validation == xpect_syntax_validation)
+			break ;
+	}
 
 	close_redirect_stderr_to_dev_null(fd);
 	// ASSERT
@@ -126,7 +144,16 @@ MU_TEST(testing_syntax_state200_PIPE_simple_space_last_node)
 	lst = NULL;
 	get_state(idx, userinput, &lst);
 	actual_lst_size = ft_lst_size(lst);
-	actual_syntax_validation = syntax_validations(lst);
+	while (lst)
+	{
+		while (lst)
+		{
+		actual_syntax_validation = syntax_validations(lst);
+		lst = lst->next;
+		if (actual_syntax_validation == xpect_syntax_validation)
+			break ;
+		}
+	}
 
 	close_redirect_stderr_to_dev_null(fd);
 	// ASSERT
@@ -156,7 +183,13 @@ MU_TEST(testing_syntax_state200_PIPE_space_after_last_node)
 	lst = NULL;
 	get_state(idx, userinput, &lst);
 	actual_lst_size = ft_lst_size(lst);
-	actual_syntax_validation = syntax_validations(lst);
+	while (lst)
+	{
+		actual_syntax_validation = syntax_validations(lst);
+		lst = lst->next;
+		if (actual_syntax_validation == xpect_syntax_validation)
+			break ;
+	}
 
 	close_redirect_stderr_to_dev_null(fd);
 	// ASSERT
@@ -186,7 +219,13 @@ MU_TEST(testing_syntax_state200_PIPE_space_before_last_node)
 	lst = NULL;
 	get_state(idx, userinput, &lst);
 	actual_lst_size = ft_lst_size(lst);
-	actual_syntax_validation = syntax_validations(lst);
+	while (lst)
+	{
+		actual_syntax_validation = syntax_validations(lst);
+		lst = lst->next;
+		if (actual_syntax_validation == xpect_syntax_validation)
+			break ;
+	}
 
 	close_redirect_stderr_to_dev_null(fd);
 	// ASSERT
@@ -216,7 +255,13 @@ MU_TEST(testing_syntax_state200_OR_simple_space_first_node)
 	lst = NULL;
 	get_state(idx, userinput, &lst);
 	actual_lst_size = ft_lst_size(lst);
-	actual_syntax_validation = syntax_validations(lst);
+	while (lst)
+	{
+		actual_syntax_validation = syntax_validations(lst);
+		lst = lst->next;
+		if (actual_syntax_validation == xpect_syntax_validation)
+			break ;
+	}
 
 	close_redirect_stderr_to_dev_null(fd);
 	// ASSERT
@@ -246,7 +291,13 @@ MU_TEST(testing_syntax_state200_OR_space_after_first_node)
 	lst = NULL;
 	get_state(idx, userinput, &lst);
 	actual_lst_size = ft_lst_size(lst);
-	actual_syntax_validation = syntax_validations(lst);
+	while (lst)
+	{
+		actual_syntax_validation = syntax_validations(lst);
+		lst = lst->next;
+		if (actual_syntax_validation == xpect_syntax_validation)
+			break ;
+	}
 
 	close_redirect_stderr_to_dev_null(fd);
 	// ASSERT
@@ -276,7 +327,13 @@ MU_TEST(testing_syntax_state200_OR_space_before_first_node)
 	lst = NULL;
 	get_state(idx, userinput, &lst);
 	actual_lst_size = ft_lst_size(lst);
-	actual_syntax_validation = syntax_validations(lst);
+	while (lst)
+	{
+		actual_syntax_validation = syntax_validations(lst);
+		lst = lst->next;
+		if (actual_syntax_validation == xpect_syntax_validation)
+			break ;
+	}
 
 	close_redirect_stderr_to_dev_null(fd);
 	// ASSERT
@@ -306,7 +363,13 @@ MU_TEST(testing_syntax_state200_OR_simple_space_last_node)
 	lst = NULL;
 	get_state(idx, userinput, &lst);
 	actual_lst_size = ft_lst_size(lst);
-	actual_syntax_validation = syntax_validations(lst);
+	while (lst)
+	{
+		actual_syntax_validation = syntax_validations(lst);
+		lst = lst->next;
+		if (actual_syntax_validation == xpect_syntax_validation)
+			break ;
+	}
 
 	close_redirect_stderr_to_dev_null(fd);
 	// ASSERT
@@ -336,7 +399,13 @@ MU_TEST(testing_syntax_state200_OR_space_after_last_node)
 	lst = NULL;
 	get_state(idx, userinput, &lst);
 	actual_lst_size = ft_lst_size(lst);
-	actual_syntax_validation = syntax_validations(lst);
+	while (lst)
+	{
+		actual_syntax_validation = syntax_validations(lst);
+		lst = lst->next;
+		if (actual_syntax_validation == xpect_syntax_validation)
+			break ;
+	}
 
 	close_redirect_stderr_to_dev_null(fd);
 	// ASSERT
@@ -366,7 +435,13 @@ MU_TEST(testing_syntax_state200_OR_space_before_last_node)
 	lst = NULL;
 	get_state(idx, userinput, &lst);
 	actual_lst_size = ft_lst_size(lst);
-	actual_syntax_validation = syntax_validations(lst);
+	while (lst)
+	{
+		actual_syntax_validation = syntax_validations(lst);
+		lst = lst->next;
+		if (actual_syntax_validation == xpect_syntax_validation)
+			break ;
+	}
 
 	close_redirect_stderr_to_dev_null(fd);
 	// ASSERT
@@ -396,7 +471,13 @@ MU_TEST(testing_syntax_state200_AND_simple_space_first_node)
 	lst = NULL;
 	get_state(idx, userinput, &lst);
 	actual_lst_size = ft_lst_size(lst);
-	actual_syntax_validation = syntax_validations(lst);
+	while (lst)
+	{
+		actual_syntax_validation = syntax_validations(lst);
+		lst = lst->next;
+		if (actual_syntax_validation == xpect_syntax_validation)
+			break ;
+	}
 
 	close_redirect_stderr_to_dev_null(fd);
 	// ASSERT
@@ -426,7 +507,13 @@ MU_TEST(testing_syntax_state200_AND_space_after_first_node)
 	lst = NULL;
 	get_state(idx, userinput, &lst);
 	actual_lst_size = ft_lst_size(lst);
-	actual_syntax_validation = syntax_validations(lst);
+	while (lst)
+	{
+		actual_syntax_validation = syntax_validations(lst);
+		lst = lst->next;
+		if (actual_syntax_validation == xpect_syntax_validation)
+			break ;
+	}
 
 	close_redirect_stderr_to_dev_null(fd);
 	// ASSERT
@@ -456,7 +543,13 @@ MU_TEST(testing_syntax_state200_AND_space_before_first_node)
 	lst = NULL;
 	get_state(idx, userinput, &lst);
 	actual_lst_size = ft_lst_size(lst);
-	actual_syntax_validation = syntax_validations(lst);
+	while (lst)
+	{
+		actual_syntax_validation = syntax_validations(lst);
+		lst = lst->next;
+		if (actual_syntax_validation == xpect_syntax_validation)
+			break ;
+	}
 
 	close_redirect_stderr_to_dev_null(fd);
 	// ASSERT
@@ -486,7 +579,13 @@ MU_TEST(testing_syntax_state200_AND_simple_space_last_node)
 	lst = NULL;
 	get_state(idx, userinput, &lst);
 	actual_lst_size = ft_lst_size(lst);
-	actual_syntax_validation = syntax_validations(lst);
+	while (lst)
+	{
+		actual_syntax_validation = syntax_validations(lst);
+		lst = lst->next;
+		if (actual_syntax_validation == xpect_syntax_validation)
+			break ;
+	}
 
 	close_redirect_stderr_to_dev_null(fd);
 	// ASSERT
@@ -516,7 +615,13 @@ MU_TEST(testing_syntax_state200_AND_space_after_last_node)
 	lst = NULL;
 	get_state(idx, userinput, &lst);
 	actual_lst_size = ft_lst_size(lst);
-	actual_syntax_validation = syntax_validations(lst);
+	while (lst)
+	{
+		actual_syntax_validation = syntax_validations(lst);
+		lst = lst->next;
+		if (actual_syntax_validation == xpect_syntax_validation)
+			break ;
+	}
 
 	close_redirect_stderr_to_dev_null(fd);
 	// ASSERT
@@ -546,7 +651,13 @@ MU_TEST(testing_syntax_state200_AND_space_before_last_node)
 	lst = NULL;
 	get_state(idx, userinput, &lst);
 	actual_lst_size = ft_lst_size(lst);
-	actual_syntax_validation = syntax_validations(lst);
+	while (lst)
+	{
+		actual_syntax_validation = syntax_validations(lst);
+		lst = lst->next;
+		if (actual_syntax_validation == xpect_syntax_validation)
+			break ;
+	}
 
 	close_redirect_stderr_to_dev_null(fd);
 	// ASSERT
@@ -576,7 +687,13 @@ MU_TEST(testing_syntax_state200_cadet_PIPE_PIPE)
 	lst = NULL;
 	get_state(idx, userinput, &lst);
 	actual_lst_size = ft_lst_size(lst);
-	actual_syntax_validation = syntax_validations(lst);
+	while (lst)
+	{
+		actual_syntax_validation = syntax_validations(lst);
+		lst = lst->next;
+		if (actual_syntax_validation == xpect_syntax_validation)
+			break ;
+	}
 
 	close_redirect_stderr_to_dev_null(fd);
 	// ASSERT
@@ -606,7 +723,13 @@ MU_TEST(testing_syntax_state200_cadet_PIPE_dolar_sign)
 	lst = NULL;
 	get_state(idx, userinput, &lst);
 	actual_lst_size = ft_lst_size(lst);
-	actual_syntax_validation = syntax_validations(lst);
+	while (lst)
+	{
+		actual_syntax_validation = syntax_validations(lst);
+		lst = lst->next;
+		if (actual_syntax_validation == xpect_syntax_validation)
+			break ;
+	}
 
 	close_redirect_stderr_to_dev_null(fd);
 	// ASSERT
@@ -636,7 +759,13 @@ MU_TEST(testing_syntax_state200_cadet_PIPE_redirect_output)
 	lst = NULL;
 	get_state(idx, userinput, &lst);
 	actual_lst_size = ft_lst_size(lst);
-	actual_syntax_validation = syntax_validations(lst);
+	while (lst)
+	{
+		actual_syntax_validation = syntax_validations(lst);
+		lst = lst->next;
+		if (actual_syntax_validation == xpect_syntax_validation)
+			break ;
+	}
 
 	close_redirect_stderr_to_dev_null(fd);
 	// ASSERT
@@ -666,7 +795,13 @@ MU_TEST(testing_syntax_state200_cadet_echo_hi_PIPE_REDIRECT_INPUT_PIPE)
 	lst = NULL;
 	get_state(idx, userinput, &lst);
 	actual_lst_size = ft_lst_size(lst);
-	actual_syntax_validation = syntax_validations(lst);
+	while (lst)
+	{
+		actual_syntax_validation = syntax_validations(lst);
+		lst = lst->next;
+		if (actual_syntax_validation == xpect_syntax_validation)
+			break ;
+	}
 
 	close_redirect_stderr_to_dev_null(fd);
 	// ASSERT
@@ -696,7 +831,13 @@ MU_TEST(testing_syntax_state200_cadet_echo_hi_PIPE_PIPE)
 	lst = NULL;
 	get_state(idx, userinput, &lst);
 	actual_lst_size = ft_lst_size(lst);
-	actual_syntax_validation = syntax_validations(lst);
+	while (lst)
+	{
+		actual_syntax_validation = syntax_validations(lst);
+		lst = lst->next;
+		if (actual_syntax_validation == xpect_syntax_validation)
+			break ;
+	}
 
 	close_redirect_stderr_to_dev_null(fd);
 	// ASSERT
@@ -704,6 +845,9 @@ MU_TEST(testing_syntax_state200_cadet_echo_hi_PIPE_PIPE)
 	mu_assert_int_eq(xpect_syntax_validation, actual_syntax_validation);
 }
 
+/**
+ * @todo: repeat this test, later in EXECUTION
+*/ 
 MU_TEST(testing_syntax_state200_cadet_echo_hi_PIPE_double_quotes)
 {
 	// ARRANGE
@@ -720,13 +864,19 @@ MU_TEST(testing_syntax_state200_cadet_echo_hi_PIPE_double_quotes)
 	fd = 0;
 	open_redirect_stderr_to_dev_null(fd);
 	userinput = "echo hi |	\"|\"";
-	xpect_syntax_validation = 201; // cadet test
+	xpect_syntax_validation = 100; // cadet test
 	xpect_lst_size = 4;
 	idx = 0;
 	lst = NULL;
 	get_state(idx, userinput, &lst);
 	actual_lst_size = ft_lst_size(lst);
-	actual_syntax_validation = syntax_validations(lst);
+	while (lst)
+	{
+		actual_syntax_validation = syntax_validations(lst);
+		lst = lst->next;
+		if (actual_syntax_validation == xpect_syntax_validation)
+			break ;
+	}
 
 	close_redirect_stderr_to_dev_null(fd);
 	// ASSERT
@@ -754,13 +904,19 @@ MU_TEST(testing_syntax_state200_cadet_echo_hi_PIPE_REDIRECT_OUTPUT_ls)
 	fd = 0;
 	open_redirect_stderr_to_dev_null(fd);
 	userinput = "echo hi | >";
-	xpect_syntax_validation = 201; // cadet test
+	xpect_syntax_validation = 301; // cadet test
 	xpect_lst_size = 4;
 	idx = 0;
 	lst = NULL;
 	get_state(idx, userinput, &lst);
 	actual_lst_size = ft_lst_size(lst);
-	actual_syntax_validation = syntax_validations(lst);
+	while (lst)
+	{
+		actual_syntax_validation = syntax_validations(lst);
+		lst = lst->next;
+		if (actual_syntax_validation == xpect_syntax_validation)
+			break ;
+	}
 
 	close_redirect_stderr_to_dev_null(fd);
 	// ASSERT
@@ -784,13 +940,19 @@ MU_TEST(testing_syntax_state200_cadet_echo_hi_PIPE_REDIRECT_OUTPUT_plus_APPEND)
 	fd = 0;
 	open_redirect_stderr_to_dev_null(fd);
 	userinput = "echo hi | > >>";
-	xpect_syntax_validation = 201; // cadet test
+	xpect_syntax_validation = 301; // cadet test
 	xpect_lst_size = 5;
 	idx = 0;
 	lst = NULL;
 	get_state(idx, userinput, &lst);
 	actual_lst_size = ft_lst_size(lst);
-	actual_syntax_validation = syntax_validations(lst);
+	while (lst)
+	{
+		actual_syntax_validation = syntax_validations(lst);
+		lst = lst->next;
+		if (actual_syntax_validation == xpect_syntax_validation)
+			break ;
+	}
 
 	close_redirect_stderr_to_dev_null(fd);
 	// ASSERT

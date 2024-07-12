@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 11:53:52 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/07/05 17:47:12 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/07/12 15:47:17 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,5 +48,5 @@ void	command_not_found(t_token_list *lst)
 
 void	parenthesis_error(void)
 {
-	ft_printf("Unmatched open parenthesis");
+	ft_putendl_fd("Unmatched open parenthesis", STDERR_FILENO);
 }
