@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+         #
+#    By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/12 11:46:52 by umeneses          #+#    #+#              #
-#    Updated: 2024/07/05 14:03:04 by tmalheir         ###   ########.fr        #
+#    Updated: 2024/07/12 19:24:50 by umeneses         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -65,11 +65,11 @@ SRC_FILES				+= ./parser/16.state400.c
 SRC_FILES				+= ./parser/17.error_manager_parser.c
 SRC_FILES				+= ./executor/18.build_tree.c
 #SRC_FILES				= minishell_main.c
-#SRC_FILES				+= ft_lexical_analysis.c
 
 SRC_FILES_ALL			= $(addprefix $(SRC_D), $(SRC_FILES))
 
-TDD_FILES				= ft_lst_print_content.c
+TDD_FILES				= ft_lst_printer.c
+TDD_FILES				+= get_token_string.c
 TDD_FILES_ALL			= $(addprefix $(TDD_UTILS_D), $(TDD_FILES))
 TDD_OBJS_FILES			= $(addprefix $(BUILD_D), $(TDD_FILES_ALL:%.c=%.o))
 
