@@ -6,7 +6,7 @@
 /*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/27 12:53:52 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/07/05 13:57:19 by tmalheir         ###   ########.fr       */
+/*   Updated: 2024/07/12 18:47:27 by tmalheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,24 @@ void	syntax_analysis(t_token_list *lst);
  * @param *lst -> The token list.
 */
 int		syntax_validations(t_token_list *lst);
+
+int	check_redirects(t_token_list *lst);
+
+/**
+ * @brief Checks if there are any redirects and changes next token type.
+ * @param *lst -> The token list.
+*/
+void	define_archive_token(t_token_list *lst);
+
+int	check_words_after_redir(t_token_list *lst);
+
+void	organize_redirects(t_token_list **lst);
+
+int	update_target_pos(t_token_list *lst);
+
+int	update_original_pos(t_token_list *lst);
+
+void	move_node(t_token_list *lst, int target_pos, int original_pos);
 
 /**
  * @brief Checks the grammar rules associated with the respective token.

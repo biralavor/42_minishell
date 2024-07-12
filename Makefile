@@ -6,7 +6,7 @@
 #    By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/12 11:46:52 by umeneses          #+#    #+#              #
-#    Updated: 2024/07/05 14:03:04 by tmalheir         ###   ########.fr        #
+#    Updated: 2024/07/12 15:53:54 by tmalheir         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -63,7 +63,8 @@ SRC_FILES				+= ./parser/14.state200.c
 SRC_FILES				+= ./parser/15.state300.c
 SRC_FILES				+= ./parser/16.state400.c
 SRC_FILES				+= ./parser/17.error_manager_parser.c
-SRC_FILES				+= ./executor/18.build_tree.c
+SRC_FILES				+= ./parser/18.parser_utils.c
+SRC_FILES				+= ./executor/19.build_tree.c
 #SRC_FILES				= minishell_main.c
 #SRC_FILES				+= ft_lexical_analysis.c
 

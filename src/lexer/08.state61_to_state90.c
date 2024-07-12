@@ -6,7 +6,7 @@
 /*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/20 10:35:11 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/07/04 11:50:39 by tmalheir         ###   ########.fr       */
+/*   Updated: 2024/07/12 17:04:59 by tmalheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int	state_61(t_token_list **lst, int idx, char next)
 	t_token_list	*input_node;
 
 	input_node = (t_token_list *)ft_calloc(1, sizeof(t_token_list));
-	input_node->type = REDIRECT_INPUT;
+	input_node->type = REDIR_IN;
 	input_node->next_char = next;
 	create_new_node(lst, input_node);
 	return (idx + 1);
@@ -29,7 +29,7 @@ int	state_62(t_token_list **lst, int idx, char next)
 	t_token_list	*heredoc_node;
 
 	heredoc_node = (t_token_list *)ft_calloc(1, sizeof(t_token_list));
-	heredoc_node->type = REDIRECT_HEREDOC;
+	heredoc_node->type = REDIR_HDOC;
 	heredoc_node->next_char = next;
 	create_new_node(lst, heredoc_node);
 	return (idx + 2);
@@ -84,14 +84,14 @@ int	state_90(t_token_list **lst, char *str, int idx)
 	char			*just_str;
 	t_token_list	*just_str_node;
 
-	if (str[idx] == ' ' || str[idx] == '\t')
+	if (is_blank(str[idx]))
 		return (idx + 1);
 	start = (size_t)idx;
 	idx++;
 	just_str_node = (t_token_list *)ft_calloc(1, sizeof(t_token_list));
 	while ((str[idx] != '(') && (str[idx] != ')') && (str[idx] != '|')
 		&& (str[idx] != '&') && (str[idx] != '>') && (str[idx] != '<')
-		&& (str[idx] != '"') && (str[idx] != '\'') && !(is_space(str[idx]))
+		&& (str[idx] != '"') && (str[idx] != '\'') && !(is_blank(str[idx]))
 		&& (str[idx]))
 		idx++;
 	end = (size_t)(idx - 1);

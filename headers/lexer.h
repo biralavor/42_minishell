@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lexer.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 13:32:19 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/07/08 20:14:11 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/07/12 17:00:03 by tmalheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,14 +17,15 @@ enum e_token
 {
 	WORD,
 	PIPE,
-	REDIRECT_INPUT,
-	REDIRECT_HEREDOC,
-	REDIRECT_OUTPUT,
-	REDIRECT_OUTPUT_APPEND,
+	REDIR_IN,
+	REDIR_HDOC,
+	REDIR_OUT,
+	REDIR_OUTAPP,
 	OR,
 	AND,
 	OPEN_PARENTHESIS,
-	CLOSE_PARENTHESIS
+	CLOSE_PARENTHESIS,
+	ARCHIVE
 };
 
 /*INITIAL FUNCTIONS*/
@@ -99,10 +100,10 @@ int		state_90(t_token_list **lst, char *str, int idx);
 int		check_next_char(char curr, char next);
 
 /**
- * @brief Verifies if the character is space.
+ * @brief Verifies if the character is blank according to Bash definition.
+ * See manual (Definitions -> blank).
 */
-int		is_space(char c);
-int		is_space(char c);
+int		is_blank(char c);
 
 /**
  * @brief Frees the used memory to create the token list.
@@ -113,6 +114,11 @@ void	free_token_list(t_token_list **lst);
  * @brief Gets the size of the token list.
 */
 int		ft_lst_size(t_token_list *lst);
+
+/**
+ * @brief Assigns indexes for each node.
+*/
+void	assign_lst_idx(t_token_list *lst);
 
 /**
  * @brief TODO: APAGAR ESTA FUNÇÃO NO FINAL DO PROJETO.

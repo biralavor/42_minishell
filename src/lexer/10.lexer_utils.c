@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lexer_utils.c                                      :+:      :+:    :+:   */
+/*   10.lexer_utils.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/20 10:12:37 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/07/01 11:19:52 by tmalheir         ###   ########.fr       */
+/*   Updated: 2024/07/12 15:19:09 by tmalheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,9 @@ int	check_next_char(char curr, char next)
 		return (1);
 }
 
-int	is_space(char c)
+int	is_blank(char c)
 {
-	if ((c == ' ') || (c == '\t') || (c == '\n')
-		|| (c == '\r') || (c == '\v'))
+	if ((c == ' ') || (c == '\t') || (c == '\v'))
 		return (1);
 	else
 		return (0);
@@ -58,5 +57,20 @@ void	free_token_list(t_token_list **lst)
 		if (temp->lexeme)
 			free(temp->lexeme);
 		free(temp);
+	}
+}
+
+void	assign_lst_idx(t_token_list *lst)
+{
+	int				idx;
+	t_token_list	*temp;
+
+	idx = 0;
+	temp = lst;
+	while (temp->next)
+	{
+		temp->idx = idx;
+		idx++;
+		temp = temp->next;
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/03 10:40:35 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/07/05 11:34:46 by tmalheir         ###   ########.fr       */
+/*   Updated: 2024/07/12 18:07:15 by tmalheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,22 @@ void	syntax_analysis(t_token_list *lst)
 		check_syntax_state(lst, syntax_state);
 		temp = temp->next;
 	}
+	temp = lst;
+	while (temp)
+	{
+		ft_printf("%s\n", temp->lexeme);
+		temp = temp->next;
+	}
+	if (check_redirects(lst))
+		define_archive_token(lst);
+	if (check_words_after_redir(lst))
+		organize_redirects(&lst);
+	temp = lst;
+	while (temp)
+	{
+		ft_printf("%s\n", temp->lexeme);
+		temp = temp->next;
+	}
 }
 
 int	syntax_validations(t_token_list *lst)
@@ -39,9 +55,8 @@ int	syntax_validations(t_token_list *lst)
 		syntax_state = state_100(lst, syntax_state);
 	else if (lst->type == PIPE || lst->type == OR || lst->type == AND)
 		syntax_state = state_200(lst, syntax_state);
-	else if (lst->type == REDIRECT_INPUT || lst->type == REDIRECT_HEREDOC
-		|| lst->type == REDIRECT_OUTPUT
-		|| lst->type == REDIRECT_OUTPUT_APPEND)
+	else if (lst->type == REDIR_IN || lst->type == REDIR_HDOC
+		|| lst->type == REDIR_OUT || lst->type == REDIR_OUTAPP)
 		syntax_state = state_300(lst, syntax_state);
 	else if (lst->type == OPEN_PARENTHESIS || lst->type == CLOSE_PARENTHESIS)
 		syntax_state = state_400(lst, syntax_state);

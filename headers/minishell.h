@@ -6,7 +6,7 @@
 /*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 10:53:20 by umeneses          #+#    #+#             */
-/*   Updated: 2024/07/05 14:08:24 by tmalheir         ###   ########.fr       */
+/*   Updated: 2024/07/12 15:03:27 by tmalheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@
 typedef struct s_token_list
 {
 	int					type;
+	int					idx;
 	char				*lexeme;
 	char				next_char;
 	struct s_token_list	*prev;
