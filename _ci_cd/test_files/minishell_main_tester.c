@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 11:12:53 by umeneses          #+#    #+#             */
-/*   Updated: 2024/07/12 16:12:52 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/07/12 17:23:23 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,10 +64,10 @@ int	main(void)
 
 	MU_RUN_SUITE(test06___tokens_cadet_suite);
 	
-	// MU_RUN_SUITE(test07___syntax_state100_single_quote_errors_first_node_suite);
-	// MU_RUN_SUITE(test07___syntax_state100_single_quote_errors_last_node_suite);
-	// MU_RUN_SUITE(test07___syntax_state100_double_quote_errors_first_node_suite);
-	// MU_RUN_SUITE(test07___syntax_state100_double_quote_errors_last_node_suite);
+	MU_RUN_SUITE(test07___syntax_state100_single_quote_errors_first_node_suite);
+	MU_RUN_SUITE(test07___syntax_state100_single_quote_errors_last_node_suite);
+	MU_RUN_SUITE(test07___syntax_state100_double_quote_errors_first_node_suite);
+	MU_RUN_SUITE(test07___syntax_state100_double_quote_errors_last_node_suite);
 	
 	MU_RUN_SUITE(test08___syntax_state200_PIPE_errors_first_node_suite);
 	MU_RUN_SUITE(test08___syntax_state200_PIPE_errors_last_node_suite);
