@@ -3,22 +3,26 @@
 /*                                                        :::      ::::::::   */
 /*   04.create_token_list.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 14:44:18 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/07/12 18:56:34 by tmalheir         ###   ########.fr       */
+/*   Updated: 2024/07/15 09:54:12 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 #include "lexer.h"
 
+/**
+ * @brief: TODO: remove lst_printer function before submiting.
+*/
 bool	create_token_list(char *str, t_token_list **lst)
 {
 	int	idx;
 
 	idx = 0;
 	get_state(idx, str, lst);
+	ft_lst_printer(*lst);
 //	ft_lst_printf_content(str, *lst);
 	assign_lst_idx(*lst);
 	if (lst)
