@@ -5,14 +5,18 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/19 14:44:18 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/07/15 09:54:12 by umeneses         ###   ########.fr       */
+/*   Created: Invalid date        by                   #+#    #+#             */
+/*   Updated: 2024/07/15 10:01:44 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 
 #include "minishell.h"
 #include "lexer.h"
 
+/**
+ * @brief: TODO: remove lst_printer function before submiting.
+*/
 /**
  * @brief: TODO: remove lst_printer function before submiting.
 */
