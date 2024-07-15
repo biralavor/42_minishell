@@ -6,7 +6,7 @@
 /*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 10:53:12 by umeneses          #+#    #+#             */
-/*   Updated: 2024/07/11 10:22:17 by tmalheir         ###   ########.fr       */
+/*   Updated: 2024/07/15 15:31:41 by tmalheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,13 @@
  * input = "&&(This) < < | > || \"is\" \'a\' test&&";
  * input = "\"o\"\"i\""
  * input = "echo oi > tudo > bem com voce > ?"
+ * input = "echo oi > tudo bem > com voce amigo querido > guardou"
 */
 int	main(void)
 {
 	char	*input;
 
-	input = "echo oi > tudo > bem com voce > ?";
+	input = "echo oi > tudo bem > com voce amigo querido > guardou";
 	printf("%s\n", input);
 	check_userinput(input);
 	return (0);
