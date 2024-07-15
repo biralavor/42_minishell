@@ -6,51 +6,63 @@
 #    By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/12 11:07:38 by umeneses          #+#    #+#              #
-#    Updated: 2024/07/15 12:38:30 by umeneses         ###   ########.fr        #
+#    Updated: 2024/07/15 13:33:47 by umeneses         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 name: tester_builder
 
 on:
-	push:
-		branches:
-		- main
-		- '**feature**'
-		- '**feat**'
-		- '**bugfix**'
-		- '**fix**'
-		- '**release**'
-	pull_request:
-		branches:
-		- main
-		- '**feature**'
-		- '**feat**'
-		- '**bugfix**'
-		- '**fix**'
-		- '**release**'
+  push:
+    branches:
+    - main
+    - '**feature**'
+    - '**feat**'
+    - '**bugfix**'
+    - '**fix**'
+    - '**release**'
+  pull_request:
+    branches:
+    - main
+    - '**feature**'
+    - '**feat**'
+    - '**bugfix**'
+    - '**fix**'
+    - '**release**'
 
 jobs:
-	test:
-		runs-on: ubuntu-latest
-		defaults:
-			run:
-				working-directory: ./_ci_cd/
-		steps:
-			- name: Starting Github Actions
-				uses: actions/checkout@v4.1.4
+  test:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./_ci_cd/
+    steps:
+      - name: Starting Github Actions
+        uses: actions/checkout@v4.1.4
 
-			- name: Setup CUnit
-				run: sudo apt-get update && sudo apt-get install -y libcunit1 libcunit1-doc libcunit1-dev
+      - name: Install CUnit
+        run: sudo apt-get update && sudo apt-get install -y libcunit1 libcunit1-doc libcunit1-dev
 
-			- name: Running Tester Makefile
-				run: make
-				
-			- name: Setup Valgrind
-				run: sudo apt-get install -y valgrind
-			
-			- name: Running Valgrind
-				run: valgrind --track-origins=yes --leak-check=full -q --suppressions=../readline.sup ../minishell
+      - name: Running Tester Makefile
+        run: make
+        
+      - name: Install Valgrind
+        run: sudo apt-get install -y valgrind
+      
+      - name: Run Valgrind
+        id: valgrind_check
+        run: |
+          OUTPUT=$(valgrind --track-origins=yes --leak-check=full --suppressions=../readline.sup ./minishell.tests 2>&1)
+          if [[ $OUTPUT =~ "ERROR SUMMARY:" ]]; then
+            ERROR_SUMMARY=$(echo "$OUTPUT" | grep -oP 'ERROR SUMMARY: \K[0-9]+ errors from [0-9]+ contexts')
+            if [[ $ERROR_SUMMARY != *"0 errors from 0 contexts"* ]]; then
+              echo "Valgrind detected memory leaks."
+              exit 1
+            fi
+          fi
+
+
+        run: valgrind --track-origins=yes --leak-check=full -q --suppressions=../readline.sup ../minishell
 
 
 # :: github actions documentation ::
