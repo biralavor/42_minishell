@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 11:12:53 by umeneses          #+#    #+#             */
-/*   Updated: 2024/07/08 11:15:47 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/07/15 10:14:03 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -206,7 +206,7 @@ MU_TEST(testing_userinput_token_03_redirect_input_at_begin)
 	//ACT
 	userinput = "<Mussum Ipsum";
 
-	xpect_node1_type = get_token_string(REDIRECT_INPUT);
+	xpect_node1_type = get_token_string(REDIR_IN);
 	xpect_node1_lexeme = NULL;
 	xpect_node2_type = get_token_string(WORD);
 	xpect_node2_lexeme = "Mussum";
@@ -263,7 +263,7 @@ MU_TEST(testing_userinput_token_03_redirect_input_at_middle)
 
 	xpect_node1_type = get_token_string(WORD);
 	xpect_node1_lexeme = "Mussum";
-	xpect_node2_type = get_token_string(REDIRECT_INPUT);
+	xpect_node2_type = get_token_string(REDIR_IN);
 	xpect_node2_lexeme = NULL;
 	xpect_node3_type = get_token_string(WORD);
 	xpect_node3_lexeme = "Ipsum";
@@ -320,7 +320,7 @@ MU_TEST(testing_userinput_token_03_redirect_input_at_end)
 	xpect_node1_lexeme = "Mussum";
 	xpect_node2_type = get_token_string(WORD);
 	xpect_node2_lexeme = "Ipsum";
-	xpect_node3_type = get_token_string(REDIRECT_INPUT);
+	xpect_node3_type = get_token_string(REDIR_IN);
 	xpect_node3_lexeme = NULL;
 	xpect_lst_size = 3;
 	idx = 0;
@@ -371,7 +371,7 @@ MU_TEST(testing_userinput_token_03_redirect_heredoc_at_begin)
 	//ACT
 	userinput = "<< Mussum Ipsum";
 
-	xpect_node1_type = get_token_string(REDIRECT_HEREDOC);
+	xpect_node1_type = get_token_string(REDIR_HDOC);
 	xpect_node1_lexeme = NULL;
 	xpect_node2_type = get_token_string(WORD);
 	xpect_node2_lexeme = "Mussum";
@@ -428,7 +428,7 @@ MU_TEST(testing_userinput_token_03_redirect_heredoc_at_middle)
 
 	xpect_node1_type = get_token_string(WORD);
 	xpect_node1_lexeme = "Mussum";
-	xpect_node2_type = get_token_string(REDIRECT_HEREDOC);
+	xpect_node2_type = get_token_string(REDIR_HDOC);
 	xpect_node2_lexeme = NULL;
 	xpect_node3_type = get_token_string(WORD);
 	xpect_node3_lexeme = "Ipsum";
@@ -485,7 +485,7 @@ MU_TEST(testing_userinput_token_03_redirect_heredoc_at_end)
 	xpect_node1_lexeme = "Mussum";
 	xpect_node2_type = get_token_string(WORD);
 	xpect_node2_lexeme = "Ipsum";
-	xpect_node3_type = get_token_string(REDIRECT_HEREDOC);
+	xpect_node3_type = get_token_string(REDIR_HDOC);
 	xpect_node3_lexeme = NULL;
 	xpect_lst_size = 3;
 	idx = 0;
@@ -536,7 +536,7 @@ MU_TEST(testing_userinput_token_03_redirect_output_at_begin)
 	//ACT
 	userinput = ">Mussum Ipsum";
 
-	xpect_node1_type = get_token_string(REDIRECT_OUTPUT);
+	xpect_node1_type = get_token_string(REDIR_OUT);
 	xpect_node1_lexeme = NULL;
 	xpect_node2_type = get_token_string(WORD);
 	xpect_node2_lexeme = "Mussum";
@@ -593,7 +593,7 @@ MU_TEST(testing_userinput_token_03_redirect_output_at_middle)
 
 	xpect_node1_type = get_token_string(WORD);
 	xpect_node1_lexeme = "Mussum";
-	xpect_node2_type = get_token_string(REDIRECT_OUTPUT);
+	xpect_node2_type = get_token_string(REDIR_OUT);
 	xpect_node2_lexeme = NULL;
 	xpect_node3_type = get_token_string(WORD);
 	xpect_node3_lexeme = "Ipsum";
@@ -650,7 +650,7 @@ MU_TEST(testing_userinput_token_03_redirect_output_at_end)
 	xpect_node1_lexeme = "Mussum";
 	xpect_node2_type = get_token_string(WORD);
 	xpect_node2_lexeme = "Ipsum";
-	xpect_node3_type = get_token_string(REDIRECT_OUTPUT);
+	xpect_node3_type = get_token_string(REDIR_OUT);
 	xpect_node3_lexeme = NULL;
 	xpect_lst_size = 3;
 	idx = 0;
@@ -701,7 +701,7 @@ MU_TEST(testing_userinput_token_03_redirect_output_append_at_begin)
 	//ACT
 	userinput = "     >> Mussum Ipsum";
 
-	xpect_node1_type = get_token_string(REDIRECT_OUTPUT_APPEND);
+	xpect_node1_type = get_token_string(REDIR_OUTAPP);
 	xpect_node1_lexeme = NULL;
 	xpect_node2_type = get_token_string(WORD);
 	xpect_node2_lexeme = "Mussum";
@@ -758,7 +758,7 @@ MU_TEST(testing_userinput_token_03_redirect_output_append_at_middle)
 
 	xpect_node1_type = get_token_string(WORD);
 	xpect_node1_lexeme = "Mussum";
-	xpect_node2_type = get_token_string(REDIRECT_OUTPUT_APPEND);
+	xpect_node2_type = get_token_string(REDIR_OUTAPP);
 	xpect_node2_lexeme = NULL;
 	xpect_node3_type = get_token_string(WORD);
 	xpect_node3_lexeme = "Ipsum";
@@ -815,7 +815,7 @@ MU_TEST(testing_userinput_token_03_redirect_output_append_at_end)
 	xpect_node1_lexeme = "Mussum";
 	xpect_node2_type = get_token_string(WORD);
 	xpect_node2_lexeme = "Ipsum";
-	xpect_node3_type = get_token_string(REDIRECT_OUTPUT_APPEND);
+	xpect_node3_type = get_token_string(REDIR_OUTAPP);
 	xpect_node3_lexeme = NULL;
 	xpect_lst_size = 3;
 	idx = 0;
@@ -1535,7 +1535,7 @@ MU_TEST(testing_userinput_token_04)
 	xpect_node_01_lexeme = "ls";
 	xpect_node_02_type = get_token_string(WORD);
 	xpect_node_02_lexeme = "a*";
-	xpect_node_03_type = get_token_string(REDIRECT_OUTPUT);
+	xpect_node_03_type = get_token_string(REDIR_OUT);
 	xpect_node_03_lexeme = NULL;
 	xpect_node_04_type = get_token_string(WORD);
 	xpect_node_04_lexeme = "me";
@@ -1603,7 +1603,7 @@ MU_TEST(testing_userinput_token_05)
 	//ACT
 	userinput = ">t2 ls | \"'hello world'\"";
 
-	xpect_node_01_type = get_token_string(REDIRECT_OUTPUT);
+	xpect_node_01_type = get_token_string(REDIR_OUT);
 	xpect_node_01_lexeme = NULL;
 	xpect_node_02_type = get_token_string(WORD);
 	xpect_node_02_lexeme = "t2";

@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/02 18:16:24 by umeneses          #+#    #+#             */
-/*   Updated: 2024/07/08 11:16:02 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/07/15 10:11:37 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -1070,7 +1070,7 @@ MU_TEST(testing_tokens_cadet_input_ls_echo_18)
 	xpect_node5_lexeme = "echo";
 	xpect_node6_type = get_token_string(WORD);
 	xpect_node6_lexeme = "a";
-	xpect_node7_type = get_token_string(REDIRECT_OUTPUT);
+	xpect_node7_type = get_token_string(REDIR_OUT);
 	xpect_node7_lexeme = NULL;
 	xpect_node8_type = get_token_string(WORD);
 	xpect_node8_lexeme = "out";

@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 11:12:53 by umeneses          #+#    #+#             */
-/*   Updated: 2024/07/08 11:15:52 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/07/15 10:14:15 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,11 +79,11 @@ MU_TEST(testing_userinput_token_10)
 	xpect_node_04_lexeme = NULL;
 	xpect_node_05_type = get_token_string(WORD);
 	xpect_node_05_lexeme = "grep";
-	xpect_node_06_type = get_token_string(REDIRECT_OUTPUT_APPEND);
+	xpect_node_06_type = get_token_string(REDIR_OUTAPP);
 	xpect_node_06_lexeme = NULL;
 	xpect_node_07_type = get_token_string(WORD);
 	xpect_node_07_lexeme = "teste.txt";
-	xpect_node_08_type = get_token_string(REDIRECT_OUTPUT);
+	xpect_node_08_type = get_token_string(REDIR_OUT);
 	xpect_node_08_lexeme = NULL;
 	xpect_node_09_type = get_token_string(WORD);
 	xpect_node_09_lexeme = "teste1.txt";
