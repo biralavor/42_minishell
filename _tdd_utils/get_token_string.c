@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 15:19:35 by umeneses          #+#    #+#             */
-/*   Updated: 2024/07/12 19:24:11 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/07/15 10:06:17 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,10 @@ char	*get_token_string(enum e_token token)
 	{
 		case WORD: return "WORD";
 		case PIPE: return "PIPE";
-		case REDIRECT_INPUT: return "REDIRECT_INPUT";
-		case REDIRECT_HEREDOC: return "REDIRECT_HEREDOC";
-		case REDIRECT_OUTPUT: return "REDIRECT_OUTPUT";
-		case REDIRECT_OUTPUT_APPEND: return "REDIRECT_OUTPUT_APPEND";
+		case REDIR_IN: return "REDIRECT_INPUT";
+		case REDIR_HDOC: return "REDIRECT_HEREDOC";
+		case REDIR_OUT: return "REDIRECT_OUTPUT";
+		case REDIR_OUTAPP: return "REDIRECT_OUTPUT_APPEND";
 		case OR: return "OR";
 		case AND: return "AND";
 		case OPEN_PARENTHESIS: return "OPEN_PARENTHESIS";
