@@ -6,7 +6,7 @@
 #    By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/12 11:07:38 by umeneses          #+#    #+#              #
-#    Updated: 2024/07/15 13:33:47 by umeneses         ###   ########.fr        #
+#    Updated: 2024/07/15 13:34:45 by umeneses         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -60,9 +60,6 @@ jobs:
               exit 1
             fi
           fi
-
-
-        run: valgrind --track-origins=yes --leak-check=full -q --suppressions=../readline.sup ../minishell
 
 
 # :: github actions documentation ::
