@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+         #
+#    By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/12 11:46:52 by umeneses          #+#    #+#              #
-#    Updated: 2024/07/15 10:03:00 by umeneses         ###   ########.fr        #
+#    Updated: 2024/07/15 14:54:33 by tmalheir         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -62,9 +62,10 @@ SRC_FILES				+= ./parser/13.utils_parsing_word.c
 SRC_FILES				+= ./parser/14.state200.c
 SRC_FILES				+= ./parser/15.state300.c
 SRC_FILES				+= ./parser/16.state400.c
-SRC_FILES				+= ./parser/17.error_manager_parser.c
-SRC_FILES				+= ./parser/18.parser_utils.c
-SRC_FILES				+= ./executor/19.build_tree.c
+SRC_FILES				+= ./parser/17.redir_manager.c
+SRC_FILES				+= ./parser/18.redir_utils.c
+SRC_FILES				+= ./parser/19.error_manager_parser.c
+SRC_FILES				+= ./executor/20.build_tree.c
 #SRC_FILES				= minishell_main.c
 
 SRC_FILES_ALL			= $(addprefix $(SRC_D), $(SRC_FILES))
