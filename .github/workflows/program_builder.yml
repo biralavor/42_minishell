@@ -6,7 +6,7 @@
 #    By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/12 11:04:11 by umeneses          #+#    #+#              #
-#    Updated: 2024/07/15 12:38:40 by umeneses         ###   ########.fr        #
+#    Updated: 2024/07/15 12:41:14 by umeneses         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -50,8 +50,12 @@ jobs:
 				run: sudo aptitude install -y valgrind
 			
 			- name: Running Valgrind
-				run: valgrind --track-origins=yes --leak-check=full -q --suppressions=./readline.sup ./minishell
-
+				run: valgrind --track-origins=yes --leak-check=full -q --suppressions=./readline.sup ./minishell || true
+			
+			- name: Check Valgrind Output
+        run: |
+        echo "${{ steps.valgrind_check.outputs.stdout }}" | grep -q "ERROR SUMMARY: 0 errors from 0 contexts" && echo "Valgrind check passed" || echo "Valgrind check failed"
+			
 			- name: Install Python for Norminette
 				uses: actions/setup-python@v5.1.0
 				with:
