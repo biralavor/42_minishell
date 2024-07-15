@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2024/07/15 10:01:44 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/07/15 10:01:59 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,6 @@
 #include "minishell.h"
 #include "lexer.h"
 
-/**
- * @brief: TODO: remove lst_printer function before submiting.
-*/
 /**
  * @brief: TODO: remove lst_printer function before submiting.
 */
