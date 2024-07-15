@@ -6,7 +6,7 @@
 #    By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/12 11:04:11 by umeneses          #+#    #+#              #
-#    Updated: 2024/06/12 16:10:11 by umeneses         ###   ########.fr        #
+#    Updated: 2024/07/15 13:28:10 by umeneses         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,19 +16,19 @@ on:
   push:
     branches:
     - main
-    - '**-feature-**'
-    - '**-feat-**'
-    - '**-bugfix-**'
-    - '**-fix-**'
-    - '**-release-**'
+    - '**feature**'
+    - '**feat**'
+    - '**bugfix**'
+    - '**fix**'
+    - '**release**'
   pull_request:
     branches:
     - main
-    - '**-feature-**'
-    - '**-feat-**'
-    - '**-bugfix-**'
-    - '**-fix-**'
-    - '**-release-**'
+    - '**feature**'
+    - '**feat**'
+    - '**bugfix**'
+    - '**fix**'
+    - '**release**'
 
 jobs:
   build:
@@ -43,14 +43,23 @@ jobs:
       - name: Building Program with MiniShell Makefile
         run: make
       
-      - name: Setup Aptitude
+      - name: Install Aptitude
         run: sudo apt-get update && sudo apt install aptitude -y
       
-      - name: Setup Valgrind
+      - name: Install Valgrind
         run: sudo aptitude install -y valgrind
       
-      - name: Running Valgrind
-        run: valgrind --track-origins=yes --leak-check=full -q --suppressions=./readline.sup ./minishell
+      - name: Run Valgrind
+        id: valgrind_check
+        run: |
+          OUTPUT=$(valgrind --track-origins=yes --leak-check=full --suppressions=./readline.sup ./minishell 2>&1)
+          if [[ $OUTPUT =~ "ERROR SUMMARY:" ]]; then
+            ERROR_SUMMARY=$(echo "$OUTPUT" | grep -oP 'ERROR SUMMARY: \K[0-9]+ errors from [0-9]+ contexts')
+            if [[ $ERROR_SUMMARY != *"0 errors from 0 contexts"* ]]; then
+              echo "Valgrind detected memory leaks."
+              exit 1
+            fi
+          fi
 
       - name: Install Python for Norminette
         uses: actions/setup-python@v5.1.0

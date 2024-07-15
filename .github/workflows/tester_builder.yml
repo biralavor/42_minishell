@@ -6,7 +6,7 @@
 #    By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/12 11:07:38 by umeneses          #+#    #+#              #
-#    Updated: 2024/06/12 17:19:07 by umeneses         ###   ########.fr        #
+#    Updated: 2024/07/15 13:34:45 by umeneses         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,19 +16,19 @@ on:
   push:
     branches:
     - main
-    - '**-feature-**'
-    - '**-feat-**'
-    - '**-bugfix-**'
-    - '**-fix-**'
-    - '**-release-**'
+    - '**feature**'
+    - '**feat**'
+    - '**bugfix**'
+    - '**fix**'
+    - '**release**'
   pull_request:
     branches:
     - main
-    - '**-feature-**'
-    - '**-feat-**'
-    - '**-bugfix-**'
-    - '**-fix-**'
-    - '**-release-**'
+    - '**feature**'
+    - '**feat**'
+    - '**bugfix**'
+    - '**fix**'
+    - '**release**'
 
 jobs:
   test:
@@ -40,17 +40,26 @@ jobs:
       - name: Starting Github Actions
         uses: actions/checkout@v4.1.4
 
-      - name: Setup CUnit
+      - name: Install CUnit
         run: sudo apt-get update && sudo apt-get install -y libcunit1 libcunit1-doc libcunit1-dev
 
       - name: Running Tester Makefile
         run: make
         
-      - name: Setup Valgrind
+      - name: Install Valgrind
         run: sudo apt-get install -y valgrind
       
-      - name: Running Valgrind
-        run: valgrind --track-origins=yes --leak-check=full -q --suppressions=../readline.sup ../minishell
+      - name: Run Valgrind
+        id: valgrind_check
+        run: |
+          OUTPUT=$(valgrind --track-origins=yes --leak-check=full --suppressions=../readline.sup ./minishell.tests 2>&1)
+          if [[ $OUTPUT =~ "ERROR SUMMARY:" ]]; then
+            ERROR_SUMMARY=$(echo "$OUTPUT" | grep -oP 'ERROR SUMMARY: \K[0-9]+ errors from [0-9]+ contexts')
+            if [[ $ERROR_SUMMARY != *"0 errors from 0 contexts"* ]]; then
+              echo "Valgrind detected memory leaks."
+              exit 1
+            fi
+          fi
 
 
 # :: github actions documentation ::
