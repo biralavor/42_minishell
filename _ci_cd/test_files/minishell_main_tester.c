@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 11:12:53 by umeneses          #+#    #+#             */
-/*   Updated: 2024/07/12 19:36:51 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/07/15 10:16:04 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@
 #include "../../src/parser/15.state300.c"
 #include "../../src/parser/16.state400.c"
 #include "../../src/parser/17.error_manager_parser.c"
+#include "../../src/parser/18.parser_utils.c"
 #include "../_tdd_utils/ft_lst_printer.c"
 
 #include "minunit_utils.c"
