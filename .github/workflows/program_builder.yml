@@ -6,7 +6,7 @@
 #    By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/12 11:04:11 by umeneses          #+#    #+#              #
-#    Updated: 2024/07/15 13:07:26 by umeneses         ###   ########.fr        #
+#    Updated: 2024/07/15 13:15:53 by umeneses         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -52,22 +52,7 @@ jobs:
       - name: Run Valgrind
         id: valgrind_check
         run: |
-          valgrind --track-origins=yes --leak-check=full --suppressions=./readline.sup -q ./minishell || true
-          echo "::set-output name=exit_code::$?"
-      
-      - name: Check Valgrind Output
-        run: |
-          echo "${{ steps.valgrind_check.outputs.exit_code }}" | grep -q "ERROR SUMMARY: 0 errors from 0 contexts" && echo "Valgrind check passed" || echo "Valgrind check failed"
-      
-      - name: Set Valgrind Exit Code
-        run: echo "VALGRIND_EXIT_CODE=${{ steps.valgrind_check.outputs.exit_code }}" >> $GITHUB_ENV
-      
-      - name: Fail Job if Memory Leaks Detected
-        run: |
-          if [ "$VALGRIND_EXIT_CODE" != "0" ]; then
-            echo "Memory leaks detected, failing the job."
-            exit 1
-          fi
+          valgrind --track-origins=yes --leak-check=full --suppressions=./readline.sup ./minishell
 
       - name: Install Python for Norminette
         uses: actions/setup-python@v5.1.0
