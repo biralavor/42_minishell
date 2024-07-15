@@ -6,7 +6,7 @@
 #    By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/12 11:04:11 by umeneses          #+#    #+#              #
-#    Updated: 2024/07/15 13:23:05 by umeneses         ###   ########.fr        #
+#    Updated: 2024/07/15 13:24:43 by umeneses         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -52,8 +52,8 @@ jobs:
       - name: Run Valgrind
         id: valgrind_check
         run: |
-          valgrind --track-origins=yes --leak-check=full --suppressions=./readline.sup -q ./minishell || true
-          OUTPUT=$(valgrind --track-origins=yes --leak-check=full --suppressions=./readline.sup -q ./minishell 2>&1)
+          valgrind --track-origins=yes --leak-check=full --suppressions=./readline.sup ./minishell || true
+          OUTPUT=$(valgrind --track-origins=yes --leak-check=full --suppressions=./readline.sup ./minishell 2>&1)
           if [[ $OUTPUT == *"ERROR SUMMARY: "* ]]; then
             ERROR_SUMMARY=$(echo $OUTPUT | grep -oP 'ERROR SUMMARY: \K\d+ errors from \d+ contexts')
             if [[ $ERROR_SUMMARY -gt 0 ]]; then
