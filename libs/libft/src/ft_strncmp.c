@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strncmp.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/23 10:02:16 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/06/11 12:22:52 by tmalheir         ###   ########.fr       */
+/*   Updated: 2024/07/16 16:45:35 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,20 +20,17 @@
 
 int	ft_strncmp(const char *str1, const char *str2, size_t n)
 {
-	size_t			idx;
-	unsigned char	*ptr_str1;
-	unsigned char	*ptr_str2;
-
-	idx = 0;
-	ptr_str1 = (unsigned char *)str1;
-	ptr_str2 = (unsigned char *)str2;
-	while ((ptr_str1[idx] || ptr_str2[idx]) && idx < n)
+	if (n == 0)
+		return (0);
+	while (n > 0)
 	{
-		if (ptr_str1[idx] < ptr_str2[idx])
-			return (-1);
-		if (ptr_str1[idx] > ptr_str2[idx])
-			return (1);
-		idx++;
+		if (*str1 != *str2)
+			return (*(unsigned char *)str1 - *(unsigned char *)str2);
+		str1++;
+		str2++;
+		n--;
+		if ((*str1 || *str2) == '\0')
+			break ;
 	}
 	return (0);
 }
