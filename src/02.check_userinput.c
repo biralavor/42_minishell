@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 09:20:45 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/08/06 14:04:42 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/08/06 16:00:31 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 #include "parser.h"
 #include "executor.h"
 #include "error_manager.h"
+#include "builtins.h"
 
 void	check_userinput(char *str)
 {
