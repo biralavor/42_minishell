@@ -6,7 +6,7 @@
 /*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/27 12:53:52 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/07/16 10:06:01 by tmalheir         ###   ########.fr       */
+/*   Updated: 2024/07/16 12:24:15 by tmalheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,17 +59,6 @@ void			check_syntax_state(t_token_list *lst, int syntax_state);
 int				state_100(t_token_list *lst, int syntax_state);
 int				state_200(t_token_list *lst, int syntax_state);
 int				state_300(t_token_list *lst, int syntax_state);
-int				state_400(t_token_list *lst, int syntax_state);
-int				state_401(t_token_list *lst);
-int				state_402(t_token_list *lst);
-
-/**
- * @brief Checks if the number of open and close parenthesis token is equal.
- * @param open_par -> the number of open parenthesis token.
- * @param close_par -> the number of close parenthesis token.
- * @param *lst -> The token list.
-*/
-int				match_parenthesis(int open, int close, t_token_list *lst);
 
 /*SYNTAX ERROR CHECKING FUNCTIONS*/
 
@@ -102,18 +91,6 @@ bool			check_double_ampersand(char *str);
  * @param *str -> User input in command line.
 */
 bool			check_semicolon(char *str);
-
-/**
- * @brief Check for not closed quotes.
- * @param *lst -> the token list.
-*/
-bool			check_quotes(t_token_list *lst);
-
-/**
- * @brief Check for empty quotes.
- * @param *str -> User input in command line.
-*/
-bool			check_empty_quotes(char *str);
 
 /*ERROR MANAGER FUNCTIONS*/
 

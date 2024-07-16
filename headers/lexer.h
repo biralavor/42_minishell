@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lexer.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 13:32:19 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/07/15 10:04:36 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/07/16 12:26:55 by tmalheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,34 +23,15 @@ enum e_token
 	REDIR_OUTAPP,
 	OR,
 	AND,
-	OPEN_PARENTHESIS,
-	CLOSE_PARENTHESIS,
-	ARCHIVE
+	SUBSHELL,
+	ARCHIVE,
+	DOUBLE_QUOTES,
+	SINGLE_QUOTES
 };
 
 /*INITIAL FUNCTIONS*/
 
 void	check_userinput(char *str);
-
-/*QUOTING ERROR CHECKING FUNCTIONS*/
-
-/**
- * @brief Calls for initial error checking functions.
- * @param *str -> User input in command line.
-*/
-bool	check_initial_errors(char *str);
-
-/**
- * @brief Checks for double quoting errors.
- * @param *str -> User input in command line.
-*/
-bool	check_closed_double_quotes(char *str);
-
-/**
- * @brief Checks for single quoting errors.
- * @param *str -> User input in command line.
-*/
-bool	check_closed_single_quotes(char *str);
 
 /*TOKEN LIST CREATION FUNCTIONS*/
 
@@ -76,8 +57,7 @@ void	create_new_node(t_token_list **root, t_token_list *token);
 */
 void	get_state(int idx, char *str, t_token_list **lst);
 
-int		state_10(t_token_list **lst, int idx, char next);
-int		state_20(t_token_list **lst, int idx, char next);
+int		state_20(t_token_list **lst, char *str, int idx);
 int		state_30(t_token_list **lst, char curr, char next, int idx);
 int		state_31(t_token_list **lst, int idx, char next);
 int		state_32(t_token_list **lst, int idx, char next);
@@ -125,23 +105,5 @@ void	assign_lst_idx(t_token_list *lst);
 */
 void	ft_lst_printer(t_token_list *lst);
 char	*get_token_string(enum e_token token);
-
-/*ERROR MANAGER FUNCTIONS*/
-
-/**
- * @brief Manages errors throughout the project before token list creation.
- * @param error_id -> error number defined in enum e_error in this header.
-*/
-void	error_manager_lexer(int error_id);
-
-/**
- * @brief Indicates error in initial lexer quoting verifications.
-*/
-void	lexer_error(void);
-
-/**
- * @brief Indicates error in token list creation.
-*/
-void	list_not_created(void);
 
 #endif

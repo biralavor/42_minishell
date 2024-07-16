@@ -5,14 +5,14 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2024/07/16 09:35:42 by tmalheir         ###   ########.fr       */
+/*   Created: 2024/07/16 10:52:55 by tmalheir          #+#    #+#             */
+/*   Updated: 2024/07/16 10:52:57 by tmalheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-
 #include "minishell.h"
 #include "lexer.h"
+#include "error_manager.h"
 
 /**
  * @brief: TODO: remove lst_printer function before submiting.

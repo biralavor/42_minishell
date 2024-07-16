@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   02.check_userinput.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 09:20:45 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/07/15 10:02:30 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/07/16 11:41:02 by tmalheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	check_userinput(char *str)
 
 	lst = NULL;
 	if (!check_initial_errors(str))
-		error_manager_lexer(LEXER_ERROR);
+		error_manager_lexer(INITIAL_ERROR);
 	if (!create_token_list(str, &lst))
 		error_manager_lexer(LIST_NOT_CREATED);
 	syntax_analysis(lst);

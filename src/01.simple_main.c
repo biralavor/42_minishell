@@ -6,7 +6,7 @@
 /*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 10:53:12 by umeneses          #+#    #+#             */
-/*   Updated: 2024/07/15 15:31:41 by tmalheir         ###   ########.fr       */
+/*   Updated: 2024/07/16 14:15:09 by tmalheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,10 @@
  * input = "ls -al a* | grep me > file1";
  * input = "&&(This) < < | > || \"is\" \'a\' test&&";
  * input = "\"o\"\"i\""
+ * input = "\"e\"\"c\"\"h\"\"o\"\"o\"\"i\"";
+ * input = "\"e\"\"\"\"h\"\"o\"\"o\"\"i\"";
+ * input = "\'e\'\'c\'\'h\'\'o\'\'o\'\'i\'";
+ * input = "\'e\'\'c\'\'\'\'o\'\'o\'\'i\'";
  * input = "echo oi > tudo > bem com voce > ?"
  * input = "echo oi > tudo bem > com voce amigo querido > guardou"
 */
@@ -27,7 +31,7 @@ int	main(void)
 {
 	char	*input;
 
-	input = "echo oi > tudo bem > com voce amigo querido > guardou";
+	input = "<in (cmd | && > < ) | >> | \"|><)\"";
 	printf("%s\n", input);
 	check_userinput(input);
 	return (0);
