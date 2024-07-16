@@ -6,7 +6,7 @@
 /*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/12 15:54:01 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/07/15 15:17:15 by tmalheir         ###   ########.fr       */
+/*   Updated: 2024/07/16 10:11:47 by tmalheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,10 +57,8 @@ int	find_dst_idx(t_token_list *lst)
 
 t_token_list	*find_src_node(t_token_list *lst, int src_idx)
 {
-	t_token_list	*src_node;
 	t_token_list	*temp;
 
-	src_node = NULL;
 	temp = lst;
 	while (temp && temp->idx < src_idx)
 		temp = temp->next;
@@ -69,10 +67,8 @@ t_token_list	*find_src_node(t_token_list *lst, int src_idx)
 
 t_token_list	*find_dst_node(t_token_list *lst, int dst_idx)
 {
-	t_token_list	*dst_node;
 	t_token_list	*temp;
 
-	dst_node = NULL;
 	temp = lst;
 	while (temp && temp->idx < dst_idx)
 		temp = temp->next;

@@ -6,7 +6,7 @@
 /*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/03 10:40:35 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/07/15 15:28:00 by tmalheir         ###   ########.fr       */
+/*   Updated: 2024/07/16 10:05:52 by tmalheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	syntax_analysis(t_token_list *lst)
 	temp = lst;
 	if (check_redirects(lst))
 		define_archive_token(lst);
-	if (check_words_after_redir(lst))
+	if (check_words_after_archive(lst))
 		organize_redirects(&lst);
 	temp = lst;
 	while (temp)
