@@ -6,7 +6,7 @@
 /*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/15 14:52:43 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/07/15 15:21:58 by tmalheir         ###   ########.fr       */
+/*   Updated: 2024/07/16 10:05:44 by tmalheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void	define_archive_token(t_token_list *lst)
 	}
 }
 
-int	check_words_after_redir(t_token_list *lst)
+int	check_words_after_archive(t_token_list *lst)
 {
 	t_token_list	*temp;
 

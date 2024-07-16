@@ -6,13 +6,15 @@
 /*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 15:49:51 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/07/03 14:17:53 by tmalheir         ###   ########.fr       */
+/*   Updated: 2024/07/16 09:44:35 by tmalheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 #include "lexer.h"
-
+/**
+ * @brief: TODO: mudar mensagem de erro final do get_state.
+*/
 void	get_state(int idx, char *str, t_token_list **lst)
 {
 	while (str[idx])

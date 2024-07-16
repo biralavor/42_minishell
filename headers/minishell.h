@@ -6,7 +6,7 @@
 /*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 10:53:20 by umeneses          #+#    #+#             */
-/*   Updated: 2024/07/12 15:03:27 by tmalheir         ###   ########.fr       */
+/*   Updated: 2024/07/16 09:46:52 by tmalheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@
  * @param type      = token type.
  * @param lexeme    = actual string saved in token WORD.
  * @param next_char = to check for spaces.
+ * @param idx       = node index.
  * @param prev      = previous node in token list.
  * @param next      = next node in token list.
 */
