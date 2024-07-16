@@ -6,7 +6,7 @@
 #    By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/12 11:46:52 by umeneses          #+#    #+#              #
-#    Updated: 2024/07/15 14:54:33 by tmalheir         ###   ########.fr        #
+#    Updated: 2024/07/16 12:04:40 by tmalheir         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -51,7 +51,7 @@ SRC_FILES				+= 02.check_userinput.c
 SRC_FILES				+= ./lexer/03.check_initial_errors.c
 SRC_FILES				+= ./lexer/04.create_token_list.c
 SRC_FILES				+= ./lexer/05.get_state.c
-SRC_FILES				+= ./lexer/06.state10_to_state30.c
+SRC_FILES				+= ./lexer/06.state20_to_state30.c
 SRC_FILES				+= ./lexer/07.state40_to_state60.c
 SRC_FILES				+= ./lexer/08.state61_to_state90.c
 SRC_FILES				+= ./lexer/09.error_manager_lexer.c
@@ -61,11 +61,10 @@ SRC_FILES				+= ./parser/12.state100.c
 SRC_FILES				+= ./parser/13.utils_parsing_word.c
 SRC_FILES				+= ./parser/14.state200.c
 SRC_FILES				+= ./parser/15.state300.c
-SRC_FILES				+= ./parser/16.state400.c
-SRC_FILES				+= ./parser/17.redir_manager.c
-SRC_FILES				+= ./parser/18.redir_utils.c
-SRC_FILES				+= ./parser/19.error_manager_parser.c
-SRC_FILES				+= ./executor/20.build_tree.c
+SRC_FILES				+= ./parser/16.redir_manager.c
+SRC_FILES				+= ./parser/17.redir_utils.c
+SRC_FILES				+= ./parser/18.error_manager_parser.c
+SRC_FILES				+= ./executor/19.build_tree.c
 #SRC_FILES				= minishell_main.c
 
 SRC_FILES_ALL			= $(addprefix $(SRC_D), $(SRC_FILES))

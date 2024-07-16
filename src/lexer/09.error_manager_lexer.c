@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   09.error_manager_lexer.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 11:01:38 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/07/08 20:25:35 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/07/16 12:22:44 by tmalheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,15 +17,21 @@
 
 void	error_manager_lexer(int error_id)
 {
-	if (error_id == LEXER_ERROR)
-		lexer_error();
+	if (error_id == INITIAL_ERROR)
+		initial_error();
 	else if (error_id == LIST_NOT_CREATED)
 		list_not_created();
 }
 
+void	initial_error(void)
+{
+	ft_putendl_fd("Quoting or parenthesis error", STDERR_FILENO);
+	exit (EXIT_FAILURE);
+}
+
 void	lexer_error(void)
 {
-	ft_putendl_fd("Unmatched open quotes", STDERR_FILENO);
+	ft_putendl_fd("lexer error", STDERR_FILENO);
 	exit (EXIT_FAILURE);
 }
 
