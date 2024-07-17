@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 13:23:46 by umeneses          #+#    #+#             */
-/*   Updated: 2024/07/17 15:15:27 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/07/17 16:43:58 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	builtins_runner_echo(t_token_list *lst)
 		write(1, "\n", 1);
 	else
 	{
-		if (builtins_check_cmd_arg(lst, 'n'))
+		if (check_command_args(lst, 'n'))
 			temp = temp->next->next;
 		while (temp->type == WORD)
 		{
@@ -36,12 +36,12 @@ void	builtins_runner_echo(t_token_list *lst)
 				ft_putstr_fd(" ", STDOUT_FILENO);
 			temp = temp->next;
 		}
-		if (!builtins_check_cmd_arg(lst, 'n'))
+		if (!check_command_args(lst, 'n'))
 			write(1, "\n", 1);
 	}
 }
 
-bool	builtins_check_cmd_arg(t_token_list *lst, char arg)
+bool	check_command_args(t_token_list *lst, char arg)
 {
 	t_token_list	*temp;
 

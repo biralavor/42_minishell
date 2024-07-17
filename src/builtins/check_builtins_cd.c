@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 13:23:46 by umeneses          #+#    #+#             */
-/*   Updated: 2024/07/17 14:56:15 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/07/17 16:43:02 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	builtins_runner_cd(t_token_list *lst)
 		destiny_path = temp->next->lexeme;
 		destiny_len = ft_strlen(destiny_path);
 		if (chdir(destiny_path) != 0)
-			builtins_error_cd(destiny_len, destiny_path);
+			error_cd_messenger(destiny_len, destiny_path);
 		else if (destiny_path[0] == '.' && destiny_path[1] == '\0')
 			write(2, "\n", 1);
 		else
@@ -47,7 +47,7 @@ void	builtins_runner_cd(t_token_list *lst)
 	}
 }
 
-void	builtins_error_cd(int destiny_len, char *destiny_path)
+void	error_cd_messenger(int destiny_len, char *destiny_path)
 {
 	write(2, "bash: cd: ", 11);
 	write(2, destiny_path, destiny_len);
