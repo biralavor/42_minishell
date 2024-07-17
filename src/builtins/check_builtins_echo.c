@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 13:23:46 by umeneses          #+#    #+#             */
-/*   Updated: 2024/07/17 12:51:08 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/07/17 14:49:38 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,16 +29,32 @@ void	builtins_runner_echo(t_token_list *lst)
 		lex_cmd_len = ft_strlen(temp->lexeme);
 		if (ft_strncmp(lex_cmd, "echo", lex_cmd_len) == 0)
 		{
-			while (temp->next->type == WORD)
+			if (builtins_check_cmd_arg(lst, 'n'))
+				temp = temp->next->next;
+			while (temp->type == WORD)
 			{
-				temp = temp->next;
 				ft_putstr_fd(temp->lexeme, STDOUT_FILENO);
 				if (NULL == temp->next)
 					break ;
 				else
 					ft_putstr_fd(" ", STDOUT_FILENO);
+				temp = temp->next;
 			}
-			write(1, "\n", 1);
+			if (!builtins_check_cmd_arg(lst, 'n'))
+				write(1, "\n", 1);
 		}
 	}
+}
+
+bool	builtins_check_cmd_arg(t_token_list *lst, char arg)
+{
+	t_token_list	*temp;
+
+	temp = lst;
+	if (temp->next->lexeme[0] == '-')
+	{
+		if (temp->next->lexeme[1] == arg)
+			return (true);
+	}
+	return (false);
 }
