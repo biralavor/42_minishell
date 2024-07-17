@@ -6,7 +6,7 @@
 #    By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/12 11:46:52 by umeneses          #+#    #+#              #
-#    Updated: 2024/07/16 15:04:36 by umeneses         ###   ########.fr        #
+#    Updated: 2024/07/17 12:47:59 by umeneses         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -65,6 +65,9 @@ SRC_FILES				+= ./parser/16.state400.c
 SRC_FILES				+= ./parser/17.error_manager_parser.c
 SRC_FILES				+= ./parser/18.parser_utils.c
 SRC_FILES				+= ./builtins/check_builtins.c
+SRC_FILES				+= ./builtins/check_builtins_cd.c
+SRC_FILES				+= ./builtins/check_builtins_echo.c
+SRC_FILES				+= ./builtins/check_builtins_pwd.c
 SRC_FILES				+= ./executor/19.build_tree.c
 #SRC_FILES				= minishell_main.c
 
