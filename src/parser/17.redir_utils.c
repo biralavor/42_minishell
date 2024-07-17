@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   18.redir_utils.c                                   :+:      :+:    :+:   */
+/*   17.redir_utils.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/12 15:54:01 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/07/16 10:11:47 by tmalheir         ###   ########.fr       */
+/*   Updated: 2024/07/17 19:11:26 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,16 +77,19 @@ t_token_list	*find_dst_node(t_token_list *lst, int dst_idx)
 
 void	move(t_token_list *lst, t_token_list *src, t_token_list *dst)
 {
-	if (src->next)
-		src->prev->next = src->next;
-	else
-		src->prev->next = NULL;
-	src->next->prev = src->prev;
-	if (dst->prev)
-		dst->prev->next = src;
-	else
-		lst = src;
-	src->prev = dst->prev;
-	src->next = dst;
-	dst->prev = src;
+	if (lst)
+	{
+		if (src->next)
+			src->prev->next = src->next;
+		else
+			src->prev->next = NULL;
+		src->next->prev = src->prev;
+		if (dst->prev)
+			dst->prev->next = src;
+		else
+			lst = src;
+		src->prev = dst->prev;
+		src->next = dst;
+		dst->prev = src;
+	}
 }
