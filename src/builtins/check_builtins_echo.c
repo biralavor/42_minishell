@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 13:23:46 by umeneses          #+#    #+#             */
-/*   Updated: 2024/07/17 14:51:39 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/07/17 15:15:27 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,9 @@ void	builtins_runner_echo(t_token_list *lst)
 	t_token_list	*temp;
 
 	temp = lst;
-	while (temp && temp->type == WORD && NULL != temp->next)
+	if (NULL == temp->next)
+		write(1, "\n", 1);
+	else
 	{
 		if (builtins_check_cmd_arg(lst, 'n'))
 			temp = temp->next->next;
