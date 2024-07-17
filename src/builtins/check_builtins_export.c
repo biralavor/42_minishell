@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 13:23:46 by umeneses          #+#    #+#             */
-/*   Updated: 2024/07/17 16:41:39 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/07/17 16:55:26 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,8 @@ void	builtins_runner_export(t_token_list *lst)
 	var_value = NULL;
 	if (NULL != temp->next->lexeme)
 	{
-		var_name = getter_export_var_name(temp);
-		var_value = getter_export_var_value(temp);
+		var_name = export_getter_var_name(temp);
+		var_value = export_getter_var_value(temp);
 		ft_printf("var_name: %s\n", var_name);
 		ft_printf("var_value: %s\n", var_value);
 	}
@@ -78,7 +78,6 @@ char	*export_getter_var_value(t_token_list *lst)
 	while (temp->lexeme[idx] != '=')
 		idx++;
 	idx++;
-	ft_printf("lexeme[idx] = %c\n", temp->lexeme[idx]);
 	while (temp->lexeme[idx] != '\0')
 	{
 		var_value[idx_for_value] = temp->lexeme[idx];
