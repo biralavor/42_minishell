@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 13:23:46 by umeneses          #+#    #+#             */
-/*   Updated: 2024/07/17 12:49:24 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/07/17 14:56:15 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,20 +31,17 @@ void	builtins_runner_cd(t_token_list *lst)
 	actual_path = NULL;
 	while (temp && temp->type == WORD && temp->next && temp->next->type == WORD)
 	{
-		if (ft_strncmp(temp->lexeme, "cd", 2) == 0)
+		destiny_path = temp->next->lexeme;
+		destiny_len = ft_strlen(destiny_path);
+		if (chdir(destiny_path) != 0)
+			builtins_error_cd(destiny_len, destiny_path);
+		else if (destiny_path[0] == '.' && destiny_path[1] == '\0')
+			write(2, "\n", 1);
+		else
 		{
-			destiny_path = temp->next->lexeme;
-			destiny_len = ft_strlen(destiny_path);
-			if (chdir(destiny_path) != 0)
-				builtins_error_cd(destiny_len, destiny_path);
-			else if (destiny_path[0] == '.' && destiny_path[1] == '\0')
-				write(2, "\n", 1);
-			else
-			{
-				actual_path = getcwd(actual_path, 100);
-				destiny_path = ft_strjoin(actual_path, "/");
-				chdir(destiny_path);
-			}
+			actual_path = getcwd(actual_path, 100);
+			destiny_path = ft_strjoin(actual_path, "/");
+			chdir(destiny_path);
 		}
 		temp = temp->next;
 	}
