@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 13:23:46 by umeneses          #+#    #+#             */
-/*   Updated: 2024/07/17 12:46:48 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/07/17 12:54:20 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ bool	builtins_detector(t_token_list *lst)
 			|| (ft_strncmp(temp->lexeme, "unset", 5) == 0)
 			|| (ft_strncmp(temp->lexeme, "env", 3) == 0)
 			|| (ft_strncmp(temp->lexeme, "exit", 4) == 0))
-				return (true);
+			return (true);
 		temp = temp->next;
 	}
 	return (false);
