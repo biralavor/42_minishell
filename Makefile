@@ -6,7 +6,7 @@
 #    By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/12 11:46:52 by umeneses          #+#    #+#              #
-#    Updated: 2024/07/16 12:04:40 by tmalheir         ###   ########.fr        #
+#    Updated: 2024/07/16 14:48:33 by tmalheir         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -49,7 +49,7 @@ NAME					= minishell
 SRC_FILES				= 01.simple_main.c
 SRC_FILES				+= 02.check_userinput.c
 SRC_FILES				+= ./lexer/03.check_initial_errors.c
-SRC_FILES				+= ./lexer/04.create_token_list.c
+SRC_FILES				+= ./lexer/04.token_list_functions.c
 SRC_FILES				+= ./lexer/05.get_state.c
 SRC_FILES				+= ./lexer/06.state20_to_state30.c
 SRC_FILES				+= ./lexer/07.state40_to_state60.c

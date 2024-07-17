@@ -6,7 +6,7 @@
 /*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 13:32:19 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/07/16 12:26:55 by tmalheir         ###   ########.fr       */
+/*   Updated: 2024/07/17 14:42:20 by tmalheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,48 @@ int		state_62(t_token_list **lst, int idx, char next);
 int		state_70(t_token_list **lst, char *str, int idx);
 int		state_80(t_token_list **lst, char *str, int idx);
 int		state_90(t_token_list **lst, char *str, int idx);
+
+/*LEXER ERROR CHECKING FUNCTIONS*/
+
+/**
+ * @brief Checks for double quoting errors.
+ * @param *str -> User input in command line.
+*/
+bool	check_closed_double_quotes(char *str);
+
+/**
+ * @brief Checks for single quoting errors.
+ * @param *str -> User input in command line.
+*/
+bool	check_closed_single_quotes(char *str);
+
+/**
+ * @brief Checks for open parenthesis.
+ * @param *str -> User input in command line.
+*/
+bool	check_closed_parenthesis(char *str);
+
+/**
+ * @brief Checks for empty parenthesis.
+ * @param *str -> User input in command line.
+*/
+bool	is_empty(char *str);
+
+/**
+ * @brief Checks if there are parenthesis between quotes.
+ * @param *str -> User input in command line.
+*/
+int		between_quotes(int idx, char *str);
+
+/**
+ * @brief Checks if the number of open and close parenthesis token is equal.
+ * @param *str -> User input in command line.
+ * @param open -> the number of open parenthesis token.
+ * @param close -> the number of close parenthesis token.
+*/
+bool	match_parenthesis(int open, int close);
+
+int		between_parenthesis(int idx, char *str);
 
 /*UTILS*/
 

@@ -6,7 +6,7 @@
 /*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/27 12:53:52 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/07/16 12:24:15 by tmalheir         ###   ########.fr       */
+/*   Updated: 2024/07/16 15:50:37 by tmalheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,28 +27,6 @@ void			syntax_analysis(t_token_list *lst);
 */
 int				syntax_validations(t_token_list *lst);
 
-int				check_redirects(t_token_list *lst);
-
-/**
- * @brief Checks if there are any redirects and changes next token type.
- * @param *lst -> The token list.
-*/
-void			define_archive_token(t_token_list *lst);
-
-int				check_words_after_archive(t_token_list *lst);
-
-void			organize_redirects(t_token_list **lst);
-
-int				find_src_idx(t_token_list *lst);
-
-int				find_dst_idx(t_token_list *lst);
-
-t_token_list	*find_src_node(t_token_list *lst, int src_idx);
-
-t_token_list	*find_dst_node(t_token_list *lst, int dst_idx);
-
-void			move(t_token_list *lst, t_token_list *src, t_token_list *dst);
-
 /**
  * @brief Checks the grammar rules associated with the respective token.
  * @param *lst -> The token list.
@@ -59,6 +37,62 @@ void			check_syntax_state(t_token_list *lst, int syntax_state);
 int				state_100(t_token_list *lst, int syntax_state);
 int				state_200(t_token_list *lst, int syntax_state);
 int				state_300(t_token_list *lst, int syntax_state);
+
+/*REDIRECTS MANAGER*/
+
+/**
+ * @brief Checks if there are any redirect tokens.
+ * @param *lst -> The token list.
+*/
+int				check_redirects(t_token_list *lst);
+
+/**
+ * @brief Redefines token type after any redirect from word to archive.
+ * @param *lst -> The token list.
+*/
+void			define_archive_token(t_token_list *lst);
+
+/**
+ * @brief Checks if there are any words between redirects.
+ * @param *lst -> The token list.
+*/
+int				check_words_after_archive(t_token_list *lst);
+
+/**
+ * @brief Organize redirects in a way they behave like in Bash.
+ * @param *lst -> The token list.
+*/
+void			organize_redirects(t_token_list **lst);
+
+/**
+ * @brief Finds the index of the token to be moved.
+ * @param *lst -> The token list.
+*/
+int				find_src_idx(t_token_list *lst);
+
+/**
+ * @brief Finds the index to where the token is to be moved to.
+ * @param *lst -> The token list.
+*/
+int				find_dst_idx(t_token_list *lst);
+
+/**
+ * @brief Returns a pointer to the token to be moved.
+ * @param *lst -> The token list.
+*/
+t_token_list	*find_src_node(t_token_list *lst, int src_idx);
+
+/**
+ * @brief Returns a pointer to the token destiny.
+ * @param *lst -> The token list.
+*/
+t_token_list	*find_dst_node(t_token_list *lst, int dst_idx);
+
+/**
+ * @brief Moves the source token.
+ * @param *lst -> The token list.
+*/
+void			move(t_token_list *lst, t_token_list *src, t_token_list *dst);
 
 /*SYNTAX ERROR CHECKING FUNCTIONS*/
 
@@ -91,19 +125,5 @@ bool			check_double_ampersand(char *str);
  * @param *str -> User input in command line.
 */
 bool			check_semicolon(char *str);
-
-/*ERROR MANAGER FUNCTIONS*/
-
-/**
- * @brief Manages errors throughout the project after token list creation.
- * @param error_id -> error number defined in enum e_error in this header.
- * @param lst -> the token list.
-*/
-void			error_manager_parser(int error_id, t_token_list *lst);
-
-void			syntax_error(t_token_list *lst);
-void			command_not_found(t_token_list *lst);
-void			parenthesis_error(void);
-void			unexpected_token_error(void);
 
 #endif

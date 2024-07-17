@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   17.error_manager_parser.c                          :+:      :+:    :+:   */
+/*   18.error_manager_parser.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 11:53:52 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/07/12 15:47:17 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/07/16 15:54:38 by tmalheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,6 @@ void	error_manager_parser(int error_id, t_token_list *lst)
 		syntax_error(lst);
 	else if (error_id == COMMAND_NOT_FOUND)
 		command_not_found(lst);
-	else if (error_id == PARENTHESIS_ERROR)
-		parenthesis_error();
 }
 
 void	unexpected_token_error(void)
@@ -44,9 +42,4 @@ void	command_not_found(t_token_list *lst)
 	ft_printf("Command not found.\n");
 	free_token_list(&lst);
 	exit (EXIT_FAILURE);
-}
-
-void	parenthesis_error(void)
-{
-	ft_putendl_fd("Unmatched open parenthesis", STDERR_FILENO);
 }

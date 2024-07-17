@@ -6,7 +6,7 @@
 /*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 10:53:12 by umeneses          #+#    #+#             */
-/*   Updated: 2024/07/16 14:15:09 by tmalheir         ###   ########.fr       */
+/*   Updated: 2024/07/17 15:13:19 by tmalheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,12 +26,25 @@
  * input = "\'e\'\'c\'\'\'\'o\'\'o\'\'i\'";
  * input = "echo oi > tudo > bem com voce > ?"
  * input = "echo oi > tudo bem > com voce amigo querido > guardou"
+ * input = "<in (cmd | && > < ) | >> | \"|><)\""
+ * input = "> out"
+ * input = "<<<"
+ * input = "<<>><>"
+ * input = "cmd<in"
+ * input = "<><"
+ * input = "\"a\"b\'c\'"
+ * input = "\"oi"
+ * input = "\'oi"
+ * input = "abc \'|\' c"
+ * input = "(|())"
+ * input = "\"((|)\"\'(())\'"
+ * input = "\"\"\'\'"
 */
 int	main(void)
 {
 	char	*input;
 
-	input = "<in (cmd | && > < ) | >> | \"|><)\"";
+	input = "\"\"\'\'";
 	printf("%s\n", input);
 	check_userinput(input);
 	return (0);
