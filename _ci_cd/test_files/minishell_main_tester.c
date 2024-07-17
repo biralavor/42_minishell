@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 11:12:53 by umeneses          #+#    #+#             */
-/*   Updated: 2024/07/15 10:16:04 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/07/17 19:39:42 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,9 @@
 
 #include "../../src/02.check_userinput.c"
 #include "../../src/lexer/03.check_initial_errors.c"
-#include "../../src/lexer/04.create_token_list.c"
+#include "../../src/lexer/04.token_list_functions.c"
 #include "../../src/lexer/05.get_state.c"
-#include "../../src/lexer/06.state10_to_state30.c"
+#include "../../src/lexer/06.state20_to_state30.c"
 #include "../../src/lexer/07.state40_to_state60.c"
 #include "../../src/lexer/08.state61_to_state90.c"
 #include "../../src/lexer/09.error_manager_lexer.c"
@@ -31,9 +31,9 @@
 #include "../../src/parser/13.utils_parsing_word.c"
 #include "../../src/parser/14.state200.c"
 #include "../../src/parser/15.state300.c"
-#include "../../src/parser/16.state400.c"
-#include "../../src/parser/17.error_manager_parser.c"
-#include "../../src/parser/18.parser_utils.c"
+#include "../../src/parser/16.redir_manager.c"
+#include "../../src/parser/17.redir_utils.c"
+#include "../../src/parser/18.error_manager_parser.c"
 #include "../_tdd_utils/ft_lst_printer.c"
 
 #include "minunit_utils.c"
