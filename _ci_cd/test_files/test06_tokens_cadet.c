@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/02 18:16:24 by umeneses          #+#    #+#             */
-/*   Updated: 2024/07/15 10:11:37 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/07/17 19:48:27 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -1058,7 +1058,7 @@ MU_TEST(testing_tokens_cadet_input_ls_echo_18)
 	//ACT
 	cadet_input = "(ls -l|echo a>out&&outsleep 5)||ls -la|grep a";
 
-	xpect_node1_type = get_token_string(OPEN_PARENTHESIS);
+	xpect_node1_type = get_token_string(SUBSHELL);
 	xpect_node1_lexeme = NULL;
 	xpect_node2_type = get_token_string(WORD);
 	xpect_node2_lexeme = "ls";
@@ -1080,7 +1080,7 @@ MU_TEST(testing_tokens_cadet_input_ls_echo_18)
 	xpect_node10_lexeme = "outsleep";
 	xpect_node11_type = get_token_string(WORD);
 	xpect_node11_lexeme = "5";
-	xpect_node12_type = get_token_string(CLOSE_PARENTHESIS);
+	xpect_node12_type = get_token_string(SUBSHELL);
 	xpect_node12_lexeme = NULL;
 	xpect_node13_type = get_token_string(OR);
 	xpect_node13_lexeme = NULL;
