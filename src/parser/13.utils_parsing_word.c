@@ -6,7 +6,7 @@
 /*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/05 10:36:08 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/07/05 10:39:07 by tmalheir         ###   ########.fr       */
+/*   Updated: 2024/07/16 13:12:45 by tmalheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,16 +61,5 @@ bool	check_semicolon(char *str)
 			return (false);
 		idx++;
 	}
-	return (true);
-}
-
-bool	check_empty_quotes(char *str)
-{
-	int	idx;
-
-	idx = 0;
-	if ((str[idx] == '"' && str[idx + 1] == '"')
-		|| (str[idx] == '\'' && str[idx + 1] == '\''))
-		return (false);
 	return (true);
 }

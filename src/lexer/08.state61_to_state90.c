@@ -6,7 +6,7 @@
 /*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/20 10:35:11 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/07/12 17:04:59 by tmalheir         ###   ########.fr       */
+/*   Updated: 2024/07/16 12:27:04 by tmalheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ int	state_70(t_token_list **lst, char *str, int idx)
 	end = (size_t)idx;
 	double_quotes = ft_substr((char const *)str, start, ((end - start) + 1));
 	double_quotes_node->lexeme = double_quotes;
-	double_quotes_node->type = WORD;
+	double_quotes_node->type = DOUBLE_QUOTES;
 	double_quotes_node->next_char = str[end + 1];
 	create_new_node(lst, double_quotes_node);
 	return (end + 1);
@@ -71,7 +71,7 @@ int	state_80(t_token_list **lst, char *str, int idx)
 	end = (size_t)idx;
 	single_quotes = ft_substr((char const *)str, start, ((end - start) + 1));
 	single_quotes_node->lexeme = single_quotes;
-	single_quotes_node->type = WORD;
+	single_quotes_node->type = SINGLE_QUOTES;
 	single_quotes_node->next_char = str[end + 1];
 	create_new_node(lst, single_quotes_node);
 	return (end + 1);

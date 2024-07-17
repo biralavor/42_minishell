@@ -6,7 +6,7 @@
 /*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/03 14:37:37 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/07/05 11:33:24 by tmalheir         ###   ########.fr       */
+/*   Updated: 2024/07/16 11:54:02 by tmalheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,7 @@
 int	state_200(t_token_list *lst, int syntax_state)
 {
 	if (lst->next && lst->prev && (lst->next->type == WORD
-			|| lst->next->type == CLOSE_PARENTHESIS || lst->prev->type == WORD
-			|| lst->prev->type == OPEN_PARENTHESIS))
+			|| lst->next->type == SUBSHELL || lst->prev->type == WORD))
 		syntax_state = 200;
 	else
 	{

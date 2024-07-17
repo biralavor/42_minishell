@@ -6,12 +6,12 @@
 /*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/05 13:56:37 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/07/10 14:54:02 by tmalheir         ###   ########.fr       */
+/*   Updated: 2024/07/15 15:20:47 by tmalheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef EXECUTER_H
-# define EXECUTER_H
+#ifndef EXECUTOR_H
+# define EXECUTOR_H
 
 /**
  * @brief Tree structure.
@@ -36,6 +36,5 @@ typedef struct s_tree
 */
 void	initiate_tree(t_token_list *lst);
 t_tree	*build_tree_recursive(t_token_list **lst);
-void	search_logical_operator(t_tree *exec_tree, t_token_list *lst);
 
 #endif

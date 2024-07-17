@@ -1,38 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   06.state10_to_state30.c                            :+:      :+:    :+:   */
+/*   06.state20_to_state30.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/20 10:17:28 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/07/04 11:50:06 by tmalheir         ###   ########.fr       */
+/*   Updated: 2024/07/17 14:57:33 by tmalheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 #include "lexer.h"
 
-int	state_10(t_token_list **lst, int idx, char next)
+int	state_20(t_token_list **lst, char *str, int idx)
 {
-	t_token_list	*open_parenthesis_node;
+	size_t			start;
+	size_t			end;
+	char			*subshell;
+	t_token_list	*subshell_node;
 
-	open_parenthesis_node = (t_token_list *)ft_calloc(1, sizeof(t_token_list));
-	open_parenthesis_node->type = OPEN_PARENTHESIS;
-	open_parenthesis_node->next_char = next;
-	create_new_node(lst, open_parenthesis_node);
-	return (idx + 1);
-}
-
-int	state_20(t_token_list **lst, int idx, char next)
-{
-	t_token_list	*close_parenthesis_node;
-
-	close_parenthesis_node = (t_token_list *)ft_calloc(1, sizeof(t_token_list));
-	close_parenthesis_node->type = CLOSE_PARENTHESIS;
-	close_parenthesis_node->next_char = next;
-	create_new_node(lst, close_parenthesis_node);
-	return (idx + 1);
+	start = (size_t)idx;
+	subshell_node = (t_token_list *)ft_calloc(1, sizeof(t_token_list));
+	end = (size_t)between_parenthesis(idx, str);
+	subshell = ft_substr((char const *)str, start, ((end - start) + 1));
+	subshell_node->lexeme = subshell;
+	subshell_node->type = SUBSHELL;
+	subshell_node->next_char = str[end + 1];
+	create_new_node(lst, subshell_node);
+	return (end + 1);
 }
 
 int	state_30(t_token_list **lst, char curr, char next, int idx)
