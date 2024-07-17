@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 14:57:00 by umeneses          #+#    #+#             */
-/*   Updated: 2024/07/17 14:58:29 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/07/17 16:43:50 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,12 +41,26 @@ void	builtins_runner_cd(t_token_list *lst);
 /**
  * @brief: Prints an error message when the cd command fails.
 */
-void	builtins_error_cd(int destiny_len, char *destiny_path);
-
+void	error_cd_messenger(int destiny_len, char *destiny_path);
 
 /**
  * @brief: Checks if the builtin command has an argument.
 */
-bool	builtins_check_cmd_arg(t_token_list *lst, char arg);
+bool	check_command_args(t_token_list *lst, char arg);
+
+/**
+ * @brief: Runs the export - set a new environment variable - builtin command.
+*/
+void	builtins_runner_export(t_token_list *lst);
+
+/**
+ * @brief: Gets the name of the environment variable to be exported.
+*/
+char	*export_getter_var_name(t_token_list *lst);
+
+/**
+ * @brief: Gets the value of the environment variable to be exported.
+*/
+char	*export_getter_var_value(t_token_list *lst);
 
 #endif
