@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 13:23:46 by umeneses          #+#    #+#             */
-/*   Updated: 2024/07/17 12:54:20 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/07/17 15:00:46 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,8 @@ void	builtins_controller(t_token_list *lst)
 					builtins_runner_cd(temp);
 				if (ft_strncmp(temp->lexeme, "pwd", 3) == 0)
 					builtins_runner_pwd(temp);
+				if (ft_strncmp(temp->lexeme, "export", 6) == 0)
+					builtins_runner_export(temp);
 			}
 			temp = temp->next;
 		}
