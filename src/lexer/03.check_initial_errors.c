@@ -6,7 +6,7 @@
 /*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 07:45:31 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/07/16 13:07:30 by tmalheir         ###   ########.fr       */
+/*   Updated: 2024/07/17 15:08:54 by tmalheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,88 +27,88 @@ bool	check_initial_errors(char *str)
 bool	check_closed_double_quotes(char *str)
 {
 	int		idx;
-	bool	flag;
 	int		double_quote;
 
 	idx = 0;
 	double_quote = 0;
-	flag = true;
 	while (str[idx])
 	{
 		if (str[idx] == '"')
-		{
-			if ((str[idx + 1]) && (str[idx - 1])
-				&& (str[idx + 1] == '"') && (str[idx - 1] == '"'))
-			{
-				flag = false;
-				return (flag);
-			}
 			double_quote += 1;
-		}
 		idx++;
 	}
 	if (double_quote % 2 == 0)
-		flag = true;
-	return (flag);
+		return (true);
+	else
+		return (false);
 }
 
 bool	check_closed_single_quotes(char *str)
 {
 	int		idx;
-	bool	flag;
-	int		double_quote;
+	int		single_quote;
 
 	idx = 0;
-	double_quote = 0;
-	flag = true;
+	single_quote = 0;
 	while (str[idx])
 	{
 		if (str[idx] == '\'')
-		{
-			if ((str[idx + 1]) && (str[idx - 1])
-				&& (str[idx + 1] == '\'') && (str[idx - 1] == '\''))
-			{
-				flag = false;
-				return (flag);
-			}
-			double_quote += 1;
-		}
+			single_quote += 1;
 		idx++;
 	}
-	if (double_quote % 2 == 0)
-		flag = true;
-	return (flag);
+	if (single_quote % 2 == 0)
+		return (true);
+	else
+		return (false);
 }
 
 bool	check_closed_parenthesis(char *str)
 {
 	int		idx;
-	bool	flag;
 	int		open;
 	int		close;
 
 	idx = 0;
 	open = 0;
 	close = 0;
-	flag = true;
 	while (str[idx])
 	{
-		if (str[idx] == '(' && str[idx + 1] && str[idx + 1] == ')')
-			return (false);
+		if (str[idx] == '"' || str[idx] == '\'')
+			idx = between_quotes(idx, str);
+		else if (str[idx] == '(')
+			idx = between_parenthesis(idx, str);
 		else if (str[idx] == '(')
 			open += 1;
 		else if (str[idx] == ')')
 			close += 1;
 		idx++;
 	}
-	flag = match_parenthesis(open, close);
-	return (flag);
+	if (!match_parenthesis(open, close))
+		return (false);
+	return (true);
 }
 
-bool	match_parenthesis(int open, int close)
+int	between_parenthesis(int idx, char *str)
 {
-	if (open != close)
-		return (false);
-	else
-		return (true);
+	int	end;
+	int	count;
+
+	end = -1;
+	count = 0;
+	while (str[idx])
+	{
+		if (str[idx] == '(')
+			count++;
+		else if (str[idx] == ')')
+		{
+			count--;
+			if (count == 0)
+			{
+				end = idx;
+				break ;
+			}
+		}
+		idx++;
+	}
+	return (end);
 }

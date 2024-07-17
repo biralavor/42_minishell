@@ -6,7 +6,7 @@
 /*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 22:17:27 by umeneses          #+#    #+#             */
-/*   Updated: 2024/07/16 13:08:46 by tmalheir         ###   ########.fr       */
+/*   Updated: 2024/07/16 15:54:43 by tmalheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,32 +35,6 @@ bool	check_initial_errors(char *str);
 /*LEXER ERROR MANAGER FUNCTIONS*/
 
 /**
- * @brief Checks for double quoting errors.
- * @param *str -> User input in command line.
-*/
-bool	check_closed_double_quotes(char *str);
-
-/**
- * @brief Checks for single quoting errors.
- * @param *str -> User input in command line.
-*/
-bool	check_closed_single_quotes(char *str);
-
-/**
- * @brief Checks for open parenthesis.
- * @param *str -> User input in command line.
-*/
-bool	check_closed_parenthesis(char *str);
-
-/**
- * @brief Checks if the number of open and close parenthesis token is equal.
- * @param *str -> User input in command line.
- * @param open -> the number of open parenthesis token.
- * @param close -> the number of close parenthesis token.
-*/
-bool	match_parenthesis(int open, int close);
-
-/**
  * @brief Manages errors throughout the project before token list creation.
  * @param error_id -> error number defined in enum e_error in this header.
 */
@@ -80,5 +54,32 @@ void	lexer_error(void);
  * @brief Indicates error in token list creation.
 */
 void	list_not_created(void);
+
+/*PARSER ERROR MANAGER FUNCTIONS*/
+
+/**
+ * @brief Manages errors throughout the project after token list creation.
+ * @param error_id -> error number defined in enum e_error in this header.
+ * @param lst -> the token list.
+*/
+void	error_manager_parser(int error_id, t_token_list *lst);
+
+/**
+ * @brief Prints an unexpected token error message.
+ * @param lst -> the token list.
+*/
+void	unexpected_token_error(void);
+
+/**
+ * @brief Prints a syntax error message.
+ * @param lst -> the token list.
+*/
+void	syntax_error(t_token_list *lst);
+
+/**
+ * @brief Prints a command not found error message.
+ * @param lst -> the token list.
+*/
+void	command_not_found(t_token_list *lst);
 
 #endif
