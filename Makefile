@@ -6,7 +6,7 @@
 #    By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/12 11:46:52 by umeneses          #+#    #+#              #
-#    Updated: 2024/08/06 15:59:12 by umeneses         ###   ########.fr        #
+#    Updated: 2024/08/06 16:03:04 by umeneses         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -66,7 +66,7 @@ SRC_FILES				+= ./parser/17.redir_utils.c
 SRC_FILES				+= ./parser/18.error_manager_parser.c
 SRC_FILES				+= ./executor/19.building_tree.c
 SRC_FILES				+= ./builtins/check_builtins.c
-SRC_FILES				+= ./executor/20.building_tree_utils.c
+
 #SRC_FILES				= minishell_main.c
 
 SRC_FILES_ALL			= $(addprefix $(SRC_D), $(SRC_FILES))
