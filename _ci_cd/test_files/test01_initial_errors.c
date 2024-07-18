@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 11:12:53 by umeneses          #+#    #+#             */
-/*   Updated: 2024/07/18 11:27:15 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/07/18 14:27:27 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -337,6 +337,23 @@ MU_TEST(testing_lexeme_open_parenthesis_at_end)
 	mu_assert_int_eq(xpected_validation, actual_validation);
 }
 
+MU_TEST(testing_lexeme_open_parenthesis_at_end_space)
+{
+	// ARRANGE
+	char			*userinput;
+	bool			xpected_validation;
+	bool			actual_validation;
+
+	//ACT
+	userinput = "Mussum Ipsum					(";
+
+	xpected_validation = false;
+	actual_validation = check_initial_errors(userinput);
+	
+	// ASSERT
+	mu_assert_int_eq(xpected_validation, actual_validation);
+}
+
 MU_TEST(testing_lexeme_close_parenthesis_at_begin)
 {
 	// ARRANGE
@@ -345,7 +362,7 @@ MU_TEST(testing_lexeme_close_parenthesis_at_begin)
 	bool			actual_validation;
 
 	//ACT
-	userinput = "     )     Mussum Ipsum";
+	userinput = "     )		Mussum Ipsum";
 
 	xpected_validation = false;
 	actual_validation = check_initial_errors(userinput);
@@ -387,6 +404,62 @@ MU_TEST(testing_lexeme_close_parenthesis_at_end)
 	// ASSERT
 	mu_assert_int_eq(xpected_validation, actual_validation);
 }
+
+MU_TEST(testing_lexeme_close_parenthesis_at_end_space)
+{
+	// ARRANGE
+	char			*userinput;
+	bool			xpected_validation;
+	bool			actual_validation;
+
+	//ACT
+	userinput = "Mussum Ipsum				)";
+
+	xpected_validation = false;
+	actual_validation = check_initial_errors(userinput);
+	
+	// ASSERT
+	mu_assert_int_eq(xpected_validation, actual_validation);
+}
+
+MU_TEST(testing_lexeme_open_parenthesis_odd_counter_first_node)
+{
+	// ARRANGE
+	char			*userinput;
+	bool			xpected_validation;
+	bool			actual_validation;
+
+	//ACT
+	userinput = "( Mussum|(Ipsum)";
+
+	xpected_validation = false;
+	actual_validation = check_initial_errors(userinput);
+	
+	// ASSERT
+	mu_assert_int_eq(xpected_validation, actual_validation);
+}
+
+MU_TEST(testing_lexeme_open_parenthesis_odd_counter_last_node)
+{
+	// ARRANGE
+	char			*userinput;
+	bool			xpected_validation;
+	bool			actual_validation;
+
+	//ACT
+	userinput = "( Mussum)|Ipsum)";
+
+	xpected_validation = false;
+	actual_validation = check_initial_errors(userinput);
+	
+	// ASSERT
+	mu_assert_int_eq(xpected_validation, actual_validation);
+}
+
+
+
+
+
 
 MU_TEST(testing_lexeme_single_quote_working_simple_space_first_node)
 {
@@ -822,14 +895,22 @@ MU_TEST_SUITE(test01___lexeme_MIXED_quotes_errors_suite)
 	MU_RUN_TEST(testing_lexeme_MIXED_quotes_double_is_even_single_is_even_counter_error);
 }
 
-MU_TEST_SUITE(test01___parenthesis_validation_suite)
+MU_TEST_SUITE(test01___lexeme_parenthesis_validation_suite)
 {
 	MU_RUN_TEST(testing_lexeme_open_parenthesis_at_begin);
 	MU_RUN_TEST(testing_lexeme_open_parenthesis_at_middle);
 	MU_RUN_TEST(testing_lexeme_open_parenthesis_at_end);
+	MU_RUN_TEST(testing_lexeme_open_parenthesis_at_end_space);
 	MU_RUN_TEST(testing_lexeme_close_parenthesis_at_begin);
 	MU_RUN_TEST(testing_lexeme_close_parenthesis_at_middle);
 	MU_RUN_TEST(testing_lexeme_close_parenthesis_at_end);
+	MU_RUN_TEST(testing_lexeme_close_parenthesis_at_end_space);
+}
+
+MU_TEST_SUITE(test01___lexeme_parenthesis_odd_counter_suite)
+{
+	MU_RUN_TEST(testing_lexeme_open_parenthesis_odd_counter_first_node);
+	MU_RUN_TEST(testing_lexeme_open_parenthesis_odd_counter_last_node);
 }
 
 MU_TEST_SUITE(test01___lexeme_single_quote_errors_first_node_suite)
