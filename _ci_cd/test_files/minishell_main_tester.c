@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 11:12:53 by umeneses          #+#    #+#             */
-/*   Updated: 2024/07/18 10:39:53 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/07/18 11:25:47 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,11 @@ int	main(void)
 	MU_RUN_SUITE(test01___lexeme_MIXED_quotes_errors_suite);
 	MU_RUN_SUITE(test01___parenthesis_validation_suite);
 
+	MU_RUN_SUITE(test01___lexeme_single_quote_errors_first_node_suite);
+	MU_RUN_SUITE(test01___lexeme_single_quote_errors_last_node_suite);
+	MU_RUN_SUITE(test01___lexeme_double_quote_errors_first_node_suite);
+	MU_RUN_SUITE(test01___lexeme_double_quote_errors_last_node_suite);
+	
 	MU_RUN_SUITE(test02___create_token_suite);
 	
 	MU_RUN_SUITE(test03___01_to_02_tokens_suite);
@@ -65,11 +70,6 @@ int	main(void)
 	MU_RUN_SUITE(test05___06_to_10_tokens_suite);
 
 	MU_RUN_SUITE(test06___tokens_cadet_suite);
-	
-	// MU_RUN_SUITE(test07___syntax_state100_single_quote_errors_first_node_suite);
-	// MU_RUN_SUITE(test07___syntax_state100_single_quote_errors_last_node_suite);
-	// MU_RUN_SUITE(test07___syntax_state100_double_quote_errors_first_node_suite);
-	// MU_RUN_SUITE(test07___syntax_state100_double_quote_errors_last_node_suite);
 	
 	// MU_RUN_SUITE(test08___syntax_state200_PIPE_errors_first_node_suite);
 	// MU_RUN_SUITE(test08___syntax_state200_PIPE_errors_last_node_suite);
