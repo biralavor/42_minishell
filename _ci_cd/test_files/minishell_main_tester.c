@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 11:12:53 by umeneses          #+#    #+#             */
-/*   Updated: 2024/07/18 14:29:08 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/07/18 15:00:04 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,6 +100,8 @@ int	main(void)
 	MU_RUN_SUITE(test09___syntax_state300_REDIRECT_HEREDOC_errors_last_node_suite);
 	
 	MU_RUN_SUITE(test09___syntax_state300_cadet_MIXED_REDIRECT_errors_suite);
+	
+	MU_RUN_SUITE(test10___syntax_state400_SUBSHELL_suite);
 	
 	// MU_RUN_SUITE(testing_syntax_last_node_errors_suite);
 	// MU_RUN_SUITE(testing_syntax_few_nodes_pipe_errors_suite);
