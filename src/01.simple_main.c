@@ -6,7 +6,7 @@
 /*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 10:53:12 by umeneses          #+#    #+#             */
-/*   Updated: 2024/07/17 15:13:19 by tmalheir         ###   ########.fr       */
+/*   Updated: 2024/07/18 15:40:11 by tmalheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ int	main(void)
 {
 	char	*input;
 
-	input = "\"\"\'\'";
+	input = "ls -al a* | grep me > file1";
 	printf("%s\n", input);
 	check_userinput(input);
 	return (0);

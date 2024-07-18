@@ -6,7 +6,7 @@
 /*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 09:20:45 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/07/16 11:41:02 by tmalheir         ###   ########.fr       */
+/*   Updated: 2024/07/18 14:58:42 by tmalheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,6 @@ void	check_userinput(char *str)
 	if (!create_token_list(str, &lst))
 		error_manager_lexer(LIST_NOT_CREATED);
 	syntax_analysis(lst);
+	initiate_tree(lst);
 	free_token_list(&lst);
-//	initiate_tree(lst);
 }
