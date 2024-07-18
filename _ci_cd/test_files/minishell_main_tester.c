@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 11:12:53 by umeneses          #+#    #+#             */
-/*   Updated: 2024/07/18 15:00:04 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/07/18 17:03:34 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@
 #include "test08_syntax_state200.c"
 #include "test09_syntax_state300.c"
 #include "test10_syntax_state400.c"
+#include "test11_syntax_redirects.c"
 
 
 int	main(void)
@@ -102,6 +103,9 @@ int	main(void)
 	MU_RUN_SUITE(test09___syntax_state300_cadet_MIXED_REDIRECT_errors_suite);
 	
 	MU_RUN_SUITE(test10___syntax_state400_SUBSHELL_suite);
+	
+	MU_RUN_SUITE(test11___syntax_REDIRECTS_to_ARCHIVE_DETECTION_suite);
+	MU_RUN_SUITE(test11___syntax_ORGANIZE_REDIRECTS_suite);
 	
 	// MU_RUN_SUITE(testing_syntax_last_node_errors_suite);
 	// MU_RUN_SUITE(testing_syntax_few_nodes_pipe_errors_suite);
