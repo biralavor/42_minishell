@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/18 14:31:30 by umeneses          #+#    #+#             */
-/*   Updated: 2024/07/18 17:04:32 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/07/18 17:39:59 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,8 @@ MU_TEST(testing_syntax_REDIRECTS_to_ARCHIVE_DETECTION_first_node)
 	userinput = "> file.txt cat file.txt";
 	xpect_redirect_detection = true; // redirect detection
 	xpect_archive_detection = true; // archive detection
+	actual_redirect_detection = -1; // initializing
+	actual_archive_detection = -1; // initializing
 	xpect_lst_size = 4;
 	idx = 0;
 	lst = NULL;
@@ -72,6 +74,8 @@ MU_TEST(testing_syntax_REDIRECTS_to_ARCHIVE_DETECTION_middle_node)
 	userinput = "cat file1.txt echo > file2.txt file3.txt";
 	xpect_redirect_detection = true; // redirect detection
 	xpect_archive_detection = true; // archive detection
+	actual_redirect_detection = -1; // initializing
+	actual_archive_detection = -1; // initializing
 	xpect_lst_size = 6;
 	idx = 0;
 	lst = NULL;
@@ -109,6 +113,8 @@ MU_TEST(testing_syntax_REDIRECTS_to_ARCHIVE_DETECTION_last_node)
 	userinput = "echo OLA-OLA file2.txt > file3.txt";
 	xpect_redirect_detection = true; // redirect detection
 	xpect_archive_detection = true; // archive detection
+	actual_redirect_detection = -1; // initializing
+	actual_archive_detection = -1; // initializing
 	xpect_lst_size = 5;
 	idx = 0;
 	lst = NULL;
