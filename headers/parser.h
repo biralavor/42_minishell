@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/27 12:53:52 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/07/16 15:50:37 by tmalheir         ###   ########.fr       */
+/*   Updated: 2024/07/18 14:46:46 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ int				state_300(t_token_list *lst, int syntax_state);
  * @brief Checks if there are any redirect tokens.
  * @param *lst -> The token list.
 */
-int				check_redirects(t_token_list *lst);
+bool				check_redirects(t_token_list *lst);
 
 /**
  * @brief Redefines token type after any redirect from word to archive.
@@ -56,7 +56,7 @@ void			define_archive_token(t_token_list *lst);
  * @brief Checks if there are any words between redirects.
  * @param *lst -> The token list.
 */
-int				check_words_after_archive(t_token_list *lst);
+bool				check_words_after_archive(t_token_list *lst);
 
 /**
  * @brief Organize redirects in a way they behave like in Bash.
