@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 11:12:53 by umeneses          #+#    #+#             */
-/*   Updated: 2024/07/18 10:30:57 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/07/18 10:38:02 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -1281,7 +1281,7 @@ MU_TEST(testing_userinput_token_05)
 	xpect_node_03_lexeme = "ls";
 	xpect_node_04_type = get_token_string(PIPE);
 	xpect_node_04_lexeme = NULL;
-	xpect_node_05_type = get_token_string(WORD);
+	xpect_node_05_type = get_token_string(DOUBLE_QUOTES);
 	xpect_node_05_lexeme = "\"'hello world'\"";
 	xpect_lst_size = 5;
 	idx = 0;
