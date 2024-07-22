@@ -6,7 +6,7 @@
 #    By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/12 11:46:52 by umeneses          #+#    #+#              #
-#    Updated: 2024/07/16 14:48:33 by tmalheir         ###   ########.fr        #
+#    Updated: 2024/07/22 15:13:45 by tmalheir         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -64,7 +64,8 @@ SRC_FILES				+= ./parser/15.state300.c
 SRC_FILES				+= ./parser/16.redir_manager.c
 SRC_FILES				+= ./parser/17.redir_utils.c
 SRC_FILES				+= ./parser/18.error_manager_parser.c
-SRC_FILES				+= ./executor/19.build_tree.c
+SRC_FILES				+= ./executor/19.building_tree.c
+SRC_FILES				+= ./executor/20.building_tree_utils.c
 #SRC_FILES				= minishell_main.c
 
 SRC_FILES_ALL			= $(addprefix $(SRC_D), $(SRC_FILES))
