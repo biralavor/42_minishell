@@ -6,7 +6,7 @@
 /*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/05 13:55:37 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/07/22 15:57:33 by tmalheir         ###   ########.fr       */
+/*   Updated: 2024/07/23 14:45:32 by tmalheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,8 @@ t_tree	*initiate_tree(t_token_list *lst)
 t_tree	*build_tree_recursive(t_token_list **lst)
 {
 	t_token_list	*split;
-	t_token_list	*left_token_list;
-	t_token_list	*right_token_list;
+	t_token_list	*left;
+	t_token_list	*right;
 	t_tree			*tree_node;
 
 	if (!(*lst))
@@ -37,27 +37,35 @@ t_tree	*build_tree_recursive(t_token_list **lst)
 	else
 	{
 		tree_node->type = split->type;
-		right_token_list = split->next;
-		if (right_token_list)
-			right_token_list->prev = NULL;
-		left_token_list = split->prev;
-		if (left_token_list)
-			left_token_list->next = NULL;
-		tree_node->left = build_tree_recursive(&left_token_list);
-		tree_node->right = build_tree_recursive(&right_token_list);
+		right = split->next;
+		if (right)
+			right->prev = NULL;
+		left = split->prev;
+		if (left)
+			left->next = NULL;
+		tree_node->left = build_tree_recursive(&left);
+		tree_node->right = build_tree_recursive(&right);
+		free_token_list(&split);
 	}
 	return (tree_node);
 }
 
 t_tree	*text(t_token_list *lst, t_token_list *split, t_tree *tree)
 {
+	t_token_list	*temp;
+
+	temp = go_to_first_node(lst);
 	if (!split)
 	{
-		tree->type = lst->type;
-		tree->command = lst;
+		tree->type = temp->type;
+		tree ->command = temp;
 	}
-	tree->type = split->type;
-	tree->command = split;
+	else
+	{
+		tree->type = split->type;
+		tree->command = split;
+		free_token_list(&split);
+	}
 	return (tree);
 }
 

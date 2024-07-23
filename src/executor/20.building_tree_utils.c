@@ -6,7 +6,7 @@
 /*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 15:02:59 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/07/22 15:43:05 by tmalheir         ###   ########.fr       */
+/*   Updated: 2024/07/23 14:58:28 by tmalheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,9 +52,34 @@ void	free_token_tree(t_tree *token_tree)
 {
 	if (!token_tree)
 		return ;
-	if (token_tree->left)
+	if (token_tree && token_tree->left)
+	{
 		free_token_tree(token_tree->left);
-	if (token_tree->right)
+		token_tree->left = NULL;
+	}
+	if (token_tree && token_tree->right)
+	{
 		free_token_tree(token_tree->right);
+		token_tree->right = NULL;
+	}
 	free(token_tree);
+	token_tree = NULL;
+}
+
+void	print_tree(t_tree *root)
+{
+	if (root != NULL)
+	{
+		ft_printf("%d\n", root->type);
+		if (root->command)
+		{
+			while (root->command)
+			{
+				ft_printf("%s\n", root->command->lexeme);
+				root->command = root->command->next;
+			}
+		}
+		print_tree(root->left);
+		print_tree(root->right);
+	}
 }

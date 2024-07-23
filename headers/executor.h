@@ -6,7 +6,7 @@
 /*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/05 13:56:37 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/07/22 15:55:21 by tmalheir         ###   ########.fr       */
+/*   Updated: 2024/07/23 14:53:08 by tmalheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,5 +49,7 @@ t_tree			*text(t_token_list *lst, t_token_list *split, t_tree *tree);
 bool	is_text(t_token_list *split_token);
 
 void	free_token_tree(t_tree *token_tree);
+
+void	print_tree(t_tree *root);
 
 #endif
