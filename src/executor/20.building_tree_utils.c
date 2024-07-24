@@ -6,7 +6,7 @@
 /*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 15:02:59 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/07/23 14:58:28 by tmalheir         ###   ########.fr       */
+/*   Updated: 2024/07/24 14:07:34 by tmalheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,8 @@ void	free_token_tree(t_tree *token_tree)
 		free_token_tree(token_tree->right);
 		token_tree->right = NULL;
 	}
+	if (token_tree->command)
+		free_token_list(&token_tree->command);
 	free(token_tree);
 	token_tree = NULL;
 }

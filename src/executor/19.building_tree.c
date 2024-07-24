@@ -6,7 +6,7 @@
 /*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/05 13:55:37 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/07/23 14:45:32 by tmalheir         ###   ########.fr       */
+/*   Updated: 2024/07/24 14:21:42 by tmalheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,9 +43,9 @@ t_tree	*build_tree_recursive(t_token_list **lst)
 		left = split->prev;
 		if (left)
 			left->next = NULL;
+		free(split);
 		tree_node->left = build_tree_recursive(&left);
 		tree_node->right = build_tree_recursive(&right);
-		free_token_list(&split);
 	}
 	return (tree_node);
 }
@@ -58,13 +58,12 @@ t_tree	*text(t_token_list *lst, t_token_list *split, t_tree *tree)
 	if (!split)
 	{
 		tree->type = temp->type;
-		tree ->command = temp;
+		tree->command = temp;
 	}
 	else
 	{
 		tree->type = split->type;
 		tree->command = split;
-		free_token_list(&split);
 	}
 	return (tree);
 }
