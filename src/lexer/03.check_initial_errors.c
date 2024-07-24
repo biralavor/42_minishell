@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   03.check_initial_errors.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 07:45:31 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/07/17 15:08:54 by tmalheir         ###   ########.fr       */
+/*   Updated: 2024/07/24 11:07:36 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,8 +75,6 @@ bool	check_closed_parenthesis(char *str)
 	{
 		if (str[idx] == '"' || str[idx] == '\'')
 			idx = between_quotes(idx, str);
-		else if (str[idx] == '(')
-			idx = between_parenthesis(idx, str);
 		else if (str[idx] == '(')
 			open += 1;
 		else if (str[idx] == ')')
