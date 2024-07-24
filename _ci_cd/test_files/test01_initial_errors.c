@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 11:12:53 by umeneses          #+#    #+#             */
-/*   Updated: 2024/07/18 14:27:27 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/07/24 11:05:58 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -870,6 +870,57 @@ MU_TEST(testing_lexeme_double_quote_broken_space_before_last_node)
 	mu_assert_int_eq(xpected_validation, actual_validation);
 }
 
+MU_TEST(testing_lexeme_crazy_parentehsis_counter_broken_first_node)
+{
+	// ARRANGE
+	char			*userinput;
+	bool			xpected_validation;
+	bool			actual_validation;
+
+	//ACT
+	userinput = "(-((((((((((((Mussum)))))))))))) Ipsum";
+
+	xpected_validation = false;
+	actual_validation = check_initial_errors(userinput);
+	
+	// ASSERT
+	mu_assert_int_eq(xpected_validation, actual_validation);
+}
+
+MU_TEST(testing_lexeme_crazy_parentehsis_counter_broken_middle_node)
+{
+	// ARRANGE
+	char			*userinput;
+	bool			xpected_validation;
+	bool			actual_validation;
+
+	//ACT
+	userinput = "(Mussum) ((((((((melhor lorem Ipsum))))))))-) do Mundis";
+
+	xpected_validation = false;
+	actual_validation = check_initial_errors(userinput);
+	
+	// ASSERT
+	mu_assert_int_eq(xpected_validation, actual_validation);
+}
+
+MU_TEST(testing_lexeme_crazy_parentehsis_counter_broken_last_node)
+{
+	// ARRANGE
+	char			*userinput;
+	bool			xpected_validation;
+	bool			actual_validation;
+
+	//ACT
+	userinput = "Mussum melhor lorem Ipsum (-((((((((do Mundis))))))))";
+
+	xpected_validation = false;
+	actual_validation = check_initial_errors(userinput);
+	
+	// ASSERT
+	mu_assert_int_eq(xpected_validation, actual_validation);
+}
+
 MU_TEST_SUITE(test01___initial_errors_suite)
 {
 	MU_RUN_TEST(argv_simulation_test);
@@ -951,4 +1002,11 @@ MU_TEST_SUITE(test01___lexeme_double_quote_errors_last_node_suite)
 	MU_RUN_TEST(testing_lexeme_double_quote_broken_simple_space_last_node);
 	MU_RUN_TEST(testing_lexeme_double_quote_broken_space_after_last_node);
 	MU_RUN_TEST(testing_lexeme_double_quote_broken_space_before_last_node);
+}
+
+MU_TEST_SUITE(testing_lexeme_crazy_parentehsis_counter)
+{
+	MU_RUN_TEST(testing_lexeme_crazy_parentehsis_counter_broken_first_node);
+	MU_RUN_TEST(testing_lexeme_crazy_parentehsis_counter_broken_middle_node);
+	MU_RUN_TEST(testing_lexeme_crazy_parentehsis_counter_broken_last_node);
 }
