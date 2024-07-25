@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 11:12:53 by umeneses          #+#    #+#             */
-/*   Updated: 2024/07/25 13:34:32 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/07/25 13:41:01 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,6 +109,8 @@ int	main(void)
 	MU_RUN_SUITE(test11___syntax_REDIRECTS_to_ARCHIVE_DETECTION_suite);
 	MU_RUN_SUITE(test11___syntax_WORD_AFTER_ARCHIVE_detection_suite);
 	MU_RUN_SUITE(test11___syntax_ANOTHER_REDIRECT_FOUND_suite);
+
+	MU_RUN_SUITE(test11___syntax_REORGANIZE_REDIRECTS_suite);
 	
 	// MU_RUN_SUITE(testing_syntax_last_node_errors_suite);
 	// MU_RUN_SUITE(testing_syntax_few_nodes_pipe_errors_suite);
