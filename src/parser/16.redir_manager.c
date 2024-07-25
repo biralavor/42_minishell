@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/15 14:52:43 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/07/18 14:46:22 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/07/25 14:25:52 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,20 +50,23 @@ bool	check_words_after_archive(t_token_list *lst)
 	t_token_list	*temp;
 
 	temp = lst;
-	while (temp)
+	while (temp->next && temp->type != ARCHIVE)
 	{
-		if ((temp->type == REDIR_IN || temp->type == REDIR_HDOC
-				|| temp->type == REDIR_OUT || temp->type == REDIR_OUTAPP))
-		{
-			if ((temp->next && temp->next->next)
-				&& (temp->next->type == ARCHIVE
-					&& temp->next->next->type == WORD))
-				return (true);
-		}
 		temp = temp->next;
+		if (temp->type == ARCHIVE)
+		{
+			while(temp->next)
+			{
+				temp = temp->next;	
+				if ((temp->type == WORD))
+					return (true);
+			}
+		}
 	}
 	return (false);
 }
+
+
 
 void	organize_redirects(t_token_list **lst)
 {
