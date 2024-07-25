@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/18 14:31:30 by umeneses          #+#    #+#             */
-/*   Updated: 2024/07/24 17:03:54 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/07/25 13:39:02 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -138,7 +138,7 @@ MU_TEST(testing_syntax_REDIRECTS_to_ARCHIVE_DETECTION_last_node)
 	free_token_list(&lst);
 }
 
-MU_TEST(testing_syntax_ORGANIZE_REDIRECTS_no_WORD_after_archive)
+MU_TEST(testing_syntax_WORD_AFTER_ARCHIVE_detection_false)
 {
 	// ARRANGE
 	char			*userinput;
@@ -147,22 +147,6 @@ MU_TEST(testing_syntax_ORGANIZE_REDIRECTS_no_WORD_after_archive)
 	int				actual_lst_size;
 	bool			xpect_archive_word_detection;
 	bool			actual_archive_word_detection;
-	char			*xpect_node_01_lexeme;
-	char			*xpect_node_01_type;
-	char			*xpect_node_02_lexeme;
-	char			*xpect_node_02_type;
-	char			*xpect_node_03_lexeme;
-	char			*xpect_node_03_type;
-	char			*xpect_node_04_lexeme;
-	char			*xpect_node_04_type;
-	char			*actual_node_01_lexeme;
-	char			*actual_node_01_type;
-	char			*actual_node_02_lexeme;
-	char			*actual_node_02_type;
-	char			*actual_node_03_lexeme;
-	char			*actual_node_03_type;
-	char			*actual_node_04_lexeme;
-	char			*actual_node_04_type;
 	int				fd;
 	t_token_list	*lst;
 
@@ -171,14 +155,6 @@ MU_TEST(testing_syntax_ORGANIZE_REDIRECTS_no_WORD_after_archive)
 	open_redirect_stderr_to_dev_null(fd);
 	userinput = "echo 1-oi > 2-file.txt";
 	xpect_archive_word_detection = false; // word after archive detection
-	xpect_node_01_type = get_token_string(WORD);
-	xpect_node_01_lexeme = "echo";
-	xpect_node_02_type = get_token_string(WORD);
-	xpect_node_02_lexeme = "1-oi";
-	xpect_node_03_type = get_token_string(REDIR_OUT);
-	xpect_node_03_lexeme = NULL;
-	xpect_node_04_type = get_token_string(ARCHIVE);
-	xpect_node_04_lexeme = "2-file.txt";
 	xpect_lst_size = 4;
 	idx = 0;
 	lst = NULL;
@@ -186,36 +162,15 @@ MU_TEST(testing_syntax_ORGANIZE_REDIRECTS_no_WORD_after_archive)
 	actual_lst_size = ft_lst_size(lst);
 	define_archive_token(lst);
 	actual_archive_word_detection = check_words_after_archive(lst);
-	organize_redirects(&lst);
-	
-	actual_node_01_lexeme = lst->lexeme;
-	actual_node_01_type = get_token_string(lst->type);
-	lst = lst->next;
-	actual_node_02_lexeme = lst->lexeme;
-	actual_node_02_type = get_token_string(lst->type);
-	lst = lst->next;
-	actual_node_03_lexeme = lst->lexeme;
-	actual_node_03_type = get_token_string(lst->type);
-	lst = lst->next;
-	actual_node_04_lexeme = lst->lexeme;
-	actual_node_04_type = get_token_string(lst->type);
 
 	close_redirect_stderr_to_dev_null(fd);
 	// ASSERT
 	mu_assert_int_eq(xpect_lst_size, actual_lst_size);
 	mu_assert_int_eq(xpect_archive_word_detection, actual_archive_word_detection);
-	mu_assert_string_eq(xpect_node_01_lexeme, actual_node_01_lexeme);
-	mu_assert_string_eq(xpect_node_01_type, actual_node_01_type);
-	mu_assert_string_eq(xpect_node_02_lexeme, actual_node_02_lexeme);
-	mu_assert_string_eq(xpect_node_02_type, actual_node_02_type);
-	mu_assert_string_eq(xpect_node_03_lexeme, actual_node_03_lexeme);
-	mu_assert_string_eq(xpect_node_03_type, actual_node_03_type);
-	mu_assert_string_eq(xpect_node_04_lexeme, actual_node_04_lexeme);
-	mu_assert_string_eq(xpect_node_04_type, actual_node_04_type);
 	free_token_list(&lst);
 }
 
-MU_TEST(testing_syntax_ORGANIZE_REDIRECTS_with_WORD_after_archive)
+MU_TEST(testing_syntax_WORD_AFTER_ARCHIVE_detection_true)
 {
 	// ARRANGE
 	char			*userinput;
@@ -223,17 +178,9 @@ MU_TEST(testing_syntax_ORGANIZE_REDIRECTS_with_WORD_after_archive)
 	int				xpect_lst_size;
 	int				actual_lst_size;
 	bool			xpect_archive_word_detection;
+	bool			xpect_another_redirect_detection;
 	bool			actual_archive_word_detection;
-	int				xpect_node_01_idx;
-	int				xpect_node_02_idx;
-	int				xpect_node_03_idx;
-	int				xpect_node_04_idx;
-	int				xpect_node_05_idx;
-	int				actual_node_01_idx;
-	int				actual_node_02_idx;
-	int				actual_node_03_idx;
-	int				actual_node_04_idx;
-	int				actual_node_05_idx;
+	bool			actual_another_redirect_detection;
 	int				fd;
 	t_token_list	*lst;
 
@@ -242,11 +189,7 @@ MU_TEST(testing_syntax_ORGANIZE_REDIRECTS_with_WORD_after_archive)
 	open_redirect_stderr_to_dev_null(fd);
 	userinput = "echo 1-oi > 2-file.txt 3-conteudo";
 	xpect_archive_word_detection = true; // word after archive detection
-	xpect_node_01_idx = 0;
-	xpect_node_02_idx = 1;
-	xpect_node_03_idx = 2;
-	xpect_node_04_idx = 3;
-	xpect_node_05_idx = 4;
+	xpect_another_redirect_detection = false; // is there any redirect, after archive?
 	xpect_lst_size = 5;
 	idx = 0;
 	lst = NULL;
@@ -254,29 +197,92 @@ MU_TEST(testing_syntax_ORGANIZE_REDIRECTS_with_WORD_after_archive)
 	actual_lst_size = ft_lst_size(lst);
 	define_archive_token(lst);
 	actual_archive_word_detection = check_words_after_archive(lst);
-	if (actual_archive_word_detection == true)
+	actual_another_redirect_detection = check_another_redirect_after_archive(lst);
+	if (actual_another_redirect_detection == true)
 		organize_redirects(&lst);
-	actual_node_01_idx = lst->idx;
-	lst = lst->next;
-	actual_node_02_idx = lst->idx;
-	lst = lst->next;
-	actual_node_03_idx = lst->idx;
-	lst = lst->next;
-	actual_node_04_idx = lst->idx;
-	lst = lst->next;
-	actual_node_05_idx = lst->idx;
+	close_redirect_stderr_to_dev_null(fd);
+	// ASSERT
+	mu_assert_int_eq(xpect_lst_size, actual_lst_size);
+	mu_assert_int_eq(xpect_archive_word_detection, actual_archive_word_detection);
+	mu_assert_int_eq(xpect_another_redirect_detection, actual_another_redirect_detection);
+	free_token_list(&lst);
+}
+
+MU_TEST(testing_syntax_ANOTHER_REDIRECTS_FOUND_false)
+{
+	// ARRANGE
+	char			*userinput;
+	int				idx;
+	int				xpect_lst_size;
+	int				actual_lst_size;
+	bool			xpect_archive_word_detection;
+	bool			xpect_another_redirect_detection;
+	bool			actual_archive_word_detection;
+	bool			actual_another_redirect_detection;
+	int				fd;
+	t_token_list	*lst;
+
+	//ACT
+	fd = 0;
+	open_redirect_stderr_to_dev_null(fd);
+	userinput = "echo 1-oi > 2-file.txt 3-file.txt";
+	xpect_archive_word_detection = true; // word after archive detection
+	xpect_another_redirect_detection = false; // is there any redirect, after archive?
+	xpect_lst_size = 5;
+	idx = 0;
+	lst = NULL;
+	get_state(idx, userinput, &lst);
+	actual_lst_size = ft_lst_size(lst);
+	define_archive_token(lst);
+	actual_archive_word_detection = check_words_after_archive(lst);
+	actual_another_redirect_detection = check_another_redirect_after_archive(lst);
 
 	close_redirect_stderr_to_dev_null(fd);
 	// ASSERT
 	mu_assert_int_eq(xpect_lst_size, actual_lst_size);
 	mu_assert_int_eq(xpect_archive_word_detection, actual_archive_word_detection);
-	mu_assert_int_eq(xpect_node_01_idx, actual_node_01_idx);
-	mu_assert_int_eq(xpect_node_02_idx, actual_node_02_idx);
-	mu_assert_int_eq(xpect_node_03_idx, actual_node_03_idx);
-	mu_assert_int_eq(xpect_node_04_idx, actual_node_04_idx);
-	mu_assert_int_eq(xpect_node_05_idx, actual_node_05_idx);
+	mu_assert_int_eq(xpect_another_redirect_detection, actual_another_redirect_detection);
 	free_token_list(&lst);
 }
+
+MU_TEST(testing_syntax_ANOTHER_REDIRECTS_FOUND_true)
+{
+	// ARRANGE
+	char			*userinput;
+	int				idx;
+	int				xpect_lst_size;
+	int				actual_lst_size;
+	bool			xpect_archive_word_detection;
+	bool			xpect_another_redirect_detection;
+	bool			actual_archive_word_detection;
+	bool			actual_another_redirect_detection;
+	int				fd;
+	t_token_list	*lst;
+
+	//ACT
+	fd = 0;
+	open_redirect_stderr_to_dev_null(fd);
+	userinput = "echo 1-oi > 2-file.txt > 3-file.txt";
+	xpect_archive_word_detection = true; // word after archive detection
+	xpect_another_redirect_detection = true; // is there any redirect, after archive?
+	xpect_lst_size = 6;
+	idx = 0;
+	lst = NULL;
+	get_state(idx, userinput, &lst);
+	actual_lst_size = ft_lst_size(lst);
+	define_archive_token(lst);
+	actual_archive_word_detection = check_words_after_archive(lst);
+	actual_another_redirect_detection = check_another_redirect_after_archive(lst);
+
+	close_redirect_stderr_to_dev_null(fd);
+	// ASSERT
+	mu_assert_int_eq(xpect_lst_size, actual_lst_size);
+	mu_assert_int_eq(xpect_archive_word_detection, actual_archive_word_detection);
+	mu_assert_int_eq(xpect_another_redirect_detection, actual_another_redirect_detection);
+	free_token_list(&lst);
+}
+
+
 
 MU_TEST_SUITE(test11___syntax_REDIRECTS_to_ARCHIVE_DETECTION_suite)
 {
@@ -285,8 +291,14 @@ MU_TEST_SUITE(test11___syntax_REDIRECTS_to_ARCHIVE_DETECTION_suite)
 	MU_RUN_TEST(testing_syntax_REDIRECTS_to_ARCHIVE_DETECTION_last_node);
 }
 
-MU_TEST_SUITE(test11___syntax_ORGANIZE_REDIRECTS_suite)
+MU_TEST_SUITE(test11___syntax_WORD_AFTER_ARCHIVE_detection_suite)
 {
-	MU_RUN_TEST(testing_syntax_ORGANIZE_REDIRECTS_no_WORD_after_archive);
-	MU_RUN_TEST(testing_syntax_ORGANIZE_REDIRECTS_with_WORD_after_archive);
+	MU_RUN_TEST(testing_syntax_WORD_AFTER_ARCHIVE_detection_false);
+	MU_RUN_TEST(testing_syntax_WORD_AFTER_ARCHIVE_detection_true);
+}
+
+MU_TEST_SUITE(test11___syntax_ANOTHER_REDIRECT_FOUND_suite)
+{
+	MU_RUN_TEST(testing_syntax_ANOTHER_REDIRECTS_FOUND_false);
+	MU_RUN_TEST(testing_syntax_ANOTHER_REDIRECTS_FOUND_true);
 }
