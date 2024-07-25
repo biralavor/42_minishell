@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 11:12:53 by umeneses          #+#    #+#             */
-/*   Updated: 2024/07/24 11:05:58 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/07/24 13:57:54 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -455,11 +455,6 @@ MU_TEST(testing_lexeme_open_parenthesis_odd_counter_last_node)
 	// ASSERT
 	mu_assert_int_eq(xpected_validation, actual_validation);
 }
-
-
-
-
-
 
 MU_TEST(testing_lexeme_single_quote_working_simple_space_first_node)
 {
