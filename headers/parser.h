@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/27 12:53:52 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/07/25 10:42:23 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/07/25 15:04:57 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ bool			check_words_after_archive(t_token_list *lst);
  * @brief: Checks if there is another redirect, after detects an archive
  * @param *lst -> The token list.
  */
-bool	check_another_redirect_after_archive(t_token_list *lst);
+bool			check_another_redirect_after_archive(t_token_list *lst);
 
 /**
  * @brief Organize redirects in a way they behave like in Bash.
