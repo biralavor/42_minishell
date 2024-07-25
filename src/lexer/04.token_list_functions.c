@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   04.create_token_list.c                             :+:      :+:    :+:   */
+/*   04.token_list_functions.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 10:52:55 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/07/16 14:47:39 by tmalheir         ###   ########.fr       */
+/*   Updated: 2024/07/25 14:31:19 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ void	assign_lst_idx(t_token_list *lst)
 
 	idx = 0;
 	temp = lst;
-	while (temp->next)
+	while (temp)
 	{
 		temp->idx = idx;
 		idx++;
