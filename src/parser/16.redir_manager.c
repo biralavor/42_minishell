@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/15 14:52:43 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/07/25 15:03:37 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/07/25 15:05:38 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ bool	check_another_redirect_after_archive(t_token_list *lst)
 				while (temp->next)
 				{
 					if ((temp->type == REDIR_IN || temp->type == REDIR_HDOC
-					|| temp->type == REDIR_OUT || temp->type == REDIR_OUTAPP))
+						|| temp->type == REDIR_OUT || temp->type == REDIR_OUTAPP))
 							return (true);
 					temp = temp->next;
 				}
