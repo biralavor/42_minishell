@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   11.syntax_analysis.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/03 10:40:35 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/07/16 12:06:13 by tmalheir         ###   ########.fr       */
+/*   Updated: 2024/07/25 12:59:13 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	syntax_analysis(t_token_list *lst)
 	temp = lst;
 	if (check_redirects(lst))
 		define_archive_token(lst);
-	if (check_words_after_archive(lst))
+	if (check_another_redirect_after_archive(lst))
 		organize_redirects(&lst);
 	ft_lst_printer(lst);
 }

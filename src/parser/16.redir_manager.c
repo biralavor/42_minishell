@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/15 14:52:43 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/07/25 14:25:52 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/07/25 14:26:22 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,30 @@ bool	check_words_after_archive(t_token_list *lst)
 	return (false);
 }
 
+bool	check_another_redirect_after_archive(t_token_list *lst)
+{
+	t_token_list	*temp;
 
+	temp = lst;
+	if (check_words_after_archive(lst))
+	{
+		while (temp->next && temp->type != ARCHIVE)
+		{
+			temp = temp->next;
+			if (temp->type == ARCHIVE)
+			{
+				while (temp->next)
+				{
+					if ((temp->type == REDIR_IN || temp->type == REDIR_HDOC
+					|| temp->type == REDIR_OUT || temp->type == REDIR_OUTAPP))
+						return (true);
+					temp = temp->next;
+				}
+			}
+		}
+	}
+	return (false);
+}
 
 void	organize_redirects(t_token_list **lst)
 {
