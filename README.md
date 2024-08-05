@@ -9,7 +9,7 @@
 
 - [x] Project Planning - Lexer :tada: [https://github.com/biralavor/42_minishell/releases/tag/v0.2]
 
-- [ ] Project Planning - Parser
+- [x] Project Planning - Parser + Syntaxe Grammar :tada: [https://github.com/biralavor/42_minishell/releases/tag/v0.3]
 
 - [ ] Project Planning - Exectution
 
@@ -17,12 +17,15 @@
 # Minishell
 > The terminal is a file, therefor it treats all as ```strings```
 
-![Screenshot from 2024-06-25 10-43-38](https://github.com/biralavor/42_minishell/assets/80487147/c33a8f94-2e34-4864-8f76-90fa89ad2ec6)
+![Screenshot from 2024-07-15 19-26-19](https://github.com/user-attachments/assets/2e1d496e-029d-4a42-a11e-bc3f00e6d3d8)
+
 
 
 ## Lexer
 - Token
-- xx
+![Screenshot from 2024-07-15 19-29-04](https://github.com/user-attachments/assets/52c15a56-6cdc-48d5-b7c0-91a1d2e81ba0)
+
+
 ## Parser
 - xx
 ## Execution

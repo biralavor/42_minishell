@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   02.check_userinput.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 09:20:45 by tmalheir          #+#    #+#             */
 /*   Updated: 2024/07/24 12:36:30 by tmalheir         ###   ########.fr       */
