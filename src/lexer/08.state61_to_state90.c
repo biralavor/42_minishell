@@ -6,7 +6,7 @@
 /*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/20 10:35:11 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/07/16 12:27:04 by tmalheir         ###   ########.fr       */
+/*   Updated: 2024/07/23 11:44:42 by tmalheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,7 @@ int	state_90(t_token_list **lst, char *str, int idx)
 		&& (str[idx]))
 		idx++;
 	end = (size_t)(idx - 1);
-	just_str = ft_substr((char const *)str, start, ((end - start) + 1));
+	just_str = ft_substr((const char *)str, start, ((end - start) + 1));
 	just_str_node->lexeme = just_str;
 	just_str_node->type = WORD;
 	just_str_node->next_char = str[end + 1];

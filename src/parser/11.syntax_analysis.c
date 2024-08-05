@@ -6,7 +6,7 @@
 /*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/03 10:40:35 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/07/16 12:06:13 by tmalheir         ###   ########.fr       */
+/*   Updated: 2024/07/18 09:18:44 by tmalheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,9 @@
 #include "parser.h"
 #include "error_manager.h"
 
+/**
+ * @brief: TODO: remove lst_printer function before submiting.
+*/
 void	syntax_analysis(t_token_list *lst)
 {
 	int				syntax_state;
