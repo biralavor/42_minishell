@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 15:02:59 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/08/06 09:22:54 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/08/06 11:33:57 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,22 +66,4 @@ void	free_token_tree(t_tree *token_tree)
 		free_token_list(&token_tree->command);
 	free(token_tree);
 	token_tree = NULL;
-}
-
-void	print_tree(t_tree *root)
-{
-	if (root != NULL)
-	{
-		ft_printf("%d\n", root->type);
-		if (root->command)
-		{
-			while (root->command)
-			{
-				ft_printf("%s\n", root->command->lexeme);
-				root->command = root->command->next;
-			}
-		}
-		print_tree(root->left);
-		print_tree(root->right);
-	}
 }

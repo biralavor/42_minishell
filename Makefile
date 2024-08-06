@@ -6,7 +6,7 @@
 #    By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/12 11:46:52 by umeneses          #+#    #+#              #
-#    Updated: 2024/07/24 16:27:21 by umeneses         ###   ########.fr        #
+#    Updated: 2024/08/06 11:34:38 by umeneses         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -72,6 +72,7 @@ SRC_FILES_ALL			= $(addprefix $(SRC_D), $(SRC_FILES))
 
 TDD_FILES				= ft_lst_printer.c
 TDD_FILES				+= get_token_string.c
+TDD_FILES				+= ft_tree_printer.c
 TDD_FILES_ALL			= $(addprefix $(TDD_UTILS_D), $(TDD_FILES))
 TDD_OBJS_FILES			= $(addprefix $(BUILD_D), $(TDD_FILES_ALL:%.c=%.o))
 
