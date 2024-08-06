@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 11:12:53 by umeneses          #+#    #+#             */
-/*   Updated: 2024/08/06 09:25:57 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/08/06 13:46:18 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@
 #include "../../src/executor/19.building_tree.c"
 #include "../../src/executor/20.building_tree_utils.c"
 #include "../_tdd_utils/ft_lst_printer.c"
+#include "../_tdd_utils/ft_tree_printer.c"
 
 #include "minunit_utils.c"
 #include "test01_initial_errors.c"
