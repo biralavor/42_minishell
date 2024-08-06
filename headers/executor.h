@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/05 13:56:37 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/08/06 12:04:49 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/08/06 14:00:32 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,6 @@ bool			is_text(t_token_list *split_token);
 
 void			free_token_tree(t_tree *token_tree);
 
-void			ft_tree_printer(t_tree *root, int header);
+void			ft_tree_printer(t_tree *root);
 
 #endif
