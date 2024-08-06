@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   executor.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/05 13:56:37 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/07/24 13:38:57 by tmalheir         ###   ########.fr       */
+/*   Updated: 2024/08/06 09:22:00 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,10 +46,10 @@ t_token_list	*fetch_token(t_token_list *lst);
 
 t_tree			*text(t_token_list *lst, t_token_list *split, t_tree *tree);
 
-bool	is_text(t_token_list *split_token);
+bool			is_text(t_token_list *split_token);
 
-void	free_token_tree(t_tree *token_tree);
+void			free_token_tree(t_tree *token_tree);
 
-void	print_tree(t_tree *root);
+void			print_tree(t_tree *root);
 
 #endif

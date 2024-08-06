@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   19.building_tree.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/05 13:55:37 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/07/24 14:21:42 by tmalheir         ###   ########.fr       */
+/*   Updated: 2024/08/06 09:23:02 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,4 +96,3 @@ t_token_list	*fetch_token(t_token_list *lst)
 		return (temp);
 	return (NULL);
 }
-

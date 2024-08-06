@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   20.building_tree_utils.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 15:02:59 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/07/24 14:07:34 by tmalheir         ###   ########.fr       */
+/*   Updated: 2024/08/06 09:22:54 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 
 bool	is_text(t_token_list *split_token)
 {
-	if (split_token->type == SUBSHELL ||split_token->type == DOUBLE_QUOTES
+	if (split_token->type == SUBSHELL || split_token->type == DOUBLE_QUOTES
 		|| split_token->type == SINGLE_QUOTES)
 		return (true);
 	return (false);
