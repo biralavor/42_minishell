@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/18 14:31:30 by umeneses          #+#    #+#             */
-/*   Updated: 2024/08/03 20:11:14 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/08/06 10:05:12 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -466,20 +466,20 @@ MU_TEST(testing_syntax_REORGANIZE_REDIRECTS_end_with_ARCHIVE_WORD)
 	bool			xpect_another_redirect_detection;
 	bool			actual_archive_word_detection;
 	bool			actual_another_redirect_detection;
-	// char			*xpect_node_01;
-	// char			*xpect_node_02;
-	// char			*xpect_node_03;
-	// char			*xpect_node_04;
-	// char			*xpect_node_05;
-	// char			*xpect_node_06;
-	// char			*xpect_node_07;
-	// char			*actual_node_01;
-	// char			*actual_node_02;
-	// char			*actual_node_03;
-	// char			*actual_node_04;
-	// char			*actual_node_05;
-	// char			*actual_node_06;
-	// char			*actual_node_07;
+	char			*xpect_node_01;
+	char			*xpect_node_02;
+	char			*xpect_node_03;
+	char			*xpect_node_04;
+	char			*xpect_node_05;
+	char			*xpect_node_06;
+	char			*xpect_node_07;
+	char			*actual_node_01;
+	char			*actual_node_02;
+	char			*actual_node_03;
+	char			*actual_node_04;
+	char			*actual_node_05;
+	char			*actual_node_06;
+	char			*actual_node_07;
 	int				fd;
 	t_token_list	*lst;
 
@@ -489,13 +489,13 @@ MU_TEST(testing_syntax_REORGANIZE_REDIRECTS_end_with_ARCHIVE_WORD)
 	userinput = "echo 1-oi > 2-file.txt > 3-file.txt 4-arg";
 	xpect_archive_word_detection = true; // word after archive detection
 	xpect_another_redirect_detection = true; // is there any redirect, after archive?
-	// xpect_node_01 = "echo";
-	// xpect_node_02 = "1-oi";
-	// xpect_node_03 = "4-arg";
-	// xpect_node_04 = NULL;
-	// xpect_node_05 = NULL;
-	// xpect_node_06 = NULL;
-	// xpect_node_07 = NULL;
+	xpect_node_01 = "echo";
+	xpect_node_02 = "1-oi";
+	xpect_node_03 = "4-arg";
+	xpect_node_04 = NULL;
+	xpect_node_05 = "2-file.txt";
+	xpect_node_06 = NULL;
+	xpect_node_07 = "3-file.txt";
 	xpect_lst_size = 7;
 	idx = 0;
 	lst = NULL;
@@ -506,31 +506,31 @@ MU_TEST(testing_syntax_REORGANIZE_REDIRECTS_end_with_ARCHIVE_WORD)
 	actual_another_redirect_detection = check_another_redirect_after_archive(lst);
 	if (actual_another_redirect_detection == true)
 		organize_redirects(&lst);
-	// actual_node_01 = lst->lexeme;
-	// lst = lst->next;
-	// actual_node_02 = lst->lexeme;
-	// lst = lst->next;
-	// actual_node_03 = lst->lexeme;
-	// lst = lst->next;
-	// actual_node_04 = lst->lexeme;
-	// lst = lst->next;
-	// actual_node_05 = lst->lexeme;
-	// lst = lst->next;
-	// actual_node_06 = lst->lexeme;
-	// lst = lst->next;
-	// actual_node_07 = lst->lexeme;
+	actual_node_01 = lst->lexeme;
+	lst = lst->next;
+	actual_node_02 = lst->lexeme;
+	lst = lst->next;
+	actual_node_03 = lst->lexeme;
+	lst = lst->next;
+	actual_node_04 = lst->lexeme;
+	lst = lst->next;
+	actual_node_05 = lst->lexeme;
+	lst = lst->next;
+	actual_node_06 = lst->lexeme;
+	lst = lst->next;
+	actual_node_07 = lst->lexeme;
 	close_redirect_stderr_to_dev_null(fd);
 	// ASSERT
 	mu_assert_int_eq(xpect_lst_size, actual_lst_size);
 	mu_assert_int_eq(xpect_archive_word_detection, actual_archive_word_detection);
 	mu_assert_int_eq(xpect_another_redirect_detection, actual_another_redirect_detection);
-	// mu_assert_string_eq(xpect_node_01, actual_node_01);
-	// mu_assert_string_eq(xpect_node_02, actual_node_02);
-	// mu_assert_string_eq(xpect_node_03, actual_node_03);
-	// mu_assert_string_eq(xpect_node_04, actual_node_04);
-	// mu_assert_string_eq(xpect_node_05, actual_node_05);
-	// mu_assert_string_eq(xpect_node_06, actual_node_06);
-	// mu_assert_string_eq(xpect_node_07, actual_node_07);
+	mu_assert_string_eq(xpect_node_01, actual_node_01);
+	mu_assert_string_eq(xpect_node_02, actual_node_02);
+	mu_assert_string_eq(xpect_node_03, actual_node_03);
+	mu_assert_string_eq(xpect_node_04, actual_node_04);
+	mu_assert_string_eq(xpect_node_05, actual_node_05);
+	mu_assert_string_eq(xpect_node_06, actual_node_06);
+	mu_assert_string_eq(xpect_node_07, actual_node_07);
 	free_token_list(&lst);
 }
 
