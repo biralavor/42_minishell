@@ -15,6 +15,9 @@
 #include "parser.h"
 #include "error_manager.h"
 
+/**
+ * @brief: TODO: remove lst_printer function before submiting.
+*/
 void	syntax_analysis(t_token_list *lst)
 {
 	int				syntax_state;

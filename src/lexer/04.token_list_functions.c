@@ -95,4 +95,5 @@ void	free_token_list(t_token_list **lst)
 			free(temp->lexeme);
 		free(temp);
 	}
+	temp = NULL;
 }

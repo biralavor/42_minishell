@@ -7,11 +7,15 @@
 
 - [x] Test development with multiple files call, avoiding a monolith file :tada: [https://github.com/biralavor/42_minishell/pull/31]
 
-- [x] Project Planning - Lexer :tada: [https://github.com/biralavor/42_minishell/releases/tag/v0.2]
+- [x] Lexer :tada: [https://github.com/biralavor/42_minishell/releases/tag/v0.2]
 
 - [x] Project Planning - Parser + Syntaxe Grammar :tada: [https://github.com/biralavor/42_minishell/releases/tag/v0.3]
 
-- [ ] Project Planning - Exectution
+- [ ] Next Steps on Project Management - Expansion Variables
+- [ ] Next Steps on Project Management - Environment
+- [ ] Next Steps on Project Management - Built-ins
+- [ ] Next Steps on Project Management - Signals Control
+- [ ] Next Steps on Project Management - Execution
 
 
 # Minishell
@@ -22,12 +26,33 @@
 
 
 ## Lexer
-- Token
-![Screenshot from 2024-07-15 19-29-04](https://github.com/user-attachments/assets/52c15a56-6cdc-48d5-b7c0-91a1d2e81ba0)
+- Identify user input as Tokens:
+
+![Screenshot from 2024-08-05 16-42-40](https://github.com/user-attachments/assets/46778f94-5c54-4bfd-bdab-08b3c74dc5f9)
 
 
 ## Parser
-- xx
+- The hability to label specific strings as tokens, like below:
+  
+Check this test: `echo oi > tudo > bem com voce > ?`
+![Screenshot from 2024-07-15 19-29-04](https://github.com/user-attachments/assets/52c15a56-6cdc-48d5-b7c0-91a1d2e81ba0)
+
+## Syntax Grammar
+- The goal here is to create syntax grammar validations to avoid have a future binary tree with execution erros
+- We created similar automata states, just to have a better workflow
+  
+![Screenshot from 2024-08-05 16-58-40](https://github.com/user-attachments/assets/5b259735-d293-4537-916b-49218f20f573)
+
+
+## Redirects Manager
+- The goal here is to:
+  - Detects if there is more then one redirect type
+  - If so, move tokens to a new order due an easier futher execution
+    
+Check this test: `echo oi > tudo > bem com voce > ?`
+![Screenshot from 2024-08-05 16-56-17](https://github.com/user-attachments/assets/e88007e9-aedf-4ff1-954b-5c1698bd1c2b)
+
+
 ## Execution
 - xx
 
