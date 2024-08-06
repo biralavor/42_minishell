@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/12 15:54:01 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/07/17 19:11:26 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/08/06 09:59:00 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,10 +80,14 @@ void	move(t_token_list *lst, t_token_list *src, t_token_list *dst)
 	if (lst)
 	{
 		if (src->next)
+		{
+			if (src->next->prev)
+				src->next->prev = src->prev;
+		}
+		if (src->next)
 			src->prev->next = src->next;
 		else
 			src->prev->next = NULL;
-		src->next->prev = src->prev;
 		if (dst->prev)
 			dst->prev->next = src;
 		else
