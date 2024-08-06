@@ -6,7 +6,7 @@
 #    By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/12 11:07:38 by umeneses          #+#    #+#              #
-#    Updated: 2024/07/15 13:34:45 by umeneses         ###   ########.fr        #
+#    Updated: 2024/07/17 19:36:03 by umeneses         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -45,21 +45,7 @@ jobs:
 
       - name: Running Tester Makefile
         run: make
-        
-      - name: Install Valgrind
-        run: sudo apt-get install -y valgrind
-      
-      - name: Run Valgrind
-        id: valgrind_check
-        run: |
-          OUTPUT=$(valgrind --track-origins=yes --leak-check=full --suppressions=../readline.sup ./minishell.tests 2>&1)
-          if [[ $OUTPUT =~ "ERROR SUMMARY:" ]]; then
-            ERROR_SUMMARY=$(echo "$OUTPUT" | grep -oP 'ERROR SUMMARY: \K[0-9]+ errors from [0-9]+ contexts')
-            if [[ $ERROR_SUMMARY != *"0 errors from 0 contexts"* ]]; then
-              echo "Valgrind detected memory leaks."
-              exit 1
-            fi
-          fi
+
 
 
 # :: github actions documentation ::

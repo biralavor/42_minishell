@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   18.error_manager_parser.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 11:53:52 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/07/16 15:54:38 by tmalheir         ###   ########.fr       */
+/*   Updated: 2024/07/18 12:38:38 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,9 @@ void	unexpected_token_error(void)
 
 void	syntax_error(t_token_list *lst)
 {
-	ft_printf("Syntax error\n");
+	ft_putendl_fd("syntax error.\n", STDERR_FILENO);
+	ft_putendl_fd("'\\', '&' or ';' detected\n", STDERR_FILENO);
 	free_token_list(&lst);
-	exit (EXIT_FAILURE);
 }
 
 void	command_not_found(t_token_list *lst)

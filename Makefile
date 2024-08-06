@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+         #
+#    By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/12 11:46:52 by umeneses          #+#    #+#              #
-#    Updated: 2024/07/22 15:13:45 by tmalheir         ###   ########.fr        #
+#    Updated: 2024/07/24 16:27:21 by umeneses         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -225,4 +225,10 @@ fclean:				clean
 
 re:					fclean all
 
-.PHONY:				all clean fclean re bonus
+gdb:				re
+					gdb --tui -ex 'b syntax_analysis' -ex 'run' ./$(NAME)
+
+val:				re
+					valgrind --leak-check=full --track-origins=yes ./$(NAME)
+
+.PHONY:				all clean fclean re bonus val gdb

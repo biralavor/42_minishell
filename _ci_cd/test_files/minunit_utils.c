@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 15:19:35 by umeneses          #+#    #+#             */
-/*   Updated: 2024/07/15 10:13:11 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/07/17 19:41:36 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,8 +77,10 @@ char	*get_token_string(enum e_token token)
 		case REDIR_OUTAPP: return "REDIR_OUT_APPEND";
 		case OR: return "OR";
 		case AND: return "AND";
-		case OPEN_PARENTHESIS: return "OPEN_PARENTHESIS";
-		case CLOSE_PARENTHESIS: return "CLOSE_PARENTHESIS";
+		case SUBSHELL: return "SUBSHELL";
+		case ARCHIVE: return "ARCHIVE";
+		case DOUBLE_QUOTES: return "DOUBLE_QUOTES";
+		case SINGLE_QUOTES: return "SINGLE_QUOTES";
 		default: return "UNKNOWN";
 	}
 }

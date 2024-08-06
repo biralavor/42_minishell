@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 11:12:53 by umeneses          #+#    #+#             */
-/*   Updated: 2024/07/08 20:23:23 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/07/24 13:57:54 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -286,6 +286,636 @@ MU_TEST(testing_lexeme_MIXED_quotes_double_is_even_single_is_even_counter_error)
 	mu_assert_int_eq(xpect_lexeme_validation, actual_lexeme_validation);
 }
 
+MU_TEST(testing_lexeme_open_parenthesis_at_begin)
+{
+	// ARRANGE
+	char			*userinput;
+	bool			xpected_validation;
+	bool			actual_validation;
+
+	//ACT
+	userinput = "     (     Mussum Ipsum";
+
+	xpected_validation = false;
+	actual_validation = check_initial_errors(userinput);
+	
+	// ASSERT
+	mu_assert_int_eq(xpected_validation, actual_validation);
+}
+
+MU_TEST(testing_lexeme_open_parenthesis_at_middle)
+{
+	// ARRANGE
+	char			*userinput;
+	bool			xpected_validation;
+	bool			actual_validation;
+
+	//ACT
+	userinput = "Mussum      (Ipsum";
+
+	xpected_validation = false;
+	actual_validation = check_initial_errors(userinput);
+	
+	// ASSERT
+	mu_assert_int_eq(xpected_validation, actual_validation);
+}
+
+MU_TEST(testing_lexeme_open_parenthesis_at_end)
+{
+	// ARRANGE
+	char			*userinput;
+	bool			xpected_validation;
+	bool			actual_validation;
+
+	//ACT
+	userinput = "Mussum Ipsum(         ";
+
+	xpected_validation = false;
+	actual_validation = check_initial_errors(userinput);
+	
+	// ASSERT
+	mu_assert_int_eq(xpected_validation, actual_validation);
+}
+
+MU_TEST(testing_lexeme_open_parenthesis_at_end_space)
+{
+	// ARRANGE
+	char			*userinput;
+	bool			xpected_validation;
+	bool			actual_validation;
+
+	//ACT
+	userinput = "Mussum Ipsum					(";
+
+	xpected_validation = false;
+	actual_validation = check_initial_errors(userinput);
+	
+	// ASSERT
+	mu_assert_int_eq(xpected_validation, actual_validation);
+}
+
+MU_TEST(testing_lexeme_close_parenthesis_at_begin)
+{
+	// ARRANGE
+	char			*userinput;
+	bool			xpected_validation;
+	bool			actual_validation;
+
+	//ACT
+	userinput = "     )		Mussum Ipsum";
+
+	xpected_validation = false;
+	actual_validation = check_initial_errors(userinput);
+	
+	// ASSERT
+	mu_assert_int_eq(xpected_validation, actual_validation);
+}
+
+MU_TEST(testing_lexeme_close_parenthesis_at_middle)
+{
+	// ARRANGE
+	char			*userinput;
+	bool			xpected_validation;
+	bool			actual_validation;
+
+	//ACT
+	userinput = "Mussum      )Ipsum";
+
+	xpected_validation = false;
+	actual_validation = check_initial_errors(userinput);
+	
+	// ASSERT
+	mu_assert_int_eq(xpected_validation, actual_validation);
+}
+
+MU_TEST(testing_lexeme_close_parenthesis_at_end)
+{
+	// ARRANGE
+	char			*userinput;
+	bool			xpected_validation;
+	bool			actual_validation;
+
+	//ACT
+	userinput = "Mussum Ipsum)         ";
+
+	xpected_validation = false;
+	actual_validation = check_initial_errors(userinput);
+	
+	// ASSERT
+	mu_assert_int_eq(xpected_validation, actual_validation);
+}
+
+MU_TEST(testing_lexeme_close_parenthesis_at_end_space)
+{
+	// ARRANGE
+	char			*userinput;
+	bool			xpected_validation;
+	bool			actual_validation;
+
+	//ACT
+	userinput = "Mussum Ipsum				)";
+
+	xpected_validation = false;
+	actual_validation = check_initial_errors(userinput);
+	
+	// ASSERT
+	mu_assert_int_eq(xpected_validation, actual_validation);
+}
+
+MU_TEST(testing_lexeme_open_parenthesis_odd_counter_first_node)
+{
+	// ARRANGE
+	char			*userinput;
+	bool			xpected_validation;
+	bool			actual_validation;
+
+	//ACT
+	userinput = "( Mussum|(Ipsum)";
+
+	xpected_validation = false;
+	actual_validation = check_initial_errors(userinput);
+	
+	// ASSERT
+	mu_assert_int_eq(xpected_validation, actual_validation);
+}
+
+MU_TEST(testing_lexeme_open_parenthesis_odd_counter_last_node)
+{
+	// ARRANGE
+	char			*userinput;
+	bool			xpected_validation;
+	bool			actual_validation;
+
+	//ACT
+	userinput = "( Mussum)|Ipsum)";
+
+	xpected_validation = false;
+	actual_validation = check_initial_errors(userinput);
+	
+	// ASSERT
+	mu_assert_int_eq(xpected_validation, actual_validation);
+}
+
+MU_TEST(testing_lexeme_single_quote_working_simple_space_first_node)
+{
+	// ARRANGE
+	char			*userinput;
+	bool			xpected_validation;
+	bool			actual_validation;
+
+	//ACT
+	userinput = "\' Mussum|\' Ipsum";
+
+	xpected_validation = true;
+	actual_validation = check_initial_errors(userinput);
+	
+	// ASSERT
+	mu_assert_int_eq(xpected_validation, actual_validation);
+}
+
+MU_TEST(testing_lexeme_single_quote_working_space_after_first_node)
+{
+	// ARRANGE
+	char			*userinput;
+	bool			xpected_validation;
+	bool			actual_validation;
+
+	//ACT
+	userinput = "\'   			   			Mussum|\'     Ipsum";
+	
+	xpected_validation = true;
+	actual_validation = check_initial_errors(userinput);
+	
+	// ASSERT
+	mu_assert_int_eq(xpected_validation, actual_validation);
+}
+
+MU_TEST(testing_lexeme_single_quote_working_space_before_first_node)
+{
+	// ARRANGE
+	char			*userinput;
+	bool			xpected_validation;
+	bool			actual_validation;
+
+	//ACT
+	userinput = "		    					\' Mussum|		\'Ipsum";
+
+	xpected_validation = true;
+	actual_validation = check_initial_errors(userinput);
+	
+	// ASSERT
+	mu_assert_int_eq(xpected_validation, actual_validation);
+}
+
+MU_TEST(testing_lexeme_single_quote_broken_simple_space_first_node)
+{
+	// ARRANGE
+	char			*userinput;
+	bool			xpected_validation;
+	bool			actual_validation;
+
+	//ACT
+	userinput = "\' Mussum| Ipsum";
+
+	xpected_validation = false;
+	actual_validation = check_initial_errors(userinput);
+	
+	// ASSERT
+	mu_assert_int_eq(xpected_validation, actual_validation);
+}
+
+MU_TEST(testing_lexeme_single_quote_broken_space_after_first_node)
+{
+	// ARRANGE
+	char			*userinput;
+	bool			xpected_validation;
+	bool			actual_validation;
+
+	//ACT
+	userinput = "\'   			   			Mussum|     Ipsum";
+
+	xpected_validation = false;
+	actual_validation = check_initial_errors(userinput);
+	
+	// ASSERT
+	mu_assert_int_eq(xpected_validation, actual_validation);
+}
+
+MU_TEST(testing_lexeme_single_quote_broken_space_before_first_node)
+{
+	// ARRANGE
+	char			*userinput;
+	bool			xpected_validation;
+	bool			actual_validation;
+
+	//ACT
+	userinput = "		    					\' Mussum|		Ipsum";
+
+	xpected_validation = false;
+	actual_validation = check_initial_errors(userinput);
+	
+	// ASSERT
+	mu_assert_int_eq(xpected_validation, actual_validation);
+}
+
+MU_TEST(testing_lexeme_single_quote_working_simple_space_last_node)
+{
+	// ARRANGE
+	char			*userinput;
+	bool			xpected_validation;
+	bool			actual_validation;
+
+	//ACT
+	userinput = "\' Mussum| Ipsum\'";
+
+	xpected_validation = true;
+	actual_validation = check_initial_errors(userinput);
+	
+	// ASSERT
+	mu_assert_int_eq(xpected_validation, actual_validation);
+}
+
+MU_TEST(testing_lexeme_single_quote_working_space_after_last_node)
+{
+	// ARRANGE
+	char			*userinput;
+	bool			xpected_validation;
+	bool			actual_validation;
+
+	//ACT
+	userinput = "\'   			   			Mussum|     Ipsum\'";
+
+	xpected_validation = true;
+	actual_validation = check_initial_errors(userinput);
+	
+	// ASSERT
+	mu_assert_int_eq(xpected_validation, actual_validation);
+}
+
+MU_TEST(testing_lexeme_single_quote_working_space_before_last_node)
+{
+	// ARRANGE
+	char			*userinput;
+	bool			xpected_validation;
+	bool			actual_validation;
+
+	//ACT
+	userinput = "		    					\' Mussum|		Ipsum\'";
+
+	xpected_validation = true;
+	actual_validation = check_initial_errors(userinput);
+	
+	// ASSERT
+	mu_assert_int_eq(xpected_validation, actual_validation);
+}
+
+MU_TEST(testing_lexeme_single_quote_broken_simple_space_last_node)
+{
+	// ARRANGE
+	char			*userinput;
+	bool			xpected_validation;
+	bool			actual_validation;
+
+	//ACT
+	userinput = " Mussum| Ipsum \' ";
+
+	xpected_validation = false;
+	actual_validation = check_initial_errors(userinput);
+	
+	// ASSERT
+	mu_assert_int_eq(xpected_validation, actual_validation);
+}
+
+MU_TEST(testing_lexeme_single_quote_broken_space_after_last_node)
+{
+	// ARRANGE
+	char			*userinput;
+	bool			xpected_validation;
+	bool			actual_validation;
+
+	//ACT
+	userinput = "Mussum|     Ipsum\'   			   			";
+
+	xpected_validation = false;
+	actual_validation = check_initial_errors(userinput);
+	
+	// ASSERT
+	mu_assert_int_eq(xpected_validation, actual_validation);
+}
+
+MU_TEST(testing_lexeme_single_quote_broken_space_before_last_node)
+{
+	// ARRANGE
+	char			*userinput;
+	bool			xpected_validation;
+	bool			actual_validation;
+
+	//ACT
+	userinput = " Mussum|		Ipsum		    					\'";
+
+	xpected_validation = false;
+	actual_validation = check_initial_errors(userinput);
+	
+	// ASSERT
+	mu_assert_int_eq(xpected_validation, actual_validation);
+}
+
+MU_TEST(testing_lexeme_double_quote_working_simple_space_first_node)
+{
+	// ARRANGE
+	char			*userinput;
+	bool			xpected_validation;
+	bool			actual_validation;
+
+	//ACT
+	userinput = "\" Mussum|\" Ipsum";
+
+	xpected_validation = true;
+	actual_validation = check_initial_errors(userinput);
+	
+	// ASSERT
+	mu_assert_int_eq(xpected_validation, actual_validation);
+}
+
+MU_TEST(testing_lexeme_double_quote_working_space_after_first_node)
+{
+	// ARRANGE
+	char			*userinput;
+	bool			xpected_validation;
+	bool			actual_validation;
+
+	//ACT
+	userinput = "\"   			   			Mussum|\"     Ipsum";
+
+	xpected_validation = true;
+	actual_validation = check_initial_errors(userinput);
+	
+	// ASSERT
+	mu_assert_int_eq(xpected_validation, actual_validation);
+}
+
+MU_TEST(testing_lexeme_double_quote_working_space_before_first_node)
+{
+	// ARRANGE
+	char			*userinput;
+	bool			xpected_validation;
+	bool			actual_validation;
+
+	//ACT
+	userinput = "		    					\" Mussum|		\"Ipsum";
+
+	xpected_validation = true;
+	actual_validation = check_initial_errors(userinput);
+	
+	// ASSERT
+	mu_assert_int_eq(xpected_validation, actual_validation);
+}
+
+MU_TEST(testing_lexeme_double_quote_broken_simple_space_first_node)
+{
+	// ARRANGE
+	char			*userinput;
+	bool			xpected_validation;
+	bool			actual_validation;
+
+	//ACT
+	userinput = "\" Mussum| Ipsum";
+
+	xpected_validation = false;
+	actual_validation = check_initial_errors(userinput);
+	
+	// ASSERT
+	mu_assert_int_eq(xpected_validation, actual_validation);
+}
+
+MU_TEST(testing_lexeme_double_quote_broken_space_after_first_node)
+{
+	// ARRANGE
+	char			*userinput;
+	bool			xpected_validation;
+	bool			actual_validation;
+
+	//ACT
+	userinput = "\"   			   			Mussum|     Ipsum";
+
+	xpected_validation = false;
+	actual_validation = check_initial_errors(userinput);
+	
+	// ASSERT
+	mu_assert_int_eq(xpected_validation, actual_validation);
+}
+
+MU_TEST(testing_lexeme_double_quote_broken_space_before_first_node)
+{
+	// ARRANGE
+	char			*userinput;
+	bool			xpected_validation;
+	bool			actual_validation;
+
+	//ACT
+	userinput = "		    					\" Mussum|		Ipsum";
+
+	xpected_validation = false;
+	actual_validation = check_initial_errors(userinput);
+	
+	// ASSERT
+	mu_assert_int_eq(xpected_validation, actual_validation);
+}
+
+
+MU_TEST(testing_lexeme_double_quote_working_simple_space_last_node)
+{
+	// ARRANGE
+	char			*userinput;
+	bool			xpected_validation;
+	bool			actual_validation;
+
+	//ACT
+	userinput = "\" Mussum| Ipsum \"";
+
+	xpected_validation = true;
+	actual_validation = check_initial_errors(userinput);
+	
+	// ASSERT
+	mu_assert_int_eq(xpected_validation, actual_validation);
+}
+
+MU_TEST(testing_lexeme_double_quote_working_space_after_last_node)
+{
+	// ARRANGE
+	char			*userinput;
+	bool			xpected_validation;
+	bool			actual_validation;
+
+	//ACT
+	userinput = "Mussum|\"     Ipsum\"   			   			";
+
+	xpected_validation = true;
+	actual_validation = check_initial_errors(userinput);
+	
+	// ASSERT
+	mu_assert_int_eq(xpected_validation, actual_validation);
+}
+
+MU_TEST(testing_lexeme_double_quote_working_space_before_last_node)
+{
+	// ARRANGE
+	char			*userinput;
+	bool			xpected_validation;
+	bool			actual_validation;
+
+	//ACT
+	userinput = " Mussum|		\"Ipsum		    					\"";
+
+	xpected_validation = true;
+	actual_validation = check_initial_errors(userinput);
+	
+	// ASSERT
+	mu_assert_int_eq(xpected_validation, actual_validation);
+}
+
+MU_TEST(testing_lexeme_double_quote_broken_simple_space_last_node)
+{
+	// ARRANGE
+	char			*userinput;
+	bool			xpected_validation;
+	bool			actual_validation;
+
+	//ACT
+	userinput = " Mussum| Ipsum \"";
+
+	xpected_validation = false;
+	actual_validation = check_initial_errors(userinput);
+	
+	// ASSERT
+	mu_assert_int_eq(xpected_validation, actual_validation);
+}
+
+MU_TEST(testing_lexeme_double_quote_broken_space_after_last_node)
+{
+	// ARRANGE
+	char			*userinput;
+	bool			xpected_validation;
+	bool			actual_validation;
+
+	//ACT
+	userinput = "Mussum|     Ipsum\"   			   			";
+
+	xpected_validation = false;
+	actual_validation = check_initial_errors(userinput);
+	
+	// ASSERT
+	mu_assert_int_eq(xpected_validation, actual_validation);
+}
+
+MU_TEST(testing_lexeme_double_quote_broken_space_before_last_node)
+{
+	// ARRANGE
+	char			*userinput;
+	bool			xpected_validation;
+	bool			actual_validation;
+
+	//ACT
+	userinput = " Mussum|		Ipsum		    					\"";
+
+	xpected_validation = false;
+	actual_validation = check_initial_errors(userinput);
+	
+	// ASSERT
+	mu_assert_int_eq(xpected_validation, actual_validation);
+}
+
+MU_TEST(testing_lexeme_crazy_parentehsis_counter_broken_first_node)
+{
+	// ARRANGE
+	char			*userinput;
+	bool			xpected_validation;
+	bool			actual_validation;
+
+	//ACT
+	userinput = "(-((((((((((((Mussum)))))))))))) Ipsum";
+
+	xpected_validation = false;
+	actual_validation = check_initial_errors(userinput);
+	
+	// ASSERT
+	mu_assert_int_eq(xpected_validation, actual_validation);
+}
+
+MU_TEST(testing_lexeme_crazy_parentehsis_counter_broken_middle_node)
+{
+	// ARRANGE
+	char			*userinput;
+	bool			xpected_validation;
+	bool			actual_validation;
+
+	//ACT
+	userinput = "(Mussum) ((((((((melhor lorem Ipsum))))))))-) do Mundis";
+
+	xpected_validation = false;
+	actual_validation = check_initial_errors(userinput);
+	
+	// ASSERT
+	mu_assert_int_eq(xpected_validation, actual_validation);
+}
+
+MU_TEST(testing_lexeme_crazy_parentehsis_counter_broken_last_node)
+{
+	// ARRANGE
+	char			*userinput;
+	bool			xpected_validation;
+	bool			actual_validation;
+
+	//ACT
+	userinput = "Mussum melhor lorem Ipsum (-((((((((do Mundis))))))))";
+
+	xpected_validation = false;
+	actual_validation = check_initial_errors(userinput);
+	
+	// ASSERT
+	mu_assert_int_eq(xpected_validation, actual_validation);
+}
+
 MU_TEST_SUITE(test01___initial_errors_suite)
 {
 	MU_RUN_TEST(argv_simulation_test);
@@ -309,4 +939,69 @@ MU_TEST_SUITE(test01___lexeme_MIXED_quotes_errors_suite)
 	MU_RUN_TEST(testing_lexeme_MIXED_quotes_double_is_even_single_is_odd_counter_error);
 	MU_RUN_TEST(testing_lexeme_MIXED_quotes_double_is_odd_single_is_even_counter_error);
 	MU_RUN_TEST(testing_lexeme_MIXED_quotes_double_is_even_single_is_even_counter_error);
+}
+
+MU_TEST_SUITE(test01___lexeme_parenthesis_validation_suite)
+{
+	MU_RUN_TEST(testing_lexeme_open_parenthesis_at_begin);
+	MU_RUN_TEST(testing_lexeme_open_parenthesis_at_middle);
+	MU_RUN_TEST(testing_lexeme_open_parenthesis_at_end);
+	MU_RUN_TEST(testing_lexeme_open_parenthesis_at_end_space);
+	MU_RUN_TEST(testing_lexeme_close_parenthesis_at_begin);
+	MU_RUN_TEST(testing_lexeme_close_parenthesis_at_middle);
+	MU_RUN_TEST(testing_lexeme_close_parenthesis_at_end);
+	MU_RUN_TEST(testing_lexeme_close_parenthesis_at_end_space);
+}
+
+MU_TEST_SUITE(test01___lexeme_parenthesis_odd_counter_suite)
+{
+	MU_RUN_TEST(testing_lexeme_open_parenthesis_odd_counter_first_node);
+	MU_RUN_TEST(testing_lexeme_open_parenthesis_odd_counter_last_node);
+}
+
+MU_TEST_SUITE(test01___lexeme_single_quote_errors_first_node_suite)
+{
+	MU_RUN_TEST(testing_lexeme_single_quote_working_simple_space_first_node);
+	MU_RUN_TEST(testing_lexeme_single_quote_working_space_after_first_node);
+	MU_RUN_TEST(testing_lexeme_single_quote_working_space_before_first_node);
+	MU_RUN_TEST(testing_lexeme_single_quote_broken_simple_space_first_node);
+	MU_RUN_TEST(testing_lexeme_single_quote_broken_space_after_first_node);
+	MU_RUN_TEST(testing_lexeme_single_quote_broken_space_before_first_node);
+}
+
+MU_TEST_SUITE(test01___lexeme_single_quote_errors_last_node_suite)
+{
+	MU_RUN_TEST(testing_lexeme_single_quote_working_simple_space_last_node);
+	MU_RUN_TEST(testing_lexeme_single_quote_working_space_after_last_node);
+	MU_RUN_TEST(testing_lexeme_single_quote_working_space_before_last_node);
+	MU_RUN_TEST(testing_lexeme_single_quote_broken_simple_space_last_node);
+	MU_RUN_TEST(testing_lexeme_single_quote_broken_space_after_last_node);
+	MU_RUN_TEST(testing_lexeme_single_quote_broken_space_before_last_node);
+}
+
+MU_TEST_SUITE(test01___lexeme_double_quote_errors_first_node_suite)
+{
+	MU_RUN_TEST(testing_lexeme_double_quote_working_simple_space_first_node);
+	MU_RUN_TEST(testing_lexeme_double_quote_working_space_after_first_node);
+	MU_RUN_TEST(testing_lexeme_double_quote_working_space_before_first_node);
+	MU_RUN_TEST(testing_lexeme_double_quote_broken_simple_space_first_node);
+	MU_RUN_TEST(testing_lexeme_double_quote_broken_space_after_first_node);
+	MU_RUN_TEST(testing_lexeme_double_quote_broken_space_before_first_node);
+}
+
+MU_TEST_SUITE(test01___lexeme_double_quote_errors_last_node_suite)
+{
+	MU_RUN_TEST(testing_lexeme_double_quote_working_simple_space_last_node);
+	MU_RUN_TEST(testing_lexeme_double_quote_working_space_after_last_node);
+	MU_RUN_TEST(testing_lexeme_double_quote_working_space_before_last_node);
+	MU_RUN_TEST(testing_lexeme_double_quote_broken_simple_space_last_node);
+	MU_RUN_TEST(testing_lexeme_double_quote_broken_space_after_last_node);
+	MU_RUN_TEST(testing_lexeme_double_quote_broken_space_before_last_node);
+}
+
+MU_TEST_SUITE(testing_lexeme_crazy_parentehsis_counter)
+{
+	MU_RUN_TEST(testing_lexeme_crazy_parentehsis_counter_broken_first_node);
+	MU_RUN_TEST(testing_lexeme_crazy_parentehsis_counter_broken_middle_node);
+	MU_RUN_TEST(testing_lexeme_crazy_parentehsis_counter_broken_last_node);
 }

@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 11:12:53 by umeneses          #+#    #+#             */
-/*   Updated: 2024/07/15 10:16:04 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/08/03 19:17:55 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,9 @@
 
 #include "../../src/02.check_userinput.c"
 #include "../../src/lexer/03.check_initial_errors.c"
-#include "../../src/lexer/04.create_token_list.c"
+#include "../../src/lexer/04.token_list_functions.c"
 #include "../../src/lexer/05.get_state.c"
-#include "../../src/lexer/06.state10_to_state30.c"
+#include "../../src/lexer/06.state20_to_state30.c"
 #include "../../src/lexer/07.state40_to_state60.c"
 #include "../../src/lexer/08.state61_to_state90.c"
 #include "../../src/lexer/09.error_manager_lexer.c"
@@ -31,9 +31,9 @@
 #include "../../src/parser/13.utils_parsing_word.c"
 #include "../../src/parser/14.state200.c"
 #include "../../src/parser/15.state300.c"
-#include "../../src/parser/16.state400.c"
-#include "../../src/parser/17.error_manager_parser.c"
-#include "../../src/parser/18.parser_utils.c"
+#include "../../src/parser/16.redir_manager.c"
+#include "../../src/parser/17.redir_utils.c"
+#include "../../src/parser/18.error_manager_parser.c"
 #include "../_tdd_utils/ft_lst_printer.c"
 
 #include "minunit_utils.c"
@@ -47,6 +47,7 @@
 #include "test08_syntax_state200.c"
 #include "test09_syntax_state300.c"
 #include "test10_syntax_state400.c"
+#include "test11_syntax_redirects.c"
 
 
 int	main(void)
@@ -54,7 +55,17 @@ int	main(void)
 	MU_RUN_SUITE(test01___initial_errors_suite);
 	MU_RUN_SUITE(test01___token_simulation_errors_suite);
 	MU_RUN_SUITE(test01___lexeme_MIXED_quotes_errors_suite);
+	
+	MU_RUN_SUITE(test01___lexeme_parenthesis_validation_suite);
+	MU_RUN_SUITE(test01___lexeme_parenthesis_odd_counter_suite);
 
+	MU_RUN_SUITE(test01___lexeme_single_quote_errors_first_node_suite);
+	MU_RUN_SUITE(test01___lexeme_single_quote_errors_last_node_suite);
+	MU_RUN_SUITE(test01___lexeme_double_quote_errors_first_node_suite);
+	MU_RUN_SUITE(test01___lexeme_double_quote_errors_last_node_suite);
+	
+	MU_RUN_SUITE(testing_lexeme_crazy_parentehsis_counter);
+	
 	MU_RUN_SUITE(test02___create_token_suite);
 	
 	MU_RUN_SUITE(test03___01_to_02_tokens_suite);
@@ -64,11 +75,8 @@ int	main(void)
 	MU_RUN_SUITE(test05___06_to_10_tokens_suite);
 
 	MU_RUN_SUITE(test06___tokens_cadet_suite);
-	
-	MU_RUN_SUITE(test07___syntax_state100_single_quote_errors_first_node_suite);
-	MU_RUN_SUITE(test07___syntax_state100_single_quote_errors_last_node_suite);
-	MU_RUN_SUITE(test07___syntax_state100_double_quote_errors_first_node_suite);
-	MU_RUN_SUITE(test07___syntax_state100_double_quote_errors_last_node_suite);
+
+	MU_RUN_SUITE(test07___syntax_state100_WORDS_errors_first_node_suite);
 	
 	MU_RUN_SUITE(test08___syntax_state200_PIPE_errors_first_node_suite);
 	MU_RUN_SUITE(test08___syntax_state200_PIPE_errors_last_node_suite);
@@ -96,18 +104,14 @@ int	main(void)
 	
 	MU_RUN_SUITE(test09___syntax_state300_cadet_MIXED_REDIRECT_errors_suite);
 	
-	MU_RUN_SUITE(test10___syntax_state400_CLOSE_PARENTHESIS_errors_first_node_suite);
-	MU_RUN_SUITE(test10___syntax_state400_CLOSE_PARENTHESIS_errors_last_node_suite);
+	MU_RUN_SUITE(test10___syntax_state400_SUBSHELL_suite);
 	
-	MU_RUN_SUITE(test10___syntax_state400_OPEN_PARENTHESIS_errors_first_node_suite);
-	MU_RUN_SUITE(test10___syntax_state400_OPEN_PARENTHESIS_errors_last_node_suite);
+	MU_RUN_SUITE(test11___syntax_REDIRECTS_to_ARCHIVE_DETECTION_suite);
+	MU_RUN_SUITE(test11___syntax_WORD_AFTER_ARCHIVE_detection_suite);
+	MU_RUN_SUITE(test11___syntax_ANOTHER_REDIRECT_FOUND_suite);
+
+	MU_RUN_SUITE(test11___syntax_REORGANIZE_REDIRECTS_suite);
 	
-	MU_RUN_SUITE(test10___syntax_state400_MIXED_PARENTHESIS_odd_counter_errors_suite);
-	
-	// MU_RUN_SUITE(testing_syntax_last_node_errors_suite);
-	// MU_RUN_SUITE(testing_syntax_few_nodes_pipe_errors_suite);
-	// MU_RUN_SUITE(testing_syntax_few_nodes_redirect_errors_suite);
-	// MU_RUN_SUITE(testing_syntax_few_nodes_mix_errors_suite);
 	MU_REPORT();
 	return (MU_EXIT_CODE);
 }
