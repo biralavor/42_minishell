@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 11:12:53 by umeneses          #+#    #+#             */
-/*   Updated: 2024/08/03 19:17:55 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/08/06 09:25:57 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,8 @@
 #include "../../src/parser/16.redir_manager.c"
 #include "../../src/parser/17.redir_utils.c"
 #include "../../src/parser/18.error_manager_parser.c"
+#include "../../src/executor/19.building_tree.c"
+#include "../../src/executor/20.building_tree_utils.c"
 #include "../_tdd_utils/ft_lst_printer.c"
 
 #include "minunit_utils.c"
