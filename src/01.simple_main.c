@@ -3,16 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   01.simple_main.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 10:53:12 by umeneses          #+#    #+#             */
-/*   Updated: 2024/07/24 14:25:32 by tmalheir         ###   ########.fr       */
+/*   Updated: 2024/08/07 19:35:29 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 #include "lexer.h"
 #include "parser.h"
+#include "executor.h"
 
 /**
  * @brief Others fast-test for check_userinput()
@@ -40,12 +41,20 @@
  * input = "\"((|)\"\'(())\'"
  * input = "\"\"\'\'"
  */
-int	main(void)
-{
-	char	*input;
+// int	main(void)
+// {
+// 	char	*input;
 
-	input = "(ls -l)";
-	printf("%s\n", input);
-	check_userinput(input);
+// 	input = "(ls -l)";
+// 	printf("%s\n", input);
+// 	check_userinput(input);
+// 	return (0);
+// }
+
+int main (int ac, char **av, char **envp)
+{
+	(void)ac;
+	(void)av;
+	environment_init(envp);
 	return (0);
 }
