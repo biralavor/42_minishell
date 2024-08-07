@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 10:58:32 by umeneses          #+#    #+#             */
-/*   Updated: 2024/08/07 13:27:06 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/08/07 13:27:40 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,3 +52,18 @@ void	addto_env_table(t_env_table *table, const char *key, const char *value)
 	table->head[hash] = new_entry;
 }
 
+char *lookup_table(t_env_table *table, char *key)
+{
+	int hash;
+	t_env_entry *entry;
+
+	hash = hash_function(key, table->size);
+	entry = table->head[hash];
+	while (entry != NULL)
+	{
+		if (ft_strcmp(entry->key, key) == 0)
+			return (entry->value);
+		entry = entry->next;
+	}
+	return (NULL);
+}
