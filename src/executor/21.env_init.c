@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 10:58:32 by umeneses          #+#    #+#             */
-/*   Updated: 2024/08/07 15:29:04 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/08/07 16:48:44 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,7 @@ char	*lookup_table(t_env_table *table, char *key)
 	entry = table->head[hash];
 	while (entry != NULL)
 	{
-		if (ft_strcmp(entry->key, key) == 0)
+		if (ft_strncmp(entry->key, key, ft_strlen(key)) == 0)
 			return (entry->value);
 		entry = entry->next;
 	}
