@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 10:58:32 by umeneses          #+#    #+#             */
-/*   Updated: 2024/08/07 16:49:29 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/08/07 16:58:43 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 #include "executor.h"
 
 /**
+ * TODO: Implement a function to free the table: destroy_table(). ***
+ * ***
  * @brief Initializes the environment table.
  * @param envp -> a system array of strings that define the
  * current environment variables.
