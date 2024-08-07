@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/05 13:56:37 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/08/06 14:00:32 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/08/07 11:12:58 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,28 @@ typedef struct s_tree
 	struct s_tree	*right;
 
 }				t_tree;
+
+/**
+ * @brief Environment entry
+ * @param *key -> The NAME of the environment variable.
+ * @param *value -> The VALUE of the environment variable.
+ * @param *next -> The next environment entry.
+ */
+typedef struct s_env_entry
+{
+	char				*key;
+	char				*value;
+	struct s_env_entry	*next;
+}						t_env_entry;
+
+/**
+ * @brief Environment table - holds the environment size and entries.
+ */
+typedef struct s_env_table
+{
+	t_env_entry			*head;
+	int					size;
+}						t_env_table;
 
 /*TREE BUILDING FUNCTIONS*/
 
