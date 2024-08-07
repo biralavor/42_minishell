@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 10:58:32 by umeneses          #+#    #+#             */
-/*   Updated: 2024/08/07 13:27:40 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/08/07 13:29:05 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void	addto_env_table(t_env_table *table, const char *key, const char *value)
 	t_env_entry	*new_entry;
 	float		load_factor;
 
-	hash = hash_function(key, table->size);
+	hash = hash_maker(key, table->size);
 	new_entry = (t_env_entry *)ft_calloc(1, sizeof(t_env_entry));
 	if (!new_entry)
 		return ;
@@ -57,7 +57,7 @@ char *lookup_table(t_env_table *table, char *key)
 	int hash;
 	t_env_entry *entry;
 
-	hash = hash_function(key, table->size);
+	hash = hash_maker(key, table->size);
 	entry = table->head[hash];
 	while (entry != NULL)
 	{
