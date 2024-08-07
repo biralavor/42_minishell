@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 10:58:32 by umeneses          #+#    #+#             */
-/*   Updated: 2024/08/07 16:48:44 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/08/07 16:49:29 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ void	environment_init(char **envp)
 		}
 		envp++;
 	}
+	ft_env_printer(env_table);
 }
 
 t_env_table	*create_table(int init_size)
