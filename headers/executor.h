@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/05 13:56:37 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/08/07 15:32:52 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/08/07 15:48:17 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@ void			addto_env_table(t_env_table *table, const char *key,
 char			*lookup_table(t_env_table *table, char *key);
 void			resize_table(t_env_table *table);
 unsigned long	hash_maker(const char *key, int size);
+void			ft_env_printer(t_env_table	*env_table);
 
 /*TREE BUILDING FUNCTIONS*/
 
