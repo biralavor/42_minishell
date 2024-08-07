@@ -6,27 +6,12 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/05 13:56:37 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/08/07 11:12:58 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/08/07 15:32:52 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef EXECUTOR_H
 # define EXECUTOR_H
-
-/**
- * @brief Tree structure.
- * @param *left_tree.
- * @param *right_tree.
- * @param *token_list.
-*/
-typedef struct s_tree
-{
-	int				type;
-	t_token_list	*command;
-	struct s_tree	*left;
-	struct s_tree	*right;
-
-}				t_tree;
 
 /**
  * @brief Environment entry
@@ -46,9 +31,33 @@ typedef struct s_env_entry
  */
 typedef struct s_env_table
 {
-	t_env_entry			*head;
+	t_env_entry			**head;
 	int					size;
 }						t_env_table;
+
+/**
+ * @brief Tree structure.
+ * @param *left_tree.
+ * @param *right_tree.
+ * @param *token_list.
+*/
+typedef struct s_tree
+{
+	int				type;
+	t_token_list	*command;
+	struct s_tree	*left;
+	struct s_tree	*right;
+
+}				t_tree;
+
+/* ENVIRONMENT FUNCTIONS */
+void			environment_init(char **envp);
+t_env_table		*create_table(int init_size);
+void			addto_env_table(t_env_table *table, const char *key,
+					const char *value);
+char			*lookup_table(t_env_table *table, char *key);
+void			resize_table(t_env_table *table);
+unsigned long	hash_maker(const char *key, int size);
 
 /*TREE BUILDING FUNCTIONS*/
 
