@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 10:58:32 by umeneses          #+#    #+#             */
-/*   Updated: 2024/08/07 15:01:56 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/08/07 15:29:04 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,21 +51,21 @@ void	environment_init(char **envp)
 	}
 }
 
-t_env_table	*create_table(int initial_size)
+t_env_table	*create_table(int init_size)
 {
-	t_env_table *table;
+	t_env_table	*table;
 
 	table = (t_env_table *)ft_calloc(1, sizeof(t_env_table));
 	if (!table)
 		return (NULL);
 	table->head = NULL;
-	table->head = (t_env_entry **)ft_calloc(initial_size, sizeof(t_env_table *));
+	table->head = (t_env_entry **)ft_calloc(init_size, sizeof(t_env_table *));
 	if (!table->head)
 	{
 		free(table);
 		return (NULL);
 	}
-	table->size = initial_size;
+	table->size = init_size;
 	return (table);
 }
 
@@ -88,10 +88,10 @@ void	addto_env_table(t_env_table *table, const char *key, const char *value)
 	table->head[hash] = new_entry;
 }
 
-char *lookup_table(t_env_table *table, char *key)
+char	*lookup_table(t_env_table *table, char *key)
 {
-	int hash;
-	t_env_entry *entry;
+	int			hash;
+	t_env_entry	*entry;
 
 	hash = hash_maker(key, table->size);
 	entry = table->head[hash];

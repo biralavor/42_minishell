@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 12:58:03 by umeneses          #+#    #+#             */
-/*   Updated: 2024/08/07 13:28:46 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/08/07 15:31:31 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@ void	resize_table(t_env_table *table)
 {
 	int			old_size;
 	int			idx;
-	t_env_table *new_table;
-	t_env_entry *entry;
+	t_env_table	*new_table;
+	t_env_entry	*entry;
 
 	idx = 0;
 	old_size = table->size;
@@ -26,7 +26,6 @@ void	resize_table(t_env_table *table)
 	new_table = create_table(table->size * 2);
 	if (!new_table)
 		ft_putendl_fd("Memory Error: Could not resize environment table", 2);
-	entry = table->head[idx];
 	while (idx < old_size)
 	{
 		entry = table->head[idx];
@@ -58,7 +57,12 @@ unsigned long	hash_maker(const char *key, int size)
 	int				c;
 
 	hash = 5381;
-	while ((c = *key++))
+	c = *key;
+	while (c != '\0')
+	{
 		hash = ((hash << 5) + hash) + c;
+		key++;
+		c = *key;
+	}
 	return (hash % size);
 }
