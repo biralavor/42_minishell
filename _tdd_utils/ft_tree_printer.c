@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/06 11:33:44 by umeneses          #+#    #+#             */
-/*   Updated: 2024/08/06 14:19:26 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/08/07 17:35:49 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,6 @@
 
 void	ft_tree_printer(t_tree *root)
 {
-	t_tree	*aux;
-
-	aux = root;
 	if (root == NULL)
 		return ;
 	else
