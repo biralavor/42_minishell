@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 15:38:48 by umeneses          #+#    #+#             */
-/*   Updated: 2024/08/08 13:00:08 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/08/08 15:09:46 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,7 @@ void	ft_env_printer(t_env_entry	*env_table)
 	fprintf(stderr, "\033[0;33m\n");
 	fprintf(stderr, "Printing environment variables:\n");
 	fprintf(stderr, "_________________________________________________________\n");
-	fprintf(stderr, "[idx]	E.N.V.I.R.O.N.M.E.N.T. variables\n");
-	fprintf(stderr, "env_table size = %d\n", aux->size);
+	fprintf(stderr, "[idx]->%3d	E.N.V.I.R.O.N.M.E.N.T. variables\n", aux->size);
 	fprintf(stderr, "\033[0;32m\n");
 	while (aux->prev)
 		aux = aux->prev;
@@ -39,5 +38,4 @@ void	ft_env_printer(t_env_entry	*env_table)
 		aux = aux->next;
 		idx++;
 	}
-	fprintf(stderr, "env_table size = %d\n", aux->size);
 }
