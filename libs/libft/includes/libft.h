@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/19 14:20:18 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/06/12 15:11:31 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/08/08 11:14:41 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # include <unistd.h>
 
 /*Libc functions*/
+int				ft_array_len(char **array);
 int				ft_atoi(const char *nptr);
 void			ft_bzero(void *str, size_t n);
 void			*ft_calloc(size_t nmemb, size_t size);

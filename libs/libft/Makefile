@@ -25,7 +25,8 @@ BUILD_D			= ./build/
 
 NAME			= libft.a
 
-FILES			= ft_atoi.c
+FILES			= ft_array_len.c
+FILES			+= ft_atoi.c
 FILES			+= ft_bzero.c
 FILES			+= ft_calloc.c
 FILES			+= ft_isascii.c
