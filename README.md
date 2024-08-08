@@ -9,13 +9,13 @@
 
 - [x] Lexer :tada: [https://github.com/biralavor/42_minishell/releases/tag/v0.2]
 
-- [x] Project Planning - Parser + Syntaxe Grammar :tada: [https://github.com/biralavor/42_minishell/releases/tag/v0.3]
+- [x] Parser + Syntaxe Grammar :tada: [https://github.com/biralavor/42_minishell/releases/tag/v0.3]
 
-- [x] Next Steps on Project Management - Environment :tada: [https://github.com/biralavor/42_minishell/releases/tag/v0.4]
+- [x] SubShell + Binary Tree + Environment Variables :tada: [https://github.com/biralavor/42_minishell/releases/tag/v0.4]
 - [ ] Next Steps on Project Management - Expansion Variables
-- [ ] Next Steps on Project Management - Built-ins
-- [ ] Next Steps on Project Management - Signals Control
 - [ ] Next Steps on Project Management - Execution
+- [ ] Next Steps on Project Management - Signals Control
+- [ ] Next Steps on Project Management - Built-ins
 
 
 # Minishell
