@@ -11,8 +11,8 @@
 
 - [x] Project Planning - Parser + Syntaxe Grammar :tada: [https://github.com/biralavor/42_minishell/releases/tag/v0.3]
 
+- [x] Next Steps on Project Management - Environment :tada: [https://github.com/biralavor/42_minishell/releases/tag/v0.4]
 - [ ] Next Steps on Project Management - Expansion Variables
-- [ ] Next Steps on Project Management - Environment
 - [ ] Next Steps on Project Management - Built-ins
 - [ ] Next Steps on Project Management - Signals Control
 - [ ] Next Steps on Project Management - Execution
