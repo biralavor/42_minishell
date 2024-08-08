@@ -1,35 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   02.check_userinput.c                               :+:      :+:    :+:   */
+/*   check_builtins_pwd.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/19 09:20:45 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/08/06 16:16:22 by umeneses         ###   ########.fr       */
+/*   Created: 2024/07/16 13:23:46 by umeneses          #+#    #+#             */
+/*   Updated: 2024/07/17 14:53:15 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 #include "lexer.h"
 #include "parser.h"
-#include "executor.h"
 #include "error_manager.h"
 #include "builtins.h"
 
-void	check_userinput(char *str)
+void	builtins_runner_pwd(t_token_list *lst)
 {
-	t_token_list	*lst;
-	t_tree			*token_tree;
+	t_token_list	*temp;
+	char			*actual_path;
 
-	lst = NULL;
-	token_tree = NULL;
-	if (!check_initial_errors(str))
-		error_manager_lexer(INITIAL_ERROR);
-	if (!create_token_list(str, &lst))
-		error_manager_lexer(LIST_NOT_CREATED);
-	syntax_analysis(lst);
-	token_tree = initiate_tree(lst);
-	ft_tree_printer(token_tree);
-	free_token_tree(token_tree);
+	temp = lst;
+	actual_path = NULL;
+	if (temp && temp->type == WORD)
+	{
+		actual_path = getcwd(actual_path, 100);
+		ft_putstr_fd(actual_path, STDOUT_FILENO);
+		ft_putstr_fd("\n", STDOUT_FILENO);
+	}
 }
