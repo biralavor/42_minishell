@@ -6,14 +6,14 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 15:38:48 by umeneses          #+#    #+#             */
-/*   Updated: 2024/08/07 20:32:43 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/08/08 11:16:23 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 #include "executor.h"
 
-void	ft_env_printer(t_env_table	*env_table)
+void	ft_env_printer(t_env_entry	*env_table)
 {
 	int	idx;
 
@@ -21,21 +21,15 @@ void	ft_env_printer(t_env_table	*env_table)
 	fprintf(stderr, "\033[0;33m\n");
 	fprintf(stderr, "Printing environment variables:\n");
 	fprintf(stderr, "_________________________________________________________\n");
-	fprintf(stderr, "[idx]		E.N.V.I.R.O.N.M.E.N.T.S.\n");
+	fprintf(stderr, "[idx]	E.N.V.I.R.O.N.M.E.N.T. variables (copy)\n");
 	fprintf(stderr, "\033[0;32m\n");
 	while (idx < env_table->size)
 	{
 		fprintf(stderr, "[%3d] ", idx);
-		if (env_table->head[idx])
-		{
-			while (env_table->head[idx])
-			{
-				fprintf(stderr, "%s=", env_table->head[idx]->key);
-				fprintf(stderr, "%s", env_table->head[idx]->value);
-				fprintf(stderr, "\n");
-				env_table->head[idx] = env_table->head[idx]->next;
-			}
-		}
+		fprintf(stderr, "%s=", env_table->key);
+		fprintf(stderr, "%s", env_table->value);
+		fprintf(stderr, "\n");
+		env_table = env_table->next;
 		idx++;
 	}
 }

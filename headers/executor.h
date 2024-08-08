@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/05 13:56:37 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/08/07 15:48:17 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/08/08 11:13:16 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,17 +23,10 @@ typedef struct s_env_entry
 {
 	char				*key;
 	char				*value;
-	struct s_env_entry	*next;
-}						t_env_entry;
-
-/**
- * @brief Environment table - holds the environment size and entries.
- */
-typedef struct s_env_table
-{
-	t_env_entry			**head;
 	int					size;
-}						t_env_table;
+	struct s_env_entry	*next;
+	struct s_env_entry	*prev;
+}						t_env_entry;
 
 /**
  * @brief Tree structure.
@@ -52,13 +45,13 @@ typedef struct s_tree
 
 /* ENVIRONMENT FUNCTIONS */
 void			environment_init(char **envp);
-t_env_table		*create_table(int init_size);
-void			addto_env_table(t_env_table *table, const char *key,
+t_env_entry		*alloc_table(int init_size);
+void			addto_env_table(t_env_entry *table, const char *key,
 					const char *value);
-char			*lookup_table(t_env_table *table, char *key);
-void			resize_table(t_env_table *table);
+char			*lookup_table(t_env_entry *table, char *key);
+// void			resize_table(t_env_entry *table);
 unsigned long	hash_maker(const char *key, int size);
-void			ft_env_printer(t_env_table	*env_table);
+void			ft_env_printer(t_env_entry	*env_table);
 
 /*TREE BUILDING FUNCTIONS*/
 

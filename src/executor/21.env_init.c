@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 10:58:32 by umeneses          #+#    #+#             */
-/*   Updated: 2024/08/07 16:58:43 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/08/08 11:08:12 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,12 +26,12 @@
  */
 void	environment_init(char **envp)
 {
-	t_env_table	*env_table;
+	t_env_entry	*env_table;
 	char		*key;
 	char		*value;
 	char		*equal_sign;
 
-	env_table = create_table(50);
+	env_table = alloc_table(ft_array_len(envp));
 	if (!env_table)
 	{
 		ft_putendl_fd("Error: Could not create environment table", 2);
@@ -54,50 +54,46 @@ void	environment_init(char **envp)
 	ft_env_printer(env_table);
 }
 
-t_env_table	*create_table(int init_size)
+t_env_entry	*alloc_table(int init_size)
 {
-	t_env_table	*table;
+	t_env_entry	*table;
 
-	table = (t_env_table *)ft_calloc(1, sizeof(t_env_table));
+	table = (t_env_entry *)ft_calloc(1, sizeof(t_env_entry));
 	if (!table)
 		return (NULL);
-	table->head = NULL;
-	table->head = (t_env_entry **)ft_calloc(init_size, sizeof(t_env_table *));
-	if (!table->head)
-	{
-		free(table);
-		return (NULL);
-	}
+	table->next = NULL;
+	table->prev = NULL;
+	table->key = NULL;
+	table->value = NULL;
 	table->size = init_size;
 	return (table);
 }
 
-void	addto_env_table(t_env_table *table, const char *key, const char *value)
+void	addto_env_table(t_env_entry *table, const char *key, const char *value)
 {
-	int			hash;
 	t_env_entry	*new_entry;
-	float		load_factor;
 
-	hash = hash_maker(key, table->size);
-	new_entry = (t_env_entry *)ft_calloc(1, sizeof(t_env_entry));
+	new_entry = alloc_table(table->size);
 	if (!new_entry)
 		return ;
 	new_entry->key = ft_strdup(key);
 	new_entry->value = ft_strdup(value);
-	new_entry->next = table->head[hash];
-	load_factor = (float)table->size / (float)(table->size + 1);
-	if (load_factor >= 0.75 && table->size <= 100)
-		resize_table(table);
-	table->head[hash] = new_entry;
+	while (table)
+	{
+		if (table->next == NULL)
+			break ;
+		table = table->next;
+	}
+	new_entry->next = NULL;
+	new_entry->prev = table;
+	table->next = new_entry;
 }
 
-char	*lookup_table(t_env_table *table, char *key)
+char	*lookup_table(t_env_entry *table, char *key)
 {
-	int			hash;
 	t_env_entry	*entry;
 
-	hash = hash_maker(key, table->size);
-	entry = table->head[hash];
+	entry = table;
 	while (entry != NULL)
 	{
 		if (ft_strncmp(entry->key, key, ft_strlen(key)) == 0)
