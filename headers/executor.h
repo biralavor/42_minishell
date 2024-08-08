@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/05 13:56:37 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/08/08 11:13:16 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/08/08 12:21:22 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ typedef struct s_tree
 /* ENVIRONMENT FUNCTIONS */
 void			environment_init(char **envp);
 t_env_entry		*alloc_table(int init_size);
-void			addto_env_table(t_env_entry *table, const char *key,
+t_env_entry		*addto_env_table(t_env_entry *table, const char *key,
 					const char *value);
 char			*lookup_table(t_env_entry *table, char *key);
 // void			resize_table(t_env_entry *table);

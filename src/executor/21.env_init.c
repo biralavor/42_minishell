@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 10:58:32 by umeneses          #+#    #+#             */
-/*   Updated: 2024/08/08 11:08:12 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/08/08 12:39:27 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void	environment_init(char **envp)
 			key = ft_substr(*envp, 0, equal_sign - *envp);
 			value = ft_strdup(equal_sign + 1);
 			if (key && value)
-				addto_env_table(env_table, key, value);
+				env_table = addto_env_table(env_table, key, value);
 			free(key);
 			free(value);
 		}
@@ -69,24 +69,26 @@ t_env_entry	*alloc_table(int init_size)
 	return (table);
 }
 
-void	addto_env_table(t_env_entry *table, const char *key, const char *value)
+t_env_entry	*addto_env_table(t_env_entry *table, const char *key,
+							const char *value)
 {
 	t_env_entry	*new_entry;
 
 	new_entry = alloc_table(table->size);
-	if (!new_entry)
-		return ;
 	new_entry->key = ft_strdup(key);
 	new_entry->value = ft_strdup(value);
+	if (table->next == NULL && table->prev == NULL
+		&& table->key == NULL && table->value == NULL)
+		return (new_entry);
 	while (table)
 	{
 		if (table->next == NULL)
 			break ;
 		table = table->next;
 	}
-	new_entry->next = NULL;
 	new_entry->prev = table;
 	table->next = new_entry;
+	return (table);
 }
 
 char	*lookup_table(t_env_entry *table, char *key)
