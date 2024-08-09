@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 12:58:03 by umeneses          #+#    #+#             */
-/*   Updated: 2024/08/08 11:09:29 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/08/09 17:56:57 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,12 @@
 // 	table->size = new_table->size;
 // 	free(new_table);
 // }
+
+void	goto_head_env_table(t_env_entry *table)
+{
+	while (table->prev)
+		table = table->prev;
+}
 
 /**
  * @brief: This function uses the djb2 algorithm, which is widely
