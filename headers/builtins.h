@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 14:57:00 by umeneses          #+#    #+#             */
-/*   Updated: 2024/07/17 16:43:50 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/08/09 17:09:37 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 /**
  * @brief: Calls the respective builtin function.
 */
-void	builtins_controller(t_token_list *lst);
+void	builtins_manager(t_token_list *lst);
 
 /**
  * @brief: Checks if there are any builtins in the token list.

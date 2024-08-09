@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_builtins.c                                   :+:      :+:    :+:   */
+/*   23.builtins_manager.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 13:23:46 by umeneses          #+#    #+#             */
-/*   Updated: 2024/07/17 15:00:46 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/08/09 17:09:25 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 #include "error_manager.h"
 #include "builtins.h"
 
-void	builtins_controller(t_token_list *lst)
+void	builtins_manager(t_token_list *lst)
 {
 	t_token_list	*temp;
 
