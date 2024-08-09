@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 11:12:53 by umeneses          #+#    #+#             */
-/*   Updated: 2024/08/06 13:46:18 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/08/09 17:19:54 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,13 @@
 #include "../../src/parser/18.error_manager_parser.c"
 #include "../../src/executor/19.building_tree.c"
 #include "../../src/executor/20.building_tree_utils.c"
+#include "../../src/executor/21.env_init.c"
+#include "../../src/executor/22.env_init_utils.c"
+#include "../../src/builtins/23.builtins_manager.c"
+#include "../../src/builtins/24.builtins_echo.c"
+#include "../../src/builtins/25.builtins_cd.c"
+#include "../../src/builtins/26.builtins_pwd.c"
+#include "../../src/builtins/27.builtins_export.c"
 #include "../_tdd_utils/ft_lst_printer.c"
 #include "../_tdd_utils/ft_tree_printer.c"
 
@@ -51,7 +58,6 @@
 #include "test09_syntax_state300.c"
 #include "test10_syntax_state400.c"
 #include "test11_syntax_redirects.c"
-
 
 int	main(void)
 {
