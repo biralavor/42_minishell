@@ -66,13 +66,13 @@ SRC_FILES				+= ./parser/17.redir_utils.c
 SRC_FILES				+= ./parser/18.error_manager_parser.c
 SRC_FILES				+= ./executor/19.building_tree.c
 SRC_FILES				+= ./executor/20.building_tree_utils.c
-SRC_FILES				+= ./builtins/check_builtins.c
-SRC_FILES				+= ./builtins/check_builtins_cd.c
-SRC_FILES				+= ./builtins/check_builtins_echo.c
-SRC_FILES				+= ./builtins/check_builtins_pwd.c
-SRC_FILES				+= ./builtins/check_builtins_export.c
 SRC_FILES				+= ./executor/21.env_init.c
 SRC_FILES				+= ./executor/22.env_init_utils.c
+SRC_FILES				+= ./builtins/23.check_builtins.c
+SRC_FILES				+= ./builtins/24.check_builtins_echo.c
+SRC_FILES				+= ./builtins/25.check_builtins_cd.c
+SRC_FILES				+= ./builtins/26.check_builtins_pwd.c
+SRC_FILES				+= ./builtins/27.check_builtins_export.c
 
 #SRC_FILES				= minishell_main.c
 
