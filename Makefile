@@ -73,6 +73,7 @@ SRC_FILES				+= ./builtins/24.builtins_echo.c
 SRC_FILES				+= ./builtins/25.builtins_cd.c
 SRC_FILES				+= ./builtins/26.builtins_pwd.c
 SRC_FILES				+= ./builtins/27.builtins_export.c
+SRC_FILES				+= ./builtins/28.builtins_export_utils.c
 
 #SRC_FILES				= minishell_main.c
 
