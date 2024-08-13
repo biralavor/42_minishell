@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 10:53:12 by umeneses          #+#    #+#             */
-/*   Updated: 2024/08/08 15:05:23 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/08/09 19:03:31 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,12 @@ int main (int ac, char **av, char **envp)
 {
 	(void)ac;
 	(void)av;
+	char	*input;
+
 	environment_init(envp);
+
+	input = "export";
+	printf("%s\n", input);
+	check_userinput(input);
 	return (0);
 }

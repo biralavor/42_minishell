@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 09:20:45 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/08/06 16:16:22 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/08/10 17:24:00 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,8 @@ void	check_userinput(char *str)
 	if (!create_token_list(str, &lst))
 		error_manager_lexer(LIST_NOT_CREATED);
 	syntax_analysis(lst);
+	builtins_manager(lst);
 	token_tree = initiate_tree(lst);
-	ft_tree_printer(token_tree);
+	// ft_tree_printer(token_tree);
 	free_token_tree(token_tree);
 }
