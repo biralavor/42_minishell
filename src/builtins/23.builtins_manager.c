@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 13:23:46 by umeneses          #+#    #+#             */
-/*   Updated: 2024/08/10 17:04:53 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/08/13 16:12:07 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,47 +19,47 @@
 
 void	builtins_manager(t_token_list *lst)
 {
-	t_token_list	*temp;
+	t_token_list	*tmp;
 	t_env_entry		*env_vars;
 
-	temp = lst;
+	tmp = lst;
 	env_vars = env_holder(NULL, false);
-	if (builtins_detector(temp))
+	if (builtins_detector(tmp))
 	{
-		while (temp)
+		while (tmp)
 		{
-			if (temp->type == WORD)
+			if (tmp->type == WORD)
 			{
-				if (ft_strncmp(temp->lexeme, "echo", 4) == 0)
-					builtins_runner_echo(temp);
-				if (ft_strncmp(temp->lexeme, "cd", 2) == 0)
-					builtins_runner_cd(temp);
-				if (ft_strncmp(temp->lexeme, "pwd", 3) == 0)
-					builtins_runner_pwd(temp);
-				if (ft_strncmp(temp->lexeme, "export", 6) == 0)
+				if (ft_strncmp(tmp->lexeme, "echo", 4) == 0)
+					builtins_runner_echo(tmp);
+				if (ft_strncmp(tmp->lexeme, "cd", 2) == 0)
+					builtins_runner_cd(tmp);
+				if (ft_strncmp(tmp->lexeme, "pwd", 3) == 0)
+					builtins_runner_pwd(tmp);
+				if (ft_strncmp(tmp->lexeme, "export", 6) == 0)
 					builtins_runner_export(env_vars);
 			}
-			temp = temp->next;
+			tmp = tmp->next;
 		}
 	}
 }
 
 bool	builtins_detector(t_token_list *lst)
 {
-	t_token_list	*temp;
+	t_token_list	*tmp;
 
-	temp = lst;
-	while (temp && temp->type == WORD)
+	tmp = lst;
+	while (tmp && tmp->type == WORD)
 	{
-		if ((ft_strncmp(temp->lexeme, "echo", 4) == 0)
-			|| (ft_strncmp(temp->lexeme, "cd", 2) == 0)
-			|| (ft_strncmp(temp->lexeme, "pwd", 3) == 0)
-			|| (ft_strncmp(temp->lexeme, "export", 6) == 0)
-			|| (ft_strncmp(temp->lexeme, "unset", 5) == 0)
-			|| (ft_strncmp(temp->lexeme, "env", 3) == 0)
-			|| (ft_strncmp(temp->lexeme, "exit", 4) == 0))
+		if ((ft_strncmp(tmp->lexeme, "echo", 4) == 0)
+			|| (ft_strncmp(tmp->lexeme, "cd", 2) == 0)
+			|| (ft_strncmp(tmp->lexeme, "pwd", 3) == 0)
+			|| (ft_strncmp(tmp->lexeme, "export", 6) == 0)
+			|| (ft_strncmp(tmp->lexeme, "unset", 5) == 0)
+			|| (ft_strncmp(tmp->lexeme, "env", 3) == 0)
+			|| (ft_strncmp(tmp->lexeme, "exit", 4) == 0))
 			return (true);
-		temp = temp->next;
+		tmp = tmp->next;
 	}
 	return (false);
 }
