@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 13:23:46 by umeneses          #+#    #+#             */
-/*   Updated: 2024/08/13 16:12:07 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/08/13 16:12:49 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void	builtins_manager(t_token_list *lst)
 				if (ft_strncmp(tmp->lexeme, "pwd", 3) == 0)
 					builtins_runner_pwd(tmp);
 				if (ft_strncmp(tmp->lexeme, "export", 6) == 0)
-					builtins_runner_export(env_vars);
+					builtins_runner_export(env_vars, tmp->next->lexeme);
 			}
 			tmp = tmp->next;
 		}

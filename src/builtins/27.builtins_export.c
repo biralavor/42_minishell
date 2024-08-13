@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 13:23:46 by umeneses          #+#    #+#             */
-/*   Updated: 2024/08/13 15:58:55 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/08/13 18:40:16 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,21 +23,30 @@
  * @param var_value the value to be setted in the var_key.
  * TODO: Use var_key and var_value to set the environment variable.
 */
-void	builtins_runner_export(t_env_entry *env_vars)
+void	builtins_runner_export(t_env_entry *env_vars, char *arg)
 {
-	char		*var_key;
-	char		*var_value;
+	int			state;
 	t_env_entry	*env_sorted;
 
-	var_key = NULL;
-	var_value = NULL;
-	env_sorted = builtins_env_sort_manager(env_vars);
-	while (env_sorted)
+	state = 0;
+	state = arg_handle_state_detector(state, arg);
+	if (state == 0)
 	{
-		var_key = env_sorted->key;
-		var_value = env_sorted->value;
-		ft_printf("declare -x %s=%s\n", var_key, var_value);
-		env_sorted = env_sorted->next;
+		env_sorted = builtins_env_sort_manager(env_vars);
+		ft_env_printer_classic(env_sorted);
+	}
+	else if (state == 100 || state == 101 || state == 200)
+	{
+		arg_handle_runner(env_vars, arg);
+		env_sorted = builtins_env_sort_manager(env_vars);
+		ft_env_printer_classic(env_sorted);
+	}
+	else if (state == 404)
+	{	
+		write(2, "minishell: export: `", 20);
+		write(2, arg, ft_strlen(arg));
+		write(2, "': not a valid identifier", 25);
+		write(2, "\n", 1);
 	}
 }
 
