@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 13:23:46 by umeneses          #+#    #+#             */
-/*   Updated: 2024/08/09 17:09:25 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/08/10 17:04:53 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,16 @@
 #include "lexer.h"
 #include "parser.h"
 #include "error_manager.h"
+#include "executor.h"
 #include "builtins.h"
 
 void	builtins_manager(t_token_list *lst)
 {
 	t_token_list	*temp;
+	t_env_entry		*env_vars;
 
 	temp = lst;
+	env_vars = env_holder(NULL, false);
 	if (builtins_detector(temp))
 	{
 		while (temp)
@@ -34,7 +37,7 @@ void	builtins_manager(t_token_list *lst)
 				if (ft_strncmp(temp->lexeme, "pwd", 3) == 0)
 					builtins_runner_pwd(temp);
 				if (ft_strncmp(temp->lexeme, "export", 6) == 0)
-					builtins_runner_export(temp);
+					builtins_runner_export(env_vars);
 			}
 			temp = temp->next;
 		}
