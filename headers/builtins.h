@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 14:57:00 by umeneses          #+#    #+#             */
-/*   Updated: 2024/08/10 17:41:12 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/08/13 15:51:48 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,14 +55,6 @@ bool		check_command_args(t_token_list *lst, char arg);
 */
 void		builtins_runner_export(t_env_entry *env_vars);
 
-// /**
-//  * @brief: Gets the name of the environment variable to be exported.
-// */
-// t_env_entry	*export_getter_var_name(t_env_entry *table);
 
-// /**
-//  * @brief: Gets the value of the environment variable to be exported.
-// */
-// char		*export_getter_var_value(t_token_list *lst);
 
 #endif
