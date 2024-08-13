@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 14:57:00 by umeneses          #+#    #+#             */
-/*   Updated: 2024/08/13 15:51:48 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/08/13 15:58:49 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,25 @@ bool		check_command_args(t_token_list *lst, char arg);
 */
 void		builtins_runner_export(t_env_entry *env_vars);
 
+/**
+ * @brief: Sorts the environment variables.
+ */
+t_env_entry	*builtins_env_sort_manager(t_env_entry *env_vars);
 
+/**
+ * @brief: Checks if the environment variables are sorted.
+ */
+bool		builtins_is_env_sorted(t_env_entry *env_vars);
+
+/**
+ * @brief: Swaps two nodes in the environment variables list.
+ */
+void		swap_env_nodes(t_env_entry **head, t_env_entry *a, t_env_entry *b);
+
+/**
+ * @brief: Sorts the environment variables list,
+ * applying the Bubble Sort algorithm.
+ */
+t_env_entry	*bubble_sort_nodes(t_env_entry **head);
 
 #endif
