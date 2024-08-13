@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 13:23:46 by umeneses          #+#    #+#             */
-/*   Updated: 2024/08/13 16:12:49 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/08/13 19:01:24 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,10 @@
 #include "executor.h"
 #include "builtins.h"
 
+/**
+ * @TODO: implement arg_detector for export and unset
+ * @TODO: implement a new flow if arg_detector is true
+ */
 void	builtins_manager(t_token_list *lst)
 {
 	t_token_list	*tmp;
