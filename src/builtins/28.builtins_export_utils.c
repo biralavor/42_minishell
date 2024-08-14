@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 13:23:46 by umeneses          #+#    #+#             */
-/*   Updated: 2024/08/13 18:50:52 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/08/14 15:54:04 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	arg_handle_runner(t_env_entry *env_vars, char *arg)
 	}
 	else
 		env_vars = addto_env_table(env_vars, arg, "");
-	env_vars = env_holder(env_vars, true);
+	env_vars = env_holder(env_vars, true, false);
 }
 
 int	arg_handle_state_detector(int state, char *arg)

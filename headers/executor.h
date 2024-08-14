@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/05 13:56:37 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/08/14 12:25:54 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/08/14 18:20:09 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,13 +48,15 @@ void			environment_init(char **envp);
 t_env_entry		*alloc_table(int init_size);
 t_env_entry		*addto_env_table(t_env_entry *table, const char *key,
 					const char *value);
-t_env_entry		*env_holder(t_env_entry *table, bool update);
+t_env_entry		*env_holder(t_env_entry *table, bool update, bool clear);
 t_env_entry		*goto_head_env_table(t_env_entry *table);
 
 /* ENVIRONMENT UTILS FUNCTIONS */
 t_env_entry		*lookup_table(t_env_entry *table, char *key);
 unsigned long	hash_maker(const char *key, int size);
 void			ft_env_printer(t_env_entry	*env_table);
+void			free_env_table(t_env_entry *env_vars);
+void			free_env_array(char **envp);
 
 /*TREE BUILDING FUNCTIONS*/
 

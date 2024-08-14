@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/14 12:08:16 by umeneses          #+#    #+#             */
-/*   Updated: 2024/08/14 15:08:30 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/08/14 15:54:14 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	builtins_runner_unset(t_env_entry *env_vars, char *arg)
 	if (toremove)
 	{
 		env_vars = removefrom_env_table(env_vars, toremove);
-		env_vars = env_holder(env_vars, true);
+		env_vars = env_holder(env_vars, true, false);
 	}
 }
 

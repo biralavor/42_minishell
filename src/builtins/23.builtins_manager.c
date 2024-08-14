@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 13:23:46 by umeneses          #+#    #+#             */
-/*   Updated: 2024/08/14 15:02:13 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/08/14 19:14:06 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,6 @@
 #include "executor.h"
 #include "builtins.h"
 
-/**
- * @TODO: implement arg_detector for export and unset
- */
 void	builtins_manager(t_token_list *lst)
 {
 	t_token_list	*tmp;
@@ -83,7 +80,7 @@ void	builtins_with_possible_args_manager(t_token_list *lst)
 	t_env_entry		*env_vars;
 
 	tmp = lst;
-	env_vars = env_holder(NULL, false);
+	env_vars = env_holder(NULL, false, false);
 	while (tmp)
 	{
 		if (ft_strncmp(tmp->lexeme, "export", 6) == 0)

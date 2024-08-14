@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 10:58:32 by umeneses          #+#    #+#             */
-/*   Updated: 2024/08/14 12:24:12 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/08/14 18:30:39 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,22 +50,23 @@ void	environment_init(char **envp)
 		}
 		envp++;
 	}
-	env_table = env_holder(env_table, true);
+	env_holder(env_table, true, false);
+	// free(env_table);
 }
 
-t_env_entry	*env_holder(t_env_entry *table, bool update)
+t_env_entry	*env_holder(t_env_entry *table, bool update, bool clear)
 {
 	static t_env_entry	*env_table_holder;
 
-	if (update)
+	if (update && table)
 	{
 		table = goto_head_env_table(table);
+		free_env_table(env_table_holder);
 		env_table_holder = table;
-		return (env_table_holder);
 	}
-	if (!update && table == NULL && env_table_holder)
-		return (env_table_holder);
-	return (table);
+	else if (clear && env_table_holder)
+		free_env_table(env_table_holder);
+	return (env_table_holder);
 }
 
 t_env_entry	*alloc_table(int init_size)
@@ -87,6 +88,7 @@ t_env_entry	*addto_env_table(t_env_entry *table, const char *key,
 							const char *value)
 {
 	t_env_entry	*new_entry;
+	t_env_entry	*tmp;
 
 	new_entry = alloc_table(table->size);
 	new_entry->key = ft_strdup(key);
@@ -94,14 +96,15 @@ t_env_entry	*addto_env_table(t_env_entry *table, const char *key,
 	if (table->next == NULL && table->prev == NULL
 		&& table->key == NULL && table->value == NULL)
 		return (new_entry);
-	while (table)
+	tmp = table;
+	while (tmp)
 	{
-		if (table->next == NULL)
+		if (tmp->next == NULL)
 			break ;
-		table = table->next;
+		tmp = tmp->next;
 	}
-	new_entry->prev = table;
-	table->next = new_entry;
+	new_entry->prev = tmp;
+	tmp->next = new_entry;
 	return (table);
 }
 
