@@ -6,24 +6,13 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 10:58:32 by umeneses          #+#    #+#             */
-/*   Updated: 2024/08/14 19:58:02 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/08/14 19:58:57 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 #include "executor.h"
 
-/**
- * TODO: Implement a function to free the table: destroy_table(). ***
- * ***
- * @brief Initializes the environment table.
- * @param envp -> a system array of strings that define the
- * current environment variables.
- * While envp is not NULL, it will iterate through the environment
- * variables and add them to the table. When ft_strchr finds the first '=',
- * it copies the string before the '=' to KEY (at position equal_sign - *envp)
- * and the string after the '=' to VALUE.
- */
 void	environment_init(char **envp)
 {
 	t_env_entry	*env_table;

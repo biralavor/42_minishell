@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/05 13:56:37 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/08/14 19:29:31 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/08/14 19:59:16 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,15 @@ typedef struct s_tree
 }				t_tree;
 
 /* ENVIRONMENT FUNCTIONS */
+/**
+ * @brief Initializes the environment table.
+ * @param envp -> a system array of strings that define the
+ * current environment variables.
+ * While envp is not NULL, it will iterate through the environment
+ * variables and add them to the table. When ft_strchr finds the first '=',
+ * it copies the string before the '=' to KEY (at position equal_sign - *envp)
+ * and the string after the '=' to VALUE.
+ */
 void			environment_init(char **envp);
 t_env_entry		*alloc_table(int init_size);
 t_env_entry		*addto_env_table(t_env_entry *table, const char *key,
