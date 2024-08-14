@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 13:23:46 by umeneses          #+#    #+#             */
-/*   Updated: 2024/08/14 15:54:04 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/08/14 19:44:06 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,13 @@ void	arg_handle_runner(t_env_entry *env_vars, char *arg)
 		var_key = ft_substr(arg, 0, equal_sign - arg);
 		var_value = ft_strdup(equal_sign + 1);
 		env_vars = addto_env_table(env_vars, var_key, var_value);
+		free(var_key);
+		free(var_value);
 	}
 	else
 		env_vars = addto_env_table(env_vars, arg, "");
 	env_vars = env_holder(env_vars, true, false);
+	free(equal_sign);
 }
 
 int	arg_handle_state_detector(int state, char *arg)
@@ -51,16 +54,10 @@ int	arg_handle_state_detector(int state, char *arg)
 
 void	ft_env_printer_classic(t_env_entry *env_vars)
 {
-	char	*var_key;
-	char	*var_value;
-
-	var_key = NULL;
-	var_value = NULL;
 	while (env_vars)
 	{
-		var_key = env_vars->key;
-		var_value = env_vars->value;
-		ft_printf("declare -x %s=%s\n", var_key, var_value);
-		env_vars = env_vars->next;
+		ft_printf("declare -x %s=%s\n", env_vars->key, env_vars->value);
+		if (env_vars->next)
+			env_vars = env_vars->next;
 	}
 }
