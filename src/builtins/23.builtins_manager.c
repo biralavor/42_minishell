@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 13:23:46 by umeneses          #+#    #+#             */
-/*   Updated: 2024/08/14 11:51:52 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/08/14 12:22:59 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,6 +91,13 @@ void	builtins_with_possible_args_manager(t_token_list *lst)
 				builtins_runner_export(env_vars, tmp->next->lexeme);
 			else
 				builtins_runner_export(env_vars, NULL);
+		}
+		if (ft_strncmp(tmp->lexeme, "unset", 6) == 0)
+		{
+			if (tmp->next && tmp->next->type == WORD)
+				builtins_runner_unset(env_vars, tmp->next->lexeme);
+			else
+				continue ;
 		}
 		tmp = tmp->next;
 	}
