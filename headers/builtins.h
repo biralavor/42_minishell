@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 14:57:00 by umeneses          #+#    #+#             */
-/*   Updated: 2024/08/14 12:41:13 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/08/14 14:57:50 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,6 +93,11 @@ void		builtins_runner_unset(t_env_entry *env_vars, char *arg);
  * @param arg the argument to be removed.
  */
 t_env_entry	*removefrom_env_table(t_env_entry *env_vars, t_env_entry *toremove);
+
+/**
+ * @brief: Runs the env, which prints environment variables - builtin command.
+ */
+void		builtins_runner_env(t_env_entry *env_vars);
 
 /**
  * @brief: Prints the environment variables in the classic bash format.

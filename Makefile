@@ -75,6 +75,7 @@ SRC_FILES				+= ./builtins/26.builtins_pwd.c
 SRC_FILES				+= ./builtins/27.builtins_export.c
 SRC_FILES				+= ./builtins/28.builtins_export_utils.c
 SRC_FILES				+= ./builtins/29.builtins_unset.c
+SRC_FILES				+= ./builtins/30.builtins_env.c
 
 #SRC_FILES				= minishell_main.c
 
@@ -238,7 +239,7 @@ fclean:				clean
 re:					fclean all
 
 gdb:				re
-					gdb --tui -ex 'b syntax_analysis' -ex 'run' ./$(NAME)
+					gdb --tui -ex 'b builtins_manager' -ex 'run' ./$(NAME)
 
 val:				re
 					valgrind --leak-check=full --track-origins=yes ./$(NAME)
