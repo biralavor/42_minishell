@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 10:58:32 by umeneses          #+#    #+#             */
-/*   Updated: 2024/08/14 19:30:20 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/08/14 19:58:02 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,21 +53,6 @@ void	environment_init(char **envp)
 	env_holder(env_table, true, false);
 }
 
-t_env_entry	*env_holder(t_env_entry *table, bool update, bool clear)
-{
-	static t_env_entry	*env_table_holder;
-
-	if (update && table)
-	{
-		table = goto_head_env_table(table);
-		free_env_table(env_table_holder);
-		env_table_holder = table;
-	}
-	else if (clear && env_table_holder)
-		free_env_table(env_table_holder);
-	return (env_table_holder);
-}
-
 t_env_entry	*alloc_table(int init_size)
 {
 	t_env_entry	*table;
@@ -81,6 +66,21 @@ t_env_entry	*alloc_table(int init_size)
 	table->value = NULL;
 	table->size = init_size;
 	return (table);
+}
+
+t_env_entry	*env_holder(t_env_entry *table, bool update, bool clear)
+{
+	static t_env_entry	*env_table_holder;
+
+	if (update && table)
+	{
+		table = goto_head_env_table(table);
+		free_env_table(env_table_holder);
+		env_table_holder = table;
+	}
+	else if (clear && env_table_holder)
+		free_env_table(env_table_holder);
+	return (env_table_holder);
 }
 
 t_env_entry	*addto_env_table(t_env_entry *table, const char *key,
