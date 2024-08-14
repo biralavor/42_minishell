@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 12:58:03 by umeneses          #+#    #+#             */
-/*   Updated: 2024/08/13 15:46:53 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/08/14 19:31:56 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,23 @@
 
 t_env_entry	*goto_head_env_table(t_env_entry *table)
 {
-	while (table->prev != NULL)
+	while (table)
+	{
+		if (table->prev == NULL)
+			break ;
 		table = table->prev;
+	}
+	return (table);
+}
+
+t_env_entry	*goto_end_env_table(t_env_entry *table)
+{
+	while (table)
+	{
+		if (table->next == NULL)
+			break ;
+		table = table->next;
+	}
 	return (table);
 }
 
@@ -48,15 +63,30 @@ unsigned long	hash_maker(const char *key, int size)
 void	free_env_table(t_env_entry *table)
 {
 	t_env_entry	*tmp;
+	t_env_entry	*curr;
 
-	while (table)
+	tmp = table;
+	curr = tmp;
+	while (curr != NULL)
 	{
-		tmp = table;
-		if (table->next)
-			table = table->next;
-		free(tmp->key);
-		free(tmp->value);
-		free(tmp);
-		tmp = NULL;
+		tmp = curr->next;
+		free(curr->key);
+		free(curr->value);
+		curr->key = NULL;
+		curr->value = NULL;
+		free(curr);
+		curr = tmp;
+	}
+}
+
+void	free_env_array(char **envp)
+{
+	char	**tmp;
+
+	tmp = envp;
+	while (tmp)
+	{
+		free(*tmp);
+		tmp++;
 	}
 }

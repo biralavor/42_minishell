@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/05 13:56:37 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/08/14 18:20:09 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/08/14 19:29:31 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ t_env_entry		*addto_env_table(t_env_entry *table, const char *key,
 					const char *value);
 t_env_entry		*env_holder(t_env_entry *table, bool update, bool clear);
 t_env_entry		*goto_head_env_table(t_env_entry *table);
+t_env_entry		*goto_end_env_table(t_env_entry *table);
 
 /* ENVIRONMENT UTILS FUNCTIONS */
 t_env_entry		*lookup_table(t_env_entry *table, char *key);

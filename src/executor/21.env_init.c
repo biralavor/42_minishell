@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 10:58:32 by umeneses          #+#    #+#             */
-/*   Updated: 2024/08/14 19:17:13 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/08/14 19:30:20 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,12 +96,7 @@ t_env_entry	*addto_env_table(t_env_entry *table, const char *key,
 		&& table->key == NULL && table->value == NULL)
 		return (new_entry);
 	tmp = table;
-	while (tmp)
-	{
-		if (tmp->next == NULL)
-			break ;
-		tmp = tmp->next;
-	}
+	tmp = goto_end_env_table(tmp);
 	new_entry->prev = tmp;
 	tmp->next = new_entry;
 	return (table);
