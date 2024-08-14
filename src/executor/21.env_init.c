@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 10:58:32 by umeneses          #+#    #+#             */
-/*   Updated: 2024/08/13 15:47:52 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/08/14 12:24:12 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,7 +105,7 @@ t_env_entry	*addto_env_table(t_env_entry *table, const char *key,
 	return (table);
 }
 
-char	*lookup_table(t_env_entry *table, char *key)
+t_env_entry	*lookup_table(t_env_entry *table, char *key)
 {
 	t_env_entry	*entry;
 
@@ -113,7 +113,7 @@ char	*lookup_table(t_env_entry *table, char *key)
 	while (entry != NULL)
 	{
 		if (ft_strncmp(entry->key, key, ft_strlen(key)) == 0)
-			return (entry->value);
+			return (entry);
 		entry = entry->next;
 	}
 	return (NULL);

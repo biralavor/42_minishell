@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 14:57:00 by umeneses          #+#    #+#             */
-/*   Updated: 2024/08/14 11:53:55 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/08/14 12:41:13 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,20 @@ void		arg_handle_runner(t_env_entry *env_vars, char *arg);
  * @param state the handler state of the argument.
  */
 int			arg_handle_state_detector(int state, char *arg);
+
+/**
+ * @brief: Runs the unset - remove an environment variable - builtin command.
+ * @param env_vars the environment variables.
+ * @param arg the argument to be searched and later, removed.
+ */
+void		builtins_runner_unset(t_env_entry *env_vars, char *arg);
+
+/**
+ * @brief: Removes an environment variable from the environment table.
+ * @param env_vars the environment variables.
+ * @param arg the argument to be removed.
+ */
+t_env_entry	*removefrom_env_table(t_env_entry *env_vars, t_env_entry *toremove);
 
 /**
  * @brief: Prints the environment variables in the classic bash format.
