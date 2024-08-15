@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 10:58:32 by umeneses          #+#    #+#             */
-/*   Updated: 2024/08/14 19:58:57 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/08/15 10:17:26 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,10 @@ t_env_entry	*addto_env_table(t_env_entry *table, const char *key,
 	new_entry->value = ft_strdup(value);
 	if (table->next == NULL && table->prev == NULL
 		&& table->key == NULL && table->value == NULL)
+	{
+		free(table);
 		return (new_entry);
+	}
 	tmp = table;
 	tmp = goto_end_env_table(tmp);
 	new_entry->prev = tmp;
