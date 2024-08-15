@@ -6,7 +6,7 @@
 #    By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/12 11:46:22 by umeneses          #+#    #+#              #
-#    Updated: 2024/06/24 22:23:17 by umeneses         ###   ########.fr        #
+#    Updated: 2024/08/15 15:04:29 by umeneses         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -95,7 +95,7 @@ $(BUILD_D)%.o:		%.c
 					@$(MKDIR) $(dir $@)
 					@$(COMP_OBJS)
 					@printf "$(CYAN)"
-					@echo "Compiling: $(notdir $<)"
+					@echo "$(NAME) compiling -> $(GREEN)$(notdir $<)"
 					@printf "$(RESET)"
 
 $(NAME):			clean minishell $(OBJ_FILES)
@@ -121,19 +121,17 @@ bonus:
 
 clean:
 					@printf "$(RED)"
-					@echo ">>> Cleaning objects"
-					@printf "$(PURPLE)"
-					$(RM) $(OBJ_FILES)
-					$(RM) $(BUILD_D)
+					@echo ">>> Cleaning objects from: $(PURPLE) $(NAME)"
+					@$(RM) $(OBJ_FILES)
+					@$(RM) $(BUILD_D)
 					@printf "$(RESET)"
 
 fclean:				clean
 					@printf "$(RED)"
-					@echo ">>> Cleaning executables"
-					@printf "$(PURPLE)"
-					$(RM) $(NAME)
-					$(RM) $(NAME_BONUS)
-					$(MAKE) -C $(PROGRAM_TO_TEST_D) fclean
+					@echo ">>> Cleaning executables from: $(PURPLE) $(NAME)"
+					@$(RM) $(NAME)
+					@$(RM) $(NAME_BONUS)
+					@$(MAKE) -C $(PROGRAM_TO_TEST_D) fclean --no-print-directory
 					@printf "$(RESET)"
 
 re:					fclean all
