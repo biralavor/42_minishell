@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 13:23:46 by umeneses          #+#    #+#             */
-/*   Updated: 2024/08/14 19:14:06 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/08/15 14:06:23 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,11 +63,9 @@ bool	builtins_detector_with_possible_args(t_token_list *lst)
 	tmp = lst;
 	while (tmp && tmp->type == WORD)
 	{
-		if (ft_strncmp(tmp->lexeme, "export", 6) == 0)
-			return (true);
-		else if (ft_strncmp(tmp->lexeme, "unset", 5) == 0)
-			return (true);
-		else if (ft_strncmp(tmp->lexeme, "env", 3) == 0)
+		if ((ft_strncmp(tmp->lexeme, "export", 6) == 0)
+			|| (ft_strncmp(tmp->lexeme, "unset", 5) == 0)
+			|| (ft_strncmp(tmp->lexeme, "env", 3) == 0))
 			return (true);
 		tmp = tmp->next;
 	}
