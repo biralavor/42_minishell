@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 14:57:00 by umeneses          #+#    #+#             */
-/*   Updated: 2024/08/14 14:57:50 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/08/15 14:30:00 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ void		builtins_runner_pwd(t_token_list *lst);
 
 /**
  * @brief: Runs the cd - change directory - builtin command.
+ * TODO: Implement update_envs() after calling chdir().
 */
 void		builtins_runner_cd(t_token_list *lst);
 
@@ -62,7 +63,10 @@ void		error_cd_messenger(int destiny_len, char *destiny_path);
 bool		check_command_args(t_token_list *lst, char arg);
 
 /**
- * @brief: Runs the export - set a new environment variable - builtin command.
+ * @brief:
+ * @param var_key the name of the variable to export.
+ * @param var_value the value to be setted in the var_key.
+ * TODO: Use var_key and var_value to set the environment variable.
 */
 void		builtins_runner_export(t_env_entry *env_vars, char *arg);
 
