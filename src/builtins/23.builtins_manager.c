@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 13:23:46 by umeneses          #+#    #+#             */
-/*   Updated: 2024/08/14 13:09:30 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/08/15 14:06:23 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,6 @@
 #include "executor.h"
 #include "builtins.h"
 
-/**
- * @TODO: implement arg_detector for export and unset
- */
 void	builtins_manager(t_token_list *lst)
 {
 	t_token_list	*tmp;
@@ -52,7 +49,6 @@ bool	builtins_detector(t_token_list *lst)
 		if ((ft_strncmp(tmp->lexeme, "echo", 4) == 0)
 			|| (ft_strncmp(tmp->lexeme, "cd", 2) == 0)
 			|| (ft_strncmp(tmp->lexeme, "pwd", 3) == 0)
-			|| (ft_strncmp(tmp->lexeme, "env", 3) == 0)
 			|| (ft_strncmp(tmp->lexeme, "exit", 4) == 0))
 			return (true);
 		tmp = tmp->next;
@@ -67,9 +63,9 @@ bool	builtins_detector_with_possible_args(t_token_list *lst)
 	tmp = lst;
 	while (tmp && tmp->type == WORD)
 	{
-		if (ft_strncmp(tmp->lexeme, "export", 6) == 0)
-			return (true);
-		else if (ft_strncmp(tmp->lexeme, "unset", 5) == 0)
+		if ((ft_strncmp(tmp->lexeme, "export", 6) == 0)
+			|| (ft_strncmp(tmp->lexeme, "unset", 5) == 0)
+			|| (ft_strncmp(tmp->lexeme, "env", 3) == 0))
 			return (true);
 		tmp = tmp->next;
 	}
@@ -82,7 +78,7 @@ void	builtins_with_possible_args_manager(t_token_list *lst)
 	t_env_entry		*env_vars;
 
 	tmp = lst;
-	env_vars = env_holder(NULL, false);
+	env_vars = env_holder(NULL, false, false);
 	while (tmp)
 	{
 		if (ft_strncmp(tmp->lexeme, "export", 6) == 0)
@@ -92,11 +88,13 @@ void	builtins_with_possible_args_manager(t_token_list *lst)
 			else
 				builtins_runner_export(env_vars, NULL);
 		}
-		if (ft_strncmp(tmp->lexeme, "unset", 6) == 0)
+		else if (ft_strncmp(tmp->lexeme, "unset", 5) == 0)
 		{
 			if (tmp->next && tmp->next->type == WORD)
 				builtins_runner_unset(env_vars, tmp->next->lexeme);
 		}
+		else if (ft_strncmp(tmp->lexeme, "env", 3) == 0)
+			builtins_runner_env(env_vars);
 		tmp = tmp->next;
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 13:23:46 by umeneses          #+#    #+#             */
-/*   Updated: 2024/08/13 18:40:16 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/08/15 14:39:31 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,8 @@
 #include "builtins.h"
 
 /**
- * @brief:
- * @param var_key the name of the variable to export.
- * @param var_value the value to be setted in the var_key.
- * TODO: Use var_key and var_value to set the environment variable.
-*/
+ * TODO: fix memory leaks in this function.
+ */
 void	builtins_runner_export(t_env_entry *env_vars, char *arg)
 {
 	int			state;
@@ -55,7 +52,7 @@ t_env_entry	*builtins_env_sort_manager(t_env_entry *env_vars)
 	t_env_entry	*tmp;
 
 	tmp = env_vars;
-	while (tmp && tmp->next && !builtins_is_env_sorted(tmp))
+	if (!builtins_is_env_sorted(tmp))
 		tmp = bubble_sort_nodes(&tmp);
 	return (tmp);
 }
@@ -79,6 +76,8 @@ void	swap_env_nodes(t_env_entry **head, t_env_entry *a, t_env_entry *b)
 	t_env_entry	*prev_a;
 	t_env_entry	*next_b;
 
+	if (head == NULL || *head == NULL || a == NULL || b == NULL || a == b)
+		return ;
 	prev_a = a->prev;
 	next_b = b->next;
 	if (prev_a != NULL)
@@ -100,8 +99,6 @@ t_env_entry	*bubble_sort_nodes(t_env_entry **head)
 
 	swapped = true;
 	cur = NULL;
-	if (*head == NULL || (*head)->next == NULL)
-		return (*head);
 	while (swapped)
 	{
 		swapped = false;
@@ -112,6 +109,7 @@ t_env_entry	*bubble_sort_nodes(t_env_entry **head)
 			{
 				swap_env_nodes(head, cur, cur->next);
 				swapped = true;
+				cur = cur->prev;
 			}
 			else
 				cur = cur->next;

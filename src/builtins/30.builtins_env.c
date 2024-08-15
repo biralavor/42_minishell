@@ -1,36 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   02.check_userinput.c                               :+:      :+:    :+:   */
+/*   30.builtins_env.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/19 09:20:45 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/08/15 14:58:05 by umeneses         ###   ########.fr       */
+/*   Created: 2024/07/16 13:23:46 by umeneses          #+#    #+#             */
+/*   Updated: 2024/08/15 14:10:35 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 #include "lexer.h"
 #include "parser.h"
-#include "executor.h"
 #include "error_manager.h"
+#include "executor.h"
 #include "builtins.h"
 
-void	check_userinput(char *str)
+void	builtins_runner_env(t_env_entry *env_vars)
 {
-	t_token_list	*lst;
-	t_tree			*token_tree;
+	char	*var_key;
+	char	*var_value;
 
-	lst = NULL;
-	token_tree = NULL;
-	if (!check_initial_errors(str))
-		error_manager_lexer(INITIAL_ERROR);
-	if (!create_token_list(str, &lst))
-		error_manager_lexer(LIST_NOT_CREATED);
-	syntax_analysis(lst);
-	// builtins_manager(lst);
-	token_tree = initiate_tree(lst);
-	// ft_tree_printer(token_tree);
-	free_token_tree(token_tree);
+	var_key = NULL;
+	var_value = NULL;
+	if (!env_vars)
+		return ;
+	else
+	{
+		while (env_vars)
+		{
+			var_key = env_vars->key;
+			var_value = env_vars->value;
+			ft_printf("%s=%s\n", var_key, var_value);
+			env_vars = env_vars->next;
+		}
+	}
 }

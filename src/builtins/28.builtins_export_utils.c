@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 13:23:46 by umeneses          #+#    #+#             */
-/*   Updated: 2024/08/13 18:50:52 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/08/15 12:36:03 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,17 +22,21 @@ void	arg_handle_runner(t_env_entry *env_vars, char *arg)
 	char		*var_key;
 	char		*var_value;
 	char		*equal_sign;
+	t_env_entry	*tmp;
 
+	tmp = env_vars;
 	equal_sign = ft_strchr(arg, '=');
 	if (equal_sign)
 	{
 		var_key = ft_substr(arg, 0, equal_sign - arg);
 		var_value = ft_strdup(equal_sign + 1);
-		env_vars = addto_env_table(env_vars, var_key, var_value);
+		tmp = addto_env_table(tmp, var_key, var_value);
+		free(var_key);
+		free(var_value);
 	}
 	else
-		env_vars = addto_env_table(env_vars, arg, "");
-	env_vars = env_holder(env_vars, true);
+		tmp = addto_env_table(tmp, arg, "");
+	tmp = env_holder(tmp, true, false);
 }
 
 int	arg_handle_state_detector(int state, char *arg)
@@ -51,16 +55,12 @@ int	arg_handle_state_detector(int state, char *arg)
 
 void	ft_env_printer_classic(t_env_entry *env_vars)
 {
-	char	*var_key;
-	char	*var_value;
+	t_env_entry	*tmp;
 
-	var_key = NULL;
-	var_value = NULL;
-	while (env_vars)
+	tmp = env_vars;
+	while (tmp)
 	{
-		var_key = env_vars->key;
-		var_value = env_vars->value;
-		ft_printf("declare -x %s=%s\n", var_key, var_value);
-		env_vars = env_vars->next;
+		ft_printf("declare -x %s=%s\n", tmp->key, tmp->value);
+		tmp = tmp->next;
 	}
 }

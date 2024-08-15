@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_builtins_cd.c                                :+:      :+:    :+:   */
+/*   25.builtins_cd.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 13:23:46 by umeneses          #+#    #+#             */
-/*   Updated: 2024/07/17 16:43:02 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/08/15 14:29:26 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,6 @@
 #include "error_manager.h"
 #include "builtins.h"
 
-/**
- * @brief: TODO: Implement update_envs() after calling chdir().
-*/
 void	builtins_runner_cd(t_token_list *lst)
 {
 	t_token_list	*temp;

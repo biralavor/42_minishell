@@ -106,27 +106,25 @@ $(BUILD_D)%.o:		%.c
 					@$(MKDIR) $(dir $@)
 					@$(COMPILE_OBJS)
 
-					@echo "Compiling LIBFT: $(notdir $<)"
+					@echo "$(NAME) compiling -> $(GREEN)$(notdir $<)"
 
 $(NAME):			$(OBJS)
 					@$(COMPILE_LIB)
 					@printf "$(GREEN)"
-					@echo "LIBFT Ready!"
+					@echo "$(NAME) READY!"
 					@printf "$(RESET)"
 
 clean:
 					@printf "$(RED)"
-					@echo ">>> Cleaning objects..."
-					@printf "$(PURPLE)"
-					$(RM) $(OBJS)
-					$(RM) $(BUILD_D)
+					@echo ">>> Cleaning objects from: $(PURPLE) $(NAME)"
+					@$(RM) $(OBJS)
+					@$(RM) $(BUILD_D)
 					@printf "$(RESET)"
 
 fclean:				clean
 					@printf "$(RED)"
-					@echo ">>> Cleaning executables..."
-					@printf "$(PURPLE)"
-					$(RM) $(NAME)
+					@echo ">>> Cleaning executables from: $(PURPLE) $(NAME)"
+					@$(RM) $(NAME)
 					@printf "$(RESET)"
 
 re:					fclean all

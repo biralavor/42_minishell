@@ -6,24 +6,13 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 10:58:32 by umeneses          #+#    #+#             */
-/*   Updated: 2024/08/14 12:24:12 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/08/15 12:06:25 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 #include "executor.h"
 
-/**
- * TODO: Implement a function to free the table: destroy_table(). ***
- * ***
- * @brief Initializes the environment table.
- * @param envp -> a system array of strings that define the
- * current environment variables.
- * While envp is not NULL, it will iterate through the environment
- * variables and add them to the table. When ft_strchr finds the first '=',
- * it copies the string before the '=' to KEY (at position equal_sign - *envp)
- * and the string after the '=' to VALUE.
- */
 void	environment_init(char **envp)
 {
 	t_env_entry	*env_table;
@@ -50,22 +39,7 @@ void	environment_init(char **envp)
 		}
 		envp++;
 	}
-	env_table = env_holder(env_table, true);
-}
-
-t_env_entry	*env_holder(t_env_entry *table, bool update)
-{
-	static t_env_entry	*env_table_holder;
-
-	if (update)
-	{
-		table = goto_head_env_table(table);
-		env_table_holder = table;
-		return (env_table_holder);
-	}
-	if (!update && table == NULL && env_table_holder)
-		return (env_table_holder);
-	return (table);
+	env_holder(env_table, true, false);
 }
 
 t_env_entry	*alloc_table(int init_size)
@@ -83,25 +57,40 @@ t_env_entry	*alloc_table(int init_size)
 	return (table);
 }
 
+t_env_entry	*env_holder(t_env_entry *table, bool update, bool clear_table)
+{
+	static t_env_entry	*env_table_holder;
+
+	if (update && table)
+	{
+		table = goto_head_env_table(table);
+		free_env_table(env_table_holder);
+		env_table_holder = table;
+	}
+	if (clear_table && env_table_holder)
+		free_env_table(env_table_holder);
+	return (env_table_holder);
+}
+
 t_env_entry	*addto_env_table(t_env_entry *table, const char *key,
 							const char *value)
 {
 	t_env_entry	*new_entry;
+	t_env_entry	*tmp;
 
 	new_entry = alloc_table(table->size);
 	new_entry->key = ft_strdup(key);
 	new_entry->value = ft_strdup(value);
 	if (table->next == NULL && table->prev == NULL
 		&& table->key == NULL && table->value == NULL)
-		return (new_entry);
-	while (table)
 	{
-		if (table->next == NULL)
-			break ;
-		table = table->next;
+		free(table);
+		return (new_entry);
 	}
-	new_entry->prev = table;
-	table->next = new_entry;
+	tmp = table;
+	tmp = goto_end_env_table(tmp);
+	new_entry->prev = tmp;
+	tmp->next = new_entry;
 	return (table);
 }
 

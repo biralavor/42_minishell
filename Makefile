@@ -75,6 +75,7 @@ SRC_FILES				+= ./builtins/26.builtins_pwd.c
 SRC_FILES				+= ./builtins/27.builtins_export.c
 SRC_FILES				+= ./builtins/28.builtins_export_utils.c
 SRC_FILES				+= ./builtins/29.builtins_unset.c
+SRC_FILES				+= ./builtins/30.builtins_env.c
 
 #SRC_FILES				= minishell_main.c
 
@@ -195,13 +196,13 @@ $(BUILD_D)%.o:		%.c
 					@$(MKDIR) $(dir $@)
 					@$(COMP_OBJS)
 					@printf "$(CYAN)"
-					@echo "Compiling: $(notdir $<)"
+					@echo "$(NAME) compiling -> $(GREEN)$(notdir $<)"
 					@printf "$(RESET)"
 
 $(NAME):			libft_lib $(OBJS_ALL)
 					@$(COMP_EXE)
 					@printf "$(GREEN)"
-					@echo "$(NAME) Ready!"
+					@echo "$(NAME) READY!"
 					$(call project_title)
 					@printf "$(YELLOW)"
 					$(call instructions)
@@ -220,25 +221,23 @@ bonus:
 
 clean:
 					@printf "$(RED)"
-					@echo ">>> Cleaning objects"
-					@printf "$(PURPLE)"
-					$(RM) $(OBJS_ALL)
-					$(RM) $(BUILD_D)
-					$(MAKE) -C $(LIBFT_D) fclean
+					@echo ">>> Cleaning objects from: $(PURPLE) $(NAME)"
+					@$(RM) $(OBJS)
+					@$(RM) $(BUILD_D)
+					@$(MAKE) -C $(LIBFT_D) fclean --no-print-directory
 					@printf "$(RESET)"
 
 fclean:				clean
 					@printf "$(RED)"
-					@echo ">>> Cleaning executables"
-					@printf "$(PURPLE)"
-					$(RM) $(NAME)
-					$(RM) $(NAME_BONUS)
+					@echo ">>> Cleaning executables from: $(PURPLE) $(NAME)"
+					@$(RM) $(NAME)
+					@$(RM) $(NAME_BONUS)
 					@printf "$(RESET)"
 
 re:					fclean all
 
 gdb:				re
-					gdb --tui -ex 'b syntax_analysis' -ex 'run' ./$(NAME)
+					gdb --tui -ex 'b main' -ex 'run' ./$(NAME)
 
 val:				re
 					valgrind --leak-check=full --track-origins=yes ./$(NAME)
