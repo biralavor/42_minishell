@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 13:23:46 by umeneses          #+#    #+#             */
-/*   Updated: 2024/08/15 12:27:05 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/08/15 14:08:15 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ t_env_entry	*builtins_env_sort_manager(t_env_entry *env_vars)
 	t_env_entry	*tmp;
 
 	tmp = env_vars;
-	while (tmp && tmp->next && !builtins_is_env_sorted(tmp))
+	if (!builtins_is_env_sorted(tmp))
 		tmp = bubble_sort_nodes(&tmp);
 	return (tmp);
 }
