@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 13:23:46 by umeneses          #+#    #+#             */
-/*   Updated: 2024/08/15 11:35:25 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/08/15 12:36:03 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,19 +22,21 @@ void	arg_handle_runner(t_env_entry *env_vars, char *arg)
 	char		*var_key;
 	char		*var_value;
 	char		*equal_sign;
+	t_env_entry	*tmp;
 
+	tmp = env_vars;
 	equal_sign = ft_strchr(arg, '=');
 	if (equal_sign)
 	{
 		var_key = ft_substr(arg, 0, equal_sign - arg);
 		var_value = ft_strdup(equal_sign + 1);
-		env_vars = addto_env_table(env_vars, var_key, var_value);
+		tmp = addto_env_table(tmp, var_key, var_value);
 		free(var_key);
 		free(var_value);
 	}
 	else
-		env_vars = addto_env_table(env_vars, arg, "");
-	env_vars = env_holder(env_vars, true, false);
+		tmp = addto_env_table(tmp, arg, "");
+	tmp = env_holder(tmp, true, false);
 }
 
 int	arg_handle_state_detector(int state, char *arg)
