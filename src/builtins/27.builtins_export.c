@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 13:23:46 by umeneses          #+#    #+#             */
-/*   Updated: 2024/08/13 18:40:16 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/08/15 12:27:05 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,8 @@ void	swap_env_nodes(t_env_entry **head, t_env_entry *a, t_env_entry *b)
 	t_env_entry	*prev_a;
 	t_env_entry	*next_b;
 
+	if (head == NULL || *head == NULL || a == NULL || b == NULL || a == b)
+		return ;
 	prev_a = a->prev;
 	next_b = b->next;
 	if (prev_a != NULL)
@@ -112,6 +114,7 @@ t_env_entry	*bubble_sort_nodes(t_env_entry **head)
 			{
 				swap_env_nodes(head, cur, cur->next);
 				swapped = true;
+				cur = cur->prev;
 			}
 			else
 				cur = cur->next;
