@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 13:23:46 by umeneses          #+#    #+#             */
-/*   Updated: 2024/08/14 14:59:23 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/08/15 14:10:35 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,5 @@ void	builtins_runner_env(t_env_entry *env_vars)
 			ft_printf("%s=%s\n", var_key, var_value);
 			env_vars = env_vars->next;
 		}
-		free(var_key);
-		free(var_value);
 	}
 }
