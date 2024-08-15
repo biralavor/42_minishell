@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 13:23:46 by umeneses          #+#    #+#             */
-/*   Updated: 2024/08/15 14:08:15 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/08/15 14:25:59 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,8 +102,6 @@ t_env_entry	*bubble_sort_nodes(t_env_entry **head)
 
 	swapped = true;
 	cur = NULL;
-	if (*head == NULL || (*head)->next == NULL)
-		return (*head);
 	while (swapped)
 	{
 		swapped = false;
