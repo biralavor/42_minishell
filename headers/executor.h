@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/05 13:56:37 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/08/14 19:59:16 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/08/15 14:31:38 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,16 @@ t_env_entry		*goto_end_env_table(t_env_entry *table);
 
 /* ENVIRONMENT UTILS FUNCTIONS */
 t_env_entry		*lookup_table(t_env_entry *table, char *key);
+
+/**
+ * @brief: This function uses the djb2 algorithm, which is widely
+ * regarded as one of the best general-purpose hash functions.
+ * It starts with a magic number (5381) and processes each character
+ * of the key by shifting the current hash value left by 5 bits
+ * and adding the ASCII value of the current character.
+ * Finally,  * it applies the modulus operation with the table size
+ * to ensure the hash value fits within the bounds of the table.
+ */
 unsigned long	hash_maker(const char *key, int size);
 void			ft_env_printer(t_env_entry	*env_table);
 void			free_env_table(t_env_entry *env_vars);
