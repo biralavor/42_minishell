@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 14:57:00 by umeneses          #+#    #+#             */
-/*   Updated: 2024/08/15 14:30:00 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/08/16 10:04:55 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,6 @@ bool		check_command_args(t_token_list *lst, char arg);
  * @brief:
  * @param var_key the name of the variable to export.
  * @param var_value the value to be setted in the var_key.
- * TODO: Use var_key and var_value to set the environment variable.
 */
 void		builtins_runner_export(t_env_entry *env_vars, char *arg);
 
