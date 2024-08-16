@@ -6,22 +6,18 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 10:52:55 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/08/16 09:46:17 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/08/16 19:22:54 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-/**
- * @brief: TODO: remove lst_printer function before submiting.
-*/
 bool	create_token_list(char *str, t_token_list **lst)
 {
 	int	idx;
 
 	idx = 0;
 	get_state(idx, str, lst);
-	ft_lst_printer(*lst);
 	assign_lst_idx(*lst);
 	if (lst)
 		return (true);
