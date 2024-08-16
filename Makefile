@@ -76,6 +76,7 @@ SRC_FILES				+= ./builtins/27.builtins_export.c
 SRC_FILES				+= ./builtins/28.builtins_export_utils.c
 SRC_FILES				+= ./builtins/29.builtins_unset.c
 SRC_FILES				+= ./builtins/30.builtins_env.c
+SRC_FILES				+= ./executor/31.execve.c
 
 #SRC_FILES				= minishell_main.c
 
@@ -85,6 +86,7 @@ TDD_FILES				= ft_lst_printer.c
 TDD_FILES				+= get_token_string.c
 TDD_FILES				+= ft_tree_printer.c
 TDD_FILES				+= ft_env_printer.c
+TDD_FILES				+= ft_array_printer.c
 TDD_FILES_ALL			= $(addprefix $(TDD_UTILS_D), $(TDD_FILES))
 TDD_OBJS_FILES			= $(addprefix $(BUILD_D), $(TDD_FILES_ALL:%.c=%.o))
 
