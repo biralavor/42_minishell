@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/05 13:56:37 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/08/16 10:01:05 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/08/16 14:55:16 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,13 +108,19 @@ void			ft_env_printer(t_env_entry	*env_table);
 
 void			free_env_table(t_env_entry *env_vars);
 
-void			free_env_array(char **envp);
+void			free_array(char **array);
 
 /*TREE BUILDING FUNCTIONS*/
 
 t_token_list	*go_to_last_node(t_token_list *lst);
 
 t_token_list	*go_to_first_node(t_token_list *lst);
+
+void			tree_execution(t_tree *tree);
+
+char 			**convert_tokens_to_array(t_token_list *lst);
+
+void			execute(char **cmd);
 
 /**
  * @brief Builds the tree structure.
@@ -133,5 +139,7 @@ bool			is_text(t_token_list *split_token);
 void			free_token_tree(t_tree *token_tree);
 
 void			ft_tree_printer(t_tree *root);
+
+void			ft_array_printer(char ** array);
 
 #endif

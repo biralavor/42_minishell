@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 13:32:19 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/08/16 10:02:35 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/08/16 14:53:57 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,8 @@ enum e_token
 /*INITIAL FUNCTIONS*/
 
 void	check_userinput(char *str);
+
+void	loop_routine(char *str);
 
 /*TOKEN LIST CREATION FUNCTIONS*/
 
@@ -146,6 +148,7 @@ void	assign_lst_idx(t_token_list *lst);
  * TODO: APAGAR ESTA FUNÇÃO NO FINAL DO PROJETO.
 */
 void	ft_lst_printer(t_token_list *lst);
+
 char	*get_token_string(enum e_token token);
 
 #endif
