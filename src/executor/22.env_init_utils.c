@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 12:58:03 by umeneses          #+#    #+#             */
-/*   Updated: 2024/08/16 09:46:09 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/08/16 14:57:23 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,12 +69,12 @@ void	free_env_table(t_env_entry *table)
 	}
 }
 
-void	free_env_array(char **envp)
+void	free_array(char **array)
 {
 	char	**tmp;
 
-	tmp = envp;
-	while (tmp)
+	tmp = array;
+	while (*tmp)
 	{
 		free(*tmp);
 		tmp++;
