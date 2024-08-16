@@ -6,16 +6,11 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 13:23:46 by umeneses          #+#    #+#             */
-/*   Updated: 2024/08/15 14:06:23 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/08/16 09:45:26 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-#include "lexer.h"
-#include "parser.h"
-#include "error_manager.h"
-#include "executor.h"
-#include "builtins.h"
 
 void	builtins_manager(t_token_list *lst)
 {

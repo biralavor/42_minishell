@@ -3,17 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   13.utils_parsing_word.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/05 10:36:08 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/07/16 13:12:45 by tmalheir         ###   ########.fr       */
+/*   Updated: 2024/08/16 09:46:53 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-#include "lexer.h"
-#include "parser.h"
-#include "error_manager.h"
 
 bool	check_backlash(char *str)
 {

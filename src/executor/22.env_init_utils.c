@@ -6,12 +6,11 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 12:58:03 by umeneses          #+#    #+#             */
-/*   Updated: 2024/08/15 14:31:35 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/08/16 09:46:09 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-#include "executor.h"
 
 t_env_entry	*goto_head_env_table(t_env_entry *table)
 {

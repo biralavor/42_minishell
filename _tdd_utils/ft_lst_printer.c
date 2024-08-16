@@ -6,12 +6,11 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/25 11:35:49 by umeneses          #+#    #+#             */
-/*   Updated: 2024/07/25 14:16:30 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/08/16 09:48:10 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-#include "lexer.h"
 
 void	ft_lst_printer(t_token_list *lst)
 {

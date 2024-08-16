@@ -6,12 +6,11 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 15:38:48 by umeneses          #+#    #+#             */
-/*   Updated: 2024/08/08 15:09:46 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/08/16 09:48:13 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-#include "executor.h"
 
 void	ft_env_printer(t_env_entry	*env_table)
 {

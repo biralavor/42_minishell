@@ -3,15 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   08.state61_to_state90.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/20 10:35:11 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/07/23 11:44:42 by tmalheir         ###   ########.fr       */
+/*   Updated: 2024/08/16 09:46:32 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-#include "lexer.h"
 
 int	state_61(t_token_list **lst, int idx, char next)
 {

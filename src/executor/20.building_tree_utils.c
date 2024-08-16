@@ -6,15 +6,11 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 15:02:59 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/08/06 11:33:57 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/08/16 09:46:01 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-#include "lexer.h"
-#include "parser.h"
-#include "executor.h"
-#include "error_manager.h"
 
 bool	is_text(t_token_list *split_token)
 {

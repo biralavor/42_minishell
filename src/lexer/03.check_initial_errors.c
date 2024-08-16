@@ -6,13 +6,11 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 07:45:31 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/07/24 11:07:36 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/08/16 09:46:13 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-#include "lexer.h"
-#include "error_manager.h"
 
 bool	check_initial_errors(char *str)
 {

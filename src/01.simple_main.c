@@ -6,14 +6,11 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 10:53:12 by umeneses          #+#    #+#             */
-/*   Updated: 2024/08/09 19:03:31 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/08/16 09:47:16 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-#include "lexer.h"
-#include "parser.h"
-#include "executor.h"
 
 /**
  * @brief Others fast-test for check_userinput()

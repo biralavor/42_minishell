@@ -6,15 +6,11 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/06 11:33:44 by umeneses          #+#    #+#             */
-/*   Updated: 2024/08/07 19:15:02 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/08/16 09:48:05 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-#include "lexer.h"
-#include "parser.h"
-#include "executor.h"
-#include "error_manager.h"
 
 void	ft_tree_printer(t_tree *root)
 {

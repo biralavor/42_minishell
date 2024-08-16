@@ -6,14 +6,11 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/04 16:20:31 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/07/18 12:27:36 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/08/16 09:46:48 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-#include "lexer.h"
-#include "parser.h"
-#include "error_manager.h"
 
 int	state_100(t_token_list *lst, int syntax_state)
 {

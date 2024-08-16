@@ -3,17 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   15.state300.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/05 11:13:10 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/07/12 15:54:20 by tmalheir         ###   ########.fr       */
+/*   Updated: 2024/08/16 09:46:59 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-#include "lexer.h"
-#include "parser.h"
-#include "error_manager.h"
 
 int	state_300(t_token_list *lst, int syntax_state)
 {

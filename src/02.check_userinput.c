@@ -6,16 +6,11 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 09:20:45 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/08/15 14:58:05 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/08/16 09:47:23 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-#include "lexer.h"
-#include "parser.h"
-#include "executor.h"
-#include "error_manager.h"
-#include "builtins.h"
 
 void	check_userinput(char *str)
 {

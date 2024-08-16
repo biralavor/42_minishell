@@ -6,14 +6,11 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 11:53:52 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/07/18 12:38:38 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/08/16 09:47:11 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-#include "lexer.h"
-#include "parser.h"
-#include "error_manager.h"
 
 void	error_manager_parser(int error_id, t_token_list *lst)
 {

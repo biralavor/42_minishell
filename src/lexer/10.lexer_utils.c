@@ -3,15 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   10.lexer_utils.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/20 10:12:37 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/07/16 16:48:56 by tmalheir         ###   ########.fr       */
+/*   Updated: 2024/08/16 09:46:39 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-#include "lexer.h"
 
 int	check_next_char(char curr, char next)
 {

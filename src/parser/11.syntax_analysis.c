@@ -6,14 +6,11 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/03 10:40:35 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/07/25 12:59:13 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/08/16 09:46:44 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-#include "lexer.h"
-#include "parser.h"
-#include "error_manager.h"
 
 /**
  * @brief: TODO: remove lst_printer function before submiting.
