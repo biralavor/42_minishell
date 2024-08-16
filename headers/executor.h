@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/05 13:56:37 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/08/15 14:36:58 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/08/16 10:01:05 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,9 @@
 
 /**
  * @brief Environment entry
- * @param *key -> The NAME of the environment variable.
- * @param *value -> The VALUE of the environment variable.
- * @param *next -> The next environment entry.
+ * @param key -> The NAME of the environment variable.
+ * @param value -> The VALUE of the environment variable.
+ * @param next -> The next environment entry.
  */
 typedef struct s_env_entry
 {
@@ -30,9 +30,9 @@ typedef struct s_env_entry
 
 /**
  * @brief Tree structure.
- * @param *left_tree.
- * @param *right_tree.
- * @param *token_list.
+ * @param left_tree.
+ * @param right_tree.
+ * @param token_list.
 */
 typedef struct s_tree
 {
@@ -118,7 +118,7 @@ t_token_list	*go_to_first_node(t_token_list *lst);
 
 /**
  * @brief Builds the tree structure.
- * @param *lst -> The token list.
+ * @param lst -> The token list.
 */
 t_tree			*initiate_tree(t_token_list *lst);
 

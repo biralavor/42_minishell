@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   error_manager.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 22:17:27 by umeneses          #+#    #+#             */
-/*   Updated: 2024/07/16 15:54:43 by tmalheir         ###   ########.fr       */
+/*   Updated: 2024/08/16 10:03:12 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ enum e_error
 
 /**
  * @brief Calls for initial error checking functions.
- * @param *str -> User input in command line.
+ * @param str -> User input in command line.
 */
 bool	check_initial_errors(char *str);
 
