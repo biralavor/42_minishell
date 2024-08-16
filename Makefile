@@ -198,13 +198,15 @@ $(BUILD_D)%.o:		%.c
 					@$(MKDIR) $(dir $@)
 					@$(COMP_OBJS)
 					@printf "$(CYAN)"
-					@echo "$(NAME) compiling -> $(GREEN)$(notdir $<)"
+					@echo "$(NAME)	compiling -> $(GREEN)$(notdir $<)"
 					@printf "$(RESET)"
 
 $(NAME):			libft_lib $(OBJS_ALL)
 					@$(COMP_EXE)
 					@printf "$(GREEN)"
-					@echo "$(NAME) READY!"
+					@echo "--------------------------------------------------------------------"
+					@echo "		$(NAME) READY!"
+					@echo "--------------------------------------------------------------------"
 					$(call project_title)
 					@printf "$(YELLOW)"
 					$(call instructions)
