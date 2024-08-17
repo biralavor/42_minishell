@@ -240,10 +240,13 @@ fclean:				clean
 
 re:					fclean all
 
+one:				re
+					./$(NAME)
+
 gdb:				re
 					gdb --tui -ex 'b main' -ex 'run' ./$(NAME)
 
 val:				re
 					valgrind --leak-check=full --track-origins=yes ./$(NAME)
 
-.PHONY:				all clean fclean re bonus val gdb
+.PHONY:				all clean fclean re bonus one val gdb
