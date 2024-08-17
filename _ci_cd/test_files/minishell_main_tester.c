@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 11:12:53 by umeneses          #+#    #+#             */
-/*   Updated: 2024/08/15 15:03:31 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/08/17 11:48:34 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,8 @@
 #include "../../src/builtins/28.builtins_export_utils.c"
 #include "../../src/builtins/29.builtins_unset.c"
 #include "../../src/builtins/30.builtins_env.c"
+#include "../../src/executor/31.execve.c"
+#include "../_tdd_utils/ft_array_printer.c"
 #include "../_tdd_utils/ft_env_printer.c"
 #include "../_tdd_utils/ft_lst_printer.c"
 #include "../_tdd_utils/ft_tree_printer.c"

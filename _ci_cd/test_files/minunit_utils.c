@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 15:19:35 by umeneses          #+#    #+#             */
-/*   Updated: 2024/08/09 18:44:49 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/08/17 11:48:46 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,22 +44,6 @@ void	ft_array_clear(char **array, int arr_size)
 		arr_size--;
 	}
 	free(array);
-}
-
-/**
-* @brief: To printf the array inside the minunit tester
-*/
-void	ft_array_printer(char **array_lexeme, int *array_type, int arr_size)
-{
-	int	index;
-
-	index = arr_size;
-	ft_printf("\nPrinting the List:\n");
-	while (index >= 0)
-	{
-		printf("[%2d]\tlexeme = %s\ttype = %d\n", index, (array_lexeme[index]), array_type[index]);
-		index--;
-	}
 }
 
 /**
