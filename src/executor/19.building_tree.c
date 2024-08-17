@@ -6,15 +6,11 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/05 13:55:37 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/08/06 09:23:02 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/08/16 09:45:58 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-#include "lexer.h"
-#include "parser.h"
-#include "executor.h"
-#include "error_manager.h"
 
 t_tree	*initiate_tree(t_token_list *lst)
 {

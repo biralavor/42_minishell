@@ -3,15 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   06.state20_to_state30.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/20 10:17:28 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/07/17 14:57:33 by tmalheir         ###   ########.fr       */
+/*   Updated: 2024/08/16 09:46:25 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-#include "lexer.h"
 
 int	state_20(t_token_list **lst, char *str, int idx)
 {

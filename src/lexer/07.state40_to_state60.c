@@ -3,15 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   07.state40_to_state60.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/20 10:19:45 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/07/12 17:04:27 by tmalheir         ###   ########.fr       */
+/*   Updated: 2024/08/16 09:46:28 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-#include "lexer.h"
 
 int	state_40(t_token_list **lst, int idx, char next)
 {

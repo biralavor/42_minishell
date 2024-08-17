@@ -3,17 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 10:53:20 by umeneses          #+#    #+#             */
-/*   Updated: 2024/07/16 09:46:52 by tmalheir         ###   ########.fr       */
+/*   Updated: 2024/08/16 09:52:55 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MINISHELL_H
 # define MINISHELL_H
 
-# include "../libs/libft/includes/libft.h"
 # include <stdbool.h>
 # include <stdio.h>
 # include <stdlib.h>
@@ -49,5 +48,12 @@ typedef struct s_token_list
 	struct s_token_list	*prev;
 	struct s_token_list	*next;
 }						t_token_list;
+
+# include "../libs/libft/includes/libft.h"
+# include "lexer.h"
+# include "parser.h"
+# include "error_manager.h"
+# include "executor.h"
+# include "builtins.h"
 
 #endif

@@ -106,12 +106,14 @@ $(BUILD_D)%.o:		%.c
 					@$(MKDIR) $(dir $@)
 					@$(COMPILE_OBJS)
 
-					@echo "$(NAME) compiling -> $(GREEN)$(notdir $<)"
+					@echo "$(NAME)		compiling -> $(GREEN)$(notdir $<)"
 
 $(NAME):			$(OBJS)
 					@$(COMPILE_LIB)
 					@printf "$(GREEN)"
-					@echo "$(NAME) READY!"
+					@echo "--------------------------------------------------------------------"
+					@echo "		$(NAME) READY!"
+					@echo "--------------------------------------------------------------------"
 					@printf "$(RESET)"
 
 clean:

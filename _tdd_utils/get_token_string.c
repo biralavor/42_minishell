@@ -6,12 +6,11 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 15:19:35 by umeneses          #+#    #+#             */
-/*   Updated: 2024/08/09 18:44:37 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/08/16 09:47:59 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-#include "lexer.h"
 
 /**
  * @brief: To get the string of the enum e_token

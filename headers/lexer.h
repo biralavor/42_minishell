@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lexer.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 13:32:19 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/07/17 14:42:20 by tmalheir         ###   ########.fr       */
+/*   Updated: 2024/08/16 14:53:57 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,17 +33,19 @@ enum e_token
 
 void	check_userinput(char *str);
 
+void	loop_routine(char *str);
+
 /*TOKEN LIST CREATION FUNCTIONS*/
 
 /**
  * @brief Creates token list by calling the get_state function.
- * @param *str -> User input in command line.
+ * @param str -> User input in command line.
 */
 bool	create_token_list(char *str, t_token_list **lst);
 
 /**
  * @brief Creates each token according to the present state.
- * @param **root -> The token list.
+ * @param root -> The token list.
  * @param token -> Each of the tokens to be created.
 */
 void	create_new_node(t_token_list **root, t_token_list *token);
@@ -52,8 +54,8 @@ void	create_new_node(t_token_list **root, t_token_list *token);
 
 /**
  * @brief Finds out the state of each token.
- * @param *str -> User input in command line.
- * @param **root -> The token list.
+ * @param str -> User input in command line.
+ * @param root -> The token list.
 */
 void	get_state(int idx, char *str, t_token_list **lst);
 
@@ -76,37 +78,37 @@ int		state_90(t_token_list **lst, char *str, int idx);
 
 /**
  * @brief Checks for double quoting errors.
- * @param *str -> User input in command line.
+ * @param str -> User input in command line.
 */
 bool	check_closed_double_quotes(char *str);
 
 /**
  * @brief Checks for single quoting errors.
- * @param *str -> User input in command line.
+ * @param str -> User input in command line.
 */
 bool	check_closed_single_quotes(char *str);
 
 /**
  * @brief Checks for open parenthesis.
- * @param *str -> User input in command line.
+ * @param str -> User input in command line.
 */
 bool	check_closed_parenthesis(char *str);
 
 /**
  * @brief Checks for empty parenthesis.
- * @param *str -> User input in command line.
+ * @param str -> User input in command line.
 */
 bool	is_empty(char *str);
 
 /**
  * @brief Checks if there are parenthesis between quotes.
- * @param *str -> User input in command line.
+ * @param str -> User input in command line.
 */
 int		between_quotes(int idx, char *str);
 
 /**
  * @brief Checks if the number of open and close parenthesis token is equal.
- * @param *str -> User input in command line.
+ * @param str -> User input in command line.
  * @param open -> the number of open parenthesis token.
  * @param close -> the number of close parenthesis token.
 */
@@ -143,9 +145,10 @@ int		ft_lst_size(t_token_list *lst);
 void	assign_lst_idx(t_token_list *lst);
 
 /**
- * @brief TODO: APAGAR ESTA FUNÇÃO NO FINAL DO PROJETO.
+ * TODO: APAGAR ESTA FUNÇÃO NO FINAL DO PROJETO.
 */
 void	ft_lst_printer(t_token_list *lst);
+
 char	*get_token_string(enum e_token token);
 
 #endif
