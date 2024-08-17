@@ -6,14 +6,12 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 14:57:00 by umeneses          #+#    #+#             */
-/*   Updated: 2024/08/16 10:04:55 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/08/17 11:10:12 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef BUILTINS_H
 # define BUILTINS_H
-
-# include "executor.h"
 
 /**
  * @brief: Calls the respective builtin function.
