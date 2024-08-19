@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 14:57:00 by umeneses          #+#    #+#             */
-/*   Updated: 2024/08/18 14:35:04 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/08/19 09:08:48 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ bool		builtins_detector(char **cmd);
 /**
  * @brief: Runs the echo - imitate words - builtin command.
 */
-void		builtins_runner_echo(char **cmd);
+int			builtins_runner_echo(char **cmd, int idx);
 
 /**
  * @brief: Runs the pwd - print work directory - builtin command.
