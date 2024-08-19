@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 10:53:20 by umeneses          #+#    #+#             */
-/*   Updated: 2024/08/19 15:06:57 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/08/19 17:38:21 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@
 # include "lexer.h"
 # include "parser.h"
 # include "error_manager.h"
+# include "environment.h"
 # include "executor.h"
 # include "builtins.h"
 

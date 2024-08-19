@@ -78,6 +78,8 @@ SRC_FILES				+= ./builtins/29.builtins_unset.c
 SRC_FILES				+= ./builtins/30.builtins_env.c
 SRC_FILES				+= ./builtins/31.builtins_utils.c
 SRC_FILES				+= ./executor/32.execve.c
+SRC_FILES				+= ./executor/33.execve_utils.c
+SRC_FILES				+= ./builtins/34.builtins_exit.c
 
 #SRC_FILES				= minishell_main.c
 

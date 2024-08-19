@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 14:57:00 by umeneses          #+#    #+#             */
-/*   Updated: 2024/08/19 15:18:38 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/08/19 17:55:56 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,6 +114,20 @@ t_env_entry	*builtins_env_sort_manager(t_env_entry *env_vars);
  * @brief: Checks if the environment variables are sorted.
  */
 bool		builtins_is_env_sorted(t_env_entry *env_vars);
+
+/**
+ * @brief: Runs the exit - exit the shell - builtin command.
+ * @return the exit code, with an expected behaviour code from 0 to 255.
+ */
+int			builtins_runner_exit(t_token_list *lst);
+
+/**
+ * @brief: Holds the exit status of the shell.
+ * @param code the exit code, generated from a function.
+ * @param update a flag to update the exit status.
+ * @param call_status a flag to call the last exit status.
+ */
+int			exit_status_holder(int code, bool update, bool call_status);
 
 /**
  * @brief: Swaps two nodes in the environment variables list.

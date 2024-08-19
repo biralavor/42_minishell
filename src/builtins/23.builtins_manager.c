@@ -6,32 +6,11 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 13:23:46 by umeneses          #+#    #+#             */
-/*   Updated: 2024/08/19 15:17:37 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/08/19 17:44:46 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-void	builtins_manager(t_token_list *lst)
-{
-	t_token_list	*cmd;
-	static bool		arg_option;
-
-	cmd = lst;
-	arg_option = false;
-	while (cmd)
-	{
-		if (ft_strncmp(cmd->lexeme, "echo", 4) == 0)
-			builtins_runner_echo(cmd, arg_option);
-		else if (ft_strncmp(cmd->lexeme, "cd", 2) == 0)
-			builtins_runner_cd(cmd);
-		else if (ft_strncmp(cmd->lexeme, "pwd", 3) == 0)
-			builtins_runner_pwd(cmd);
-		if (NULL == cmd)
-			break ;
-		cmd = cmd->next;
-	}
-}
 
 bool	builtins_detector(t_token_list *cmd)
 {
@@ -45,6 +24,32 @@ bool	builtins_detector(t_token_list *cmd)
 		cmd = cmd->next;
 	}
 	return (false);
+}
+
+void	builtins_manager(t_token_list *lst)
+{
+	static bool		arg_option;
+	t_token_list	*cmd;
+
+	cmd = lst;
+	arg_option = false;
+	while (cmd)
+	{
+		if (ft_strncmp(cmd->lexeme, "echo", 4) == 0)
+			builtins_runner_echo(cmd, arg_option);
+		else if (ft_strncmp(cmd->lexeme, "cd", 2) == 0)
+			builtins_runner_cd(cmd);
+		else if (ft_strncmp(cmd->lexeme, "pwd", 3) == 0)
+			builtins_runner_pwd(cmd);
+		else if (ft_strncmp(cmd->lexeme, "exit", 4) == 0)
+		{
+			exit_status_holder(builtins_runner_exit(cmd), true, true);
+			break ;
+		}
+		if (NULL == cmd)
+			break ;
+		cmd = cmd->next;
+	}
 }
 
 bool	builtins_detector_with_possible_args(t_token_list *lst)
