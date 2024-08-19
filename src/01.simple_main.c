@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 10:53:12 by umeneses          #+#    #+#             */
-/*   Updated: 2024/08/16 19:48:20 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/08/17 12:46:21 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ int main (int ac, char **av, char **envp)
 		{
 			// set_tty_proprieties
 			// sigquit_case() -> Ctrl+/
-			input = readline(GREEN">>> Born Again (mini) SHell <<<: "RESET);
+			input = readline(GREEN"<<< Born Again (mini) SHell >>>$ "RESET);
 			loop_routine(input);
 			wait(NULL);
 		}
