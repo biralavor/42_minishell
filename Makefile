@@ -245,7 +245,7 @@ one:				re
 					./$(NAME)
 
 gdb:				re
-					gdb --tui -ex 'b main' -ex 'run > /dev/null' ./$(NAME)
+					gdb --tui -ex 'b main' -ex 'run' ./$(NAME)
 
 val:				re
 					valgrind --leak-check=full --track-origins=yes ./$(NAME)
