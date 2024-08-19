@@ -6,42 +6,45 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 13:23:46 by umeneses          #+#    #+#             */
-/*   Updated: 2024/08/19 09:20:35 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/08/19 10:44:14 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	builtins_runner_echo(char **cmd, int idx)
+static bool	arg_detector;
+
+void	builtins_runner_echo(t_token_list *lst)
 {
-	idx++;
-	if (NULL == cmd[idx])
-		write(1, "\n", 1);
-	else
+	t_token_list	*cmd;
+
+	cmd = lst->next;
+	if (NULL == cmd)
 	{
-		if (check_command_args(cmd, "-n"))
-			idx++;
-		while (cmd[idx] != NULL)
-		{
-			ft_putstr_fd(cmd[idx], STDOUT_FILENO);
-			if (NULL == cmd[idx + 1])
-				break ;
-			else
-				ft_putstr_fd(" ", STDOUT_FILENO);
-			idx++;
-		}
-		if (!check_command_args(cmd, "-n"))
-			write(1, "\n", 1);
+		write(1, "\n", 1);
+		return ;
 	}
-	return (idx);
+	if (check_command_args(cmd->lexeme, "-n"))
+		cmd = cmd->next;
+	while (cmd)
+	{
+		ft_putstr_fd(cmd->lexeme, STDOUT_FILENO);
+		if (NULL == cmd->next)
+			break ;
+		else
+			ft_putstr_fd(" ", STDOUT_FILENO);
+		cmd = cmd->next;
+	}
+	if (!arg_detector)
+		write(1, "\n", 1);
 }
 
-bool	check_command_args(char **cmd, char *arg)
+bool	check_command_args(char *lexeme, char *arg)
 {
-	int		idx;
-
-	idx = 1;
-	if (ft_strncmp(cmd[idx], arg, 2) == 0)
+	if (ft_strncmp(lexeme, arg, 2) == 0)
+	{
+		arg_detector = true;
 		return (true);
+	}
 	return (false);
 }
