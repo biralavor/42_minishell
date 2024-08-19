@@ -6,15 +6,14 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 13:23:46 by umeneses          #+#    #+#             */
-/*   Updated: 2024/08/19 12:13:15 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/08/19 15:19:37 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	builtins_runner_echo(t_token_list *lst)
+void	builtins_runner_echo(t_token_list *lst, bool arg_option)
 {
-	bool			arg_option;
 	t_token_list	*cmd;
 
 	cmd = lst->next;
