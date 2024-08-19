@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 14:57:00 by umeneses          #+#    #+#             */
-/*   Updated: 2024/08/19 12:14:19 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/08/19 12:22:57 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,13 +21,13 @@ void		builtins_manager(t_token_list *cmd);
 /**
  * @brief: Builtins manager for EXPORT and UNSET.
 */
-void		builtins_with_possible_args_manager(t_token_list *lst);
+void		builtins_with_possible_args_manager(t_token_list *cmd);
 
 /**
  * @brief: Builtins detector for EXPORT and UNSET,
  * which could handle possible arguments.
  */
-bool		builtins_detector_with_possible_args(t_token_list *lst);
+bool		builtins_detector_with_possible_args(t_token_list *cmd);
 
 /**
  * @brief: Checks if there are any builtins in the token list.

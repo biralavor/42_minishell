@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 13:23:46 by umeneses          #+#    #+#             */
-/*   Updated: 2024/08/19 11:26:07 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/08/19 12:21:41 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,12 +28,9 @@ void	builtins_manager(t_token_list *lst)
 		else if (ft_strncmp(cmd->lexeme, "pwd", 3) == 0)
 			builtins_runner_pwd(cmd);
 		if (NULL == cmd)
-				break ;
+			break ;
 		cmd = cmd->next;
 	}
-
-	else if (builtins_detector_with_possible_args(cmd))
-		builtins_with_possible_args_manager(cmd);
 }
 
 bool	builtins_detector(t_token_list *cmd)

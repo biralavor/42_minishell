@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   31.execve.c                                        :+:      :+:    :+:   */
+/*   32.execve.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/16 09:43:43 by umeneses          #+#    #+#             */
-/*   Updated: 2024/08/19 11:59:34 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/08/19 12:22:13 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,14 +85,16 @@ void	execute(t_tree *tree)
 	ft_array_printer(cmd);
 	if(!cmd)
 		return ;
-	if (cmd[0] && !builtins_detector(tree->command))
+	if (builtins_detector(tree->command))
+		builtins_manager(tree->command);
+	else if (builtins_detector_with_possible_args(tree->command))
+		builtins_with_possible_args_manager(tree->command);
+	else if (cmd[0])
 	{
 		path = lookup_cmd_path(cmd[0]);
 		fork_and_execve(cmd, path);
 		// free(path);
 	}
-	else
-		builtins_manager(tree->command);
 	// verify if !cmd[0]
 	
 	// verify SIGINT
