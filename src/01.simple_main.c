@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 10:53:12 by umeneses          #+#    #+#             */
-/*   Updated: 2024/08/17 12:46:21 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/08/19 17:41:33 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,12 +48,12 @@
 // 	return (0);
 // }
 
-int main (int ac, char **av, char **envp)
+int	main(int ac, char **av, char **envp)
 {
-	(void)ac;
-	(void)av;
 	char	*input;
 
+	(void)ac;
+	(void)av;
 	environment_init(envp);
 	// INIT_SIGNALS
 	// get_tty_proprieties
