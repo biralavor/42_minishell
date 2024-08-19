@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 10:53:20 by umeneses          #+#    #+#             */
-/*   Updated: 2024/08/16 09:52:55 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/08/19 15:06:57 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,25 +29,6 @@
 # define PURPLE	"\033[0;35m"
 # define CYAN	"\033[0;36m"
 # define RESET	"\033[0m"
-
-/**
- * @brief Token structure.
- * @param type      = token type.
- * @param lexeme    = actual string saved in token WORD.
- * @param next_char = to check for spaces.
- * @param idx       = node index.
- * @param prev      = previous node in token list.
- * @param next      = next node in token list.
-*/
-typedef struct s_token_list
-{
-	int					type;
-	int					idx;
-	char				*lexeme;
-	char				next_char;
-	struct s_token_list	*prev;
-	struct s_token_list	*next;
-}						t_token_list;
 
 # include "../libs/libft/includes/libft.h"
 # include "lexer.h"
