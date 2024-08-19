@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/16 09:43:43 by umeneses          #+#    #+#             */
-/*   Updated: 2024/08/19 10:01:02 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/08/19 11:59:34 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,7 +102,7 @@ void	execute(t_tree *tree)
 /**
  * TODO: implementar função que trata expansão de variável
  */
-char **convert_envs_to_array(t_env_entry *env_vars)
+char	**convert_envs_to_array(t_env_entry *env_vars)
 {
 	int			idx;
 	char		**all_envs;
@@ -126,7 +126,7 @@ char **convert_envs_to_array(t_env_entry *env_vars)
 /**
  * TODO: implementar função que trata expansão de variável
  */
-char **convert_tokens_to_array(t_token_list *lst)
+char	**convert_tokens_to_array(t_token_list *lst)
 {
 	int				size;
 	char			**cmd;
