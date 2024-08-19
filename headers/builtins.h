@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 14:57:00 by umeneses          #+#    #+#             */
-/*   Updated: 2024/08/17 11:10:12 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/08/18 14:35:04 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 /**
  * @brief: Calls the respective builtin function.
 */
-void		builtins_manager(t_token_list *lst);
+int		builtins_manager(char **cmd);
 
 /**
  * @brief: Builtins manager for EXPORT and UNSET.
@@ -32,12 +32,12 @@ bool		builtins_detector_with_possible_args(t_token_list *lst);
 /**
  * @brief: Checks if there are any builtins in the token list.
 */
-bool		builtins_detector(t_token_list *lst);
+bool		builtins_detector(char **cmd);
 
 /**
  * @brief: Runs the echo - imitate words - builtin command.
 */
-void		builtins_runner_echo(t_token_list *lst);
+void		builtins_runner_echo(char **cmd);
 
 /**
  * @brief: Runs the pwd - print work directory - builtin command.
@@ -58,7 +58,7 @@ void		error_cd_messenger(int destiny_len, char *destiny_path);
 /**
  * @brief: Checks if the builtin command has an argument.
 */
-bool		check_command_args(t_token_list *lst, char arg);
+bool		check_command_args(char **cmd, char *arg);
 
 /**
  * @brief:

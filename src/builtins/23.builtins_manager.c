@@ -6,47 +6,46 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 13:23:46 by umeneses          #+#    #+#             */
-/*   Updated: 2024/08/16 09:45:26 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/08/18 14:08:37 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	builtins_manager(t_token_list *lst)
+int	builtins_manager(char **cmd)
 {
-	t_token_list	*tmp;
+	int	idx;
 
-	tmp = lst;
-	if (builtins_detector(tmp))
+	idx = 0;
+	while (cmd[idx])
 	{
-		while (tmp)
-		{
-			if (ft_strncmp(tmp->lexeme, "echo", 4) == 0)
-				builtins_runner_echo(tmp);
-			else if (ft_strncmp(tmp->lexeme, "cd", 2) == 0)
-				builtins_runner_cd(tmp);
-			else if (ft_strncmp(tmp->lexeme, "pwd", 3) == 0)
-				builtins_runner_pwd(tmp);
-			tmp = tmp->next;
-		}
+		if (ft_strncmp(cmd[idx], "echo", 4) == 0)
+			builtins_runner_echo(cmd);
+		// else if (ft_strncmp(cmd[idx], "cd", 2) == 0)
+		// 	builtins_runner_cd(tmp);
+		// else if (ft_strncmp(cmd[idx], "pwd", 3) == 0)
+		// 	builtins_runner_pwd(tmp);
+		idx++;
 	}
-	else if (builtins_detector_with_possible_args(tmp))
-		builtins_with_possible_args_manager(tmp);
+
+	// else if (builtins_detector_with_possible_args(cmd))
+	// 	builtins_with_possible_args_manager(cmd);
+	return (idx);
 }
 
-bool	builtins_detector(t_token_list *lst)
+bool	builtins_detector(char **cmd)
 {
-	t_token_list	*tmp;
+	int	idx;
 
-	tmp = lst;
-	while (tmp && tmp->type == WORD)
+	idx = 0;
+	while (cmd[idx])
 	{
-		if ((ft_strncmp(tmp->lexeme, "echo", 4) == 0)
-			|| (ft_strncmp(tmp->lexeme, "cd", 2) == 0)
-			|| (ft_strncmp(tmp->lexeme, "pwd", 3) == 0)
-			|| (ft_strncmp(tmp->lexeme, "exit", 4) == 0))
+		if ((ft_strncmp(cmd[idx], "echo", 4) == 0)
+			|| (ft_strncmp(cmd[idx], "cd", 2) == 0)
+			|| (ft_strncmp(cmd[idx], "pwd", 3) == 0)
+			|| (ft_strncmp(cmd[idx], "exit", 4) == 0))
 			return (true);
-		tmp = tmp->next;
+		idx++;
 	}
 	return (false);
 }
