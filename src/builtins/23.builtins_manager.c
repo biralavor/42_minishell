@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 13:23:46 by umeneses          #+#    #+#             */
-/*   Updated: 2024/08/19 10:51:14 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/08/19 11:26:07 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,22 +25,19 @@ void	builtins_manager(t_token_list *lst)
 			builtins_runner_echo(cmd);
 		else if (ft_strncmp(cmd->lexeme, "cd", 2) == 0)
 			builtins_runner_cd(cmd);
-		// else if (ft_strncmp(cmd[idx], "pwd", 3) == 0)
-		// 	builtins_runner_pwd(tmp);
+		else if (ft_strncmp(cmd->lexeme, "pwd", 3) == 0)
+			builtins_runner_pwd(cmd);
 		if (NULL == cmd)
 				break ;
 		cmd = cmd->next;
 	}
 
-	// else if (builtins_detector_with_possible_args(cmd))
-	// 	builtins_with_possible_args_manager(cmd);
+	else if (builtins_detector_with_possible_args(cmd))
+		builtins_with_possible_args_manager(cmd);
 }
 
 bool	builtins_detector(t_token_list *cmd)
 {
-	// int	idx;
-
-	// idx = 0;
 	while (cmd)
 	{
 		if ((ft_strncmp(cmd->lexeme, "echo", 4) == 0)
@@ -55,43 +52,43 @@ bool	builtins_detector(t_token_list *cmd)
 
 bool	builtins_detector_with_possible_args(t_token_list *lst)
 {
-	t_token_list	*tmp;
+	t_token_list	*cmd;
 
-	tmp = lst;
-	while (tmp && tmp->type == WORD)
+	cmd = lst;
+	while (cmd && cmd->type == WORD)
 	{
-		if ((ft_strncmp(tmp->lexeme, "export", 6) == 0)
-			|| (ft_strncmp(tmp->lexeme, "unset", 5) == 0)
-			|| (ft_strncmp(tmp->lexeme, "env", 3) == 0))
+		if ((ft_strncmp(cmd->lexeme, "export", 6) == 0)
+			|| (ft_strncmp(cmd->lexeme, "unset", 5) == 0)
+			|| (ft_strncmp(cmd->lexeme, "env", 3) == 0))
 			return (true);
-		tmp = tmp->next;
+		cmd = cmd->next;
 	}
 	return (false);
 }
 
 void	builtins_with_possible_args_manager(t_token_list *lst)
 {
-	t_token_list	*tmp;
+	t_token_list	*cmd;
 	t_env_entry		*env_vars;
 
-	tmp = lst;
+	cmd = lst;
 	env_vars = env_holder(NULL, false, false);
-	while (tmp)
+	while (cmd)
 	{
-		if (ft_strncmp(tmp->lexeme, "export", 6) == 0)
+		if (ft_strncmp(cmd->lexeme, "export", 6) == 0)
 		{
-			if (tmp->next && tmp->next->type == WORD)
-				builtins_runner_export(env_vars, tmp->next->lexeme);
+			if (cmd->next && cmd->next->type == WORD)
+				builtins_runner_export(env_vars, cmd->next->lexeme);
 			else
 				builtins_runner_export(env_vars, NULL);
 		}
-		else if (ft_strncmp(tmp->lexeme, "unset", 5) == 0)
+		else if (ft_strncmp(cmd->lexeme, "unset", 5) == 0)
 		{
-			if (tmp->next && tmp->next->type == WORD)
-				builtins_runner_unset(env_vars, tmp->next->lexeme);
+			if (cmd->next && cmd->next->type == WORD)
+				builtins_runner_unset(env_vars, cmd->next->lexeme);
 		}
-		else if (ft_strncmp(tmp->lexeme, "env", 3) == 0)
+		else if (ft_strncmp(cmd->lexeme, "env", 3) == 0)
 			builtins_runner_env(env_vars);
-		tmp = tmp->next;
+		cmd = cmd->next;
 	}
 }
