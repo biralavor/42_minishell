@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   31.execve.c                                        :+:      :+:    :+:   */
+/*   32.execve.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/16 09:43:43 by umeneses          #+#    #+#             */
-/*   Updated: 2024/08/16 19:49:29 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/08/19 12:22:13 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,15 +72,24 @@ char	*lookup_cmd_path(char *cmd_name)
 	return (ft_strdup(cmd_name));
 }
 
-void	execute(char **cmd)
+/**
+ * TODO: implementar built-ins
+ */
+void	execute(t_tree *tree)
 {
 	char	*path;
+	char	**cmd;
 
 	path = NULL;
+	cmd = convert_tokens_to_array(tree->command);
 	ft_array_printer(cmd);
 	if(!cmd)
 		return ;
-	if (cmd[0])
+	if (builtins_detector(tree->command))
+		builtins_manager(tree->command);
+	else if (builtins_detector_with_possible_args(tree->command))
+		builtins_with_possible_args_manager(tree->command);
+	else if (cmd[0])
 	{
 		path = lookup_cmd_path(cmd[0]);
 		fork_and_execve(cmd, path);
@@ -95,7 +104,7 @@ void	execute(char **cmd)
 /**
  * TODO: implementar função que trata expansão de variável
  */
-char **convert_envs_to_array(t_env_entry *env_vars)
+char	**convert_envs_to_array(t_env_entry *env_vars)
 {
 	int			idx;
 	char		**all_envs;
@@ -119,7 +128,7 @@ char **convert_envs_to_array(t_env_entry *env_vars)
 /**
  * TODO: implementar função que trata expansão de variável
  */
-char **convert_tokens_to_array(t_token_list *lst)
+char	**convert_tokens_to_array(t_token_list *lst)
 {
 	int				size;
 	char			**cmd;
@@ -146,6 +155,6 @@ void	tree_execution(t_tree *tree)
 		tree_execution(tree->right);
 	else if (tree->command && tree->command->lexeme)
 	{
-		execute(convert_tokens_to_array(tree->command));
+		execute(tree);
 	}
 }

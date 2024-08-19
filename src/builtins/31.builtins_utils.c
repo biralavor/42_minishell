@@ -1,39 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   24.builtins_echo.c                                 :+:      :+:    :+:   */
+/*   31.builtins_utils.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 13:23:46 by umeneses          #+#    #+#             */
-/*   Updated: 2024/08/19 15:19:37 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/08/19 12:11:42 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	builtins_runner_echo(t_token_list *lst, bool arg_option)
+bool	arg_option_holder(bool update, bool call_status)
 {
-	t_token_list	*cmd;
+	static bool	arg_option_detection;
 
-	cmd = lst->next;
-	if (NULL == cmd)
+	if (update && call_status)
+		arg_option_detection = true;
+	if (!update && !call_status)
+		arg_option_detection = false;
+	return (arg_option_detection);
+}
+
+bool	checking_cmd_arg_options(char *lexeme, char *arg)
+{
+	if (ft_strncmp(lexeme, arg, 2) == 0)
 	{
-		write(1, "\n", 1);
-		return ;
+		arg_option_holder(true, true);
+		return (true);
 	}
-	if (checking_cmd_arg_options(cmd->lexeme, "-n"))
-		cmd = cmd->next;
-	while (cmd)
-	{
-		ft_putstr_fd(cmd->lexeme, STDOUT_FILENO);
-		if (NULL == cmd->next)
-			break ;
-		else
-			ft_putstr_fd(" ", STDOUT_FILENO);
-		cmd = cmd->next;
-	}
-	arg_option = arg_option_holder(false, true);
-	if (!arg_option)
-		write(1, "\n", 1);
+	return (false);
 }

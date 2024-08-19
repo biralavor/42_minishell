@@ -6,12 +6,31 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 13:32:19 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/08/16 14:53:57 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/08/19 15:07:03 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LEXER_H
 # define LEXER_H
+
+/**
+ * @brief Token structure.
+ * @param type      = token type.
+ * @param lexeme    = actual string saved in token WORD.
+ * @param next_char = to check for spaces.
+ * @param idx       = node index.
+ * @param prev      = previous node in token list.
+ * @param next      = next node in token list.
+*/
+typedef struct s_token_list
+{
+	int					type;
+	int					idx;
+	char				*lexeme;
+	char				next_char;
+	struct s_token_list	*prev;
+	struct s_token_list	*next;
+}						t_token_list;
 
 enum e_token
 {

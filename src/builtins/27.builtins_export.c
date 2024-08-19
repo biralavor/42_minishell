@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 13:23:46 by umeneses          #+#    #+#             */
-/*   Updated: 2024/08/16 09:45:39 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/08/19 15:00:49 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,26 +19,28 @@ void	builtins_runner_export(t_env_entry *env_vars, char *arg)
 {
 	int			state;
 	t_env_entry	*env_sorted;
+	t_env_entry	*tmp;
 
 	state = 0;
+	tmp = goto_head_env_table(env_vars);
+	env_sorted = NULL;
 	state = arg_handle_state_detector(state, arg);
 	if (state == 0)
 	{
-		env_sorted = builtins_env_sort_manager(env_vars);
+		env_sorted = builtins_env_sort_manager(tmp);
 		ft_env_printer_classic(env_sorted);
 	}
 	else if (state == 100 || state == 101 || state == 200)
 	{
-		arg_handle_runner(env_vars, arg);
-		env_sorted = builtins_env_sort_manager(env_vars);
+		arg_handle_runner(tmp, arg);
+		env_sorted = builtins_env_sort_manager(tmp);
 		ft_env_printer_classic(env_sorted);
 	}
 	else if (state == 404)
 	{	
 		write(2, "minishell: export: `", 20);
 		write(2, arg, ft_strlen(arg));
-		write(2, "': not a valid identifier", 25);
-		write(2, "\n", 1);
+		write(2, "': not a valid identifier\n", 26);
 	}
 }
 

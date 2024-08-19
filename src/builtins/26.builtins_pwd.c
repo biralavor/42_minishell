@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 13:23:46 by umeneses          #+#    #+#             */
-/*   Updated: 2024/08/16 09:45:36 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/08/19 11:20:03 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,12 @@
 
 void	builtins_runner_pwd(t_token_list *lst)
 {
-	t_token_list	*temp;
+	t_token_list	*cmd;
 	char			*actual_path;
 
-	temp = lst;
+	cmd = lst;
 	actual_path = NULL;
-	if (temp && temp->type == WORD)
+	if (cmd && cmd->type == WORD)
 	{
 		actual_path = getcwd(actual_path, 100);
 		ft_putstr_fd(actual_path, STDOUT_FILENO);
