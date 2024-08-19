@@ -6,18 +6,16 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 13:23:46 by umeneses          #+#    #+#             */
-/*   Updated: 2024/08/18 14:39:25 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/08/19 09:20:35 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	builtins_runner_echo(char **cmd)
+int	builtins_runner_echo(char **cmd, int idx)
 {
-	int	idx;
-
-	idx = 1;
-	if (cmd[idx + 1] == NULL)
+	idx++;
+	if (NULL == cmd[idx])
 		write(1, "\n", 1);
 	else
 	{
@@ -35,6 +33,7 @@ void	builtins_runner_echo(char **cmd)
 		if (!check_command_args(cmd, "-n"))
 			write(1, "\n", 1);
 	}
+	return (idx);
 }
 
 bool	check_command_args(char **cmd, char *arg)

@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 13:23:46 by umeneses          #+#    #+#             */
-/*   Updated: 2024/08/18 14:08:37 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/08/19 09:26:13 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,16 +16,17 @@ int	builtins_manager(char **cmd)
 {
 	int	idx;
 
-	idx = 0;
-	while (cmd[idx])
+	idx = -1;
+	while (cmd[++idx])
 	{
 		if (ft_strncmp(cmd[idx], "echo", 4) == 0)
-			builtins_runner_echo(cmd);
+			idx = builtins_runner_echo(cmd, idx);
 		// else if (ft_strncmp(cmd[idx], "cd", 2) == 0)
 		// 	builtins_runner_cd(tmp);
 		// else if (ft_strncmp(cmd[idx], "pwd", 3) == 0)
 		// 	builtins_runner_pwd(tmp);
-		idx++;
+		if (NULL == cmd[idx])
+				break ;
 	}
 
 	// else if (builtins_detector_with_possible_args(cmd))
