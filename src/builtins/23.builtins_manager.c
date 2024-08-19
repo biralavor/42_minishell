@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 13:23:46 by umeneses          #+#    #+#             */
-/*   Updated: 2024/08/19 15:35:25 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/08/19 17:44:46 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,8 @@ bool	builtins_detector(t_token_list *cmd)
 
 void	builtins_manager(t_token_list *lst)
 {
-	t_token_list	*cmd;
 	static bool		arg_option;
+	t_token_list	*cmd;
 
 	cmd = lst;
 	arg_option = false;
@@ -41,13 +41,18 @@ void	builtins_manager(t_token_list *lst)
 			builtins_runner_cd(cmd);
 		else if (ft_strncmp(cmd->lexeme, "pwd", 3) == 0)
 			builtins_runner_pwd(cmd);
+		else if (ft_strncmp(cmd->lexeme, "exit", 4) == 0)
+		{
+			exit_status_holder(builtins_runner_exit(cmd), true, true);
+			break ;
+		}
 		if (NULL == cmd)
 			break ;
 		cmd = cmd->next;
 	}
 }
 
-bool	bultins_detector_with_possible_args(t_token_list *lst)
+bool	builtins_detector_with_possible_args(t_token_list *lst)
 {
 	t_token_list	*cmd;
 
