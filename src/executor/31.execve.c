@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/16 09:43:43 by umeneses          #+#    #+#             */
-/*   Updated: 2024/08/16 19:49:29 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/08/19 07:41:00 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,9 @@ char	*lookup_cmd_path(char *cmd_name)
 	return (ft_strdup(cmd_name));
 }
 
+/**
+ * TODO: implementar built-ins
+ */
 void	execute(char **cmd)
 {
 	char	*path;
@@ -80,12 +83,14 @@ void	execute(char **cmd)
 	ft_array_printer(cmd);
 	if(!cmd)
 		return ;
-	if (cmd[0])
+	if (cmd[0] && !builtins_detector(cmd))
 	{
 		path = lookup_cmd_path(cmd[0]);
 		fork_and_execve(cmd, path);
 		// free(path);
 	}
+	else
+		builtins_manager(cmd);
 	// verify if !cmd[0]
 	
 	// verify SIGINT
