@@ -6,47 +6,49 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 13:23:46 by umeneses          #+#    #+#             */
-/*   Updated: 2024/08/19 09:26:13 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/08/19 10:46:20 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	builtins_manager(char **cmd)
+void	builtins_manager(t_token_list *lst)
 {
-	int	idx;
+	t_token_list	*cmd;
+	static bool		arg_detector;
 
-	idx = -1;
-	while (cmd[++idx])
+	cmd = lst;
+	arg_detector = false;
+	while (cmd)
 	{
-		if (ft_strncmp(cmd[idx], "echo", 4) == 0)
-			idx = builtins_runner_echo(cmd, idx);
+		if (ft_strncmp(cmd->lexeme, "echo", 4) == 0)
+			builtins_runner_echo(cmd);
 		// else if (ft_strncmp(cmd[idx], "cd", 2) == 0)
-		// 	builtins_runner_cd(tmp);
+		// 	idx = builtins_runner_cd(cmd, idx);
 		// else if (ft_strncmp(cmd[idx], "pwd", 3) == 0)
 		// 	builtins_runner_pwd(tmp);
-		if (NULL == cmd[idx])
+		if (NULL == cmd)
 				break ;
+		cmd = cmd->next;
 	}
 
 	// else if (builtins_detector_with_possible_args(cmd))
 	// 	builtins_with_possible_args_manager(cmd);
-	return (idx);
 }
 
-bool	builtins_detector(char **cmd)
+bool	builtins_detector(t_token_list *cmd)
 {
-	int	idx;
+	// int	idx;
 
-	idx = 0;
-	while (cmd[idx])
+	// idx = 0;
+	while (cmd)
 	{
-		if ((ft_strncmp(cmd[idx], "echo", 4) == 0)
-			|| (ft_strncmp(cmd[idx], "cd", 2) == 0)
-			|| (ft_strncmp(cmd[idx], "pwd", 3) == 0)
-			|| (ft_strncmp(cmd[idx], "exit", 4) == 0))
+		if ((ft_strncmp(cmd->lexeme, "echo", 4) == 0)
+			|| (ft_strncmp(cmd->lexeme, "cd", 2) == 0)
+			|| (ft_strncmp(cmd->lexeme, "pwd", 3) == 0)
+			|| (ft_strncmp(cmd->lexeme, "exit", 4) == 0))
 			return (true);
-		idx++;
+		cmd = cmd->next;
 	}
 	return (false);
 }
