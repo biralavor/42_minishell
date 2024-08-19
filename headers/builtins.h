@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 14:57:00 by umeneses          #+#    #+#             */
-/*   Updated: 2024/08/19 10:44:31 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/08/19 12:14:19 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ void		error_cd_messenger(int destiny_len, char *destiny_path);
 /**
  * @brief: Checks if the builtin command has an argument.
 */
-bool		check_command_args(char *lexeme, char *arg);
+bool		checking_cmd_arg_options(char *lexeme, char *arg);
 
 /**
  * @brief:
@@ -125,5 +125,7 @@ void		swap_env_nodes(t_env_entry **head, t_env_entry *a, t_env_entry *b);
  * applying the Bubble Sort algorithm.
  */
 t_env_entry	*bubble_sort_nodes(t_env_entry **head);
+
+bool		arg_option_holder(bool update, bool call_status);
 
 #endif
