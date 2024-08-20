@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/16 09:43:43 by umeneses          #+#    #+#             */
-/*   Updated: 2024/08/20 17:25:20 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/08/20 17:29:08 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,8 +71,13 @@ void	execute(t_tree *tree)
 	else if (cmd[0])
 	{
 		path = lookup_cmd_path(cmd[0]);
-		fork_and_execve(cmd, path);
-		free(path);
+		if (!path)
+			ft_printf("%s: command not found\n", cmd[0]);
+		else
+		{
+			fork_and_execve(cmd, path);
+			free(path);
+		}
 	}
 	// verify if !cmd[0]
 	// verify exit_status_holder()
