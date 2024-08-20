@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 14:57:00 by umeneses          #+#    #+#             */
-/*   Updated: 2024/08/19 17:55:56 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/08/20 09:09:48 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,22 @@ void		builtins_runner_pwd(t_token_list *lst);
  * TODO: Implement update_envs() after calling chdir().
 */
 void		builtins_runner_cd(t_token_list *lst);
+
+/**
+ * @brief: Switches to the new directory.
+ * @param destiny_path the path to be switched.
+*/
+void		builtins_cd_switch_new_dir(char *destiny_path);
+
+/**
+ * @brief: Switches to the home directory, if user input is `cd ~`.
+ */
+void	builtins_cd_switch_home_dir(void);
+
+/**
+ * @brief: Switches to the old directory, if user input is `cd ..`.
+*/
+void		builtins_cd_switch_old_dir(void);
 
 /**
  * @brief: Prints an error message when the cd command fails.
