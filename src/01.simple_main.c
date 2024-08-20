@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 10:53:12 by umeneses          #+#    #+#             */
-/*   Updated: 2024/08/20 08:41:20 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/08/20 14:21:11 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,7 @@ int	main(int ac, char **av, char **envp)
 	environment_init(envp);
 	// INIT_SIGNALS
 	// get_tty_proprieties
+	
 	while (true)
 	{
 		// set_tty_proprieties
@@ -74,6 +75,11 @@ int	main(int ac, char **av, char **envp)
 		wait(NULL);
 		exit_code = exit_status_holder(0, false, true);
 	}
+	// {
+	// 	input = "fg";
+	// 	printf("%s\n", input);
+	// 	loop_routine(input);
+	// }
 	exit(exit_code);
 	free(input);
 	return (0);
