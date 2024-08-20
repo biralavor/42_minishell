@@ -4,19 +4,15 @@
 
 
 - [x] Makefile working and calling minUnit tester :tada: [https://github.com/biralavor/42_minishell/releases/tag/v0.0.1]
-
 - [x] Test development with multiple files call, avoiding a monolith file :tada: [https://github.com/biralavor/42_minishell/pull/31]
-
 - [x] Lexer :tada: [https://github.com/biralavor/42_minishell/releases/tag/v0.2]
-
 - [x] Parser + Syntaxe Grammar :tada: [https://github.com/biralavor/42_minishell/releases/tag/v0.3]
-
 - [x] SubShell + Binary Tree + Environment Variables :tada: [https://github.com/biralavor/42_minishell/releases/tag/v0.4]
-- [ ] Next Steps on Project Management - Execution
+- [x] Next Steps on Project Management - Execution :tada: [https://github.com/biralavor/42_minishell/releases/tag/v0.4]
+- [x] Next Steps on Project Management - Built-ins :tada: [https://github.com/biralavor/42_minishell/releases/tag/v0.4]
 - [ ] Next Steps on Project Management - Expansion Variables
-- [ ] Next Steps on Project Management - Signals Control
 - [ ] Next Steps on Project Management - HereDoc Redirect
-- [ ] Next Steps on Project Management - Built-ins
+- [ ] Next Steps on Project Management - Signals Control
 
 
 # Minishell
@@ -55,7 +51,14 @@ Check this test: `echo oi > tudo > bem com voce > ?`
 
 
 ## Execution
-- xx
+- ![Screenshot from 2024-08-20 09-42-39](https://github.com/user-attachments/assets/98e84684-d146-46c2-b885-dd8a63294d19)
+
+## Built-ins
+We have two built-in categories: with argument, and without arguments:
+
+![Screenshot from 2024-08-20 09-51-04](https://github.com/user-attachments/assets/b76bf67a-50a2-40fc-b7fc-ee9df47aab0d)
+
+
 
 # 42sp Team Project:
 - Thais Malheiros -> https://github.com/Thais-Malheiros/
