@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 10:53:12 by umeneses          #+#    #+#             */
-/*   Updated: 2024/08/19 17:41:33 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/08/20 08:40:20 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,22 +50,25 @@
 
 int	main(int ac, char **av, char **envp)
 {
+	int		exit_code;
 	char	*input;
 
-	(void)ac;
-	(void)av;
+	exit_code = exit_status_holder(33, true, false);
 	environment_init(envp);
 	// INIT_SIGNALS
 	// get_tty_proprieties
+	while (true)
 	{
-		while (true)
-		{
-			// set_tty_proprieties
-			// sigquit_case() -> Ctrl+/
-			input = readline(GREEN"<<< Born Again (mini) SHell >>>$ "RESET);
-			loop_routine(input);
-			wait(NULL);
-		}
+		// set_tty_proprieties
+		// sigquit_case() -> Ctrl+/
+		input = readline(GREEN"<<< Born Again (mini) SHell >>>$ "RESET);
+		if (ft_strncmp(input, "exit", 4) == 0)
+			break ;
+		loop_routine(input);
+		wait(NULL);
+		exit_code = exit_status_holder(0, false, true);
 	}
+	exit(exit_code);
+	free(input);
 	return (0);
 }

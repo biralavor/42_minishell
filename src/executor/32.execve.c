@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/16 09:43:43 by umeneses          #+#    #+#             */
-/*   Updated: 2024/08/19 17:37:07 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/08/19 18:22:55 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,6 @@ void	execute(t_tree *tree)
 	// verify exit_status_holder()
 	// verify SIGINT
 	free_array(cmd);
-	exit(exit_status_holder(0, false, true));
 }
 
 void	tree_execution(t_tree *tree)
