@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 10:58:32 by umeneses          #+#    #+#             */
-/*   Updated: 2024/08/20 12:24:15 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/08/20 14:51:01 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ void	environment_init(char **envp)
 		envp++;
 	}
 	env_holder(env_table, true, false);
+	free_env_table(&env_table);
 }
 
 t_env_entry	*alloc_table(int init_size)
