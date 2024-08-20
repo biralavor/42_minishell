@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 10:53:12 by umeneses          #+#    #+#             */
-/*   Updated: 2024/08/20 08:40:20 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/08/20 08:41:20 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,12 @@ int	main(int ac, char **av, char **envp)
 	int		exit_code;
 	char	*input;
 
+	if (ac > 1 && av)
+	{
+		ft_printf(RED"Error: minishell does not accept arguments.\n");
+		ft_printf(CYAN"It's a kind of magic, but not that much!\n"RESET);
+		exit (EXIT_FAILURE);
+	}
 	exit_code = exit_status_holder(33, true, false);
 	environment_init(envp);
 	// INIT_SIGNALS
