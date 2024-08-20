@@ -8,8 +8,8 @@
 - [x] Lexer :tada: [https://github.com/biralavor/42_minishell/releases/tag/v0.2]
 - [x] Parser + Syntaxe Grammar :tada: [https://github.com/biralavor/42_minishell/releases/tag/v0.3]
 - [x] SubShell + Binary Tree + Environment Variables :tada: [https://github.com/biralavor/42_minishell/releases/tag/v0.4]
-- [x] Next Steps on Project Management - Execution :tada: [https://github.com/biralavor/42_minishell/releases/tag/v0.4]
-- [x] Next Steps on Project Management - Built-ins :tada: [https://github.com/biralavor/42_minishell/releases/tag/v0.4]
+- [x] Next Steps on Project Management - Execution :tada: [https://github.com/biralavor/42_minishell/releases/tag/v0.6]
+- [x] Next Steps on Project Management - Built-ins :tada: [https://github.com/biralavor/42_minishell/releases/tag/v0.6]
 - [ ] Next Steps on Project Management - Expansion Variables
 - [ ] Next Steps on Project Management - HereDoc Redirect
 - [ ] Next Steps on Project Management - Signals Control
