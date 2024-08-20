@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/16 09:43:43 by umeneses          #+#    #+#             */
-/*   Updated: 2024/08/20 09:51:02 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/08/20 14:34:55 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,6 @@ void	fork_and_execve(char **cmd, char *path)
 	// treat erros (path)
 	// free_array(cmd);
 	free_array(all_envs);
-	free(path);
 	// exit (status == -1)
 	// close pid
 }
@@ -51,6 +50,7 @@ char	*lookup_cmd_path(char *cmd_name)
 	if (access(cmd_name, F_OK) == 0 || !all_paths)
 		{
 			free_array(all_paths);
+			ft_printf(">>> running lookup_cmd_path -> cmd_name: %s\n", cmd_name);
 			return (ft_strdup(cmd_name));
 		}
 	while (all_paths[idx])
@@ -60,6 +60,7 @@ char	*lookup_cmd_path(char *cmd_name)
 		if (access(to_execute, F_OK) == 0)
 		{
 			free_array(all_paths);
+			ft_printf(">>> running lookup_cmd_path -> to_execute: %s\n", to_execute);
 			return (to_execute);
 		}
 		free(to_execute);
