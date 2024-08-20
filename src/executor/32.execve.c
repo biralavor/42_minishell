@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/16 09:43:43 by umeneses          #+#    #+#             */
-/*   Updated: 2024/08/20 17:29:08 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/08/20 17:50:38 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,12 +54,25 @@ char	*lookup_cmd_path(char *cmd_name)
 	return (NULL);
 }
 
-void	execute(t_tree *tree)
+void	command_manager(char **cmd)
 {
 	char	*path;
-	char	**cmd;
 
 	path = NULL;
+	path = lookup_cmd_path(cmd[0]);
+	if (!path)
+		ft_printf("%s: command not found\n", cmd[0]);
+	else
+	{
+		fork_and_execve(cmd, path);
+		free(path);
+	}
+}
+
+void	execute(t_tree *tree)
+{
+	char	**cmd;
+
 	cmd = convert_tokens_to_array(tree->command);
 	ft_array_printer(cmd);
 	if (!cmd)
@@ -68,17 +81,8 @@ void	execute(t_tree *tree)
 		builtins_manager(tree->command);
 	else if (builtins_detector_with_possible_args(tree->command))
 		builtins_with_possible_args_manager(tree->command);
-	else if (cmd[0])
-	{
-		path = lookup_cmd_path(cmd[0]);
-		if (!path)
-			ft_printf("%s: command not found\n", cmd[0]);
-		else
-		{
-			fork_and_execve(cmd, path);
-			free(path);
-		}
-	}
+	else if (cmd)
+		command_manager(cmd);
 	// verify if !cmd[0]
 	// verify exit_status_holder()
 	// verify SIGINT
