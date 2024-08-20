@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/05 13:56:37 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/08/20 17:22:44 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/08/20 17:51:00 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,8 @@ char			**convert_envs_to_array(t_env_entry *env_vars);
 bool			is_cmd_with_valid_path(char *cmd_name);
 
 char			*testing_all_paths_with_cmd(char **path, char *cmd_name);
+
+void			command_manager(char **cmd);
 
 /**
  * @brief Builds the tree structure.
