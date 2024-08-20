@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/16 09:43:43 by umeneses          #+#    #+#             */
-/*   Updated: 2024/08/20 10:18:34 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/08/20 17:26:41 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,4 +54,31 @@ char	**convert_tokens_to_array(t_token_list *lst)
 		tmp = tmp->next;
 	}
 	return (cmd);
+}
+
+bool	is_cmd_with_valid_path(char *cmd_name)
+{
+	if (access(cmd_name, F_OK) == 0)
+		return (true);
+	return (false);
+}
+
+char	*testing_all_paths_with_cmd(char **all_paths, char *cmd_name)
+{
+	int		idx;
+	char	*to_execute;
+
+	to_execute = NULL;
+	idx = 0;
+	while (all_paths[idx])
+	{
+		all_paths[idx] = ft_strjoin(all_paths[idx], "/");
+		to_execute = ft_strjoin(all_paths[idx], ft_strdup(cmd_name));
+		if (is_cmd_with_valid_path(to_execute))
+			return (to_execute);
+		free(to_execute);
+		to_execute = NULL;
+		idx++;
+	}
+	return (NULL);
 }
