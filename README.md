@@ -10,9 +10,10 @@
 - [x] SubShell + Binary Tree + Environment Variables :tada: [https://github.com/biralavor/42_minishell/releases/tag/v0.4]
 - [x] Execution :tada: [https://github.com/biralavor/42_minishell/releases/tag/v0.6]
 - [x] Built-ins :tada: [https://github.com/biralavor/42_minishell/releases/tag/v0.6]
-- [ ] Next Steps on Project Management - Expansion Variables
-- [ ] Next Steps on Project Management - HereDoc Redirect
-- [ ] Next Steps on Project Management - Signals Control
+- Next Steps on Project Management:
+  - [ ] Expansion Variables
+  - [ ] HereDoc Redirect
+  - [ ] Signals Control
 
 
 # Minishell
