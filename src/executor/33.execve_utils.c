@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/16 09:43:43 by umeneses          #+#    #+#             */
-/*   Updated: 2024/08/19 16:57:10 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/08/20 10:18:34 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@ char	**convert_envs_to_array(t_env_entry *env_vars)
 	idx = 0;
 	all_envs = NULL;
 	tmp = env_vars;
-	// expansão de variável, aqui
 	all_envs = (char **)ft_calloc(1, sizeof(char **) * (env_vars->size + 1));
 	while (tmp)
 	{
@@ -47,7 +46,6 @@ char	**convert_tokens_to_array(t_token_list *lst)
 
 	cmd = NULL;
 	tmp = lst;
-	// expansão de variável, aqui
 	size = ft_lst_size(lst);
 	cmd = (char **)ft_calloc(1, sizeof(char **) * (size + 1));
 	while (tmp)
