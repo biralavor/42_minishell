@@ -6,15 +6,14 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 10:58:32 by umeneses          #+#    #+#             */
-/*   Updated: 2024/08/20 14:51:01 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/08/21 17:30:20 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	environment_init(char **envp)
+t_env_entry	*environment_init(char **envp, t_env_entry *env_table)
 {
-	t_env_entry	*env_table;
 	char		*key;
 	char		*value;
 	char		*equal_sign;
@@ -39,7 +38,7 @@ void	environment_init(char **envp)
 		envp++;
 	}
 	env_holder(env_table, true, false);
-	free_env_table(&env_table);
+	return (env_table);
 }
 
 t_env_entry	*alloc_table(int init_size)
@@ -68,7 +67,7 @@ t_env_entry	*env_holder(t_env_entry *table, bool update, bool clear_table)
 			free_env_table(&env_table_holder);
 		env_table_holder = table;
 	}
-	if (clear_table && env_table_holder)
+	else if (clear_table && env_table_holder)
 	{
 		free_env_table(&env_table_holder);
 		env_table_holder = NULL;
@@ -102,7 +101,7 @@ t_env_entry	*lookup_table(t_env_entry *table, char *key)
 {
 	t_env_entry	*entry;
 
-	entry = table;
+	entry = goto_head_env_table(table);
 	while (entry != NULL)
 	{
 		if (ft_strncmp(entry->key, key, ft_strlen(key)) == 0)
