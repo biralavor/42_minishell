@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 13:23:46 by umeneses          #+#    #+#             */
-/*   Updated: 2024/08/21 18:41:04 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/08/21 20:15:57 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,8 @@ void	builtins_runner_cd(t_token_list *lst)
 			builtins_cd_switch_new_dir(destiny_path);
 		cmd = cmd->next;
 	}
+	if (!destiny_path)
+		builtins_cd_switch_home_dir();
 }
 
 void	error_cd_messenger(int destiny_len, char *destiny_path)
