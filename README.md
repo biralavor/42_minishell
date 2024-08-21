@@ -21,40 +21,41 @@
 
 ![Screenshot from 2024-07-15 19-26-19](https://github.com/user-attachments/assets/2e1d496e-029d-4a42-a11e-bc3f00e6d3d8)
 
-# The Code flow, in a Big Picture
-After calling the `readline()` to capture user's input in the `main()`, our code goes basically like this:
-
-1. Check for initial erros, like: unmatched quotes or parenhesis
-2. With Automata State in lexer (token labeling), create the token list
-3. Parse specific strings
-4. Verify sintax (similar languague grammar)
-5. Apply Redirect rules, if detected
-6. Build the Binary Tree
-7. Execute from the Binary Tree
+> [!IMPORTANT]
+> # The Code flow, in a Big Picture
+> After calling the `readline()` to capture user's input in the `main()`, our code goes basically like this:
+> 
+> 1. Check for initial erros, like: unmatched quotes or parenthesis
+> 2. [With Automata State in lexer (token labeling), create the token list.](https://github.com/biralavor/42_minishell/edit/main/README.md#2-lexer)
+> 3. [Parse specific strings](https://github.com/biralavor/42_minishell/edit/main/README.md#3-parser)
+> 4. [Verify sintax, similar languague grammar](https://github.com/biralavor/42_minishell/edit/main/README.md#4-syntax-grammar)
+> 5. [Apply Redirect rules, if detected](https://github.com/biralavor/42_minishell/edit/main/README.md#5-redirects-manager)
+> 6. [Build the Binary Tree, in recursive mode](https://github.com/biralavor/42_minishell/edit/main/README.md#6-build-the-binary-tree-in-recursive-mode)
+> 7. [Execute from the Binary Tree](https://github.com/biralavor/42_minishell/edit/main/README.md#7-execution)
 
 ![Screenshot from 2024-08-20 15-11-03](https://github.com/user-attachments/assets/4c8e518f-fec8-493f-b47c-13f6001683a5)
 
 
-## Lexer
+## 2. Lexer
 - Identify user input as Tokens:
 
 ![Screenshot from 2024-08-05 16-42-40](https://github.com/user-attachments/assets/46778f94-5c54-4bfd-bdab-08b3c74dc5f9)
 
 
-## Parser
+## 3. Parser
 - The hability to label specific strings as tokens, like below:
   
 Check this test: `echo oi > tudo > bem com voce > ?`
 ![Screenshot from 2024-07-15 19-29-04](https://github.com/user-attachments/assets/52c15a56-6cdc-48d5-b7c0-91a1d2e81ba0)
 
-## Syntax Grammar
+## 4. Syntax Grammar
 - The goal here is to create syntax grammar validations to avoid have a future binary tree with execution erros
 - We created similar automata states, just to have a better workflow
   
 ![Screenshot from 2024-08-05 16-58-40](https://github.com/user-attachments/assets/5b259735-d293-4537-916b-49218f20f573)
 
 
-## Redirects Manager
+## 5. Redirects Manager
 - The goal here is to:
   - Detects if there is more then one redirect type
   - If so, move tokens to a new order due an easier futher execution
@@ -62,8 +63,12 @@ Check this test: `echo oi > tudo > bem com voce > ?`
 Check this test: `echo oi > tudo > bem com voce > ?`
 ![Screenshot from 2024-08-05 16-56-17](https://github.com/user-attachments/assets/e88007e9-aedf-4ff1-954b-5c1698bd1c2b)
 
+## 6. Build the Binary Tree, in recursive mode
 
-## Execution
+![Screenshot from 2024-08-21 10-32-59](https://github.com/user-attachments/assets/678f6672-5e2a-40da-b14d-cbc7e27f452e)
+
+
+## 7. Execution
 - ![Screenshot from 2024-08-20 09-42-39](https://github.com/user-attachments/assets/98e84684-d146-46c2-b885-dd8a63294d19)
 
 ## Built-ins
