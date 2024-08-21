@@ -1,9 +1,9 @@
-### This is a WIP ```README``` of `minishell` project
+### This is a wip ```README``` of `minishell` project
 
 ![minishelln](https://github.com/biralavor/42_minishell/assets/80487147/9718ee86-fbb4-4625-b6cf-56176eb9d1a0)
 
 - [x] Makefile working and calling minUnit tester :tada: [https://github.com/biralavor/42_minishell/releases/tag/v0.0.1]
-- [x] Test development with multiple files call, avoiding a monolith file :tada: [https://github.com/biralavor/42_minishell/pull/31]
+- [x] Test development with multiple files call, avoiding the **horrible monolith** file :tada: [https://github.com/biralavor/42_minishell/pull/31]
 - [x] Lexer :tada: [https://github.com/biralavor/42_minishell/releases/tag/v0.2]
 - [x] Parser + Syntaxe Grammar :tada: [https://github.com/biralavor/42_minishell/releases/tag/v0.3]
 - [x] SubShell + Binary Tree + Environment Variables :tada: [https://github.com/biralavor/42_minishell/releases/tag/v0.4]
@@ -21,13 +21,13 @@
 ![Screenshot from 2024-07-15 19-26-19](https://github.com/user-attachments/assets/2e1d496e-029d-4a42-a11e-bc3f00e6d3d8)
 
 > [!IMPORTANT]
-> # The Code flow, in a Big Picture
+> # Our Code Flow, in a Big Picture
 > After calling the `readline()` to capture user's input in the `main()`, our code goes basically like this:
 > 
-> 1. Check for initial erros, like: unmatched quotes or parenthesis
+> 1. Check for initial errors, like: unmatched quotes or parentheses
 > 2. [With Automata State in lexer (token labeling), create the token list.](https://github.com/biralavor/42_minishell#2-lexer)
 > 3. [Parse specific strings](https://github.com/biralavor/42_minishell#3-parser)
-> 4. [Verify sintax, similar languague grammar](https://github.com/biralavor/42_minishell#4-syntax-grammar)
+> 4. [Verify sintax, similar language grammar](https://github.com/biralavor/42_minishell#4-syntax-grammar)
 > 5. [Apply Redirect rules, if detected](https://github.com/biralavor/42_minishell#5-redirects-manager)
 > 6. [Build the Binary Tree, in recursive mode](https://github.com/biralavor/42_minishell#6-build-the-binary-tree-in-recursive-mode)
 > 7. [Execute from the Binary Tree](https://github.com/biralavor/42_minishell#7-execution)
@@ -58,7 +58,7 @@ Check this test: `echo oi > tudo > bem com voce > ?`
 ## 5. Redirects Manager
 - The goal here is to:
   - Detects if there is more then one redirect type
-  - If so, move tokens to a new order due an easier futher execution
+  - If so, it move tokens to a new order, for an easier futher execution
     
 Check this test: `echo oi > tudo > bem com voce > ?`
 ![Screenshot from 2024-08-05 16-56-17](https://github.com/user-attachments/assets/e88007e9-aedf-4ff1-954b-5c1698bd1c2b)
