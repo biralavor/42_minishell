@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 12:58:03 by umeneses          #+#    #+#             */
-/*   Updated: 2024/08/19 14:53:56 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/08/21 18:05:42 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,4 +79,5 @@ void	free_array(char **array)
 		free(*tmp);
 		tmp++;
 	}
+	free(array);
 }
