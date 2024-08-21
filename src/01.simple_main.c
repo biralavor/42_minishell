@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 10:53:12 by umeneses          #+#    #+#             */
-/*   Updated: 2024/08/21 17:36:24 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/08/21 17:37:10 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,7 @@ int	main(int ac, char **av, char **envp)
 	// 	printf("%s\n", input);
 	// 	loop_routine(input);
 	// }
+	env_holder(NULL, false, true);
 	free(input);
 	return (0);
 }
