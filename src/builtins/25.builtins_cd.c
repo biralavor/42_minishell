@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 13:23:46 by umeneses          #+#    #+#             */
-/*   Updated: 2024/08/21 18:25:18 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/08/21 18:29:04 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,8 @@ void	builtins_cd_switch_new_dir(char *destiny_path)
 	actual_path = getcwd(actual_path, 100);
 	destiny_path = ft_strjoin(actual_path, "/");
 	chdir(destiny_path);
+	free(destiny_path);
+	free(actual_path);
 }
 
 void	builtins_cd_switch_home_dir(void)
