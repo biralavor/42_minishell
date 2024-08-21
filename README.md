@@ -26,12 +26,12 @@
 > After calling the `readline()` to capture user's input in the `main()`, our code goes basically like this:
 > 
 > 1. Check for initial erros, like: unmatched quotes or parenthesis
-> 2. [With Automata State in lexer (token labeling), create the token list.](https://github.com/biralavor/42_minishell/edit/main/README.md#2-lexer)
-> 3. [Parse specific strings](https://github.com/biralavor/42_minishell/edit/main/README.md#3-parser)
-> 4. [Verify sintax, similar languague grammar](https://github.com/biralavor/42_minishell/edit/main/README.md#4-syntax-grammar)
-> 5. [Apply Redirect rules, if detected](https://github.com/biralavor/42_minishell/edit/main/README.md#5-redirects-manager)
-> 6. [Build the Binary Tree, in recursive mode](https://github.com/biralavor/42_minishell/edit/main/README.md#6-build-the-binary-tree-in-recursive-mode)
-> 7. [Execute from the Binary Tree](https://github.com/biralavor/42_minishell/edit/main/README.md#7-execution)
+> 2. [With Automata State in lexer (token labeling), create the token list.](https://github.com/biralavor/42_minishell#2-lexer)
+> 3. [Parse specific strings](https://github.com/biralavor/42_minishell#3-parser)
+> 4. [Verify sintax, similar languague grammar](https://github.com/biralavor/42_minishell#4-syntax-grammar)
+> 5. [Apply Redirect rules, if detected](https://github.com/biralavor/42_minishell#5-redirects-manager)
+> 6. [Build the Binary Tree, in recursive mode](https://github.com/biralavor/42_minishell#6-build-the-binary-tree-in-recursive-mode)
+> 7. [Execute from the Binary Tree](https://github.com/biralavor/42_minishell#7-execution)
 
 ![Screenshot from 2024-08-20 15-11-03](https://github.com/user-attachments/assets/4c8e518f-fec8-493f-b47c-13f6001683a5)
 
