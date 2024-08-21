@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/16 09:43:43 by umeneses          #+#    #+#             */
-/*   Updated: 2024/08/20 17:50:38 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/08/21 18:01:03 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,8 @@ char	*lookup_cmd_path(char *cmd_name)
 		free_array(all_paths);
 		return (to_execute);
 	}
+	else
+		return (cmd_name);
 	return (NULL);
 }
 
