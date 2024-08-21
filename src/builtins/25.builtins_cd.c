@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 13:23:46 by umeneses          #+#    #+#             */
-/*   Updated: 2024/08/20 10:18:56 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/08/21 18:25:18 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,12 +26,10 @@ void	builtins_runner_cd(t_token_list *lst)
 		destiny_len = ft_strlen(destiny_path);
 		if (ft_strncmp(destiny_path, "~", 1) == 0)
 			builtins_cd_switch_home_dir();
-		else if (chdir(destiny_path) != 0)
-			error_cd_messenger(destiny_len, destiny_path);
-		else if (destiny_path[0] == '.' && destiny_path[0] == '\0')
-			write(2, "\n", 1);
 		else if (ft_strncmp(destiny_path, "..", 2) == 0)
 			builtins_cd_switch_old_dir();
+		else if (chdir(destiny_path) != 0)
+			error_cd_messenger(destiny_len, destiny_path);
 		else
 			builtins_cd_switch_new_dir(destiny_path);
 		cmd = cmd->next;
