@@ -21,8 +21,17 @@
 
 ![Screenshot from 2024-07-15 19-26-19](https://github.com/user-attachments/assets/2e1d496e-029d-4a42-a11e-bc3f00e6d3d8)
 
-# The Code flow
+# The Code flow, in a Big Picture
 After calling the `readline()` to capture user's input in the `main()`, our code goes basically like this:
+
+1. Check for initial erros, like: unmatched quotes or parenhesis
+2. With Automata State in lexer (token labeling), create the token list
+3. Parse specific strings
+4. Verify sintax (similar languague grammar)
+5. Apply Redirect rules, if detected
+6. Build the Binary Tree
+7. Execute from the Binary Tree
+
 ![Screenshot from 2024-08-20 15-11-03](https://github.com/user-attachments/assets/4c8e518f-fec8-493f-b47c-13f6001683a5)
 
 
