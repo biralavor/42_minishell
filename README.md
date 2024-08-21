@@ -1,7 +1,6 @@
-# WIP ```README```
+### This is a WIP ```README``` of `minishell` project
 
 ![minishelln](https://github.com/biralavor/42_minishell/assets/80487147/9718ee86-fbb4-4625-b6cf-56176eb9d1a0)
-
 
 - [x] Makefile working and calling minUnit tester :tada: [https://github.com/biralavor/42_minishell/releases/tag/v0.0.1]
 - [x] Test development with multiple files call, avoiding a monolith file :tada: [https://github.com/biralavor/42_minishell/pull/31]
@@ -11,13 +10,13 @@
 - [x] Execution :tada: [https://github.com/biralavor/42_minishell/releases/tag/v0.6]
 - [x] Built-ins :tada: [https://github.com/biralavor/42_minishell/releases/tag/v0.6]
 - Next Steps on Project Management:
-  - [ ] Expansion Variables
+  - [ ] Variables Expansion
   - [ ] HereDoc Redirect
   - [ ] Signals Control
 
 
-# Minishell
-> The terminal is a file, therefor it treats all as ```strings```
+# Minishell, a tiny version of Bash
+> The terminal is a file, therefor it treats all inputs as ```strings```
 
 ![Screenshot from 2024-07-15 19-26-19](https://github.com/user-attachments/assets/2e1d496e-029d-4a42-a11e-bc3f00e6d3d8)
 
@@ -48,6 +47,7 @@
 Check this test: `echo oi > tudo > bem com voce > ?`
 ![Screenshot from 2024-07-15 19-29-04](https://github.com/user-attachments/assets/52c15a56-6cdc-48d5-b7c0-91a1d2e81ba0)
 
+
 ## 4. Syntax Grammar
 - The goal here is to create syntax grammar validations to avoid have a future binary tree with execution erros
 - We created similar automata states, just to have a better workflow
@@ -62,6 +62,7 @@ Check this test: `echo oi > tudo > bem com voce > ?`
     
 Check this test: `echo oi > tudo > bem com voce > ?`
 ![Screenshot from 2024-08-05 16-56-17](https://github.com/user-attachments/assets/e88007e9-aedf-4ff1-954b-5c1698bd1c2b)
+
 
 ## 6. Build the Binary Tree, in recursive mode
 
@@ -84,6 +85,7 @@ Therefor, also have a `bool builtin_detector()` and `void builtin_manager` for b
 
 ### built-in runners, like:
 ![Screenshot from 2024-08-20 15-04-45](https://github.com/user-attachments/assets/f8eab4cf-872f-475d-af50-8c9668988b97)
+
 
 # 42sp Team Project:
 - Thais Malheiros -> https://github.com/Thais-Malheiros/
