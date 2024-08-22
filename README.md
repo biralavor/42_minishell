@@ -28,8 +28,8 @@
 > 3. [Parse (or verify sintax, similar language grammar)](https://github.com/biralavor/42_minishell#3-parser-or-syntax-grammar)
 > 4. [Apply Redirect rules, if detected](https://github.com/biralavor/42_minishell#4-redirects-manager)
 > 5. [Build the Binary Tree, in recursive mode](https://github.com/biralavor/42_minishell#5-build-the-binary-tree-in-recursive-mode)
-> 6. [Execute from the Binary Tree](https://github.com/biralavor/42_minishell#6-execution)
-> 7. [Execute Built-ins, if detected, or Classic Commands with `execve`](https://github.com/biralavor/42_minishell#7-execute-built-ins-if-detected-or-classic-commands)
+> 6. [Execute from the Binary Tree](https://github.com/biralavor/42_minishell#6-execution-from-binary-tree)
+> 7. [Execute Built-ins, if detected, or Classic Commands with execve](https://github.com/biralavor/42_minishell#7-execute-built-ins-if-detected-or-classic-commands)
 
 ![Screenshot from 2024-08-20 15-11-03](https://github.com/user-attachments/assets/4c8e518f-fec8-493f-b47c-13f6001683a5)
 
