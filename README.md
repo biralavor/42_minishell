@@ -64,7 +64,7 @@ Check this test: `echo oi > tudo > bem com voce > ?`
 > 
 > ![Screenshot from 2024-07-15 19-29-04](https://github.com/user-attachments/assets/52c15a56-6cdc-48d5-b7c0-91a1d2e81ba0)
 > 
-Now, we got un uptaded result:
+Now, we got un updated result:
 
 ![Screenshot from 2024-08-05 16-56-17](https://github.com/user-attachments/assets/e88007e9-aedf-4ff1-954b-5c1698bd1c2b)
 
