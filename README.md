@@ -14,9 +14,8 @@
   - [ ] HereDoc Redirect
   - [ ] Signals Control
 
-
-# Minishell, a tiny version of Bash
-> The terminal is a file, therefor it treats all inputs as ```strings```
+# Minishell, a tiny version of Bash -> B.orn A.gain SH.ell
+> The terminal is a file, therefor it treats all inputs as `strings`
 
 ![Screenshot from 2024-07-15 19-26-19](https://github.com/user-attachments/assets/2e1d496e-029d-4a42-a11e-bc3f00e6d3d8)
 
@@ -24,57 +23,67 @@
 > # Our Code Flow, in a Big Picture
 > After calling the `readline()` to capture user's input in the `main()`, our code goes basically like this:
 > 
-> 1. Check for initial errors, like: unmatched quotes or parentheses
-> 2. [With Automata State in lexer (token labeling), create the token list.](https://github.com/biralavor/42_minishell#2-lexer)
-> 3. [Parse specific strings](https://github.com/biralavor/42_minishell#3-parser)
-> 4. [Verify sintax, similar language grammar](https://github.com/biralavor/42_minishell#4-syntax-grammar)
-> 5. [Apply Redirect rules, if detected](https://github.com/biralavor/42_minishell#5-redirects-manager)
-> 6. [Build the Binary Tree, in recursive mode](https://github.com/biralavor/42_minishell#6-build-the-binary-tree-in-recursive-mode)
-> 7. [Execute from the Binary Tree](https://github.com/biralavor/42_minishell#7-execution)
+> 1. [Define Tokens and Check for initial errors, like: unmatched quotes or parentheses](https://github.com/biralavor/42_minishell#1-tokenization)
+> 2. [With Automata State in Lexer (token labeling), create the token list.](https://github.com/biralavor/42_minishell#2-lexer)
+> 3. [Parse (or verify sintax, similar language grammar)](https://github.com/biralavor/42_minishell#3-parser-or-syntax-grammar)
+> 4. [Apply Redirect rules, if detected](https://github.com/biralavor/42_minishell#4-redirects-manager)
+> 5. [Build the Binary Tree, in recursive mode](https://github.com/biralavor/42_minishell#5-build-the-binary-tree-in-recursive-mode)
+> 6. [Execute from the Binary Tree](https://github.com/biralavor/42_minishell#6-execution)
+> 7. [Execute Built-ins, if detected, or Classic Commands with `execve`](https://github.com/biralavor/42_minishell#7-execute-built-ins-if-detected-or-classic-commands)
 
 ![Screenshot from 2024-08-20 15-11-03](https://github.com/user-attachments/assets/4c8e518f-fec8-493f-b47c-13f6001683a5)
 
 
-## 2. Lexer
-- Identify user input as Tokens:
+## 1. Tokenization
+- Define Tokens for possible user's input:
 
 ![Screenshot from 2024-08-05 16-42-40](https://github.com/user-attachments/assets/46778f94-5c54-4bfd-bdab-08b3c74dc5f9)
 
 
-## 3. Parser
+## 2. Lexer
 - The hability to label specific strings as tokens, like below:
   
 Check this test: `echo oi > tudo > bem com voce > ?`
+
 ![Screenshot from 2024-07-15 19-29-04](https://github.com/user-attachments/assets/52c15a56-6cdc-48d5-b7c0-91a1d2e81ba0)
 
 
-## 4. Syntax Grammar
+## 3. Parser, or Syntax Grammar
 - The goal here is to create syntax grammar validations to avoid have a future binary tree with execution erros
-- We created similar automata states, just to have a better workflow
+- We created **Automata States**, just to have a better workflow
   
 ![Screenshot from 2024-08-05 16-58-40](https://github.com/user-attachments/assets/5b259735-d293-4537-916b-49218f20f573)
 
 
-## 5. Redirects Manager
+## 4. Redirects Manager
 - The goal here is to:
   - Detects if there is more then one redirect type
   - If so, it move tokens to a new order, for an easier futher execution
     
-Check this test: `echo oi > tudo > bem com voce > ?`
+> Remember this test from **Lexer**? `echo oi > tudo > bem com voce > ?`
+> 
+> ![Screenshot from 2024-07-15 19-29-04](https://github.com/user-attachments/assets/52c15a56-6cdc-48d5-b7c0-91a1d2e81ba0)
+> 
+Now, we got un uptaded result:
+
 ![Screenshot from 2024-08-05 16-56-17](https://github.com/user-attachments/assets/e88007e9-aedf-4ff1-954b-5c1698bd1c2b)
 
 
-## 6. Build the Binary Tree, in recursive mode
+## 5. Build the Binary Tree, in recursive mode
 
 ![Screenshot from 2024-08-21 10-32-59](https://github.com/user-attachments/assets/678f6672-5e2a-40da-b14d-cbc7e27f452e)
 
 
-## 7. Execution
+## 6. Execution from Binary Tree
 - ![Screenshot from 2024-08-20 09-42-39](https://github.com/user-attachments/assets/98e84684-d146-46c2-b885-dd8a63294d19)
 
-## Built-ins
+## 7. Execute Built-ins, if detected, or classic commands
 We have two built-in categories: with argument, and without arguments, like the image below.
-Therefor, also have a `bool builtin_detector()` and `void builtin_manager` for both types of built-ins:
+
+Therefor, also have a `bool builtin_detector()` and `void builtin_manager` for both types of built-ins.
+
+If the input isn't a Built-in, it runs `execve`.
+
 ![Screenshot from 2024-08-20 09-51-04](https://github.com/user-attachments/assets/b76bf67a-50a2-40fc-b7fc-ee9df47aab0d)
 
 ### built-in detector
@@ -83,7 +92,7 @@ Therefor, also have a `bool builtin_detector()` and `void builtin_manager` for b
 ### built-in manager:
 ![Screenshot from 2024-08-20 15-03-49](https://github.com/user-attachments/assets/5a1317c8-901d-4ec5-b35c-b81ccb1e949e)
 
-### built-in runners, like:
+### built-in runners, goes like this:
 ![Screenshot from 2024-08-20 15-04-45](https://github.com/user-attachments/assets/f8eab4cf-872f-475d-af50-8c9668988b97)
 
 
