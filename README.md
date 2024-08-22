@@ -17,8 +17,6 @@
 # Minishell, a tiny version of Bash -> B.orn A.gain SH.ell
 > The terminal is a file, therefor it treats all inputs as `strings`
 
-![Screenshot from 2024-07-15 19-26-19](https://github.com/user-attachments/assets/2e1d496e-029d-4a42-a11e-bc3f00e6d3d8)
-
 > [!IMPORTANT]
 > # Our Code Flow, in a Big Picture
 > After calling the `readline()` to capture user's input in the `main()`, our code goes basically like this:
@@ -32,6 +30,19 @@
 > 7. [Execute Built-ins, if detected, or Classic Commands with execve](https://github.com/biralavor/42_minishell#7-execute-built-ins-if-detected-or-classic-commands)
 
 ![Screenshot from 2024-08-20 15-11-03](https://github.com/user-attachments/assets/4c8e518f-fec8-493f-b47c-13f6001683a5)
+
+## But First, let's talk about our TDD - Test Driven Development
+What we are testing, until so far:
+- initial_errors, like unmachted quotes and parentheses
+- mixed quotes
+- crazy parentheses counter
+- creating the token linked list
+- syntax validations for `words`, `pipes`, `and`, `or`, `pipes mixed with and-or`
+- syntax validations for `redirect_input`, `redirect_output`, `redirect_output_append`, `redirect_heredoc`, `mixed redirects`, `subshell`
+- syntax rules for `archive`, `word_after_archive`, `redirect_with_another_redirect`
+- syntax rules for `reorganize_redirects`
+
+![Screenshot from 2024-07-15 19-26-19](https://github.com/user-attachments/assets/2e1d496e-029d-4a42-a11e-bc3f00e6d3d8)
 
 
 ## 1. Tokenization
