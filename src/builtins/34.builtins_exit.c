@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   34.builtins_exit.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 13:23:46 by umeneses          #+#    #+#             */
-/*   Updated: 2024/08/19 17:48:55 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/08/27 10:18:31 by tmalheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,13 +40,11 @@ int	builtins_runner_exit(t_token_list *lst)
 	return (exit_code);
 }
 
-int	exit_status_holder(int code, bool update, bool call_status)
+int	exit_status_holder(int exit_status)
 {
-	static int	exit_status;
+	static int	exit_holder;
 
-	if (update && call_status)
-		exit_status = code;
-	if (!update && call_status)
-		return (exit_status);
-	return (exit_status);
+	if (WIFEXITED(exit_status))
+		exit_holder = WEXITSTATUS(exit_status);
+	return (exit_holder);
 }

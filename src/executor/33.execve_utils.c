@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   33.execve_utils.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/16 09:43:43 by umeneses          #+#    #+#             */
-/*   Updated: 2024/08/20 17:26:41 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/08/26 11:36:26 by tmalheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,7 @@ char	*testing_all_paths_with_cmd(char **all_paths, char *cmd_name)
 	idx = 0;
 	while (all_paths[idx])
 	{
+		//treat erros (path)
 		all_paths[idx] = ft_strjoin(all_paths[idx], "/");
 		to_execute = ft_strjoin(all_paths[idx], ft_strdup(cmd_name));
 		if (is_cmd_with_valid_path(to_execute))

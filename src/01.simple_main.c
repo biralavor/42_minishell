@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   01.simple_main.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 10:53:12 by umeneses          #+#    #+#             */
-/*   Updated: 2024/08/21 18:14:21 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/08/27 11:30:23 by tmalheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,9 +50,8 @@
 
 int	main(int ac, char **av, char **envp)
 {
-	int			exit_code;
-	char		*input;
-	t_env_entry	*env_table;
+//	int		exit_code;
+	char	*input;
 
 	if (ac > 1 && av)
 	{
@@ -60,12 +59,10 @@ int	main(int ac, char **av, char **envp)
 		ft_printf(CYAN"It's a kind of magic, but not that much!\n"RESET);
 		exit (EXIT_FAILURE);
 	}
-	env_table = NULL;
-	exit_code = exit_status_holder(33, true, false);
-	env_table = environment_init(envp, env_table);
+	environment_init(envp);
 	// INIT_SIGNALS
 	// get_tty_proprieties
-	
+
 	while (true)
 	{
 		// set_tty_proprieties
@@ -75,16 +72,13 @@ int	main(int ac, char **av, char **envp)
 			break ;
 		loop_routine(input);
 		wait(NULL);
-		free(input);
-		exit_code = exit_status_holder(0, false, true);
 	}
 	// {
 	// 	input = "fg";
 	// 	printf("%s\n", input);
 	// 	loop_routine(input);
 	// }
-	env_holder(NULL, false, true);
+//	exit(exit_code);
 	free(input);
-	exit(exit_code);
 	return (0);
 }
