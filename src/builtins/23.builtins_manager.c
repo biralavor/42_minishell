@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 13:23:46 by umeneses          #+#    #+#             */
-/*   Updated: 2024/08/19 17:44:46 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/08/27 09:10:37 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,26 +71,24 @@ bool	builtins_detector_with_possible_args(t_token_list *lst)
 void	builtins_with_possible_args_manager(t_token_list *lst)
 {
 	t_token_list	*cmd;
-	t_env_entry		*env_vars;
 
 	cmd = lst;
-	env_vars = env_holder(NULL, false, false);
 	while (cmd)
 	{
 		if (ft_strncmp(cmd->lexeme, "export", 6) == 0)
 		{
 			if (cmd->next && cmd->next->type == WORD)
-				builtins_runner_export(env_vars, cmd->next->lexeme);
+				builtins_runner_export(cmd->next->lexeme);
 			else
-				builtins_runner_export(env_vars, NULL);
+				builtins_runner_export(NULL);
 		}
 		else if (ft_strncmp(cmd->lexeme, "unset", 5) == 0)
 		{
 			if (cmd->next && cmd->next->type == WORD)
-				builtins_runner_unset(env_vars, cmd->next->lexeme);
+				builtins_runner_unset(cmd->next->lexeme);
 		}
 		else if (ft_strncmp(cmd->lexeme, "env", 3) == 0)
-			builtins_runner_env(env_vars);
+			builtins_runner_env();
 		cmd = cmd->next;
 	}
 }

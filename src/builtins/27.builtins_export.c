@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 13:23:46 by umeneses          #+#    #+#             */
-/*   Updated: 2024/08/26 19:26:27 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/08/27 10:48:56 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,15 +15,15 @@
 /**
  * TODO: fix memory leaks in this function.
  */
-void	builtins_runner_export(t_env_entry *env_vars, char *arg)
+void	builtins_runner_export(char *arg)
 {
 	int			state;
 	t_env_entry	*env_sorted;
 	t_env_entry	*tmp;
 
 	state = 0;
-	tmp = goto_head_env_table(env_vars);
 	env_sorted = NULL;
+	tmp = env_holder(NULL, false, false);
 	state = arg_handle_state_detector(state, arg);
 	if (state == 0)
 	{
@@ -44,17 +44,15 @@ void	builtins_runner_export(t_env_entry *env_vars, char *arg)
 	}
 }
 
-t_env_entry	*builtins_env_sort_manager(t_env_entry *env_vars)
+t_env_entry	*builtins_env_sort_manager(t_env_entry *current)
 {
-	t_env_entry	*current;
 	t_env_entry	*sorted;
 	t_env_entry	*next_node;
 
-	current = env_holder(NULL, false, false);
 	sorted = NULL;
 	next_node = NULL;
-	if (builtins_is_env_sorted(env_vars))
-		return (env_vars);
+	if (builtins_is_env_sorted(current))
+		return (current);
 	while(current)
 	{
 		next_node = current->next;
