@@ -243,7 +243,10 @@ fclean:				clean
 
 re:					fclean all
 
-mini:				re
+min:				re
+					./$(NAME)
+
+go:					all
 					./$(NAME)
 
 gdb:				re
@@ -252,4 +255,4 @@ gdb:				re
 val:				re
 					valgrind --leak-check=full --track-origins=yes --show-reachable=yes --suppressions=readline.sup ./$(NAME)
 
-.PHONY:				all clean fclean re bonus mini val gdb
+.PHONY:				all clean fclean re bonus min val gdb
