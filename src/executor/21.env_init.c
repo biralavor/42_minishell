@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 10:58:32 by umeneses          #+#    #+#             */
-/*   Updated: 2024/08/21 17:30:20 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/08/26 19:17:17 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ t_env_entry	*environment_init(char **envp, t_env_entry *env_table)
 		}
 		envp++;
 	}
-	env_holder(env_table, true, false);
+	env_table = env_holder(env_table, true, false);
 	return (env_table);
 }
 
@@ -67,9 +67,10 @@ t_env_entry	*env_holder(t_env_entry *table, bool update, bool clear_table)
 			free_env_table(&env_table_holder);
 		env_table_holder = table;
 	}
-	else if (clear_table && env_table_holder)
+	else if (env_table_holder && clear_table)
 	{
 		free_env_table(&env_table_holder);
+		free(env_table_holder);
 		env_table_holder = NULL;
 	}
 	return (env_table_holder);
@@ -87,14 +88,18 @@ t_env_entry	*addto_env_table(t_env_entry *table, const char *key,
 	if (table->next == NULL && table->prev == NULL
 		&& table->key == NULL && table->value == NULL)
 	{
+		free(table->key);
+		free(table->value);
 		free(table);
 		return (new_entry);
 	}
-	tmp = table;
-	tmp = goto_end_env_table(tmp);
-	new_entry->prev = tmp;
-	tmp->next = new_entry;
-	return (table);
+	else
+	{
+		tmp = goto_end_env_table(table);
+		new_entry->prev = tmp;
+		tmp->next = new_entry;
+		return (table);
+	}
 }
 
 t_env_entry	*lookup_table(t_env_entry *table, char *key)

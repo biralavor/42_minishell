@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 13:23:46 by umeneses          #+#    #+#             */
-/*   Updated: 2024/08/19 15:00:49 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/08/27 10:48:56 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,15 +15,15 @@
 /**
  * TODO: fix memory leaks in this function.
  */
-void	builtins_runner_export(t_env_entry *env_vars, char *arg)
+void	builtins_runner_export(char *arg)
 {
 	int			state;
 	t_env_entry	*env_sorted;
 	t_env_entry	*tmp;
 
 	state = 0;
-	tmp = goto_head_env_table(env_vars);
 	env_sorted = NULL;
+	tmp = env_holder(NULL, false, false);
 	state = arg_handle_state_detector(state, arg);
 	if (state == 0)
 	{
@@ -44,14 +44,22 @@ void	builtins_runner_export(t_env_entry *env_vars, char *arg)
 	}
 }
 
-t_env_entry	*builtins_env_sort_manager(t_env_entry *env_vars)
+t_env_entry	*builtins_env_sort_manager(t_env_entry *current)
 {
-	t_env_entry	*tmp;
+	t_env_entry	*sorted;
+	t_env_entry	*next_node;
 
-	tmp = env_vars;
-	if (!builtins_is_env_sorted(tmp))
-		tmp = bubble_sort_nodes(&tmp);
-	return (tmp);
+	sorted = NULL;
+	next_node = NULL;
+	if (builtins_is_env_sorted(current))
+		return (current);
+	while(current)
+	{
+		next_node = current->next;
+		sorted = sorted_env_insert(&sorted, current);
+		current = next_node;
+	}
+	return(sorted);
 }
 
 bool	builtins_is_env_sorted(t_env_entry *env_vars)
@@ -68,51 +76,25 @@ bool	builtins_is_env_sorted(t_env_entry *env_vars)
 	return (true);
 }
 
-void	swap_env_nodes(t_env_entry **head, t_env_entry *a, t_env_entry *b)
+t_env_entry	*sorted_env_insert(t_env_entry **head, t_env_entry *new)
 {
-	t_env_entry	*prev_a;
-	t_env_entry	*next_b;
+	t_env_entry	*curr;
+	t_env_entry	*prev;
 
-	if (head == NULL || *head == NULL || a == NULL || b == NULL || a == b)
-		return ;
-	prev_a = a->prev;
-	next_b = b->next;
-	if (prev_a != NULL)
-		prev_a->next = b;
-	else
-		*head = b;
-	if (next_b != NULL)
-		next_b->prev = a;
-	b->prev = prev_a;
-	b->next = a;
-	a->prev = b;
-	a->next = next_b;
-}
-
-t_env_entry	*bubble_sort_nodes(t_env_entry **head)
-{
-	bool		swapped;
-	t_env_entry	*cur;
-
-	swapped = true;
-	cur = NULL;
-	while (swapped)
+	curr = *head;
+	prev = NULL;
+	while (curr && ft_strncmp(curr->key, new->key, ft_strlen(curr->key)) <= 0)
 	{
-		swapped = false;
-		cur = *head;
-		while (cur && cur->next != NULL)
-		{
-			if (ft_strncmp(cur->key, cur->next->key, ft_strlen(cur->key)) > 0)
-			{
-				swap_env_nodes(head, cur, cur->next);
-				swapped = true;
-				cur = cur->prev;
-			}
-			else
-				cur = cur->next;
-		}
-		if (!swapped)
-			break ;
+		prev = curr;
+		curr = curr->next;
 	}
+	new->next = curr;
+	if (prev == NULL)
+		*head = new;
+	else
+		prev->next = new;
+	new->prev = prev;
+	if (curr)
+		curr->prev = new;
 	return (*head);
 }
