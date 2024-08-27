@@ -6,7 +6,7 @@
 /*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/16 09:43:43 by umeneses          #+#    #+#             */
-/*   Updated: 2024/08/27 11:24:32 by tmalheir         ###   ########.fr       */
+/*   Updated: 2024/08/27 11:43:32 by tmalheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,7 +104,7 @@ int	tree_execution(t_tree *tree)
 		return (exit_status);
 	else if (tree->type == OR)
 		exit_status = manage_or(tree);
-	if (tree->type == AND)
+	else if (tree->type == AND)
 		exit_status = manage_and(tree);
 /*
 	else if (tree->type == PIPE)
