@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 11:53:52 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/08/16 09:47:11 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/08/28 11:23:20 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ void	error_manager_parser(int error_id, t_token_list *lst)
 void	unexpected_token_error(void)
 {
 	ft_putendl_fd("syntax error near unexpected token", STDERR_FILENO);
+	rl_clear_history();
 }
 
 void	syntax_error(t_token_list *lst)
@@ -32,11 +33,13 @@ void	syntax_error(t_token_list *lst)
 	ft_putendl_fd("syntax error.\n", STDERR_FILENO);
 	ft_putendl_fd("'\\', '&' or ';' detected\n", STDERR_FILENO);
 	free_token_list(&lst);
+	rl_clear_history();
 }
 
 void	command_not_found(t_token_list *lst)
 {
 	ft_printf("Command not found.\n");
 	free_token_list(&lst);
+	rl_clear_history();
 	exit (EXIT_FAILURE);
 }
