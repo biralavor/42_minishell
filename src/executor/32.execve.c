@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/16 09:43:43 by umeneses          #+#    #+#             */
-/*   Updated: 2024/08/27 11:48:24 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/08/28 15:53:24 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,10 +75,11 @@ void	execute(t_tree *tree)
 {
 	char	**cmd;
 
+	expansion_manager(tree->command);
 	cmd = convert_tokens_to_array(tree->command);
-	ft_array_printer(cmd);
 	if (!cmd)
 		return ;
+	ft_array_printer(cmd);
 	if (builtins_detector(tree->command))
 		builtins_manager(tree->command);
 	else if (builtins_detector_with_possible_args(tree->command))
