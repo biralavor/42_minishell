@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/03 10:40:35 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/08/16 09:46:44 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/08/28 11:29:14 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@ void	check_syntax_state(t_token_list *lst, int syntax_state)
 	if (syntax_state == 101 || syntax_state == 201 || syntax_state == 301)
 	{
 		free_token_list(&lst);
+		rl_clear_history();
 		exit (EXIT_FAILURE);
 	}
 }
