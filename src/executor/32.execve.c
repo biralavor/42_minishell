@@ -6,7 +6,7 @@
 /*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/16 09:43:43 by umeneses          #+#    #+#             */
-/*   Updated: 2024/08/27 13:14:26 by tmalheir         ###   ########.fr       */
+/*   Updated: 2024/08/28 11:24:21 by tmalheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ int	fork_and_execve(char **cmd, char *path)
 
 	all_envs = convert_envs_to_array(env_holder(NULL, false, false));
 	pid = fork();
+	if (pid == -1)
 	if (pid == 0)
 	{
 		// check fork
