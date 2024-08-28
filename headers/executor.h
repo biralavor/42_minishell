@@ -6,7 +6,7 @@
 /*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/05 13:56:37 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/08/27 10:01:54 by tmalheir         ###   ########.fr       */
+/*   Updated: 2024/08/27 13:15:15 by tmalheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,8 @@ int				command_manager(char **cmd);
 int				manage_or(t_tree *tree);
 
 int				manage_and(t_tree *tree);
+
+int				manage_pipe(t_tree *tree);
 
 /*PRINTING FUNCTIONS (TO DELETE)*/
 
