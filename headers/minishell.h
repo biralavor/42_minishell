@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 10:53:20 by umeneses          #+#    #+#             */
-/*   Updated: 2024/08/19 17:38:21 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/08/28 13:54:53 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,5 +37,6 @@
 # include "environment.h"
 # include "executor.h"
 # include "builtins.h"
+# include "expansion.h"
 
 #endif
