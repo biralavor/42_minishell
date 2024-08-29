@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtins.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 14:57:00 by umeneses          #+#    #+#             */
-/*   Updated: 2024/08/27 11:25:46 by tmalheir         ###   ########.fr       */
+/*   Updated: 2024/08/27 09:18:37 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -142,9 +142,11 @@ int			builtins_runner_exit(t_token_list *lst);
 
 /**
  * @brief: Holds the exit status of the shell.
- * @param exit_status Exit status number.
+ * @param code the exit code, generated from a function.
+ * @param update a flag to update the exit status.
+ * @param call_status a flag to call the last exit status.
  */
-int			exit_status_holder(int exit_status);
+int			exit_status_holder(int code, bool update, bool call_status);
 
 /**
  * @brief: Swaps two nodes in the environment variables list.

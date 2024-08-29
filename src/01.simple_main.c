@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 10:53:12 by umeneses          #+#    #+#             */
-/*   Updated: 2024/08/29 11:44:23 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/08/28 11:25:05 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,8 +50,9 @@
 
 int	main(int ac, char **av, char **envp)
 {
+	int			exit_code;
 	char		*input;
-	t_env_entry *env_table;
+	t_env_entry	*env_table;
 
 	if (ac > 1 && av)
 	{
@@ -60,10 +61,11 @@ int	main(int ac, char **av, char **envp)
 		exit (EXIT_FAILURE);
 	}
 	env_table = NULL;
-	environment_init(envp, env_table);
+	exit_code = exit_status_holder(33, true, false);
+	env_table = environment_init(envp, env_table);
 	// INIT_SIGNALS
 	// get_tty_proprieties
-
+	
 	while (true)
 	{
 		// set_tty_proprieties
@@ -74,8 +76,17 @@ int	main(int ac, char **av, char **envp)
 		add_history(input);
 		loop_routine(input);
 		wait(NULL);
+		free(input);
+		exit_code = exit_status_holder(0, false, true);
 	}
+	// {
+	// 	input = "fg";
+	// 	printf("%s\n", input);
+	// 	loop_routine(input);
+	// }
+	env_holder(NULL, false, true);
 	free(input);
 	rl_clear_history();
-	exit(EXIT_SUCCESS);
+	exit(exit_code);
+	return (0);
 }
