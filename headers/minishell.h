@@ -38,5 +38,6 @@
 # include "environment.h"
 # include "executor.h"
 # include "builtins.h"
+# include "expansion.h"
 
 #endif

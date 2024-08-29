@@ -6,7 +6,7 @@
 /*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/16 09:43:43 by umeneses          #+#    #+#             */
-/*   Updated: 2024/08/28 11:24:21 by tmalheir         ###   ########.fr       */
+/*   Updated: 2024/08/28 15:53:24 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,10 @@ int	execute(t_tree *tree)
 	char	**cmd;
 
 	exit_status = 0; // Retirar após ajustar as funções dos builtins.
+	expansion_manager(tree->command);
 	cmd = convert_tokens_to_array(tree->command);
+	if (!cmd)
+		return ;
 	ft_array_printer(cmd);
 	if (builtins_detector(tree->command))
 		builtins_manager(tree->command);
