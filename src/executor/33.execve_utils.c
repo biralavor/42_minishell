@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   33.execve_utils.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/16 09:43:43 by umeneses          #+#    #+#             */
-/*   Updated: 2024/08/27 12:08:31 by tmalheir         ###   ########.fr       */
+/*   Updated: 2024/08/20 17:26:41 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,21 +40,18 @@ char	**convert_envs_to_array(t_env_entry *env_vars)
  */
 char	**convert_tokens_to_array(t_token_list *lst)
 {
-	int				idx;
 	int				size;
 	char			**cmd;
 	t_token_list	*tmp;
 
-	idx = 0;
 	cmd = NULL;
 	tmp = lst;
 	size = ft_lst_size(lst);
 	cmd = (char **)ft_calloc(1, sizeof(char **) * (size + 1));
 	while (tmp)
 	{
-		cmd[idx] = ft_strdup(tmp->lexeme);
+		cmd[tmp->idx] = ft_strdup(tmp->lexeme);
 		tmp = tmp->next;
-		idx++;
 	}
 	return (cmd);
 }
@@ -75,7 +72,6 @@ char	*testing_all_paths_with_cmd(char **all_paths, char *cmd_name)
 	idx = 0;
 	while (all_paths[idx])
 	{
-		//treat erros (path)
 		all_paths[idx] = ft_strjoin(all_paths[idx], "/");
 		to_execute = ft_strjoin(all_paths[idx], ft_strdup(cmd_name));
 		if (is_cmd_with_valid_path(to_execute))

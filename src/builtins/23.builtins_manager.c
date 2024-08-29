@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   23.builtins_manager.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 13:23:46 by umeneses          #+#    #+#             */
-/*   Updated: 2024/08/27 11:23:06 by tmalheir         ###   ########.fr       */
+/*   Updated: 2024/08/27 09:10:37 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,10 @@ void	builtins_manager(t_token_list *lst)
 		else if (ft_strncmp(cmd->lexeme, "pwd", 3) == 0)
 			builtins_runner_pwd(cmd);
 		else if (ft_strncmp(cmd->lexeme, "exit", 4) == 0)
+		{
+			exit_status_holder(builtins_runner_exit(cmd), true, true);
 			break ;
+		}
 		if (NULL == cmd)
 			break ;
 		cmd = cmd->next;
