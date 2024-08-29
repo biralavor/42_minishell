@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 14:57:00 by umeneses          #+#    #+#             */
-/*   Updated: 2024/08/29 19:38:15 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/08/29 19:41:43 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,7 +131,9 @@ t_env_entry	*builtins_env_sort_manager(t_env_entry *env_vars);
  */
 bool		builtins_is_env_sorted(t_env_entry *env_vars);
 
-
+/**
+ * @brief: Sort the environment variables list.
+ */
 t_env_entry	*sorted_env_insert(t_env_entry **head, t_env_entry *new);
 
 /**
@@ -146,6 +148,11 @@ int			builtins_runner_exit(t_token_list *lst);
  */
 int			exit_status_holder(int exit_status);
 
+/**
+ * @brief: Holds the argument option status.
+ * @param update the update the statict arg status variable.
+ * @param call_status the call the statict arg status variable.
+ */
 bool		arg_option_holder(bool update, bool call_status);
 
 #endif
