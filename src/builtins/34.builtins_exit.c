@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   34.builtins_exit.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 13:23:46 by umeneses          #+#    #+#             */
-/*   Updated: 2024/08/27 10:18:31 by tmalheir         ###   ########.fr       */
+/*   Updated: 2024/08/29 12:11:02 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,5 +46,7 @@ int	exit_status_holder(int exit_status)
 
 	if (WIFEXITED(exit_status))
 		exit_holder = WEXITSTATUS(exit_status);
+	else if (exit_status != -1)
+		exit_holder = exit_status;
 	return (exit_holder);
 }
