@@ -6,34 +6,32 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/16 09:43:43 by umeneses          #+#    #+#             */
-/*   Updated: 2024/08/28 15:53:24 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/08/29 12:53:07 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	fork_and_execve(char **cmd, char *path)
+int	fork_and_execve(char **cmd, char *path)
 {
+	int		exit_status;
 	char	**all_envs;
 	pid_t	pid;
 
 	all_envs = convert_envs_to_array(env_holder(NULL, false, false));
 	pid = fork();
 	if (pid == -1)
-	{
-		// pid error
-	}
 	if (pid == 0)
 	{
 		// check fork
 		// check signals
 		execve(path, cmd, all_envs);
 	}
-	// treat erros (path)
 	// free_array(cmd);
 	free_array(all_envs);
-	// exit (status == -1)
-	// close pid
+	waitpid(pid, &exit_status, 0);
+	exit_status = exit_status_holder(exit_status);
+	return (exit_status);
 }
 
 char	*lookup_cmd_path(char *cmd_name)
@@ -56,50 +54,75 @@ char	*lookup_cmd_path(char *cmd_name)
 	return (NULL);
 }
 
-void	command_manager(char **cmd)
+int	command_manager(char **cmd)
 {
+	int		exit_status;
 	char	*path;
+
 
 	path = NULL;
 	path = lookup_cmd_path(cmd[0]);
 	if (!path)
+	{
 		ft_printf("%s: command not found\n", cmd[0]);
+		exit_status = 127;
+	}
 	else
 	{
-		fork_and_execve(cmd, path);
+		exit_status = fork_and_execve(cmd, path);
 		free(path);
 	}
+	return (exit_status);
 }
 
-void	execute(t_tree *tree)
+int	execute(t_tree *tree)
 {
+	int		exit_status;
 	char	**cmd;
 
+	exit_status = 0; // Retirar após ajustar as funções dos builtins.
 	expansion_manager(tree->command);
 	cmd = convert_tokens_to_array(tree->command);
 	if (!cmd)
-		return ;
+	{
+		exit_status = -1; // checar se esse status é o correto
+		return (exit_status);
+	}
 	ft_array_printer(cmd);
 	if (builtins_detector(tree->command))
 		builtins_manager(tree->command);
 	else if (builtins_detector_with_possible_args(tree->command))
 		builtins_with_possible_args_manager(tree->command);
-	else if (cmd)
-		command_manager(cmd);
+	else
+		exit_status = command_manager(cmd);
 	// verify if !cmd[0]
 	// verify exit_status_holder()
 	// verify SIGINT
 	free_array(cmd);
+	return (exit_status);
 }
 
-void	tree_execution(t_tree *tree)
+int	tree_execution(t_tree *tree)
 {
-	if (tree->left)
-		tree_execution(tree->left);
-	else if (tree->right)
-		tree_execution(tree->right);
-	else if (tree->command && tree->command->lexeme)
-	{
-		execute(tree);
-	}
+	int	exit_status;
+
+	exit_status = 2;
+	if (!tree)
+		return (exit_status);
+	else if (tree->type == OR)
+		exit_status = manage_or(tree);
+	else if (tree->type == AND)
+		exit_status = manage_and(tree);
+	else if (tree->type == PIPE)
+		manage_pipe(tree);
+/*
+	else if (tree->type == REDIR_IN || tree->type == REDIR_HDOC
+		|| tree->type == REDIR_OUT || tree->type == REDIR_OUTAPP)
+		manage_redir(tree);
+	else if (tree->type == SUBSHELL)
+		manage_subshell(tree);
+*/
+	else
+		exit_status = execute(tree);
+	return (exit_status);
 }
