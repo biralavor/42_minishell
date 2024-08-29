@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 11:12:53 by umeneses          #+#    #+#             */
-/*   Updated: 2024/08/29 15:37:09 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/08/29 18:00:04 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 #include "../../src/lexer/03.check_initial_errors.c"
 #include "../../src/lexer/04.token_list_functions.c"
 #include "../../src/lexer/05.get_state.c"
-#include "../../src/lexer/06.state20_to_state30.c"
+#include "../../src/lexer/06.state10_to_state30.c"
 #include "../../src/lexer/07.state40_to_state60.c"
 #include "../../src/lexer/08.state61_to_state90.c"
 #include "../../src/lexer/09.error_manager_lexer.c"
