@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   35.execution_manager.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/21 14:31:24 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/08/27 15:53:12 by tmalheir         ###   ########.fr       */
+/*   Updated: 2024/08/29 11:52:55 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,4 +37,5 @@ int	manage_pipe(t_tree *tree)
 	int	exit_status;
 
 	exit_status = tree_execution(tree->left);
+	return (exit_status);
 }
