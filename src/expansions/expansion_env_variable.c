@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/27 12:39:23 by umeneses          #+#    #+#             */
-/*   Updated: 2024/08/28 15:49:57 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/08/29 16:14:13 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 char	*expansion_env_variable_runner(char *lexeme)
 {
-	t_env_entry *env_table;
+	t_env_entry	*env_table;
 	char		*env_name;
 
 	lexeme++;
