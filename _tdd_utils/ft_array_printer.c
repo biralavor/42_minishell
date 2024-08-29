@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/16 14:14:30 by umeneses          #+#    #+#             */
-/*   Updated: 2024/08/21 11:10:09 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/08/29 15:39:21 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,6 @@ void	ft_array_printer(char **array)
 		ft_printf(CYAN"[%d] = %s\n", idx, array[idx]);
 		idx++;
 	}
-	ft_printf("end_of_array_printing________________________________________");
-	ft_printf("________here_is_the_command_result:\n"RESET);
+	ft_printf("end_of_array_printing__________________________");
+	ft_printf("here_is_the_command_result:\n"RESET);
 }
