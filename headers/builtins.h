@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 14:57:00 by umeneses          #+#    #+#             */
-/*   Updated: 2024/08/29 12:58:01 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/08/29 16:13:41 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -132,7 +132,6 @@ t_env_entry	*builtins_env_sort_manager(t_env_entry *env_vars);
 bool		builtins_is_env_sorted(t_env_entry *env_vars);
 
 t_env_entry	*sorted_env_insert(t_env_entry **head, t_env_entry *new);
-
 
 /**
  * @brief: Runs the exit - exit the shell - builtin command.

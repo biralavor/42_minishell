@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 15:49:51 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/08/16 09:46:21 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/08/29 17:16:24 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,4 +37,6 @@ void	get_state(int idx, char *str, t_token_list **lst)
 		else
 			lexer_error();
 	}
+	if (str[0] == '\0')
+		idx = state_10(lst, idx);
 }
