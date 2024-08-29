@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/05 13:56:37 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/08/20 17:51:00 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/08/29 12:56:06 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,29 +31,6 @@ typedef struct s_tree
 }				t_tree;
 
 /*TREE BUILDING FUNCTIONS*/
-
-t_token_list	*go_to_last_node(t_token_list *lst);
-
-t_token_list	*go_to_first_node(t_token_list *lst);
-
-void			tree_execution(t_tree *tree);
-
-void			execute(t_tree *tree);
-
-char			*lookup_cmd_path(char *cmd_name);
-
-void			fork_and_execve(char **cmd, char *path);
-
-char			**convert_tokens_to_array(t_token_list *lst);
-
-char			**convert_envs_to_array(t_env_entry *env_vars);
-
-bool			is_cmd_with_valid_path(char *cmd_name);
-
-char			*testing_all_paths_with_cmd(char **path, char *cmd_name);
-
-void			command_manager(char **cmd);
-
 /**
  * @brief Builds the tree structure.
  * @param lst -> The token list.
@@ -66,9 +43,43 @@ t_token_list	*fetch_token(t_token_list *lst);
 
 t_tree			*text(t_token_list *lst, t_token_list *split, t_tree *tree);
 
+/*TREE BUILDING UTILS FUNCTIONS*/
+
 bool			is_text(t_token_list *split_token);
 
 void			free_token_tree(t_tree *token_tree);
+
+t_token_list	*go_to_last_node(t_token_list *lst);
+
+t_token_list	*go_to_first_node(t_token_list *lst);
+
+/*EXECUTION FUNCTIONS*/
+
+int				tree_execution(t_tree *tree);
+
+int				execute(t_tree *tree);
+
+char			*lookup_cmd_path(char *cmd_name);
+
+int				fork_and_execve(char **cmd, char *path);
+
+char			**convert_tokens_to_array(t_token_list *lst);
+
+char			**convert_envs_to_array(t_env_entry *env_vars);
+
+bool			is_cmd_with_valid_path(char *cmd_name);
+
+char			*testing_all_paths_with_cmd(char **path, char *cmd_name);
+
+int				command_manager(char **cmd);
+
+int				manage_or(t_tree *tree);
+
+int				manage_and(t_tree *tree);
+
+int				manage_pipe(t_tree *tree);
+
+/*PRINTING FUNCTIONS (TO DELETE)*/
 
 void			ft_tree_printer(t_tree *root);
 
