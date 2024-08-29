@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 11:12:53 by umeneses          #+#    #+#             */
-/*   Updated: 2024/08/28 18:45:44 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/08/29 15:37:09 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@
 #include "../../src/builtins/34.builtins_exit.c"
 #include "../../src/executor/32.execve.c"
 #include "../../src/executor/33.execve_utils.c"
+#include "../../src/executor/35.execution_manager.c"
 #include "../../src/expansions/expansion_manager.c"
 #include "../../src/expansions/expansion_detectors.c"
 #include "../../src/expansions/expansion_env_variable.c"
