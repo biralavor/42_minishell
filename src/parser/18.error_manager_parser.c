@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 11:53:52 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/08/28 11:23:20 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/08/29 15:32:12 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void	syntax_error(t_token_list *lst)
 
 void	command_not_found(t_token_list *lst)
 {
-	ft_printf("Command not found.\n");
+	ft_putendl_fd("Command not found.\n", STDERR_FILENO);
 	free_token_list(&lst);
 	rl_clear_history();
 	exit (EXIT_FAILURE);
