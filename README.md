@@ -13,6 +13,10 @@
   - [ ] Variables Expansion
   - [ ] HereDoc Redirect
   - [ ] Signals Control
+- Possible Bonus Development:
+  - [ ] If `&&` were inside `()`, it should execute with priority
+  - [ ] If `||` were inside `()`, it should execute with priority
+  - [ ] Expansion for wildcards (*), like
 
 # Minishell, a tiny version of Bash -> B.orn A.gain SH.ell
 > The terminal is a file, therefor it treats all inputs as `strings`
@@ -26,18 +30,18 @@
 > 3. [Parse (or verify sintax, similar language grammar)](https://github.com/biralavor/42_minishell#3-parser-or-syntax-grammar)
 > 4. [Apply Redirect rules, if detected](https://github.com/biralavor/42_minishell#4-redirects-manager)
 > 5. [Build the Binary Tree, in recursive mode](https://github.com/biralavor/42_minishell#5-build-the-binary-tree-in-recursive-mode)
-> 6. [Execute from the Binary Tree](https://github.com/biralavor/42_minishell#6-execution-from-binary-tree)
+> 6. [Execute from the Binary Tree](https://github.com/biralavor/42_minishell#6-execute-from-binary-tree)
 > 7. [Execute Built-ins, if detected, or Classic Commands with execve](https://github.com/biralavor/42_minishell#7-execute-built-ins-if-detected-or-classic-commands)
 
 ![Screenshot from 2024-08-20 15-11-03](https://github.com/user-attachments/assets/4c8e518f-fec8-493f-b47c-13f6001683a5)
 
-## But First, let's talk about our TDD - Test Driven Development
+## But first, let's talk about our TDD - Test Driven Development
 What we are testing, until so far:
 - initial_errors, like unmachted quotes and parentheses
 - mixed quotes
 - crazy parentheses counter
 - creating the token linked list
-- syntax validations for `words`, `pipes`, `and`, `or`, `pipes mixed with and-or`
+- syntax validations for `words`, `pipes`, `and`, `or`, `pipes` mixed with `and` and `or`
 - syntax validations for `redirect_input`, `redirect_output`, `redirect_output_append`, `redirect_heredoc`, `mixed redirects`, `subshell`
 - syntax rules for `archive`, `word_after_archive`, `redirect_with_another_redirect`
 - syntax rules for `reorganize_redirects`
@@ -85,7 +89,7 @@ Now, we got un updated result:
 ![Screenshot from 2024-08-21 10-32-59](https://github.com/user-attachments/assets/678f6672-5e2a-40da-b14d-cbc7e27f452e)
 
 
-## 6. Execution from Binary Tree
+## 6. Execute from Binary Tree
 - ![Screenshot from 2024-08-20 09-42-39](https://github.com/user-attachments/assets/98e84684-d146-46c2-b885-dd8a63294d19)
 
 ## 7. Execute Built-ins, if detected, or classic commands
