@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   01.simple_main.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 10:53:12 by umeneses          #+#    #+#             */
-/*   Updated: 2024/08/28 11:25:05 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/08/29 11:44:23 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,5 @@ int	main(int ac, char **av, char **envp)
 	}
 	free(input);
 	rl_clear_history();
-	exit(exit_code);
-	return (0);
+	exit(EXIT_SUCCESS);
 }
