@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 14:57:00 by umeneses          #+#    #+#             */
-/*   Updated: 2024/08/29 19:41:43 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/09/02 10:31:36 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,10 +66,12 @@ void		builtins_cd_switch_home_dir(void);
 */
 void		builtins_cd_switch_old_dir(void);
 
+bool		is_path_a_directory(char *path);
+
 /**
  * @brief: Prints an error message when the cd command fails.
 */
-void		error_cd_messenger(int destiny_len, char *destiny_path);
+void	cd_error_msg(int destiny_len, char *destiny_path, int chdir_status);
 
 /**
  * @brief: Checks if the builtin command has an argument.

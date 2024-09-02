@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 11:12:53 by umeneses          #+#    #+#             */
-/*   Updated: 2024/08/29 18:00:04 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/09/02 10:55:31 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@
 #include "../../src/builtins/30.builtins_env.c"
 #include "../../src/builtins/31.builtins_utils.c"
 #include "../../src/builtins/34.builtins_exit.c"
+#include "../../src/builtins/builtins_cd_utils.c"
 #include "../../src/executor/32.execve.c"
 #include "../../src/executor/33.execve_utils.c"
 #include "../../src/executor/35.execution_manager.c"
