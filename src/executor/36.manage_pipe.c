@@ -6,11 +6,46 @@
 /*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/28 13:51:49 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/09/02 12:01:41 by tmalheir         ###   ########.fr       */
+/*   Updated: 2024/09/02 14:19:27 by tmalheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+/*
+static void	free_child_proccess(t_tree *tree)
+{
+	free_token_tree(token_tree)
+}
+*/
+static void	close_pipe(int *new_pipe)
+{
+	close(new_pipe[0]);
+	close(new_pipe[1]);
+}
+
+void	exec_2nd_child(t_tree *right, int *new_pipe)
+{
+	int	exit_status;
+
+	close(new_pipe[1]);
+	dup2(new_pipe[0], STDIN_FILENO);
+	close(new_pipe[0]);
+	exit_status = tree_execution(right);
+//	free_token_tree(right);
+	exit(exit_status);
+}
+
+void	exec_1st_child(t_tree *left, int *new_pipe)
+{
+	int	exit_status;
+
+	close(new_pipe[0]);
+	dup2(new_pipe[1], STDOUT_FILENO);
+	close(new_pipe[1]);
+	exit_status = tree_execution(left);
+//	free_token_tree(left);
+	exit(exit_status);
+}
 
 int	manage_pipe(t_tree *tree)
 {
@@ -30,32 +65,9 @@ int	manage_pipe(t_tree *tree)
 			return (fork_error());
 		else if (pid[1] == 0)
 			exec_2nd_child(tree->right, new_pipe);
-		close(new_pipe[0]);
-		close(new_pipe[1]);
+		close_pipe(new_pipe);
 		waitpid(pid[0], &exit_status[0], 0);
 		waitpid(pid[1], &exit_status[1], 0);
 	}
 	return (exit_status_holder(exit_status[1]));
-}
-
-void	exec_1st_child(t_tree *left, int *new_pipe)
-{
-	int	exit_status;
-
-	close(new_pipe[0]);
-	dup2(new_pipe[1], STDOUT_FILENO);
-	close(new_pipe[1]);
-	exit_status = tree_execution(left);
-	exit(exit_status);
-}
-
-void	exec_2nd_child(t_tree *right, int *new_pipe)
-{
-	int	exit_status;
-
-	close(new_pipe[1]);
-	dup2(new_pipe[0], STDIN_FILENO);
-	close(new_pipe[0]);
-	exit_status = tree_execution(right);
-	exit(exit_status);
 }

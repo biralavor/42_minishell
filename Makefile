@@ -255,7 +255,7 @@ go:					all
 gdb:				re
 					gdb --tui -ex 'b main' -ex 'run' ./$(NAME)
 
-val:				re
+val:				all
 					valgrind --leak-check=full --track-origins=yes --show-reachable=yes --suppressions=readline.sup ./$(NAME)
 
 .PHONY:				all clean fclean re bonus min val gdb
