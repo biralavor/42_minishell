@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/16 09:43:43 by umeneses          #+#    #+#             */
-/*   Updated: 2024/09/02 17:11:18 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/09/02 19:30:39 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,10 @@ int	fork_and_execve(char **cmd, char *path)
 	{
 		// check signals
 		execve(path, cmd, all_envs);
+		if (errno == ENOENT)
+			ft_printf("%s: command not found\n", cmd[0]);
+		else
+			ft_printf("%s: %s\n", cmd[0], strerror(errno));
 	}
 	// free_array(cmd);
 	free_array(all_envs);
@@ -78,7 +82,7 @@ int	execute(t_tree *tree)
 	static int	exit_status;
 	char		**cmd;
 
-	exit_status = 0; // Retirar após ajustar as funções dos builtins.
+	// exit_status = 0; // Retirar após ajustar as funções dos builtins.
 	expansion_manager(tree->command);
 	cmd = convert_tokens_to_array(tree->command);
 	if (!cmd)
