@@ -51,7 +51,7 @@ SRC_FILES				+= 02.check_userinput.c
 SRC_FILES				+= ./lexer/03.check_initial_errors.c
 SRC_FILES				+= ./lexer/04.token_list_functions.c
 SRC_FILES				+= ./lexer/05.get_state.c
-SRC_FILES				+= ./lexer/06.state20_to_state30.c
+SRC_FILES				+= ./lexer/06.state10_to_state30.c
 SRC_FILES				+= ./lexer/07.state40_to_state60.c
 SRC_FILES				+= ./lexer/08.state61_to_state90.c
 SRC_FILES				+= ./lexer/09.error_manager_lexer.c
@@ -80,9 +80,12 @@ SRC_FILES				+= ./builtins/31.builtins_utils.c
 SRC_FILES				+= ./executor/32.execve.c
 SRC_FILES				+= ./executor/33.execve_utils.c
 SRC_FILES				+= ./builtins/34.builtins_exit.c
-SRC_FILES				+= ./executor/35.manage_or_and.c
-SRC_FILES				+= ./executor/36.manage_pipe.c
-SRC_FILES				+= ./executor/utils.c
+SRC_FILES				+= ./executor/35.execution_manager.c
+SRC_FILES				+= ./expansions/expansion_manager.c
+SRC_FILES				+= ./expansions/expansion_detectors.c
+SRC_FILES				+= ./expansions/expansion_env_variable.c
+SRC_FILES				+= ./expansions/expansion_question.c
+SRC_FILES				+= ./builtins/builtins_cd_utils.c
 
 #SRC_FILES				= minishell_main.c
 
@@ -252,7 +255,7 @@ min:				re
 go:					all
 					./$(NAME)
 
-gdb:				re
+gdb:				all
 					gdb --tui -ex 'b main' -ex 'run' ./$(NAME)
 
 val:				all

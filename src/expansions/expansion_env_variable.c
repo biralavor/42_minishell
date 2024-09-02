@@ -1,28 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_array_printer.c                                 :+:      :+:    :+:   */
+/*   expansion_env_variable.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/16 14:14:30 by umeneses          #+#    #+#             */
-/*   Updated: 2024/08/29 15:39:21 by umeneses         ###   ########.fr       */
+/*   Created: 2024/08/27 12:39:23 by umeneses          #+#    #+#             */
+/*   Updated: 2024/08/29 16:14:13 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	ft_array_printer(char **array)
+char	*expansion_env_variable_runner(char *lexeme)
 {
-	int	idx;
+	t_env_entry	*env_table;
+	char		*env_name;
 
-	idx = 0;
-	ft_printf(YELLOW"Printing Commands Array:\n");
-	while (array[idx])
+	lexeme++;
+	env_name = ft_strdup(lexeme);
+	lexeme--;
+	env_table = lookup_table(env_holder(NULL, false, false), env_name);
+	if (env_table)
 	{
-		ft_printf(CYAN"[%d] = %s\n", idx, array[idx]);
-		idx++;
+		free(lexeme);
+		free(env_name);
+		lexeme = ft_strdup(env_table->value);
+		return (lexeme);
 	}
-	ft_printf("end_of_array_printing__________________________");
-	ft_printf("here_is_the_command_result:\n"RESET);
+	return (NULL);
 }

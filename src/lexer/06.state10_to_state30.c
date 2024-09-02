@@ -6,11 +6,23 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/20 10:17:28 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/08/16 09:46:25 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/08/29 17:18:02 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+int	state_10(t_token_list **lst, int idx)
+{
+	t_token_list	*empty;
+
+	empty = (t_token_list *)ft_calloc(1, sizeof(t_token_list));
+	empty->lexeme = ft_strdup("");
+	empty->type = WORD;
+	empty->next_char = '\0';
+	create_new_node(lst, empty);
+	return (idx + 1);
+}
 
 int	state_20(t_token_list **lst, char *str, int idx)
 {

@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 13:32:19 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/08/19 15:07:03 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/08/29 16:23:38 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,7 @@ void	create_new_node(t_token_list **root, t_token_list *token);
 */
 void	get_state(int idx, char *str, t_token_list **lst);
 
+int		state_10(t_token_list **lst, int idx);
 int		state_20(t_token_list **lst, char *str, int idx);
 int		state_30(t_token_list **lst, char curr, char next, int idx);
 int		state_31(t_token_list **lst, int idx, char next);

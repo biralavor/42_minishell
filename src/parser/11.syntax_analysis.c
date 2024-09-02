@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   11.syntax_analysis.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/03 10:40:35 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/08/28 11:20:40 by tmalheir         ###   ########.fr       */
+/*   Updated: 2024/08/28 11:29:14 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,8 @@ int	syntax_validations(t_token_list *lst)
 	else if (lst->type == REDIR_IN || lst->type == REDIR_HDOC
 		|| lst->type == REDIR_OUT || lst->type == REDIR_OUTAPP)
 		syntax_state = state_300(lst, syntax_state);
+	else if (lst->type == SUBSHELL)
+		syntax_state = 400;
 	return (syntax_state);
 }
 
@@ -56,6 +58,7 @@ void	check_syntax_state(t_token_list *lst, int syntax_state)
 	if (syntax_state == 101 || syntax_state == 201 || syntax_state == 301)
 	{
 		free_token_list(&lst);
+		rl_clear_history();
 		exit (EXIT_FAILURE);
 	}
 }

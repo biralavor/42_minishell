@@ -6,7 +6,7 @@
 /*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 10:53:12 by umeneses          #+#    #+#             */
-/*   Updated: 2024/08/27 11:58:42 by tmalheir         ###   ########.fr       */
+/*   Updated: 2024/09/02 16:02:02 by tmalheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,14 +71,12 @@ int	main(int ac, char **av, char **envp)
 		input = readline(GREEN"<<< Born Again (mini) SHell >>>$ "RESET);
 		if (ft_strncmp(input, "exit", 4) == 0)
 			break ;
+		add_history(input);
 		loop_routine(input);
 		wait(NULL);
+		free(input);
 	}
-	// {
-	// 	input = "fg";
-	// 	printf("%s\n", input);
-	// 	loop_routine(input);
-	// }
-	free(input);
-	return (0);
+	rl_clear_history();
+	env_holder(env_table, false, true);
+	exit(EXIT_SUCCESS);
 }

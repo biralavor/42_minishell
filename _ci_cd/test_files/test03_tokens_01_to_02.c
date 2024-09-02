@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 11:12:53 by umeneses          #+#    #+#             */
-/*   Updated: 2024/07/08 11:15:36 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/08/29 18:05:51 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,9 @@ MU_TEST(testing_userinput_token_empty)
 	//ACT
 	userinput = "";
 
-	xpect_node_01_type = NULL;
-	xpect_node_01_lexeme = NULL;
-	xpect_lst_size = 0;
+	xpect_node_01_type = get_token_string(WORD);
+	xpect_node_01_lexeme = "";
+	xpect_lst_size = 1;
 	idx = 0;
 	lst = NULL;
 	get_state(idx, userinput, &lst);

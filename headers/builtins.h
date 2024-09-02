@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtins.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 14:57:00 by umeneses          #+#    #+#             */
-/*   Updated: 2024/08/27 11:25:46 by tmalheir         ###   ########.fr       */
+/*   Updated: 2024/09/02 12:23:47 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,12 +64,14 @@ void		builtins_cd_switch_home_dir(void);
 /**
  * @brief: Switches to the old directory, if user input is `cd ..`.
 */
-void		builtins_cd_switch_old_dir(void);
+void		builtins_cd_switch_parent_dir(void);
+
+bool		is_path_a_directory(char *path);
 
 /**
  * @brief: Prints an error message when the cd command fails.
 */
-void		error_cd_messenger(int destiny_len, char *destiny_path);
+void	cd_error_msg(int destiny_len, char *destiny_path, int chdir_status);
 
 /**
  * @brief: Checks if the builtin command has an argument.
@@ -131,8 +133,10 @@ t_env_entry	*builtins_env_sort_manager(t_env_entry *env_vars);
  */
 bool		builtins_is_env_sorted(t_env_entry *env_vars);
 
+/**
+ * @brief: Sort the environment variables list.
+ */
 t_env_entry	*sorted_env_insert(t_env_entry **head, t_env_entry *new);
-
 
 /**
  * @brief: Runs the exit - exit the shell - builtin command.
@@ -147,16 +151,10 @@ int			builtins_runner_exit(t_token_list *lst);
 int			exit_status_holder(int exit_status);
 
 /**
- * @brief: Swaps two nodes in the environment variables list.
+ * @brief: Holds the argument option status.
+ * @param update the update the statict arg status variable.
+ * @param call_status the call the statict arg status variable.
  */
-void		swap_env_nodes(t_env_entry **head, t_env_entry *a, t_env_entry *b);
-
-/**
- * @brief: Sorts the environment variables list,
- * applying the Bubble Sort algorithm.
- */
-t_env_entry	*bubble_sort_nodes(t_env_entry **head);
-
 bool		arg_option_holder(bool update, bool call_status);
 
 #endif

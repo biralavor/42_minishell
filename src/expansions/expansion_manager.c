@@ -1,28 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_array_printer.c                                 :+:      :+:    :+:   */
+/*   expansion_manager.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/16 14:14:30 by umeneses          #+#    #+#             */
-/*   Updated: 2024/08/29 15:39:21 by umeneses         ###   ########.fr       */
+/*   Created: 2024/08/26 18:31:10 by umeneses          #+#    #+#             */
+/*   Updated: 2024/08/29 16:14:41 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	ft_array_printer(char **array)
+void	expansion_manager(t_token_list *cmd)
 {
-	int	idx;
+	t_token_list	*tmp;
 
-	idx = 0;
-	ft_printf(YELLOW"Printing Commands Array:\n");
-	while (array[idx])
+	tmp = cmd;
+	while (tmp != NULL)
 	{
-		ft_printf(CYAN"[%d] = %s\n", idx, array[idx]);
-		idx++;
+		if (expansion_detector(tmp))
+		{
+			if (expansion_env_variable_detector(tmp->lexeme))
+				tmp->lexeme = expansion_env_variable_runner(tmp->lexeme);
+			else if (expansion_question_mark_detector(tmp->lexeme))
+				tmp->lexeme = expansion_question_mark(tmp->lexeme);
+		}
+		tmp = tmp->next;
 	}
-	ft_printf("end_of_array_printing__________________________");
-	ft_printf("here_is_the_command_result:\n"RESET);
 }

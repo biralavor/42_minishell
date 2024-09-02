@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 11:12:53 by umeneses          #+#    #+#             */
-/*   Updated: 2024/08/19 17:57:10 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/09/02 10:55:31 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 #include "../../src/lexer/03.check_initial_errors.c"
 #include "../../src/lexer/04.token_list_functions.c"
 #include "../../src/lexer/05.get_state.c"
-#include "../../src/lexer/06.state20_to_state30.c"
+#include "../../src/lexer/06.state10_to_state30.c"
 #include "../../src/lexer/07.state40_to_state60.c"
 #include "../../src/lexer/08.state61_to_state90.c"
 #include "../../src/lexer/09.error_manager_lexer.c"
@@ -48,8 +48,14 @@
 #include "../../src/builtins/30.builtins_env.c"
 #include "../../src/builtins/31.builtins_utils.c"
 #include "../../src/builtins/34.builtins_exit.c"
+#include "../../src/builtins/builtins_cd_utils.c"
 #include "../../src/executor/32.execve.c"
 #include "../../src/executor/33.execve_utils.c"
+#include "../../src/executor/35.execution_manager.c"
+#include "../../src/expansions/expansion_manager.c"
+#include "../../src/expansions/expansion_detectors.c"
+#include "../../src/expansions/expansion_env_variable.c"
+#include "../../src/expansions/expansion_question.c"
 #include "../_tdd_utils/ft_array_printer.c"
 #include "../_tdd_utils/ft_env_printer.c"
 #include "../_tdd_utils/ft_lst_printer.c"

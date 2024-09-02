@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 13:23:46 by umeneses          #+#    #+#             */
-/*   Updated: 2024/08/27 10:48:56 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/08/29 16:15:14 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,13 +53,13 @@ t_env_entry	*builtins_env_sort_manager(t_env_entry *current)
 	next_node = NULL;
 	if (builtins_is_env_sorted(current))
 		return (current);
-	while(current)
+	while (current)
 	{
 		next_node = current->next;
 		sorted = sorted_env_insert(&sorted, current);
 		current = next_node;
 	}
-	return(sorted);
+	return (sorted);
 }
 
 bool	builtins_is_env_sorted(t_env_entry *env_vars)
