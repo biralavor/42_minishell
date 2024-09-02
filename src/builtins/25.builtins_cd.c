@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 13:23:46 by umeneses          #+#    #+#             */
-/*   Updated: 2024/08/29 19:12:16 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/09/02 10:18:46 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,24 +36,6 @@ void	builtins_runner_cd(t_token_list *lst)
 	}
 	if (!destiny_path)
 		builtins_cd_switch_home_dir();
-}
-
-void	cd_error_msg(int destiny_len, char *destiny_path, int chdir_status)
-{
-	if (chdir_status == ENOTDIR)
-	{
-		write(2, "bash: cd: ", 11);
-		write(2, destiny_path, destiny_len);
-		write(2, ": Not a directory", 18);
-		write(2, "\n", 1);
-	}
-	else if (chdir_status == ENOENT)
-	{
-		write(2, "bash: cd: ", 11);
-		write(2, destiny_path, destiny_len);
-		write(2, ": No such file or directory", 28);
-		write(2, "\n", 1);
-	}
 }
 
 void	builtins_cd_switch_new_dir(char *destiny_path)
