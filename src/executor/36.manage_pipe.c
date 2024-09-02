@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   36.manage_pipe.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/28 13:51:49 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/09/02 14:19:27 by tmalheir         ###   ########.fr       */
+/*   Updated: 2024/09/02 19:26:36 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,10 +49,11 @@ void	exec_1st_child(t_tree *left, int *new_pipe)
 
 int	manage_pipe(t_tree *tree)
 {
-	int		exit_status[2];
+	int		exit_status;
 	int		new_pipe[2];
 	pid_t	pid[2];
 
+	exit_status = 0;
 	if (!pipe(new_pipe))
 	{
 		pid[0] = fork();
@@ -66,8 +67,8 @@ int	manage_pipe(t_tree *tree)
 		else if (pid[1] == 0)
 			exec_2nd_child(tree->right, new_pipe);
 		close_pipe(new_pipe);
-		waitpid(pid[0], &exit_status[0], 0);
-		waitpid(pid[1], &exit_status[1], 0);
+		waitpid(pid[0], &exit_status, 0);
+		waitpid(pid[1], &exit_status, 0);
 	}
-	return (exit_status_holder(exit_status[1]));
+	return (exit_status_holder(exit_status));
 }
