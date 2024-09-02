@@ -133,6 +133,9 @@ t_env_entry	*builtins_env_sort_manager(t_env_entry *env_vars);
  */
 bool		builtins_is_env_sorted(t_env_entry *env_vars);
 
+/**
+ * @brief: Sort the environment variables list.
+ */
 t_env_entry	*sorted_env_insert(t_env_entry **head, t_env_entry *new);
 
 /**
@@ -148,16 +151,10 @@ int			builtins_runner_exit(t_token_list *lst);
 int			exit_status_holder(int exit_status);
 
 /**
- * @brief: Swaps two nodes in the environment variables list.
+ * @brief: Holds the argument option status.
+ * @param update the update the statict arg status variable.
+ * @param call_status the call the statict arg status variable.
  */
-void		swap_env_nodes(t_env_entry **head, t_env_entry *a, t_env_entry *b);
-
-/**
- * @brief: Sorts the environment variables list,
- * applying the Bubble Sort algorithm.
- */
-t_env_entry	*bubble_sort_nodes(t_env_entry **head);
-
 bool		arg_option_holder(bool update, bool call_status);
 
 #endif
