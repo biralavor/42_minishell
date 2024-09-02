@@ -6,7 +6,7 @@
 /*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/05 13:56:37 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/08/27 13:15:15 by tmalheir         ###   ########.fr       */
+/*   Updated: 2024/09/02 11:55:48 by tmalheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,10 +79,20 @@ int				manage_and(t_tree *tree);
 
 int				manage_pipe(t_tree *tree);
 
+void			exec_1st_child(t_tree *left, int *new_pipe);
+
+void			exec_2nd_child(t_tree *right, int *new_pipe);
+
+int				pipe_execution(char **cmd, char *path);
+
 /*PRINTING FUNCTIONS (TO DELETE)*/
 
 void			ft_tree_printer(t_tree *root);
 
 void			ft_array_printer(char **array);
+
+/*UTILS FUNCTIONS*/
+
+int				fork_error(void);
 
 #endif

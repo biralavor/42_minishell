@@ -6,7 +6,7 @@
 /*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/16 09:43:43 by umeneses          #+#    #+#             */
-/*   Updated: 2024/08/28 11:24:21 by tmalheir         ###   ########.fr       */
+/*   Updated: 2024/09/02 11:56:18 by tmalheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,17 +21,16 @@ int	fork_and_execve(char **cmd, char *path)
 	all_envs = convert_envs_to_array(env_holder(NULL, false, false));
 	pid = fork();
 	if (pid == -1)
+		return (fork_error());
 	if (pid == 0)
 	{
-		// check fork
 		// check signals
 		execve(path, cmd, all_envs);
 	}
 	// free_array(cmd);
 	free_array(all_envs);
 	waitpid(pid, &exit_status, 0);
-	exit_status = exit_status_holder(exit_status);
-	return (exit_status);
+	return (exit_status_holder(exit_status));
 }
 
 char	*lookup_cmd_path(char *cmd_name)
@@ -59,7 +58,6 @@ int	command_manager(char **cmd)
 	int		exit_status;
 	char	*path;
 
-
 	path = NULL;
 	path = lookup_cmd_path(cmd[0]);
 	if (!path)
@@ -77,8 +75,8 @@ int	command_manager(char **cmd)
 
 int	execute(t_tree *tree)
 {
-	int		exit_status;
-	char	**cmd;
+	static int	exit_status;
+	char		**cmd;
 
 	exit_status = 0; // Retirar após ajustar as funções dos builtins.
 	cmd = convert_tokens_to_array(tree->command);
@@ -98,7 +96,7 @@ int	execute(t_tree *tree)
 
 int	tree_execution(t_tree *tree)
 {
-	int	exit_status;
+	int			exit_status;
 
 	exit_status = 2;
 	if (!tree)
@@ -108,7 +106,7 @@ int	tree_execution(t_tree *tree)
 	else if (tree->type == AND)
 		exit_status = manage_and(tree);
 	else if (tree->type == PIPE)
-		manage_pipe(tree);
+		exit_status = manage_pipe(tree);
 /*
 	else if (tree->type == REDIR_IN || tree->type == REDIR_HDOC
 		|| tree->type == REDIR_OUT || tree->type == REDIR_OUTAPP)
