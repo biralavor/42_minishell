@@ -85,6 +85,7 @@ SRC_FILES				+= ./expansions/expansion_manager.c
 SRC_FILES				+= ./expansions/expansion_detectors.c
 SRC_FILES				+= ./expansions/expansion_env_variable.c
 SRC_FILES				+= ./expansions/expansion_question.c
+SRC_FILES				+= ./builtins/builtins_cd_utils.c
 
 #SRC_FILES				= minishell_main.c
 

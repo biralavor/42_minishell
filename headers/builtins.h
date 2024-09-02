@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 14:57:00 by umeneses          #+#    #+#             */
-/*   Updated: 2024/08/29 19:13:42 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/09/02 10:31:36 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,8 @@ void		builtins_cd_switch_home_dir(void);
  * @brief: Switches to the old directory, if user input is `cd ..`.
 */
 void		builtins_cd_switch_old_dir(void);
+
+bool		is_path_a_directory(char *path);
 
 /**
  * @brief: Prints an error message when the cd command fails.
