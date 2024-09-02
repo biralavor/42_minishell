@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 13:23:46 by umeneses          #+#    #+#             */
-/*   Updated: 2024/08/29 14:46:34 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/09/02 19:13:46 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,10 @@ bool	builtins_detector(t_token_list *cmd)
 {
 	while (cmd)
 	{
-		if ((ft_strncmp(cmd->lexeme, "echo", 4) == 0)
-			|| (ft_strncmp(cmd->lexeme, "cd", 2) == 0)
-			|| (ft_strncmp(cmd->lexeme, "pwd", 3) == 0)
-			|| (ft_strncmp(cmd->lexeme, "exit", 4) == 0))
+		if ((ft_strncmp(cmd->lexeme, "echo", ft_strlen(cmd->lexeme)) == 0)
+			|| (ft_strncmp(cmd->lexeme, "cd", ft_strlen(cmd->lexeme)) == 0)
+			|| (ft_strncmp(cmd->lexeme, "pwd", ft_strlen(cmd->lexeme)) == 0)
+			|| (ft_strncmp(cmd->lexeme, "exit", ft_strlen(cmd->lexeme)) == 0))
 			return (true);
 		cmd = cmd->next;
 	}
@@ -35,13 +35,13 @@ void	builtins_manager(t_token_list *lst)
 	arg_option = false;
 	while (cmd)
 	{
-		if (ft_strncmp(cmd->lexeme, "echo", 4) == 0)
+		if (ft_strncmp(cmd->lexeme, "echo", ft_strlen(cmd->lexeme)) == 0)
 			builtins_runner_echo(cmd, arg_option);
-		else if (ft_strncmp(cmd->lexeme, "cd", 2) == 0)
+		else if (ft_strncmp(cmd->lexeme, "cd", ft_strlen(cmd->lexeme)) == 0)
 			builtins_runner_cd(cmd);
-		else if (ft_strncmp(cmd->lexeme, "pwd", 3) == 0)
+		else if (ft_strncmp(cmd->lexeme, "pwd", ft_strlen(cmd->lexeme)) == 0)
 			builtins_runner_pwd(cmd);
-		else if (ft_strncmp(cmd->lexeme, "exit", 4) == 0)
+		else if (ft_strncmp(cmd->lexeme, "exit", ft_strlen(cmd->lexeme)) == 0)
 		{
 			exit_status_holder(0);
 			break ;
