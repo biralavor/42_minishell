@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 13:23:46 by umeneses          #+#    #+#             */
-/*   Updated: 2024/09/02 10:18:46 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/09/02 13:36:01 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	builtins_runner_cd(t_token_list *lst)
 		if (ft_strncmp(destiny_path, "~", 1) == 0)
 			builtins_cd_switch_home_dir();
 		else if (ft_strncmp(destiny_path, "..", 2) == 0)
-			builtins_cd_switch_old_dir();
+			builtins_cd_switch_parent_dir();
 		else if (chdir(destiny_path) != 0)
 			cd_error_msg(destiny_len, destiny_path, chdir(destiny_path));
 		else
@@ -61,17 +61,24 @@ void	builtins_cd_switch_home_dir(void)
 	free(home_path);
 }
 
-void	builtins_cd_switch_old_dir(void)
+void	builtins_cd_switch_parent_dir(void)
 {
+	int		idx;
 	char	*actual_path;
-	char	*old_path;
+	char	*parent_path;
 
+	idx = 0;
 	actual_path = NULL;
-	old_path = NULL;
+	parent_path = NULL;
 	actual_path = getcwd(actual_path, 100);
-	old_path = ft_strrchr(actual_path, '/');
-	old_path = ft_strjoin(old_path, "/");
-	chdir(old_path);
-	free(old_path);
+	parent_path = actual_path;
+	while (actual_path[idx])
+		idx++;
+	while (parent_path[idx] != '/')
+	{
+		parent_path[idx] = '\0';
+		idx--;
+	}
+	chdir(parent_path);
 	free(actual_path);
 }
