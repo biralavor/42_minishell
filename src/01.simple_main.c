@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   01.simple_main.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 10:53:12 by umeneses          #+#    #+#             */
-/*   Updated: 2024/08/29 13:04:42 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/09/02 16:02:02 by tmalheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,8 +74,9 @@ int	main(int ac, char **av, char **envp)
 		add_history(input);
 		loop_routine(input);
 		wait(NULL);
+		free(input);
 	}
-	free(input);
 	rl_clear_history();
+	env_holder(env_table, false, true);
 	exit(EXIT_SUCCESS);
 }
