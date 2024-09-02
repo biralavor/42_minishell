@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/16 09:43:43 by umeneses          #+#    #+#             */
-/*   Updated: 2024/09/02 16:22:52 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/09/02 17:11:18 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,7 +102,7 @@ int	execute(t_tree *tree)
 
 int	tree_execution(t_tree *tree)
 {
-	int			exit_status;
+	int	exit_status;
 
 	exit_status = 2;
 	if (!tree)
