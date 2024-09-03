@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/02 10:19:07 by umeneses          #+#    #+#             */
-/*   Updated: 2024/09/02 10:48:04 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/09/03 17:00:38 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ void	cd_error_msg(int destiny_len, char *destiny_path, int chdir_status)
 		write(2, ": No such file or directory", 28);
 		write(2, "\n", 1);
 	}
+	exit_status_holder(1, true);
 }
 
 bool	is_path_a_directory(char *path)
