@@ -261,6 +261,6 @@ gdb:				all
 					gdb --tui -ex 'b main' -ex 'run' ./$(NAME)
 
 val:				all
-					valgrind --leak-check=full --track-origins=yes --show-reachable=yes --suppressions=readline.sup ./$(NAME)
+					valgrind --leak-check=full --track-origins=yes --track-fds=yes --show-reachable=yes --suppressions=readline.sup ./$(NAME)
 
 .PHONY:				all clean fclean re bonus min val gdb
