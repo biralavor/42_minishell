@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/16 09:43:43 by umeneses          #+#    #+#             */
-/*   Updated: 2024/09/03 00:12:53 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/09/03 09:24:52 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,7 @@ int	command_manager(char **cmd)
 	char	*path;
 
 	path = NULL;
+	exit_status = 0;
 	path = lookup_cmd_path(cmd[0]);
 	if (path)
 	{
