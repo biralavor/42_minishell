@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/16 09:43:43 by umeneses          #+#    #+#             */
-/*   Updated: 2024/09/02 23:26:00 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/09/03 00:12:53 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,16 @@ int	fork_and_execve(char **cmd, char *path)
 		// check signals
 		execve(path, cmd, all_envs);
 		if (errno == ENOENT)
-			ft_printf("%s: command not found\n", cmd[0]);
-		else
-			ft_printf("%s: %s\n", cmd[0], strerror(errno));
+		{
+			ft_putstr_fd(cmd[0], STDERR_FILENO);
+			ft_putstr_fd(": command not found\n", STDERR_FILENO);
+			exit_status = 127;
+		}
+		// else // outro tipo de erro
+		// {
+			
+		// 	ft_printf("%s: %s\n", cmd[0], strerror(errno));
+		// }
 	}
 	// free_array(cmd);
 	free_array(all_envs);
@@ -64,12 +71,7 @@ int	command_manager(char **cmd)
 
 	path = NULL;
 	path = lookup_cmd_path(cmd[0]);
-	if (!path)
-	{
-		ft_printf("%s: command not found\n", cmd[0]);
-		exit_status = 127;
-	}
-	else
+	if (path)
 	{
 		exit_status = fork_and_execve(cmd, path);
 		free(path);
@@ -125,7 +127,7 @@ int	tree_execution(t_tree *tree)
 	else if (tree->type == SUBSHELL)
 		manage_subshell(tree);
 */
-	else
+	else if (tree->type == WORD && *tree->command->lexeme)
 		exit_status = execute(tree);
 	return (exit_status);
 }
