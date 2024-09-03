@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 14:57:00 by umeneses          #+#    #+#             */
-/*   Updated: 2024/09/03 12:17:54 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/09/03 12:41:32 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -151,7 +151,7 @@ int			builtins_runner_exit(t_token_list *lst);
 int			exit_status_holder(int exit_status, bool update);
 
 
-int			pid_exit_status_caller(pid_t pid);
+void		pid_exit_status_caller(pid_t pid);
 
 /**
  * @brief: Holds the argument option status.
