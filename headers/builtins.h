@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 14:57:00 by umeneses          #+#    #+#             */
-/*   Updated: 2024/09/03 17:37:18 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/09/03 17:49:35 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -162,6 +162,11 @@ int			exit_status_holder(int exit_status, bool update);
  * @brief: Calls the exit status of the subprocess - fork.
  */
 void		pid_exit_status_caller(pid_t pid);
+
+/**
+ * @brief: Clears all the memory allocated to exit the minishell smoothly.
+ */
+void		clear_all_to_exit_smoothly(void);
 
 /**
  * @brief: Holds the argument option status.
