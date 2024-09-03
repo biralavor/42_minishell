@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/27 12:39:23 by umeneses          #+#    #+#             */
-/*   Updated: 2024/08/29 16:14:13 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/09/03 16:34:45 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,18 @@ char	*expansion_env_variable_runner(char *lexeme)
 	env_name = ft_strdup(lexeme);
 	lexeme--;
 	env_table = lookup_table(env_holder(NULL, false, false), env_name);
+	free(lexeme);
+	free(env_name);
 	if (env_table)
 	{
-		free(lexeme);
-		free(env_name);
 		lexeme = ft_strdup(env_table->value);
+		exit_status_holder(0, true);
 		return (lexeme);
 	}
-	return (NULL);
+	else
+	{
+		lexeme = ft_strdup("");
+		exit_status_holder(0, true);
+		return (lexeme);
+	}
 }

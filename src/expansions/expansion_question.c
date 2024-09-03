@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/28 16:32:23 by umeneses          #+#    #+#             */
-/*   Updated: 2024/08/29 12:12:42 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/09/03 16:09:13 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ char	*expansion_question_mark(char *lexeme)
 	char	*last_exit_value;
 	int		exit_status;
 
-	exit_status = exit_status_holder(-1);
+	exit_status = exit_status_holder(-1, false);
 	last_exit_value = ft_itoa(exit_status);
 	free(lexeme);
 	lexeme = ft_strdup(last_exit_value);
