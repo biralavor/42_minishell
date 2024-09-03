@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 13:23:46 by umeneses          #+#    #+#             */
-/*   Updated: 2024/08/29 12:11:02 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/09/03 12:18:13 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,13 +40,12 @@ int	builtins_runner_exit(t_token_list *lst)
 	return (exit_code);
 }
 
-int	exit_status_holder(int exit_status)
+int	exit_status_holder(int actual_exit_status, bool update)
 {
 	static int	exit_holder;
 
-	if (WIFEXITED(exit_status))
-		exit_holder = WEXITSTATUS(exit_status);
-	else if (exit_status != -1)
-		exit_holder = exit_status;
+	if (update)
+		exit_holder = actual_exit_status;
 	return (exit_holder);
 }
+
