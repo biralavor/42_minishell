@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/28 13:51:49 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/09/02 19:26:36 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/09/02 23:05:04 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,26 +25,28 @@ static void	close_pipe(int *new_pipe)
 
 void	exec_2nd_child(t_tree *right, int *new_pipe)
 {
-	int	exit_status;
+	int	exit_status = 0;
 
 	close(new_pipe[1]);
 	dup2(new_pipe[0], STDIN_FILENO);
 	close(new_pipe[0]);
 	exit_status = tree_execution(right);
+	(void)exit_status;
 //	free_token_tree(right);
-	exit(exit_status);
+	// exit(exit_status); remover, já que é importante verificar se deu certo
 }
 
 void	exec_1st_child(t_tree *left, int *new_pipe)
 {
-	int	exit_status;
+	int	exit_status = 0;
 
 	close(new_pipe[0]);
 	dup2(new_pipe[1], STDOUT_FILENO);
 	close(new_pipe[1]);
 	exit_status = tree_execution(left);
+	(void)exit_status;
 //	free_token_tree(left);
-	exit(exit_status);
+	// exit(exit_status); remover, já que é importante verificar se deu certo
 }
 
 int	manage_pipe(t_tree *tree)
