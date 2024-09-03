@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/16 09:43:43 by umeneses          #+#    #+#             */
-/*   Updated: 2024/09/02 19:30:39 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/09/02 23:26:00 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ char	*lookup_cmd_path(char *cmd_name)
 	}
 	else
 		return (cmd_name);
-	return (NULL);
+	// return (NULL);
 }
 
 int	command_manager(char **cmd)
@@ -82,25 +82,26 @@ int	execute(t_tree *tree)
 	static int	exit_status;
 	char		**cmd;
 
-	// exit_status = 0; // Retirar após ajustar as funções dos builtins.
 	expansion_manager(tree->command);
-	cmd = convert_tokens_to_array(tree->command);
-	if (!cmd)
-	{
-		exit_status = -1; // checar se esse status é o correto
-		return (exit_status);
-	}
-	ft_array_printer(cmd);
 	if (builtins_detector(tree->command))
 		builtins_manager(tree->command);
 	else if (builtins_detector_with_possible_args(tree->command))
 		builtins_with_possible_args_manager(tree->command);
 	else
-		exit_status = command_manager(cmd);
+	{
+		cmd = convert_tokens_to_array(tree->command);
+		if (!cmd)
+		{
+			exit_status = 1; // trocar por exit_holder
+			return (exit_status);
+		}
+		// ft_array_printer(cmd);
+		exit_status = command_manager(cmd); // trocar por exit_holder
+		// free_array(cmd);
+	}
 	// verify if !cmd[0]
 	// verify exit_status_holder()
 	// verify SIGINT
-	free_array(cmd);
 	return (exit_status);
 }
 
