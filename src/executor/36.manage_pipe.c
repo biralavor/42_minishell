@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/28 13:51:49 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/09/02 23:49:25 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/09/03 12:42:15 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,5 +78,6 @@ int	manage_pipe(t_tree *tree)
 		waitpid(pid[1], &exit_status, 0);
 		close_pipe(new_pipe);
 	}
-	return (exit_status_holder(exit_status));
+	// return (exit_status_holder(exit_status));
+	return ((exit_status));
 }
