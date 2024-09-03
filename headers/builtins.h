@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 14:57:00 by umeneses          #+#    #+#             */
-/*   Updated: 2024/09/03 12:41:32 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/09/03 17:24:41 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ bool		is_path_a_directory(char *path);
 /**
  * @brief: Prints an error message when the cd command fails.
 */
-void	cd_error_msg(int destiny_len, char *destiny_path, int chdir_status);
+void		cd_error_msg(int destiny_len, char *destiny_path, int chdir_status);
 
 /**
  * @brief: Checks if the builtin command has an argument.
@@ -150,7 +150,9 @@ int			builtins_runner_exit(t_token_list *lst);
  */
 int			exit_status_holder(int exit_status, bool update);
 
-
+/**
+ * @brief: Calls the exit status of the subprocess - fork.
+ */
 void		pid_exit_status_caller(pid_t pid);
 
 /**
