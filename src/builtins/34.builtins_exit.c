@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 13:23:46 by umeneses          #+#    #+#             */
-/*   Updated: 2024/09/03 12:18:37 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/09/03 16:16:33 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,19 @@ int	builtins_runner_exit(t_token_list *lst)
 	exit_code = 0;
 	if (cmd && cmd->type == WORD)
 	{
-		if (ft_isdigit(cmd->lexeme[0]))
+		if (cmd->lexeme && cmd->next->lexeme)
+		{
+			write(2, "bash exit: too many arguments\n", 30);
+			exit_code = 1;
+		}
+		if (ft_isalpha(cmd->lexeme[0]))
+		{
+			write(2, "bash exit: ", 11);
+			write(2, cmd->lexeme, ft_strlen(cmd->lexeme));
+			write(2, ": numeric argument required\n", 28);
+			exit_code = 2;
+		}
+		if (cmd->lexeme)
 		{
 			exit_code = ft_atoi(cmd->lexeme);
 			if (exit_code < 0)
@@ -29,15 +41,8 @@ int	builtins_runner_exit(t_token_list *lst)
 			else if (exit_code > 255)
 				exit_code = exit_code % 256;
 		}
-		else
-		{
-			write(2, "bash exit: ", 11);
-			write(2, cmd->lexeme, ft_strlen(cmd->lexeme));
-			write(2, ": numeric argument required\n", 28);
-			exit_code = 2;
-		}
 	}
-	return (exit_code);
+	exit(exit_status_holder(exit_code, true));
 }
 
 int	exit_status_holder(int actual_exit_status, bool update)
