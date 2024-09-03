@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 13:23:46 by umeneses          #+#    #+#             */
-/*   Updated: 2024/09/03 17:39:49 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/09/03 18:19:35 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,12 +31,13 @@ void	builtins_runner_exit(t_token_list *lst)
 				exit_code = exit_code % 256;
 		}
 	}
+	clear_all_to_exit_smoothly();
 	exit(exit_status_holder(exit_code, true));
 }
 
 int	exit_error_manager(t_token_list *cmd, int exit_code)
 {
-	if (cmd->lexeme && cmd->next->lexeme)
+	if (cmd->lexeme && cmd->next)
 	{
 		write(2, "bash exit: too many arguments\n", 30);
 		exit_code = 1;
@@ -70,4 +71,13 @@ void	pid_exit_status_caller(pid_t pid)
 	if (status == 139)
 		status = 1;
 	exit_status_holder(status, true);
+}
+
+void	clear_all_to_exit_smoothly(void)
+{
+	rl_clear_history();
+	env_holder(NULL, false, true);
+	close(STDIN_FILENO);
+	close(STDOUT_FILENO);
+	close(STDERR_FILENO);
 }
