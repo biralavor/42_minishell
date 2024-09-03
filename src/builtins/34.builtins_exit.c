@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 13:23:46 by umeneses          #+#    #+#             */
-/*   Updated: 2024/09/03 12:18:13 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/09/03 12:18:37 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,3 +49,15 @@ int	exit_status_holder(int actual_exit_status, bool update)
 	return (exit_holder);
 }
 
+int	pid_exit_status_caller(pid_t pid)
+{
+	int	status;
+
+	status = 0;
+	waitpid(pid, &status, 0);
+	if (WIFEXITED(status))
+		status = WEXITSTATUS(status);
+	if (status == 139)
+		status = 1;
+	exit_status_holder(status, update)
+}
