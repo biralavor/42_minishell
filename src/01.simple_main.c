@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   01.simple_main.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 10:53:12 by umeneses          #+#    #+#             */
-/*   Updated: 2024/09/02 16:02:02 by tmalheir         ###   ########.fr       */
+/*   Updated: 2024/09/03 18:22:49 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,8 +69,6 @@ int	main(int ac, char **av, char **envp)
 		// set_tty_proprieties
 		// sigquit_case() -> Ctrl+/
 		input = readline(GREEN"<<< Born Again (mini) SHell >>>$ "RESET);
-		if (ft_strncmp(input, "exit", 4) == 0)
-			break ;
 		add_history(input);
 		loop_routine(input);
 		wait(NULL);
