@@ -6,13 +6,13 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 13:23:46 by umeneses          #+#    #+#             */
-/*   Updated: 2024/09/03 16:25:10 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/09/03 17:39:49 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	builtins_runner_exit(t_token_list *lst)
+void	builtins_runner_exit(t_token_list *lst)
 {
 	int				exit_code;
 	t_token_list	*cmd;
@@ -21,18 +21,7 @@ int	builtins_runner_exit(t_token_list *lst)
 	exit_code = 0;
 	if (cmd && cmd->type == WORD)
 	{
-		if (cmd->lexeme && cmd->next->lexeme)
-		{
-			write(2, "bash exit: too many arguments\n", 30);
-			exit_code = 1;
-		}
-		if (ft_isalpha(cmd->lexeme[0]))
-		{
-			write(2, "bash exit: ", 11);
-			write(2, cmd->lexeme, ft_strlen(cmd->lexeme));
-			write(2, ": numeric argument required\n", 28);
-			exit_code = 2;
-		}
+		exit_code = exit_error_manager(cmd, exit_code);
 		if (cmd->lexeme)
 		{
 			exit_code = ft_atoi(cmd->lexeme);
@@ -43,6 +32,23 @@ int	builtins_runner_exit(t_token_list *lst)
 		}
 	}
 	exit(exit_status_holder(exit_code, true));
+}
+
+int	exit_error_manager(t_token_list *cmd, int exit_code)
+{
+	if (cmd->lexeme && cmd->next->lexeme)
+	{
+		write(2, "bash exit: too many arguments\n", 30);
+		exit_code = 1;
+	}
+	else if (ft_isalpha(cmd->lexeme[0]))
+	{
+		write(2, "bash exit: ", 11);
+		write(2, cmd->lexeme, ft_strlen(cmd->lexeme));
+		write(2, ": numeric argument required\n", 28);
+		exit_code = 2;
+	}
+	return (exit_code);
 }
 
 int	exit_status_holder(int actual_exit_status, bool update)

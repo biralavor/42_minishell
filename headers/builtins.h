@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 14:57:00 by umeneses          #+#    #+#             */
-/*   Updated: 2024/09/03 17:24:41 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/09/03 17:37:18 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -142,7 +142,15 @@ t_env_entry	*sorted_env_insert(t_env_entry **head, t_env_entry *new);
  * @brief: Runs the exit - exit the shell - builtin command.
  * @return the exit code, with an expected behaviour code from 0 to 255.
  */
-int			builtins_runner_exit(t_token_list *lst);
+void		builtins_runner_exit(t_token_list *lst);
+
+/**
+ * @brief: Manages the exit error messages.
+ * @param cmd the command to be checked.
+ * @param exit_code the exit code to be saved, if error.
+ * @return the error exit code, with an expected behaviour code from 1 to 2.
+ */
+int			exit_error_manager(t_token_list *cmd, int exit_code);
 
 /**
  * @brief: Holds the exit status of the shell.
