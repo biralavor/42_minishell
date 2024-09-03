@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/14 12:08:16 by umeneses          #+#    #+#             */
-/*   Updated: 2024/08/27 09:20:10 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/09/02 23:04:06 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ t_env_entry	*removefrom_env_table(t_env_entry *toremove)
 			// 	env_vars = tmp->next;
 			free(tmp->key);
 			free(tmp->value);
-			free(tmp);
+			// free(tmp);
 			return (tmp);
 		}
 		tmp = tmp->next;
