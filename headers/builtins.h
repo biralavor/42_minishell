@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 14:57:00 by umeneses          #+#    #+#             */
-/*   Updated: 2024/09/02 12:23:47 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/09/03 12:17:54 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -148,7 +148,10 @@ int			builtins_runner_exit(t_token_list *lst);
  * @brief: Holds the exit status of the shell.
  * @param exit_status Exit status number.
  */
-int			exit_status_holder(int exit_status);
+int			exit_status_holder(int exit_status, bool update);
+
+
+int			pid_exit_status_caller(pid_t pid);
 
 /**
  * @brief: Holds the argument option status.
