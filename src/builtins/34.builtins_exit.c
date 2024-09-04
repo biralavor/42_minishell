@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 13:23:46 by umeneses          #+#    #+#             */
-/*   Updated: 2024/09/04 10:50:06 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/09/04 11:11:20 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	builtins_runner_exit(t_token_list *lst)
 	if (cmd && cmd->type == WORD)
 	{
 		exit_code = exit_error_manager(cmd, exit_code);
-		if (cmd->lexeme)
+		if (cmd->lexeme && exit_code == 0)
 		{
 			exit_code = ft_atoi(cmd->lexeme);
 			if (exit_code < 0)
@@ -31,8 +31,16 @@ void	builtins_runner_exit(t_token_list *lst)
 				exit_code = exit_code % 256;
 		}
 	}
-	clear_all_to_exit_smoothly();
-	exit(exit_status_holder(exit_code, true));
+	if (exit_code == 1)
+	{
+		exit_status_holder(1, true);
+		return ;
+	}
+	else
+	{
+		clear_all_to_exit_smoothly();
+		exit(exit_status_holder(exit_code, true));
+	}
 }
 
 int	exit_error_manager(t_token_list *cmd, int exit_code)
