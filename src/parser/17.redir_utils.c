@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   17.redir_utils.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/12 15:54:01 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/08/16 09:47:08 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/09/04 10:56:40 by tmalheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,7 @@ int	find_src_idx(t_token_list *lst)
 	temp = lst;
 	while (temp)
 	{
-		if ((temp->type == REDIR_IN || temp->type == REDIR_HDOC
-				|| temp->type == REDIR_OUT || temp->type == REDIR_OUTAPP))
+		if (is_redirect(temp->type))
 		{
 			if ((temp->next && temp->next->next)
 				&& (temp->next->type == ARCHIVE
@@ -44,8 +43,7 @@ int	find_dst_idx(t_token_list *lst)
 	temp = lst;
 	while (temp)
 	{
-		if ((temp->type == REDIR_IN || temp->type == REDIR_HDOC
-				|| temp->type == REDIR_OUT || temp->type == REDIR_OUTAPP))
+		if (is_redirect(temp->type))
 			break ;
 		temp = temp->next;
 	}

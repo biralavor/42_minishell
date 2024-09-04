@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   32.execve.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/16 09:43:43 by umeneses          #+#    #+#             */
-/*   Updated: 2024/09/03 09:24:52 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/09/04 15:57:14 by tmalheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int	fork_and_execve(char **cmd, char *path)
 		}
 		// else // outro tipo de erro
 		// {
-			
+
 		// 	ft_printf("%s: %s\n", cmd[0], strerror(errno));
 		// }
 	}
@@ -121,10 +121,9 @@ int	tree_execution(t_tree *tree)
 		exit_status = manage_and(tree);
 	else if (tree->type == PIPE)
 		exit_status = manage_pipe(tree);
+	else if (is_redirect(tree->type))
+		exit_status = manage_redirect(tree);
 /*
-	else if (tree->type == REDIR_IN || tree->type == REDIR_HDOC
-		|| tree->type == REDIR_OUT || tree->type == REDIR_OUTAPP)
-		manage_redir(tree);
 	else if (tree->type == SUBSHELL)
 		manage_subshell(tree);
 */

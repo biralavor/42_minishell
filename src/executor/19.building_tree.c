@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   19.building_tree.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/05 13:55:37 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/08/16 09:45:58 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/09/04 10:25:21 by tmalheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,11 +79,9 @@ t_token_list	*fetch_token(t_token_list *lst)
 	if (temp && temp->type == PIPE)
 		return (temp);
 	temp = go_to_first_node(lst);
-	while (temp && (temp->type != REDIR_IN && temp->type != REDIR_HDOC
-			&& temp->type != REDIR_OUT && temp->type != REDIR_OUTAPP))
+	while (temp && (!is_redirect(temp->type)))
 		temp = temp->next;
-	if (temp && (temp->type == REDIR_IN || temp->type == REDIR_HDOC
-			|| temp->type == REDIR_OUT || temp->type == REDIR_OUTAPP))
+	if (temp && (is_redirect(temp->type)))
 		return (temp);
 	temp = go_to_first_node(lst);
 	while (temp && temp->type != SUBSHELL)

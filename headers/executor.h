@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   executor.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/05 13:56:37 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/09/02 16:21:31 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/09/04 11:36:51 by tmalheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,12 @@ void			exec_1st_child(t_tree *left, int *new_pipe);
 void			exec_2nd_child(t_tree *right, int *new_pipe);
 
 int				pipe_execution(char **cmd, char *path);
+
+/*MANAGE REDIRECTS FUNCTIONS*/
+
+bool			is_redirect(int lst_type);
+
+int				manage_redirect(t_tree *tree);
 
 /*PRINTING FUNCTIONS (TO DELETE)*/
 
