@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   11.syntax_analysis.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/03 10:40:35 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/08/28 11:29:14 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/09/04 10:32:22 by tmalheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,7 @@ int	syntax_validations(t_token_list *lst)
 		syntax_state = state_100(lst, syntax_state);
 	else if (lst->type == PIPE || lst->type == OR || lst->type == AND)
 		syntax_state = state_200(lst, syntax_state);
-	else if (lst->type == REDIR_IN || lst->type == REDIR_HDOC
-		|| lst->type == REDIR_OUT || lst->type == REDIR_OUTAPP)
+	else if (is_redirect(lst->type))
 		syntax_state = state_300(lst, syntax_state);
 	else if (lst->type == SUBSHELL)
 		syntax_state = 400;

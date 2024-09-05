@@ -82,6 +82,7 @@ SRC_FILES				+= ./executor/33.execve_utils.c
 SRC_FILES				+= ./builtins/34.builtins_exit.c
 SRC_FILES				+= ./executor/35.manage_or_and.c
 SRC_FILES				+= ./executor/36.manage_pipe.c
+SRC_FILES				+= ./executor/manage_redirects.c
 SRC_FILES				+= ./executor/utils.c
 SRC_FILES				+= ./expansions/expansion_manager.c
 SRC_FILES				+= ./expansions/expansion_detectors.c
