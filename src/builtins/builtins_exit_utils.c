@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 13:23:46 by umeneses          #+#    #+#             */
-/*   Updated: 2024/09/05 11:32:19 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/09/05 11:38:30 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,16 +15,14 @@
 int	exit_valid_code_manager(char *lexeme)
 {
 	int		exit_code;
-	bool	llong_min_status;
 
 	exit_code = 0;
-	llong_min_status = false;
 	exit_code = long_long_overflow_validation(lexeme);
 	if (exit_code != 2)
 	{
 		exit_code = ft_atoi(lexeme);
 		if (exit_code == 1 && ft_strlen(lexeme) == MIN_LEN_CODE)
-			llong_min_status = long_long_min_detected(true, false);
+			long_long_min_detected(true, false);
 		exit_code = exit_code % 256;
 	}
 	return (exit_code);
