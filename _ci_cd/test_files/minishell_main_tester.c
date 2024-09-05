@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 11:12:53 by umeneses          #+#    #+#             */
-/*   Updated: 2024/09/02 23:41:04 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/09/05 13:38:22 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@
 #include "../../src/executor/33.execve_utils.c"
 #include "../../src/executor/35.manage_or_and.c"
 #include "../../src/executor/36.manage_pipe.c"
+#include "../../src/executor/manage_redirects.c"
 #include "../../src/executor/utils.c"
 #include "../../src/expansions/expansion_manager.c"
 #include "../../src/expansions/expansion_detectors.c"
