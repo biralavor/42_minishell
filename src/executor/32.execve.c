@@ -41,7 +41,8 @@ int	fork_and_execve(char **cmd, char *path)
 	// free_array(cmd);
 	free_array(all_envs);
 	waitpid(pid, &exit_status, 0);
-	return (exit_status_holder(exit_status));
+	// return (exit_status_holder(exit_status));
+	return ((exit_status));
 }
 
 char	*lookup_cmd_path(char *cmd_name)

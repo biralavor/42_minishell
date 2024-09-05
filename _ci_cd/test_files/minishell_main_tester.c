@@ -49,6 +49,7 @@
 #include "../../src/builtins/31.builtins_utils.c"
 #include "../../src/builtins/34.builtins_exit.c"
 #include "../../src/builtins/builtins_cd_utils.c"
+#include "../../src/builtins/builtins_exit_utils.c"
 #include "../../src/executor/32.execve.c"
 #include "../../src/executor/33.execve_utils.c"
 #include "../../src/executor/35.manage_or_and.c"

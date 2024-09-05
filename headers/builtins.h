@@ -6,12 +6,17 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 14:57:00 by umeneses          #+#    #+#             */
-/*   Updated: 2024/09/02 12:23:47 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/09/05 10:50:10 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef BUILTINS_H
 # define BUILTINS_H
+
+# define MAX_LEN_CODE 19
+# define MIN_LEN_CODE 20
+# define LONG_MAX_CODE "9223372036854775807"
+# define LONG_MIN_CODE "-9223372036854775807"
 
 /**
  * @brief: Calls the respective builtin function.
@@ -71,7 +76,7 @@ bool		is_path_a_directory(char *path);
 /**
  * @brief: Prints an error message when the cd command fails.
 */
-void	cd_error_msg(int destiny_len, char *destiny_path, int chdir_status);
+void		cd_error_msg(int destiny_len, char *destiny_path, int chdir_status);
 
 /**
  * @brief: Checks if the builtin command has an argument.
@@ -142,13 +147,48 @@ t_env_entry	*sorted_env_insert(t_env_entry **head, t_env_entry *new);
  * @brief: Runs the exit - exit the shell - builtin command.
  * @return the exit code, with an expected behaviour code from 0 to 255.
  */
-int			builtins_runner_exit(t_token_list *lst);
+void		builtins_runner_exit(t_token_list *lst);
+
+/**
+ * @brief: Manages the exit error messages.
+ * @param cmd the command to be checked.
+ * @param exit_code the exit code to be saved, if error.
+ * @return the error exit code, with an expected behaviour code from 1 to 2.
+ */
+int			exit_error_manager(t_token_list *cmd, int exit_code);
+
+int			exit_valid_code_manager(char *lexeme);
+
+bool		long_long_min_detected(bool update, bool status);
+
+/**
+ * @brief: Manages the exit code, with a long long modulo operation.
+ * @param lexeme the lexeme to be converted to a long long, if necessary.
+ * @return the exit code, with an expected behaviour code from 0 to 255.
+ */
+int			long_long_overflow_validation(const char *lexeme);
+
+/**
+ * @brief: Checks if the exit code is not numeric, in the string.
+ * @param lexeme the string to be checked.
+ */
+bool		exit_code_not_numeric(const char *lexeme);
 
 /**
  * @brief: Holds the exit status of the shell.
  * @param exit_status Exit status number.
  */
-int			exit_status_holder(int exit_status);
+int			exit_status_holder(int exit_status, bool update);
+
+/**
+ * @brief: Calls the exit status of the subprocess - fork.
+ */
+void		pid_exit_status_caller(pid_t pid);
+
+/**
+ * @brief: Clears all the memory allocated to exit the minishell smoothly.
+ */
+void		clear_all_to_exit_smoothly(void);
 
 /**
  * @brief: Holds the argument option status.

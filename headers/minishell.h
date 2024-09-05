@@ -23,6 +23,7 @@
 # include <errno.h>
 # include <unistd.h>
 # include <fcntl.h>
+# include <limits.h>
 
 # define RED	"\033[0;31m"
 # define GREEN	"\033[0;32m"
