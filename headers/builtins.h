@@ -6,12 +6,17 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 14:57:00 by umeneses          #+#    #+#             */
-/*   Updated: 2024/09/03 17:49:35 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/09/05 10:50:10 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef BUILTINS_H
 # define BUILTINS_H
+
+# define MAX_LEN_CODE 19
+# define MIN_LEN_CODE 20
+# define LONG_MAX_CODE "9223372036854775807"
+# define LONG_MIN_CODE "-9223372036854775807"
 
 /**
  * @brief: Calls the respective builtin function.
@@ -151,6 +156,23 @@ void		builtins_runner_exit(t_token_list *lst);
  * @return the error exit code, with an expected behaviour code from 1 to 2.
  */
 int			exit_error_manager(t_token_list *cmd, int exit_code);
+
+int			exit_valid_code_manager(char *lexeme);
+
+bool		long_long_min_detected(bool update, bool status);
+
+/**
+ * @brief: Manages the exit code, with a long long modulo operation.
+ * @param lexeme the lexeme to be converted to a long long, if necessary.
+ * @return the exit code, with an expected behaviour code from 0 to 255.
+ */
+int			long_long_overflow_validation(const char *lexeme);
+
+/**
+ * @brief: Checks if the exit code is not numeric, in the string.
+ * @param lexeme the string to be checked.
+ */
+bool		exit_code_not_numeric(const char *lexeme);
 
 /**
  * @brief: Holds the exit status of the shell.
