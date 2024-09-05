@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/05 13:56:37 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/09/02 16:21:31 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/09/04 10:49:30 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,8 @@ typedef struct s_tree
  * @param lst -> The token list.
 */
 t_tree			*initiate_tree(t_token_list *lst);
+
+t_tree			*tree_holder(t_tree *tree, bool clear);
 
 t_tree			*build_tree_recursive(t_token_list **lst);
 

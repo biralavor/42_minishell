@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 09:20:45 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/08/29 17:48:11 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/09/04 10:50:34 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ void	loop_routine(char *str)
 	if (*lst->lexeme)
 	{
 		token_tree = initiate_tree(lst);
+		tree_holder(token_tree, false);
 		tree_execution(token_tree);
 		free_token_tree(token_tree);
 	}

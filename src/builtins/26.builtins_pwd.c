@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 13:23:46 by umeneses          #+#    #+#             */
-/*   Updated: 2024/08/21 18:36:59 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/09/03 17:11:40 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,4 +26,5 @@ void	builtins_runner_pwd(t_token_list *lst)
 		ft_putstr_fd("\n", STDOUT_FILENO);
 	}
 	free(actual_path);
+	exit_status_holder(0, true);
 }
