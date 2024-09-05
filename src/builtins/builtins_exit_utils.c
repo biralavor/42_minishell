@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 13:23:46 by umeneses          #+#    #+#             */
-/*   Updated: 2024/09/05 10:59:11 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/09/05 11:32:19 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ int	exit_valid_code_manager(char *lexeme)
 	bool	llong_min_status;
 
 	exit_code = 0;
+	llong_min_status = false;
 	exit_code = long_long_overflow_validation(lexeme);
 	if (exit_code != 2)
 	{
