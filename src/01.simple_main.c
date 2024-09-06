@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 10:53:12 by umeneses          #+#    #+#             */
-/*   Updated: 2024/09/03 18:22:49 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/09/06 12:43:26 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,8 +50,7 @@
 
 int	main(int ac, char **av, char **envp)
 {
-	char		*input;
-	t_env_entry *env_table;
+	char	*input;
 
 	if (ac > 1 && av)
 	{
@@ -59,8 +58,7 @@ int	main(int ac, char **av, char **envp)
 		ft_printf(CYAN"It's a kind of magic, but not that much!\n"RESET);
 		exit (EXIT_FAILURE);
 	}
-	env_table = NULL;
-	environment_init(envp, env_table);
+	environment_init(envp);
 	// INIT_SIGNALS
 	// get_tty_proprieties
 
@@ -75,6 +73,6 @@ int	main(int ac, char **av, char **envp)
 		free(input);
 	}
 	rl_clear_history();
-	env_holder(env_table, false, true);
+	env_holder(NULL, false, true);
 	exit(EXIT_SUCCESS);
 }

@@ -6,13 +6,13 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 13:23:46 by umeneses          #+#    #+#             */
-/*   Updated: 2024/08/26 19:13:45 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/09/06 17:02:52 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	arg_handle_runner(t_env_entry *env_vars, char *arg)
+t_env_entry	*arg_handle_runner(t_env_entry *env_vars, char *arg)
 {
 	char		*var_key;
 	char		*var_value;
@@ -31,7 +31,8 @@ void	arg_handle_runner(t_env_entry *env_vars, char *arg)
 	}
 	else
 		updated_table = addto_env_table(env_vars, arg, "");
-	updated_table = env_holder(updated_table, true, false);
+	env_holder(updated_table, true, false);
+	return (updated_table);
 }
 
 int	arg_handle_state_detector(int state, char *arg)
