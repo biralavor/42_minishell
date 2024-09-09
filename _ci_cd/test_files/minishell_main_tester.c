@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 11:12:53 by umeneses          #+#    #+#             */
-/*   Updated: 2024/09/09 15:59:03 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/09/09 16:19:41 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,7 @@
 #include "../../src/expansions/expansion_env_variable.c"
 #include "../../src/expansions/expansion_question.c"
 #include "../../src/expansions/expansion_quotes.c"
+#include "../../src/expansions/expansion_home.c"
 #include "../_tdd_utils/ft_array_printer.c"
 #include "../_tdd_utils/ft_env_printer.c"
 #include "../_tdd_utils/ft_lst_printer.c"
