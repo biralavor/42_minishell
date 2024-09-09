@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   32.execve.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/16 09:43:43 by umeneses          #+#    #+#             */
-/*   Updated: 2024/09/04 15:57:14 by tmalheir         ###   ########.fr       */
+/*   Updated: 2024/09/09 12:24:06 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int	fork_and_execve(char **cmd, char *path)
 		{
 			ft_putstr_fd(cmd[0], STDERR_FILENO);
 			ft_putstr_fd(": command not found\n", STDERR_FILENO);
-			exit_status = 127;
+			exit(127);
 		}
 		// else // outro tipo de erro
 		// {
