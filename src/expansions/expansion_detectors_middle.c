@@ -1,37 +1,46 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   expansion_manager.c                                :+:      :+:    :+:   */
+/*   expansion_detectors_middle.c                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/26 18:31:10 by umeneses          #+#    #+#             */
-/*   Updated: 2024/09/09 10:27:49 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/09/09 10:40:43 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	expansion_manager(t_token_list *cmd)
+bool	expansion_detector_at_middle(t_token_list *cmd)
 {
-	t_token_list	*tmp;
+	int	idx;
 
-	tmp = cmd;
-	while (tmp != NULL)
+	idx = 0;
+	while (cmd->lexeme[idx])
 	{
-		if (expansion_detector_at_start(tmp))
-		{
-			if (expansion_env_var_detector_at_start(tmp->lexeme[1]))
-				tmp->lexeme = expansion_env_var_runner_at_start(tmp->lexeme);
-			else if (expansion_question_mark_detector(tmp->lexeme[1])
-				&& tmp->lexeme[2] == '\0')
-				tmp->lexeme = expansion_question_mark(tmp->lexeme);
-		}
-		else if (expansion_detector_at_middle(tmp))
-		{
-			if (expansion_env_var_detector_at_middle(tmp))
-				tmp->lexeme = expansion_env_var_runner_at_middle(tmp->lexeme);
-		}
-		tmp = tmp->next;
+		if (cmd->lexeme[idx] == '$')
+			return (true);
+		idx++;
 	}
+	return (false);
+}
+
+bool	expansion_env_var_detector_at_middle(t_token_list *cmd)
+{
+	int	idx;
+
+	idx = 0;
+	while (cmd->lexeme[idx])
+	{
+		if (cmd->lexeme[idx] == '$')
+		{
+			idx++;
+			if (ft_isalpha(cmd->lexeme[idx]) || cmd->lexeme[idx] == '_')
+				return (true);
+		}
+		idx++;
+	}
+	
+	return (false);
 }
