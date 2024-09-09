@@ -6,29 +6,43 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/26 18:31:10 by umeneses          #+#    #+#             */
-/*   Updated: 2024/08/28 19:03:18 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/09/06 17:47:58 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-bool	expansion_detector(t_token_list *cmd)
+bool	expansion_detector_at_start(t_token_list *cmd)
 {
 	if (cmd->type == WORD && cmd->lexeme[0] == '$')
 		return (true);
 	return (false);
 }
 
-bool	expansion_env_variable_detector(char *lexeme)
+// bool	expansion_detector_at_middle(t_token_list *cmd)
+// {
+// 	int	idx;
+
+// 	idx = 0;
+// 	while (cmd->lexeme[idx])
+// 	{
+// 		if (cmd->lexeme[idx] == '$')
+// 			return (true);
+// 		idx++;
+// 	}
+// 	return (false);
+// }
+
+bool	expansion_env_variable_detector(char lexeme_char_pos)
 {
-	if (ft_isalpha(lexeme[1]) || lexeme[1] == '_')
+	if (ft_isalpha(lexeme_char_pos) || lexeme_char_pos == '_')
 		return (true);
 	return (false);
 }
 
-bool	expansion_question_mark_detector(char *lexeme)
+bool	expansion_question_mark_detector(char lexeme_char_pos)
 {
-	if (lexeme[1] == '?' || lexeme[2] == '\0')
+	if (lexeme_char_pos == '?')
 		return (true);
 	return (false);
 }

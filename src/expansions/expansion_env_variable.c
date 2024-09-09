@@ -6,13 +6,13 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/27 12:39:23 by umeneses          #+#    #+#             */
-/*   Updated: 2024/09/03 16:34:45 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/09/06 17:38:33 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-char	*expansion_env_variable_runner(char *lexeme)
+char	*expansion_env_variable_runner_at_start(char *lexeme)
 {
 	t_env_entry	*env_table;
 	char		*env_name;
