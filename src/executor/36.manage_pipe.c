@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/28 13:51:49 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/09/03 12:42:15 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/09/09 12:24:50 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,10 +31,11 @@ void	exec_2nd_child(t_tree *right, int *new_pipe)
 	dup2(new_pipe[0], STDIN_FILENO);
 	close(new_pipe[0]);
 	exit_status = tree_execution(right);
-	close(STDERR_FILENO);
+	// close(STDERR_FILENO);
 	close(STDIN_FILENO);
 	close(STDOUT_FILENO);
 	(void)exit_status;
+	exit(0);
 //	free_token_tree(right);
 	// exit(exit_status); remover, já que é importante verificar se deu certo
 }
@@ -47,10 +48,11 @@ void	exec_1st_child(t_tree *left, int *new_pipe)
 	dup2(new_pipe[1], STDOUT_FILENO);
 	close(new_pipe[1]);
 	exit_status = tree_execution(left);
-	close(STDERR_FILENO);
+	// close(STDERR_FILENO);
 	close(STDIN_FILENO);
 	close(STDOUT_FILENO);
 	(void)exit_status;
+	exit(0);
 //	free_token_tree(left);
 	// exit(exit_status); remover, já que é importante verificar se deu certo
 }
@@ -60,24 +62,33 @@ int	manage_pipe(t_tree *tree)
 	int		exit_status;
 	int		new_pipe[2];
 	pid_t	pid[2];
+	// int		duplicate_stdout;
+	// int		duplicate_stdin;
 
 	exit_status = 0;
 	if (!pipe(new_pipe))
 	{
+		// duplicate_stdout = dup(STDOUT_FILENO);
+		// duplicate_stdin = dup(STDIN_FILENO);
 		pid[0] = fork();
 		if (pid[0] == -1)
 			return (fork_error());
 		else if (pid[0] == 0)
 			exec_1st_child(tree->left, new_pipe);
+		// dup2(duplicate_stdout, STDOUT_FILENO);
+		// close(duplicate_stdout);
+		// close(new_pipe[1]);
 		pid[1] = fork();
 		if (pid[1] == -1)
 			return (fork_error());
 		else if (pid[1] == 0)
 			exec_2nd_child(tree->right, new_pipe);
+		// dup2(duplicate_stdin, STDIN_FILENO);
+		// close(duplicate_stdin);
+		close_pipe(new_pipe);
 		waitpid(pid[0], &exit_status, 0);
 		waitpid(pid[1], &exit_status, 0);
-		close_pipe(new_pipe);
 	}
-	// return (exit_status_holder(exit_status));
+	// return pid_exit_status_caller;
 	return ((exit_status));
 }
