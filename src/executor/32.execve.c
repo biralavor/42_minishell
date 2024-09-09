@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/16 09:43:43 by umeneses          #+#    #+#             */
-/*   Updated: 2024/09/09 12:24:06 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/09/09 12:38:50 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,6 @@ int	fork_and_execve(char **cmd, char *path)
 		}
 		// else // outro tipo de erro
 		// {
-
 		// 	ft_printf("%s: %s\n", cmd[0], strerror(errno));
 		// }
 	}
