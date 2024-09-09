@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/26 18:31:10 by umeneses          #+#    #+#             */
-/*   Updated: 2024/09/09 10:06:25 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/09/09 10:07:38 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ bool	expansion_detector_at_middle(t_token_list *cmd)
 	return (false);
 }
 
-bool	expansion_env_variable_detector(char lexeme_char_pos)
+bool	expansion_env_var_detector(char lexeme_char_pos)
 {
 	if (ft_isalpha(lexeme_char_pos) || lexeme_char_pos == '_')
 		return (true);
