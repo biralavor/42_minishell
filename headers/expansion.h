@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/28 13:55:02 by umeneses          #+#    #+#             */
-/*   Updated: 2024/09/09 15:47:28 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/09/09 16:31:48 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,5 +26,7 @@ char	*expansion_env_var_runner_at_middle(char *lexeme);
 bool	expansion_quotes_detector_at_middle(t_token_list *cmd);
 char	*expansion_quotes_runner_at_middle(char *lexeme);
 char	*expansion_new_lexeme_after_quotes(char *lexeme, char *new_lexeme);
+bool	expansion_tilde_detector(char *lexeme);
+char	*expansion_tilde_to_home(char *lexeme);
 
 #endif
