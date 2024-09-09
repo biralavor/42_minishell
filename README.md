@@ -9,14 +9,14 @@
 - [x] SubShell + Binary Tree + Environment Variables :tada: [https://github.com/biralavor/42_minishell/releases/tag/v0.4]
 - [x] Execution :tada: [https://github.com/biralavor/42_minishell/releases/tag/v0.6]
 - [x] Built-ins :tada: [https://github.com/biralavor/42_minishell/releases/tag/v0.6]
-- [x] Variables Expansion :tada: [https://github.com/biralavor/42_minishell/releases/tag/v0.7]
+- [x] Variables Expansion :tada: [https://github.com/biralavor/42_minishell/releases/tag/v0.7] and [https://github.com/biralavor/42_minishell/releases/tag/v0.8.2]
 - Next Steps on Project Management:
   - [ ] HereDoc Redirect
   - [ ] Signals Control
 - Possible Bonus Development:
   - [ ] If `&&` were inside `()`, it should execute with priority
   - [ ] If `||` were inside `()`, it should execute with priority
-  - [ ] Expansion for wildcards (*), like
+  - [ ] Expansion for wildcards (*)
 
 # Minishell, a tiny version of Bash -> B.orn A.gain SH.ell
 > The terminal is a file, therefor it treats all inputs as `strings`
@@ -31,7 +31,8 @@
 > 4. [Apply Redirect rules, if detected](https://github.com/biralavor/42_minishell#4-redirects-manager)
 > 5. [Build the Binary Tree, in recursive mode](https://github.com/biralavor/42_minishell#5-build-the-binary-tree-in-recursive-mode)
 > 6. [Execute from the Binary Tree](https://github.com/biralavor/42_minishell#6-execute-from-binary-tree)
-> 7. [Execute Built-ins, if detected, or Classic Commands with execve](https://github.com/biralavor/42_minishell#7-execute-built-ins-if-detected-or-classic-commands)
+> 7. [Expansion of special tokens](https://github.com/biralavor/42_minishell#7-expansion-of-special-tokens)
+> 8. [Execute Built-ins, if detected, or Classic Commands with execve](https://github.com/biralavor/42_minishell#7-execute-built-ins-if-detected-or-classic-commands)
 
 ![Screenshot from 2024-08-20 15-11-03](https://github.com/user-attachments/assets/4c8e518f-fec8-493f-b47c-13f6001683a5)
 
@@ -90,9 +91,13 @@ Now, we got un updated result:
 
 
 ## 6. Execute from Binary Tree
-- ![Screenshot from 2024-08-20 09-42-39](https://github.com/user-attachments/assets/98e84684-d146-46c2-b885-dd8a63294d19)
+![Screenshot from 2024-08-20 09-42-39](https://github.com/user-attachments/assets/98e84684-d146-46c2-b885-dd8a63294d19)
 
-## 7. Execute Built-ins, if detected, or classic commands
+## 7. Expansion of special tokens
+![Screenshot from 2024-09-09 16-49-10](https://github.com/user-attachments/assets/3ad4bbe1-d608-4562-a7b7-c1fb7e0d5162)
+
+
+## 8. Execute Built-ins, if detected, or classic commands
 We have two built-in categories: with argument, and without arguments, like the image below.
 
 Therefor, also have a `bool builtin_detector()` and `void builtin_manager` for both types of built-ins.
