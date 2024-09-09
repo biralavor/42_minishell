@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 13:41:21 by umeneses          #+#    #+#             */
-/*   Updated: 2024/09/09 15:53:54 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/09/09 16:00:12 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,18 +28,15 @@ char	*expansion_new_lexeme_after_quotes(char *lexeme, char *new_lexeme)
 {
 	int		idx;
 	int		idx_new;
-	bool	quote_found;
 	char	quote_type;
 
 	idx = -1;
 	idx_new = -1;
-	quote_found = false;
 	quote_type = '\0';
 	while (lexeme[++idx])
 	{
 		if (quote_type == '\0' && (lexeme[idx] == '"' || lexeme[idx] == '\''))
 		{
-			quote_found = true;
 			quote_type = lexeme[idx];
 			while (lexeme[++idx])
 			{
