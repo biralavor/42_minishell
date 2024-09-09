@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 15:38:48 by umeneses          #+#    #+#             */
-/*   Updated: 2024/08/16 09:48:13 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/09/09 17:18:37 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,16 +24,12 @@ void	ft_env_printer(t_env_entry	*env_table)
 	fprintf(stderr, "_________________________________________________________\n");
 	fprintf(stderr, "[idx]->%3d	E.N.V.I.R.O.N.M.E.N.T. variables\n", aux->size);
 	fprintf(stderr, "\033[0;32m\n");
-	while (aux->prev)
-		aux = aux->prev;
 	while (aux)
 	{
 		fprintf(stderr, "[%3d] ", idx);
 		fprintf(stderr, "%s=", aux->key);
 		fprintf(stderr, "%s", aux->value);
 		fprintf(stderr, "\n");
-		if (aux->next == NULL)
-			break ;
 		aux = aux->next;
 		idx++;
 	}
