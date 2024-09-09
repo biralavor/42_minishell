@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/16 09:43:43 by umeneses          #+#    #+#             */
-/*   Updated: 2024/09/09 18:08:16 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/09/09 19:18:29 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,6 @@ int	fork_and_execve(char **cmd, char *path)
 		// 	ft_printf("%s: %s\n", cmd[0], strerror(errno));
 		// }
 	}
-	// free_array(cmd);
 	free_array(all_envs);
 	waitpid(pid, &exit_status, 0);
 	// return (exit_status_holder(exit_status));
@@ -61,7 +60,6 @@ char	*lookup_cmd_path(char *cmd_name)
 	}
 	else
 		return (cmd_name);
-	// return (NULL);
 }
 
 int	command_manager(char **cmd)
@@ -75,9 +73,9 @@ int	command_manager(char **cmd)
 	if (path)
 	{
 		exit_status = fork_and_execve(cmd, path);
-		free(path);
 	}
-	free(cmd);
+	free(path);
+	free_array(cmd);
 	return (exit_status);
 }
 
@@ -86,6 +84,7 @@ int	execute(t_tree *tree)
 	static int	exit_status;
 	char		**cmd;
 
+	cmd = NULL;
 	expansion_manager(tree->command);
 	if (builtins_detector(tree->command))
 		builtins_manager(tree->command);
