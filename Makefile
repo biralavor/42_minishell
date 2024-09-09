@@ -89,6 +89,7 @@ SRC_FILES				+= ./expansions/expansion_detectors_start.c
 SRC_FILES				+= ./expansions/expansion_detectors_middle.c
 SRC_FILES				+= ./expansions/expansion_env_variable.c
 SRC_FILES				+= ./expansions/expansion_question.c
+SRC_FILES				+= ./expansions/expansion_quotes.c
 SRC_FILES				+= ./builtins/builtins_cd_utils.c
 SRC_FILES				+= ./builtins/builtins_exit_utils.c
 
