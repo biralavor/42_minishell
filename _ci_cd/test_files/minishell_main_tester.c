@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 11:12:53 by umeneses          #+#    #+#             */
-/*   Updated: 2024/09/05 13:38:22 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/09/09 10:13:43 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,8 @@
 #include "../../src/executor/manage_redirects.c"
 #include "../../src/executor/utils.c"
 #include "../../src/expansions/expansion_manager.c"
-#include "../../src/expansions/expansion_detectors.c"
+#include "../../src/expansions/expansion_detectors_start.c"
+#include "../../src/expansions/expansion_detectors_middle.c"
 #include "../../src/expansions/expansion_env_variable.c"
 #include "../../src/expansions/expansion_question.c"
 #include "../_tdd_utils/ft_array_printer.c"
