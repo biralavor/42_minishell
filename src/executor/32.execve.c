@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/16 09:43:43 by umeneses          #+#    #+#             */
-/*   Updated: 2024/09/09 19:45:21 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/09/09 22:49:09 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,6 @@ char	*lookup_cmd_path(char *cmd_name)
 	{
 		to_execute = testing_all_paths_with_cmd(all_paths, cmd_name);
 		free_array(all_paths);
-		// free_env_table(&env_path);
 		return (to_execute);
 	}
 	else
@@ -78,8 +77,7 @@ int	command_manager(char **cmd)
 	{
 		exit_status = fork_and_execve(cmd, path);
 	}
-	free(path);
-	// free_array(cmd);
+	free_array(cmd);
 	return (exit_status);
 }
 
@@ -102,9 +100,7 @@ int	execute(t_tree *tree)
 			exit_status = 1; // trocar por exit_holder
 			return (exit_status);
 		}
-		ft_array_printer(cmd);
 		exit_status = command_manager(cmd); // trocar por exit_holder
-		free_array(cmd);
 	}
 	// verify if !cmd[0]
 	// verify exit_status_holder()
