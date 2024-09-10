@@ -65,6 +65,7 @@ FILES			+= ft_putnbr_fd.c
 FILES			+= ft_putnbr_unsg_fd.c
 FILES			+= ft_putptr_fd.c
 FILES			+= ft_putstr_fd.c
+FILES			+= ft_merge_strings.c
 
 SRC_FILES		= $(addprefix $(SRC_D), $(FILES))
 
