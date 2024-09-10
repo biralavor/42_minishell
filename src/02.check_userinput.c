@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   02.check_userinput.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 09:20:45 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/08/29 17:48:11 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/09/09 16:22:29 by tmalheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,47 @@ void	check_userinput(char *str)
 }
 */
 
+/*
+t_tree	*test_tree(void)
+{
+	t_tree	*tree;
+
+	tree = calloc(sizeof(t_tree), 1);
+	tree->type = REDIR_OUT;
+
+	tree->right = calloc(sizeof(t_tree), 1);
+	tree->right->type = ARCHIVE;
+	create_token_list("tudo", &tree->right->command);
+
+	tree->left = calloc(sizeof(t_tree), 1);
+	tree->left->type = REDIR_OUT;
+
+	tree->left->right = calloc(sizeof(t_tree), 1);
+	tree->left->right->type = ARCHIVE;
+	create_token_list("bem", &tree->left->right->command);
+
+	tree->left->left = calloc(sizeof(t_tree), 1);
+	tree->left->left->type = REDIR_OUT;
+
+	tree->left->left->right = calloc(sizeof(t_tree), 1);
+	tree->left->left->right->type = ARCHIVE;
+	create_token_list("com", &tree->left->left->right->command);
+
+	tree->left->left->left = calloc(sizeof(t_tree), 1);
+	tree->left->left->left->type = REDIR_IN;
+
+	tree->left->left->left->right = calloc(sizeof(t_tree), 1);
+	tree->left->left->left->right->type = ARCHIVE;
+	create_token_list("voce", &tree->left->left->left->right->command);
+
+	tree->left->left->left->left = calloc(sizeof(t_tree), 1);
+	tree->left->left->left->left->type = WORD;
+	create_token_list("ls", &tree->left->left->left->left->command);
+
+	return (tree);
+}
+*/
+
 void	loop_routine(char *str)
 {
 	t_token_list	*lst;
@@ -43,10 +84,11 @@ void	loop_routine(char *str)
 		error_manager_lexer(INITIAL_ERROR);
 	if (!create_token_list(str, &lst))
 		error_manager_lexer(LIST_NOT_CREATED);
-	syntax_analysis(lst);
-	if (*lst->lexeme)
+	if (syntax_analysis(lst))
 	{
 		token_tree = initiate_tree(lst);
+		// token_tree = test_tree();
+		// ft_tree_printer(token_tree);
 		tree_execution(token_tree);
 		free_token_tree(token_tree);
 	}
