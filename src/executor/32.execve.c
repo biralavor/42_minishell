@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/16 09:43:43 by umeneses          #+#    #+#             */
-/*   Updated: 2024/09/09 22:49:09 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/09/09 23:43:38 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,8 @@ int	fork_and_execve(char **cmd, char *path)
 		{
 			ft_putstr_fd(cmd[0], STDERR_FILENO);
 			ft_putstr_fd(": command not found\n", STDERR_FILENO);
-			exit(127);
+			exit_status_holder(127, true);
+			// clear_all_to_exit_smoothly();
 		}
 		// else // outro tipo de erro
 		// {
