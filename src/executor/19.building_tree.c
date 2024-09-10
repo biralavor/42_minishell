@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   19.building_tree.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/05 13:55:37 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/09/04 10:48:09 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/09/12 10:24:30 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,13 +44,18 @@ t_tree	*build_tree_recursive(t_token_list **lst)
 	split = fetch_token(*lst);
 	if (!split || is_text(split))
 		tree_node = text(*lst, split, tree_node);
+	else if (is_redirect(split->type))
+		tree_with_redir(split,*lst, tree_node);
 	else
 	{
 		tree_node->type = split->type;
 		right = split->next;
 		if (right)
 			right->prev = NULL;
-		left = split->prev;
+		if (split->prev)
+			left = split->prev;
+		else
+			left = NULL;
 		if (left)
 			left->next = NULL;
 		free(split);
