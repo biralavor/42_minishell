@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/16 14:14:30 by umeneses          #+#    #+#             */
-/*   Updated: 2024/09/10 13:25:06 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/09/10 14:30:58 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,10 @@ void	ft_array_printer(char **array)
 
 	idx = 0;
 	fprintf(stderr, YELLOW"Printing Array Content:\n");
+	fprintf(stderr, YELLOW"________________________________________________\n");
 	while (array[idx])
 	{
+		fprintf(stderr, YELLOW"\\ ");
 		fprintf(stderr, CYAN"[ %p ] ", *array);
 		fprintf(stderr, YELLOW"%2d ", idx);
 		fprintf(stderr, RESET" = ");
