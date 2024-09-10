@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/19 14:20:18 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/08/08 11:14:41 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/09/09 23:24:28 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,5 +62,7 @@ int				ft_putstr_fd(char *str, int fd);
 int				ft_puthexa_low_fd(unsigned long long nbr, int fd);
 int				ft_puthexa_up_fd(unsigned int nbr, int fd);
 int				ft_putptr_fd(unsigned long long ptr, int fd);
+
+char			*ft_merge_strings(char *str1, char *str2);
 
 #endif
