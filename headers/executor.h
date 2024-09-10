@@ -6,7 +6,7 @@
 /*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/05 13:56:37 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/09/10 09:18:45 by tmalheir         ###   ########.fr       */
+/*   Updated: 2024/09/10 13:30:44 by tmalheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ t_token_list	*go_to_first_node(t_token_list *lst);
 
 /*EXECUTION FUNCTIONS*/
 
-int				tree_execution(t_tree *tree);
+int				tree_execution(t_tree *tree, int flag);
 
 int				execute(t_tree *tree);
 
@@ -93,7 +93,7 @@ int				pipe_execution(char **cmd, char *path);
 
 bool			is_redirect(int lst_type);
 
-int				manage_redirect(t_tree *tree);
+int				manage_redirect(t_tree *tree, int flag);
 
 /*PRINTING FUNCTIONS (TO DELETE)*/
 

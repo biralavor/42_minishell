@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/05 13:55:37 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/09/12 10:24:30 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/09/12 10:29:19 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,6 @@ t_tree	*build_tree_recursive(t_token_list **lst)
 	split = fetch_token(*lst);
 	if (!split || is_text(split))
 		tree_node = text(*lst, split, tree_node);
-	else if (is_redirect(split->type))
-		tree_with_redir(split,*lst, tree_node);
 	else
 	{
 		tree_node->type = split->type;
@@ -97,15 +95,15 @@ t_token_list	*fetch_token(t_token_list *lst)
 		temp = temp->prev;
 	if (temp && temp->type == PIPE)
 		return (temp);
-	temp = go_to_first_node(lst);
+	temp = go_to_last_node(lst);
 	while (temp && (!is_redirect(temp->type)))
-		temp = temp->next;
+		temp = temp->prev;
 	if (temp && (is_redirect(temp->type)))
 		return (temp);
-	temp = go_to_first_node(lst);
+/*	temp = go_to_first_node(lst);
 	while (temp && temp->type != SUBSHELL)
 		temp = temp->next;
 	if (temp && temp->type == SUBSHELL)
-		return (temp);
+		return (temp);*/
 	return (NULL);
 }

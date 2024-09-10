@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/28 13:51:49 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/09/09 12:24:50 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/09/12 10:37:26 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	exec_2nd_child(t_tree *right, int *new_pipe)
 	close(new_pipe[1]);
 	dup2(new_pipe[0], STDIN_FILENO);
 	close(new_pipe[0]);
-	exit_status = tree_execution(right);
+	exit_status = tree_execution(right, 0);
 	// close(STDERR_FILENO);
 	close(STDIN_FILENO);
 	close(STDOUT_FILENO);
@@ -47,7 +47,7 @@ void	exec_1st_child(t_tree *left, int *new_pipe)
 	close(new_pipe[0]);
 	dup2(new_pipe[1], STDOUT_FILENO);
 	close(new_pipe[1]);
-	exit_status = tree_execution(left);
+	exit_status = tree_execution(left, 0);
 	// close(STDERR_FILENO);
 	close(STDIN_FILENO);
 	close(STDOUT_FILENO);
@@ -89,6 +89,5 @@ int	manage_pipe(t_tree *tree)
 		waitpid(pid[0], &exit_status, 0);
 		waitpid(pid[1], &exit_status, 0);
 	}
-	// return pid_exit_status_caller;
-	return ((exit_status));
+	return (exit_status_holder(exit_status));
 }

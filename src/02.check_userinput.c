@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 09:20:45 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/09/12 10:26:50 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/09/12 10:28:40 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,8 +89,7 @@ void	loop_routine(char *str)
 		token_tree = initiate_tree(lst);
 		tree_holder(token_tree, false);
 		// token_tree = test_tree();
-		// ft_tree_printer(token_tree);
-		tree_execution(token_tree);
+		tree_execution(token_tree, 0);
 		free_token_tree(token_tree);
 	}
 }
