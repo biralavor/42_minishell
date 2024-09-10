@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/16 09:43:43 by umeneses          #+#    #+#             */
-/*   Updated: 2024/09/09 19:40:11 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/09/09 22:40:54 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,10 +81,14 @@ char	*testing_all_paths_with_cmd(char **all_paths, char *cmd_name)
 		all_paths[idx] = ft_strjoin(all_paths[idx], "/");
 		to_execute = ft_strjoin(all_paths[idx], command);
 		if (is_cmd_with_valid_path(to_execute))
+		{
+			free(command);
 			return (to_execute);
+		}
 		free(to_execute);
 		to_execute = NULL;
 		idx++;
 	}
+	free(command);
 	return (cmd_name);
 }
