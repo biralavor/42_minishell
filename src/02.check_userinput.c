@@ -6,7 +6,7 @@
 /*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 09:20:45 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/09/09 16:22:29 by tmalheir         ###   ########.fr       */
+/*   Updated: 2024/09/10 14:08:01 by tmalheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,8 +88,7 @@ void	loop_routine(char *str)
 	{
 		token_tree = initiate_tree(lst);
 		// token_tree = test_tree();
-		// ft_tree_printer(token_tree);
-		tree_execution(token_tree);
+		tree_execution(token_tree, 0);
 		free_token_tree(token_tree);
 	}
 }

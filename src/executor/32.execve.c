@@ -6,7 +6,7 @@
 /*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/16 09:43:43 by umeneses          #+#    #+#             */
-/*   Updated: 2024/09/04 15:57:14 by tmalheir         ###   ########.fr       */
+/*   Updated: 2024/09/10 13:28:46 by tmalheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,7 +108,7 @@ int	execute(t_tree *tree)
 	return (exit_status);
 }
 
-int	tree_execution(t_tree *tree)
+int	tree_execution(t_tree *tree, int flag)
 {
 	int	exit_status;
 
@@ -122,7 +122,7 @@ int	tree_execution(t_tree *tree)
 	else if (tree->type == PIPE)
 		exit_status = manage_pipe(tree);
 	else if (is_redirect(tree->type))
-		exit_status = manage_redirect(tree);
+		exit_status = manage_redirect(tree, flag);
 /*
 	else if (tree->type == SUBSHELL)
 		manage_subshell(tree);

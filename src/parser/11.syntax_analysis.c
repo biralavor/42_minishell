@@ -6,7 +6,7 @@
 /*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/03 10:40:35 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/09/09 15:03:11 by tmalheir         ###   ########.fr       */
+/*   Updated: 2024/09/10 10:40:08 by tmalheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,9 @@ bool	syntax_analysis(t_token_list *lst)
 	temp = lst;
 	if (check_redirects(lst))
 		define_archive_token(lst);
-	if (check_another_redirect_after_archive(lst))
-		organize_redirects(&lst);
-	// ft_lst_printer(lst);
+//	if (check_another_redirect_after_archive(lst))
+//		organize_redirects(&lst);
+	organize_redirects(&lst);
 	return (true);
 }
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   36.manage_pipe.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/28 13:51:49 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/09/02 23:49:25 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/09/10 13:33:05 by tmalheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	exec_2nd_child(t_tree *right, int *new_pipe)
 	close(new_pipe[1]);
 	dup2(new_pipe[0], STDIN_FILENO);
 	close(new_pipe[0]);
-	exit_status = tree_execution(right);
+	exit_status = tree_execution(right, 0);
 	close(STDERR_FILENO);
 	close(STDIN_FILENO);
 	close(STDOUT_FILENO);
@@ -46,7 +46,7 @@ void	exec_1st_child(t_tree *left, int *new_pipe)
 	close(new_pipe[0]);
 	dup2(new_pipe[1], STDOUT_FILENO);
 	close(new_pipe[1]);
-	exit_status = tree_execution(left);
+	exit_status = tree_execution(left, 0);
 	close(STDERR_FILENO);
 	close(STDIN_FILENO);
 	close(STDOUT_FILENO);
