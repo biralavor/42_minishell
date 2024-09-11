@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/16 09:43:43 by umeneses          #+#    #+#             */
-/*   Updated: 2024/09/12 10:32:54 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/09/12 10:40:31 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,6 @@ int	fork_and_execve(char **cmd, char *path)
 	}
 	free_array(all_envs);
 	waitpid(pid, &exit_status, 0);
-	// return (exit_status_holder(exit_status));
 	return (exit_status_holder(exit_status));
 }
 
@@ -129,7 +128,7 @@ int	tree_execution(t_tree *tree, int flag)
 	else if (tree->type == SUBSHELL)
 		manage_subshell(tree);
 */
-	else if (tree->type == WORD && *tree->command->lexeme)
+	else if (tree->type == WORD)
 		exit_status = execute(tree);
 	return (exit_status);
 }

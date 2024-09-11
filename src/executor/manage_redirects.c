@@ -6,7 +6,7 @@
 /*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/04 10:20:13 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/09/10 13:56:48 by tmalheir         ###   ########.fr       */
+/*   Updated: 2024/09/11 10:57:12 by tmalheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ static int	open_redir_file(t_tree *tree, int *fd)
 {
 	char	*pathname;
 
-	pathname = tree->right->command->lexeme;
+	pathname = ft_strdup(tree->right->command->lexeme);
 	if (tree->type == REDIR_IN || tree->type == REDIR_HDOC)
 		*fd = open(pathname, O_RDONLY);
 	else if (tree->type == REDIR_OUT)
@@ -52,6 +52,7 @@ static int	open_redir_file(t_tree *tree, int *fd)
 		*fd = open(pathname, O_WRONLY | O_CREAT | O_APPEND, 0644);
 	if (*fd < 0)
 		printf("TO RECLAMANDO, NÃO ACHEI O ARQUIVO %s\n", pathname); // Alterar mensagem de erro
+	free(pathname);
 	return (*fd);
 }
 

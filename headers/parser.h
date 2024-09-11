@@ -6,7 +6,7 @@
 /*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/27 12:53:52 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/09/05 14:19:57 by tmalheir         ###   ########.fr       */
+/*   Updated: 2024/09/10 15:34:42 by tmalheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,7 @@ t_token_list	*find_dst_node(t_token_list *lst, int dst_idx);
  * @brief Moves the source token.
  * @param lst -> The token list.
 */
-void			move(t_token_list *lst, t_token_list *src, t_token_list *dst);
+void			move(t_token_list **lst, t_token_list *src, t_token_list *dst);
 
 /*SYNTAX ERROR CHECKING FUNCTIONS*/
 
