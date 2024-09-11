@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   32.execve.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/16 09:43:43 by umeneses          #+#    #+#             */
-/*   Updated: 2024/09/11 11:52:26 by tmalheir         ###   ########.fr       */
+/*   Updated: 2024/09/11 16:52:10 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,17 +30,18 @@ int	fork_and_execve(char **cmd, char *path)
 		{
 			ft_putstr_fd(cmd[0], STDERR_FILENO);
 			ft_putstr_fd(": command not found\n", STDERR_FILENO);
-			exit_status = 127;
+			exit_status_holder(127, true);
+			// clear_all_to_exit_smoothly();
 		}
 		// else // outro tipo de erro
 		// {
 		// 	ft_printf("%s: %s\n", cmd[0], strerror(errno));
 		// }
 	}
-	// free_array(cmd);
 	free_array(all_envs);
 	waitpid(pid, &exit_status, 0);
-	return (exit_status_holder(exit_status));
+	// return (exit_status_holder(exit_status));
+	return ((exit_status));
 }
 
 char	*lookup_cmd_path(char *cmd_name)
@@ -59,8 +60,10 @@ char	*lookup_cmd_path(char *cmd_name)
 		return (to_execute);
 	}
 	else
+	{
+		free_array(all_paths);
 		return (cmd_name);
-	// return (NULL);
+	}
 }
 
 int	command_manager(char **cmd)
@@ -74,8 +77,8 @@ int	command_manager(char **cmd)
 	if (path)
 	{
 		exit_status = fork_and_execve(cmd, path);
-		free(path);
 	}
+	free_array(cmd);
 	return (exit_status);
 }
 
@@ -84,6 +87,7 @@ int	execute(t_tree *tree)
 	static int	exit_status;
 	char		**cmd;
 
+	cmd = NULL;
 	expansion_manager(tree->command);
 	if (builtins_detector(tree->command))
 		builtins_manager(tree->command);
@@ -97,9 +101,7 @@ int	execute(t_tree *tree)
 			exit_status = 1; // trocar por exit_holder
 			return (exit_status);
 		}
-		// ft_array_printer(cmd);
 		exit_status = command_manager(cmd); // trocar por exit_holder
-		// free_array(cmd);
 	}
 	// verify if !cmd[0]
 	// verify exit_status_holder()

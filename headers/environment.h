@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/16 16:34:20 by umeneses          #+#    #+#             */
-/*   Updated: 2024/08/21 14:40:56 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/09/06 17:08:34 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ typedef struct s_env_entry
  * it copies the string before the '=' to KEY (at position equal_sign - *envp)
  * and the string after the '=' to VALUE.
  */
-t_env_entry		*environment_init(char **envp, t_env_entry *env_table);
+void			environment_init(char **envp);
 
 /**
  * @brief Allocates memory for the environment table, by a size.

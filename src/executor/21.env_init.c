@@ -6,17 +6,18 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 10:58:32 by umeneses          #+#    #+#             */
-/*   Updated: 2024/08/26 19:17:17 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/09/06 17:08:28 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-t_env_entry	*environment_init(char **envp, t_env_entry *env_table)
+void	environment_init(char **envp)
 {
 	char		*key;
 	char		*value;
 	char		*equal_sign;
+	t_env_entry *env_table;
 
 	env_table = alloc_table(ft_array_len(envp));
 	if (!env_table)
@@ -37,8 +38,7 @@ t_env_entry	*environment_init(char **envp, t_env_entry *env_table)
 		}
 		envp++;
 	}
-	env_table = env_holder(env_table, true, false);
-	return (env_table);
+	env_holder(env_table, true, false);
 }
 
 t_env_entry	*alloc_table(int init_size)
@@ -60,12 +60,18 @@ t_env_entry	*env_holder(t_env_entry *table, bool update, bool clear_table)
 {
 	static t_env_entry	*env_table_holder;
 
-	if (update && table)
+	if (table)
 	{
 		table = goto_head_env_table(table);
-		if (env_table_holder)
-			free_env_table(&env_table_holder);
-		env_table_holder = table;
+		if (!env_table_holder && table->key)
+			env_table_holder = table;
+		else if (env_table_holder && table->key && update)
+		{
+			if (env_table_holder && (env_table_holder != table))
+				free_env_table(&env_table_holder);
+			env_table_holder = table;
+		}
+		env_table_holder = goto_head_env_table(env_table_holder);
 	}
 	else if (env_table_holder && clear_table)
 	{
