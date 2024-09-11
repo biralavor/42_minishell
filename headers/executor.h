@@ -6,7 +6,7 @@
 /*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/05 13:56:37 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/09/11 14:09:16 by tmalheir         ###   ########.fr       */
+/*   Updated: 2024/09/11 15:16:11 by tmalheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,6 @@ int				pipe_execution(char **cmd, char *path);
 
 /*MANAGE REDIRECTS FUNCTIONS*/
 
-bool			is_redirect(int lst_type);
 
 int				manage_redirect(t_tree *tree, int flag);
 
@@ -103,5 +102,11 @@ void			ft_array_printer(char **array);
 /*UTILS FUNCTIONS*/
 
 int				fork_error(void);
+
+bool			is_redirect(int lst_type);
+
+bool			is_redir_out(int type);
+
+void			change_redir_flag(int *first_redir);
 
 #endif
