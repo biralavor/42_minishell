@@ -6,7 +6,7 @@
 /*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/04 10:20:13 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/09/11 10:57:12 by tmalheir         ###   ########.fr       */
+/*   Updated: 2024/09/11 13:31:47 by tmalheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,15 +30,25 @@ static void	apply_redirect(t_tree *tree, int *fd)
 	{
 		dup2(*fd, STDIN_FILENO);
 		close(*fd);
-//		exit(EXIT_SUCCESS);
 	}
 	if (tree->type == REDIR_OUT || tree->type == REDIR_OUTAPP)
 	{
 		dup2(*fd, STDOUT_FILENO);
 		close(*fd);
-//		exit(EXIT_SUCCESS);
 	}
 }
+
+static bool	is_redir_out(int type)
+{
+	if (type == REDIR_OUT || type == REDIR_OUTAPP)
+		return (true);
+	return (false);
+}
+
+/**
+ * @todo change error message in *fd < 0 condition
+ * and make it return to the loop routine
+ */
 static int	open_redir_file(t_tree *tree, int *fd)
 {
 	char	*pathname;
@@ -51,50 +61,49 @@ static int	open_redir_file(t_tree *tree, int *fd)
 	else if (tree->type == REDIR_OUTAPP)
 		*fd = open(pathname, O_WRONLY | O_CREAT | O_APPEND, 0644);
 	if (*fd < 0)
-		printf("TO RECLAMANDO, NÃO ACHEI O ARQUIVO %s\n", pathname); // Alterar mensagem de erro
+		printf("TO RECLAMANDO, NÃO ACHEI O ARQUIVO %s\n", pathname);
 	free(pathname);
 	return (*fd);
 }
 
+/**
+ * @todo check if function has the right lines number when ret_code is removed
+ */
 int	manage_redirect(t_tree *tree, int flag)
 {
 	int				std_fd[2];
 	int				new_fd;
-	int				ret_code = 0;
-	static int		first_in;
-	static int		first_out;
+	int				ret_code;
+	static int		first_redir[2];
 
 	new_fd = 0;
+	ret_code = 0;
 	if (!flag)
 	{
-		first_in = 0;
-		first_out = 0;
+		first_redir[0] = 0;
+		first_redir[1] = 0;
 	}
-	if (open_redir_file(tree, &new_fd) != -1)
+	open_redir_file(tree, &new_fd);
+	std_fd[0] = dup(STDIN_FILENO);
+	std_fd[1] = dup(STDOUT_FILENO);
+	if (tree->right && !tree->right->right)
 	{
-		std_fd[0] = dup(STDIN_FILENO);
-		std_fd[1] = dup(STDOUT_FILENO);
-		if (tree->right && !tree->right->right)
+		if (tree->type == REDIR_IN && !first_redir[0])
 		{
-			if (tree->type == REDIR_IN && !first_in)
-			{
-				first_in = 1;
-				apply_redirect(tree, &new_fd);
-			}
-			else if ((tree->type == REDIR_OUT || tree->type == REDIR_OUTAPP) && !first_out)
-			{
-				first_out = 1;
-				apply_redirect(tree, &new_fd);
-			}
+			first_redir[0] = 1;
+			apply_redirect(tree, &new_fd);
 		}
-		if (tree->left)
-			ret_code = tree_execution(tree->left, 1);
-		dup2(std_fd[0], STDIN_FILENO);
-		dup2(std_fd[1], STDOUT_FILENO);
-		close(std_fd[0]);
-		close(std_fd[1]);
-		return (ret_code);
+		else if (is_redir_out(tree->type) && !first_redir[1])
+		{
+			first_redir[1] = 1;
+			apply_redirect(tree, &new_fd);
+		}
 	}
-	return (-1); // O programa deve sair nesse caso?
-
+	if (tree->left)
+		ret_code = tree_execution(tree->left, 1);
+	dup2(std_fd[0], STDIN_FILENO);
+	dup2(std_fd[1], STDOUT_FILENO);
+	close(std_fd[0]);
+	close(std_fd[1]);
+	return (ret_code);
 }
