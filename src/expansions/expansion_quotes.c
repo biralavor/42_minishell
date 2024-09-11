@@ -6,13 +6,13 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 13:41:21 by umeneses          #+#    #+#             */
-/*   Updated: 2024/09/09 16:00:12 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/09/11 13:37:13 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-char	*expansion_quotes_runner_at_middle(char *lexeme)
+char	*expansion_quotes_runner(char *lexeme)
 {
 	char	*new_lexeme;
 

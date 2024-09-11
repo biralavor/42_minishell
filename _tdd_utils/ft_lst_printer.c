@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/25 11:35:49 by umeneses          #+#    #+#             */
-/*   Updated: 2024/09/09 12:27:02 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/09/11 11:55:30 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,6 @@ void	ft_lst_printer(t_token_list *lst)
 		fprintf(stderr, "|\033[0;31m%2d\033[0m | \033[0;32m%12s\033[0m | \033[0;36m%12s\033[0m | %10p | %10p | %10p | %8c |\n", aux->idx, aux->lexeme, get_token_string(aux->type), aux->prev, aux, aux->next, aux->next_char);
 		aux = aux->next;
 	}
-	fprintf(stderr, "|---|--------------|--------------|------------|------------|------------|----------|\n\n");
+	fprintf(stderr, "|---|--------------|--------------|------------|------------|------------|----------|\n");
 	fflush(stderr);
 }
