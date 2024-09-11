@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 13:23:46 by umeneses          #+#    #+#             */
-/*   Updated: 2024/09/02 13:36:01 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/09/09 16:10:04 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,7 @@ void	builtins_runner_cd(t_token_list *lst)
 	{
 		destiny_path = cmd->lexeme;
 		destiny_len = ft_strlen(destiny_path);
-		if (ft_strncmp(destiny_path, "~", 1) == 0)
-			builtins_cd_switch_home_dir();
-		else if (ft_strncmp(destiny_path, "..", 2) == 0)
+		if (ft_strncmp(destiny_path, "..", 2) == 0)
 			builtins_cd_switch_parent_dir();
 		else if (chdir(destiny_path) != 0)
 			cd_error_msg(destiny_len, destiny_path, chdir(destiny_path));
@@ -48,6 +46,7 @@ void	builtins_cd_switch_new_dir(char *destiny_path)
 	chdir(destiny_path);
 	free(destiny_path);
 	free(actual_path);
+	exit_status_holder(0, true);
 }
 
 void	builtins_cd_switch_home_dir(void)
@@ -59,6 +58,7 @@ void	builtins_cd_switch_home_dir(void)
 	home_path = ft_strjoin(home_path, "/");
 	chdir(home_path);
 	free(home_path);
+	exit_status_holder(0, true);
 }
 
 void	builtins_cd_switch_parent_dir(void)
@@ -81,4 +81,5 @@ void	builtins_cd_switch_parent_dir(void)
 	}
 	chdir(parent_path);
 	free(actual_path);
+	exit_status_holder(0, true);
 }

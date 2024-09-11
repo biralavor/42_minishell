@@ -37,6 +37,8 @@ typedef struct s_tree
 */
 t_tree			*initiate_tree(t_token_list *lst);
 
+t_tree			*tree_holder(t_tree *tree, bool clear);
+
 t_tree			*build_tree_recursive(t_token_list **lst);
 
 t_token_list	*fetch_token(t_token_list *lst);

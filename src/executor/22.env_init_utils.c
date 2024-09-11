@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 12:58:03 by umeneses          #+#    #+#             */
-/*   Updated: 2024/08/21 18:05:42 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/09/06 13:53:04 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 t_env_entry	*goto_head_env_table(t_env_entry *table)
 {
+	if (!table)
+		table = table->prev;
 	while (table)
 	{
 		if (table->prev == NULL)

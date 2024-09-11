@@ -1,26 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   expansion_question.c                               :+:      :+:    :+:   */
+/*   ft_merge_strings.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/28 16:32:23 by umeneses          #+#    #+#             */
-/*   Updated: 2024/09/03 16:09:13 by umeneses         ###   ########.fr       */
+/*   Created: 2024/09/09 23:23:53 by umeneses          #+#    #+#             */
+/*   Updated: 2024/09/10 13:43:35 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "libft.h"
 
-char	*expansion_question_mark(char *lexeme)
+char	*ft_merge_strings(char *str1, char *str2)
 {
-	char	*last_exit_value;
-	int		exit_status;
+	char	*merged;
 
-	exit_status = exit_status_holder(-1, false);
-	last_exit_value = ft_itoa(exit_status);
-	free(lexeme);
-	lexeme = ft_strdup(last_exit_value);
-	free(last_exit_value);
-	return (lexeme);
+	merged = ft_strjoin(str1, str2);
+	if (str1)
+		free(str1);
+	if (str2)
+		free(str2);
+	return (merged);
 }

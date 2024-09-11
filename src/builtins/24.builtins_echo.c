@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 13:23:46 by umeneses          #+#    #+#             */
-/*   Updated: 2024/08/19 15:19:37 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/09/03 12:34:01 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,4 +36,5 @@ void	builtins_runner_echo(t_token_list *lst, bool arg_option)
 	arg_option = arg_option_holder(false, true);
 	if (!arg_option)
 		write(1, "\n", 1);
+	exit_status_holder(0, true);
 }

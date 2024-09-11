@@ -84,11 +84,15 @@ SRC_FILES				+= ./executor/35.manage_or_and.c
 SRC_FILES				+= ./executor/36.manage_pipe.c
 SRC_FILES				+= ./executor/manage_redirects.c
 SRC_FILES				+= ./executor/utils.c
+SRC_FILES				+= ./executor/env_var_rules.c
 SRC_FILES				+= ./expansions/expansion_manager.c
 SRC_FILES				+= ./expansions/expansion_detectors.c
 SRC_FILES				+= ./expansions/expansion_env_variable.c
 SRC_FILES				+= ./expansions/expansion_question.c
+SRC_FILES				+= ./expansions/expansion_quotes.c
+SRC_FILES				+= ./expansions/expansion_home.c
 SRC_FILES				+= ./builtins/builtins_cd_utils.c
+SRC_FILES				+= ./builtins/builtins_exit_utils.c
 
 #SRC_FILES				= minishell_main.c
 

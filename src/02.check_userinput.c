@@ -88,6 +88,7 @@ void	loop_routine(char *str)
 	{
 		token_tree = initiate_tree(lst);
 		// token_tree = test_tree();
+    tree_holder(token_tree, false);
 		tree_execution(token_tree, 0);
 		free_token_tree(token_tree);
 	}
