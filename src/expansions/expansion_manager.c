@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/26 18:31:10 by umeneses          #+#    #+#             */
-/*   Updated: 2024/09/09 16:31:58 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/09/10 17:39:18 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	expansion_manager(t_token_list *cmd)
 		else if (expansion_detector_at_middle(tmp))
 		{
 			if (expansion_env_var_detector_at_middle(tmp))
-				tmp->lexeme = expansion_env_var_runner_at_middle(tmp->lexeme);
+				tmp->lexeme = copy_var_name(tmp->lexeme);
 		}
 		tmp = tmp->next;
 	}
