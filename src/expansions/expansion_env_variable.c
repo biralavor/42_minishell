@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/27 12:39:23 by umeneses          #+#    #+#             */
-/*   Updated: 2024/09/11 16:32:50 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/09/11 18:53:12 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,10 +91,10 @@ char	*merging_array_lexeme(char **array_lex)
 	idx = 0;
 	merged_lex = NULL;
 	array_lex = expand_var_from_array(array_lex);
-	if (array_lex[idx] && array_lex[idx + 1])
+	if (array_lex[idx])
 	{
-		merged_lex = ft_strjoin(array_lex[idx], array_lex[idx + 1]);
-		idx += 2;
+		merged_lex = ft_strdup(array_lex[idx]);
+		idx++;
 	}
 	while (array_lex[idx])
 	{	
