@@ -6,23 +6,11 @@
 /*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/04 10:20:13 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/09/11 13:31:47 by tmalheir         ###   ########.fr       */
+/*   Updated: 2024/09/11 15:28:49 by tmalheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-/**
- * @todo Implement heredoc
- */
-
-bool	is_redirect(int lst_type)
-{
-	if (lst_type == REDIR_IN || lst_type == REDIR_HDOC
-		|| lst_type == REDIR_OUT || lst_type == REDIR_OUTAPP)
-		return (true);
-	return (false);
-}
 
 static void	apply_redirect(t_tree *tree, int *fd)
 {
@@ -38,11 +26,18 @@ static void	apply_redirect(t_tree *tree, int *fd)
 	}
 }
 
-static bool	is_redir_out(int type)
+static void	check_if_apply_redirect(t_tree *tree, int *first_redir, int new_fd)
 {
-	if (type == REDIR_OUT || type == REDIR_OUTAPP)
-		return (true);
-	return (false);
+	if (tree->type == REDIR_IN && !first_redir[0])
+	{
+		first_redir[0] = 1;
+		apply_redirect(tree, &new_fd);
+	}
+	else if (is_redir_out(tree->type) && !first_redir[1])
+	{
+		first_redir[1] = 1;
+		apply_redirect(tree, &new_fd);
+	}
 }
 
 /**
@@ -79,26 +74,12 @@ int	manage_redirect(t_tree *tree, int flag)
 	new_fd = 0;
 	ret_code = 0;
 	if (!flag)
-	{
-		first_redir[0] = 0;
-		first_redir[1] = 0;
-	}
+		change_redir_flag(first_redir);
 	open_redir_file(tree, &new_fd);
 	std_fd[0] = dup(STDIN_FILENO);
 	std_fd[1] = dup(STDOUT_FILENO);
 	if (tree->right && !tree->right->right)
-	{
-		if (tree->type == REDIR_IN && !first_redir[0])
-		{
-			first_redir[0] = 1;
-			apply_redirect(tree, &new_fd);
-		}
-		else if (is_redir_out(tree->type) && !first_redir[1])
-		{
-			first_redir[1] = 1;
-			apply_redirect(tree, &new_fd);
-		}
-	}
+		check_if_apply_redirect(tree, first_redir, new_fd);
 	if (tree->left)
 		ret_code = tree_execution(tree->left, 1);
 	dup2(std_fd[0], STDIN_FILENO);
