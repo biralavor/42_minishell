@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/27 12:39:23 by umeneses          #+#    #+#             */
-/*   Updated: 2024/09/11 15:54:20 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/09/11 16:29:18 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,10 @@ char	**array_lex_env_key_rules_manager(char **arr_lex)
 	if (*new_arr)
 		free_array(arr_lex);
 	else
+	{
+		free_array(new_arr);
 		new_arr = arr_lex;
+	}
 	return (new_arr);
 }
 
