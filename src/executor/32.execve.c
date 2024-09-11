@@ -6,7 +6,7 @@
 /*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/16 09:43:43 by umeneses          #+#    #+#             */
-/*   Updated: 2024/09/10 13:28:46 by tmalheir         ###   ########.fr       */
+/*   Updated: 2024/09/11 11:28:06 by tmalheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,7 +127,7 @@ int	tree_execution(t_tree *tree, int flag)
 	else if (tree->type == SUBSHELL)
 		manage_subshell(tree);
 */
-	else if (tree->type == WORD && *tree->command->lexeme)
+	else if (tree->type == WORD)
 		exit_status = execute(tree);
 	return (exit_status);
 }

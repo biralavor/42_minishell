@@ -6,7 +6,7 @@
 /*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/15 14:52:43 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/09/04 10:44:56 by tmalheir         ###   ########.fr       */
+/*   Updated: 2024/09/10 15:35:36 by tmalheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,7 +107,7 @@ void	organize_redirects(t_token_list **lst)
 			src_node = find_src_node(*lst, src_idx);
 			dst_node = find_dst_node(*lst, dst_idx);
 			if (src_node && dst_node && src_node != dst_node)
-				move(*lst, src_node, dst_node);
+				move(lst, src_node, dst_node);
 			assign_lst_idx(*lst);
 		}
 		temp = temp->next;
