@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/27 12:39:23 by umeneses          #+#    #+#             */
-/*   Updated: 2024/09/11 16:29:18 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/09/11 16:32:50 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,7 @@ char	*expansion_env_var_runner(char *lexeme)
 	char	**array_lex;
 	char	*merged_lex;
 	int		c;
-	int		idx;
 
-	idx = 0;
 	c = 0;
 	merged_lex = NULL;
 	array_lex = NULL;
