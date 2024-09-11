@@ -6,65 +6,13 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/27 12:39:23 by umeneses          #+#    #+#             */
-/*   Updated: 2024/09/11 13:07:25 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/09/11 15:54:20 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-char	*expansion_env_var_runner_at_start(char *lexeme)
-{
-	t_env_entry	*env_table;
-	char		*env_name;
-
-	lexeme++;
-	env_name = ft_strdup(lexeme);
-	lexeme--;
-	env_table = lookup_table(env_holder(NULL, false, false), env_name);
-	free(lexeme);
-	free(env_name);
-	if (env_table)
-	{
-		lexeme = ft_strdup(env_table->value);
-		exit_status_holder(0, true);
-		return (lexeme);
-	}
-	else
-	{
-		lexeme = ft_strdup("");
-		exit_status_holder(0, true);
-		return (lexeme);
-	}
-}
-
-char	*expansion_env_var_runner_at_middle(char *lexeme)
-{
-	t_env_entry	*env_table;
-	char		**splited_lexeme;
-	char		*env_name;
-	char		*cmd;
-
-	splited_lexeme = ft_split(lexeme, '$');
-	cmd = ft_strdup(splited_lexeme[0]);
-	env_name = ft_strdup(splited_lexeme[1]);
-	env_table = lookup_table(env_holder(NULL, false, false), env_name);
-	free(lexeme);
-	free(env_name);
-	if (env_table)
-	{
-		lexeme = ft_strjoin(cmd, env_table->value);
-		exit_status_holder(0, true);
-		return (lexeme);
-	}
-	else
-	{
-		lexeme = ft_strdup("");
-		exit_status_holder(0, true);
-		return (lexeme);
-	}
-}
-
-char	*copy_var_name(char *lexeme)
+char	*expansion_env_var_runner(char *lexeme)
 {
 	char	**array_lex;
 	char	*merged_lex;
@@ -80,7 +28,7 @@ char	*copy_var_name(char *lexeme)
 		if (lexeme[c] == '$')
 		{
 			array_lex = ft_split(lexeme, '$');
-			array_lex = array_lex_env_name_convention(array_lex);
+			array_lex = array_lex_env_key_rules_manager(array_lex);
 			merged_lex = merging_array_lexeme(array_lex);
 			break ;
 		}
@@ -91,51 +39,47 @@ char	*copy_var_name(char *lexeme)
 	return (merged_lex);
 }
 
-char	**array_lex_env_name_convention(char **array_lex)
+char	**array_lex_env_key_rules_manager(char **arr_lex)
 {
-	int		idx;
-	int		index;
-	size_t	c;
-	char	**new_array;
+	size_t	idx;
+	size_t	pos;
+	int		arr_len;
+	char	**new_arr;
 
-	idx = 0;
-	index = -1;
-	new_array = (char **)ft_calloc(2, sizeof(char *) * ft_array_len(array_lex));
-	while (array_lex[idx])
+	idx = -1;
+	arr_len = ft_array_len(arr_lex);
+	new_arr = (char **)ft_calloc(2, sizeof(char *) * arr_len);
+	while (arr_lex[++idx])
 	{
-		c = 0;
-		while (ft_isalpha(array_lex[idx][c]) || array_lex[idx][c] == '_')
-			c++;
-		if (c > 0 && !env_var_name_convention_at_middle(array_lex[idx][c]))
-		{
-			new_array[++index] = ft_substr(array_lex[idx], 0, c);
-			if (c < ft_strlen(array_lex[idx]))
-				new_array[++index] = ft_substr(array_lex[idx], c,
-						ft_strlen(array_lex[idx]) - c);
-		}
-		idx++;
+		pos = 0;
+		while (env_var_key_rules_at_start(arr_lex[idx][pos]))
+			pos++;
+		if (pos > 0 && !env_var_key_rules_at_middle(arr_lex[idx][pos]))
+			new_arr = apply_rules_on_lex(new_arr, arr_lex[idx], pos);
 	}
-	if (*new_array)
-	{
-		free_array(array_lex);
-		return (new_array);
-	}
-	free_array(new_array);
-	return (array_lex);
+	if (*new_arr)
+		free_array(arr_lex);
+	else
+		new_arr = arr_lex;
+	return (new_arr);
 }
 
-bool	env_var_name_convention_at_start(char c)
+char	**apply_rules_on_lex(char **arr_lex, char *lexeme, size_t pos)
 {
-	if (ft_isalpha(c) || c == '_')
-		return (true);
-	return (false);
-}
+	char	**new_arr;
+	size_t	id;
 
-bool	env_var_name_convention_at_middle(char c)
-{
-	if (ft_isdigit(c) || ft_isalpha(c) || c == '_')
-		return (true);
-	return (false);
+	id = 0;
+	new_arr = arr_lex;
+	while (*new_arr)
+		id++;
+	while (new_arr[id])
+	{
+		new_arr[id] = ft_substr(lexeme, 0, pos);
+		if (pos < ft_strlen(lexeme))
+			new_arr[++id] = ft_substr(lexeme, pos, ft_strlen(lexeme) - pos);
+	}
+	return (new_arr);
 }
 
 char	*merging_array_lexeme(char **array_lex)
@@ -162,15 +106,15 @@ char	*merging_array_lexeme(char **array_lex)
 char	**expand_var_from_array(char **array_lex)
 {
 	t_env_entry	*env_table;
-	char		*env_name;
+	char		*env_key;
 	int			idx;
 
 	idx = 0;
 	while (array_lex[idx])
 	{
-		env_name = ft_strdup(array_lex[idx]);
-		env_table = lookup_table(env_holder(NULL, false, false), env_name);
-		free(env_name);
+		env_key = ft_strdup(array_lex[idx]);
+		env_table = lookup_table(env_holder(NULL, false, false), env_key);
+		free(env_key);
 		if (env_table)
 		{
 			free(array_lex[idx]);
