@@ -33,9 +33,10 @@
 > 5. [Build the Binary Tree, in recursive mode](https://github.com/biralavor/42_minishell#5-build-the-binary-tree-in-recursive-mode)
 > 6. [Preparing Execution in Binary Tree](https://github.com/biralavor/42_minishell#6-preparing-execution-in-binary-tree)
 > 7. [Execute](https://github.com/biralavor/42_minishell#7-execute)
-> 7.1 [Expansion of special tokens](https://github.com/biralavor/42_minishell#7-expansion-of-special-tokens)
-> 8. [Expansion of special tokens](https://github.com/biralavor/42_minishell#7-expansion-of-special-tokens)
-> 9. [Execute Built-ins, if detected, or Classic Commands with execve](https://github.com/biralavor/42_minishell#7-execute-built-ins-if-detected-or-classic-commands)
+> > 7.1 [Expansion of special tokens](https://github.com/biralavor/42_minishell#71-expansion-of-special-tokens)
+> > 7.2 [Built-ins](https://github.com/biralavor/42_minishell#72-built-ins)
+> > 7.3 [Command Manager](https://github.com/biralavor/42_minishell#73-command-manager)
+
 
 ![Screenshot from 2024-08-20 15-11-03](https://github.com/user-attachments/assets/4c8e518f-fec8-493f-b47c-13f6001683a5)
 
