@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 10:58:32 by umeneses          #+#    #+#             */
-/*   Updated: 2024/09/06 17:08:28 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/09/12 13:03:34 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	environment_init(char **envp)
 	char		*key;
 	char		*value;
 	char		*equal_sign;
-	t_env_entry *env_table;
+	t_env_entry	*env_table;
 
 	env_table = alloc_table(ft_array_len(envp));
 	if (!env_table)
