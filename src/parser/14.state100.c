@@ -1,25 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   13.utils_parsing_word.c                            :+:      :+:    :+:   */
+/*   14.state100.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/05 10:36:08 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/08/16 09:46:53 by umeneses         ###   ########.fr       */
+/*   Created: 2024/07/04 16:20:31 by tmalheir          #+#    #+#             */
+/*   Updated: 2024/09/12 14:11:39 by tmalheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-bool	check_backlash(char *str)
+bool	check_semicolon(char *str)
 {
 	int	idx;
 
 	idx = 0;
 	while (str[idx])
 	{
-		if (str[idx] == '\\')
+		if (str[idx] == ';')
 			return (false);
 		idx++;
 	}
@@ -47,16 +47,50 @@ bool	check_double_ampersand(char *str)
 	return (prev_is_ampersand);
 }
 
-bool	check_semicolon(char *str)
+bool	check_backlash(char *str)
 {
 	int	idx;
 
 	idx = 0;
 	while (str[idx])
 	{
-		if (str[idx] == ';')
+		if (str[idx] == '\\')
 			return (false);
 		idx++;
 	}
 	return (true);
+}
+
+bool	check_lexeme_errors(char *str)
+{
+	int		idx;
+	bool	error_free;
+
+	idx = 0;
+	error_free = true;
+	while (str[idx])
+	{
+		if (str[idx] == '\\')
+			error_free = check_backlash(str);
+		else if (str[idx] == '&')
+			error_free = check_double_ampersand(str);
+		else if (str[idx] == ';')
+			error_free = check_semicolon(str);
+		idx++;
+	}
+	return (error_free);
+}
+
+int	state_100(t_token_list *lst, int syntax_state)
+{
+	syntax_state = 100;
+	if (lst->type == WORD)
+	{
+		if (!check_lexeme_errors(lst->lexeme))
+		{
+			error_manager_parser(SYNTAX_ERROR, lst);
+			syntax_state = 101;
+		}
+	}
+	return (syntax_state);
 }

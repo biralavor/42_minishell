@@ -1,16 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   16.redir_manager.c                                 :+:      :+:    :+:   */
+/*   16.check_redirects.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/15 14:52:43 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/09/10 15:35:36 by tmalheir         ###   ########.fr       */
+/*   Updated: 2024/09/12 14:37:52 by tmalheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+bool	is_redirect(int lst_type)
+{
+	if (lst_type == REDIR_IN || lst_type == REDIR_HDOC
+		|| lst_type == REDIR_OUT || lst_type == REDIR_OUTAPP)
+		return (true);
+	return (false);
+}
 
 bool	check_redirects(t_token_list *lst)
 {
@@ -40,51 +48,6 @@ void	define_archive_token(t_token_list *lst)
 	}
 }
 
-bool	check_words_after_archive(t_token_list *lst)
-{
-	t_token_list	*temp;
-
-	temp = lst;
-	while (temp->next && temp->type != ARCHIVE)
-	{
-		temp = temp->next;
-		if (temp->type == ARCHIVE)
-		{
-			while (temp->next)
-			{
-				temp = temp->next;
-				if (temp->type == WORD)
-					return (true);
-			}
-		}
-	}
-	return (false);
-}
-
-bool	check_another_redirect_after_archive(t_token_list *lst)
-{
-	t_token_list	*temp;
-
-	temp = lst;
-	if (check_words_after_archive(lst))
-	{
-		while (temp->next && temp->type != ARCHIVE)
-		{
-			temp = temp->next;
-			if (temp->type == ARCHIVE)
-			{
-				while (temp->next)
-				{
-					if (is_redirect(temp->type))
-						return (true);
-					temp = temp->next;
-				}
-			}
-		}
-	}
-	return (false);
-}
-
 void	organize_redirects(t_token_list **lst)
 {
 	int				dst_idx;
@@ -111,5 +74,28 @@ void	organize_redirects(t_token_list **lst)
 			assign_lst_idx(*lst);
 		}
 		temp = temp->next;
+	}
+}
+
+void	move(t_token_list **lst, t_token_list *src, t_token_list *dst)
+{
+	if (lst)
+	{
+		if (src->next)
+		{
+			if (src->next->prev)
+				src->next->prev = src->prev;
+		}
+		if (src->next)
+			src->prev->next = src->next;
+		else
+			src->prev->next = NULL;
+		if (dst->prev)
+			dst->prev->next = src;
+		else
+			*lst = src;
+		src->prev = dst->prev;
+		src->next = dst;
+		dst->prev = src;
 	}
 }

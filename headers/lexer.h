@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lexer.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 13:32:19 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/08/29 16:23:38 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/09/12 14:03:34 by tmalheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,12 +48,6 @@ enum e_token
 	SINGLE_QUOTES
 };
 
-/*INITIAL FUNCTIONS*/
-
-void	check_userinput(char *str);
-
-void	loop_routine(char *str);
-
 /*TOKEN LIST CREATION FUNCTIONS*/
 
 /**
@@ -64,7 +58,7 @@ bool	create_token_list(char *str, t_token_list **lst);
 
 /**
  * @brief Creates each token according to the present state.
- * @param root -> The token list.
+ * @param root  -> The token list.
  * @param token -> Each of the tokens to be created.
 */
 void	create_new_node(t_token_list **root, t_token_list *token);
@@ -73,7 +67,7 @@ void	create_new_node(t_token_list **root, t_token_list *token);
 
 /**
  * @brief Finds out the state of each token.
- * @param str -> User input in command line.
+ * @param str  -> User input in command line.
  * @param root -> The token list.
 */
 void	get_state(int idx, char *str, t_token_list **lst);
@@ -165,10 +159,13 @@ int		ft_lst_size(t_token_list *lst);
 void	assign_lst_idx(t_token_list *lst);
 
 /**
- * TODO: APAGAR ESTA FUNÇÃO NO FINAL DO PROJETO.
+ * @todo APAGAR ESTA FUNÇÃO NO FINAL DO PROJETO.
 */
 void	ft_lst_printer(t_token_list *lst);
 
+/**
+ * @todo APAGAR ESTA FUNÇÃO NO FINAL DO PROJETO.
+*/
 char	*get_token_string(enum e_token token);
 
 #endif

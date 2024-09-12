@@ -6,7 +6,7 @@
 /*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/27 12:53:52 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/09/10 15:34:42 by tmalheir         ###   ########.fr       */
+/*   Updated: 2024/09/12 14:45:50 by tmalheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int				syntax_validations(t_token_list *lst);
 
 /**
  * @brief Checks the grammar rules associated with the respective token.
- * @param lst -> The token list.
+ * @param lst          -> The token list.
  * @param syntax_state -> a number that indicates if there is a grammar error.
 */
 bool			check_syntax_state(t_token_list *lst, int syntax_state);
@@ -37,68 +37,6 @@ bool			check_syntax_state(t_token_list *lst, int syntax_state);
 int				state_100(t_token_list *lst, int syntax_state);
 int				state_200(t_token_list *lst, int syntax_state);
 int				state_300(t_token_list *lst, int syntax_state);
-
-/*REDIRECTS MANAGER*/
-
-/**
- * @brief Checks if there are any redirect tokens.
- * @param lst -> The token list.
-*/
-bool			check_redirects(t_token_list *lst);
-
-/**
- * @brief Redefines token type after any redirect from word to archive.
- * @param lst -> The token list.
-*/
-void			define_archive_token(t_token_list *lst);
-
-/**
- * @brief Checks if there are any words between redirects.
- * @param lst -> The token list.
-*/
-bool			check_words_after_archive(t_token_list *lst);
-
-/**
- * @brief: Checks if there is another redirect, after detects an archive
- * @param lst -> The token list.
- */
-bool			check_another_redirect_after_archive(t_token_list *lst);
-
-/**
- * @brief Organize redirects in a way they behave like in Bash.
- * @param lst -> The token list.
-*/
-void			organize_redirects(t_token_list **lst);
-
-/**
- * @brief Finds the index of the token to be moved.
- * @param lst -> The token list.
-*/
-int				find_src_idx(t_token_list *lst);
-
-/**
- * @brief Finds the index to where the token is to be moved to.
- * @param lst -> The token list.
-*/
-int				find_dst_idx(t_token_list *lst);
-
-/**
- * @brief Returns a pointer to the token to be moved.
- * @param lst -> The token list.
-*/
-t_token_list	*find_src_node(t_token_list *lst, int src_idx);
-
-/**
- * @brief Returns a pointer to the token destiny.
- * @param lst -> The token list.
-*/
-t_token_list	*find_dst_node(t_token_list *lst, int dst_idx);
-
-/**
- * @brief Moves the source token.
- * @param lst -> The token list.
-*/
-void			move(t_token_list **lst, t_token_list *src, t_token_list *dst);
 
 /*SYNTAX ERROR CHECKING FUNCTIONS*/
 
@@ -131,5 +69,60 @@ bool			check_double_ampersand(char *str);
  * @param str -> User input in command line.
 */
 bool			check_semicolon(char *str);
+
+/*CHECK_REDIRECTS*/
+
+bool			is_redirect(int lst_type);
+
+/**
+ * @brief Checks if there are any redirect tokens.
+ * @param lst -> The token list.
+*/
+bool			check_redirects(t_token_list *lst);
+
+/**
+ * @brief Redefines token type after any redirect from word to archive.
+ * @param lst -> The token list.
+*/
+void			define_archive_token(t_token_list *lst);
+
+/**
+ * @brief Organize redirects in a way they behave like in Bash.
+ * @param lst -> The token list.
+*/
+void			organize_redirects(t_token_list **lst);
+
+/**
+ * @brief Moves the source token.
+ * @param lst -> The token list.
+*/
+void			move(t_token_list **lst, t_token_list *src, t_token_list *dst);
+
+/*CHECK_REDIRECTS_UTILS*/
+
+
+/**
+ * @brief Finds the index of the token to be moved.
+ * @param lst -> The token list.
+*/
+int				find_src_idx(t_token_list *lst);
+
+/**
+ * @brief Finds the index to where the token is to be moved to.
+ * @param lst -> The token list.
+*/
+int				find_dst_idx(t_token_list *lst);
+
+/**
+ * @brief Returns a pointer to the token to be moved.
+ * @param lst -> The token list.
+*/
+t_token_list	*find_src_node(t_token_list *lst, int src_idx);
+
+/**
+ * @brief Returns a pointer to the token destiny.
+ * @param lst -> The token list.
+*/
+t_token_list	*find_dst_node(t_token_list *lst, int dst_idx);
 
 #endif

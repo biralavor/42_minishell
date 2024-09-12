@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   04.token_list_functions.c                          :+:      :+:    :+:   */
+/*   06.token_list_functions.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 10:52:55 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/09/10 10:11:59 by tmalheir         ###   ########.fr       */
+/*   Updated: 2024/09/12 13:49:01 by tmalheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@ bool	create_token_list(char *str, t_token_list **lst)
 		return (true);
 	else
 		return (false);
-	ft_lst_printer(*lst);
 }
 
 void	create_new_node(t_token_list **root, t_token_list *token)

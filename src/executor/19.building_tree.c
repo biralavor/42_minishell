@@ -3,28 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   19.building_tree.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/05 13:55:37 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/09/12 12:52:36 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/09/12 14:50:20 by tmalheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-t_tree	*tree_holder(t_tree *tree, bool clear)
-{
-	static t_tree	*tree_holder;
-
-	if (tree)
-		tree_holder = tree;
-	else if (tree_holder && clear)
-	{
-		free_token_tree(tree_holder);
-		tree_holder = NULL;
-	}
-	return (tree_holder);
-}
 
 t_tree	*get_splited(t_token_list *splited, t_tree *tree)
 {

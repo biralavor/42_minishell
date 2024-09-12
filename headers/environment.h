@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   environment.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/16 16:34:20 by umeneses          #+#    #+#             */
-/*   Updated: 2024/09/06 17:08:34 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/09/12 13:59:24 by tmalheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 # define ENVIRONMENT_H
 
 /**
- * @brief Environment entry
- * @param key -> The NAME of the environment variable.
+ * @brief       -> Environment entry
+ * @param key   -> The NAME of the environment variable.
  * @param value -> The VALUE of the environment variable.
- * @param next -> The next environment entry.
+ * @param next  -> The next environment entry.
  */
 typedef struct s_env_entry
 {
@@ -30,7 +30,7 @@ typedef struct s_env_entry
 
 /* ENVIRONMENT FUNCTIONS */
 /**
- * @brief Initializes the environment table.
+ * @brief      -> Initializes the environment table.
  * @param envp -> a system array of strings that define the
  * current environment variables.
  * While envp is not NULL, it will iterate through the environment

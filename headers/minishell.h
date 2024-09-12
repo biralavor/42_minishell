@@ -6,7 +6,7 @@
 /*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 10:53:20 by umeneses          #+#    #+#             */
-/*   Updated: 2024/09/04 11:56:53 by tmalheir         ###   ########.fr       */
+/*   Updated: 2024/09/12 13:58:02 by tmalheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,5 +41,13 @@
 # include "executor.h"
 # include "builtins.h"
 # include "expansion.h"
+
+
+/*INITIAL FUNCTIONS*/
+/**
+ * @brief     -> main function that calls for lexer, parser and executor.
+ * @param str -> User input in command line.
+*/
+void	loop_routine(char *str);
 
 #endif
