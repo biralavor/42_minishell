@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/27 12:39:23 by umeneses          #+#    #+#             */
-/*   Updated: 2024/09/11 18:53:12 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/09/12 08:26:27 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,43 +14,45 @@
 
 char	*expansion_env_var_runner(char *lexeme)
 {
-	char	**array_lex;
+	char	**arr_lex;
 	char	*merged_lex;
+	int		arr_len;
 	int		c;
 
 	c = 0;
 	merged_lex = NULL;
-	array_lex = NULL;
+	arr_lex = NULL;
 	while (lexeme[c])
 	{
 		if (lexeme[c] == '$')
 		{
-			array_lex = ft_split(lexeme, '$');
-			array_lex = array_lex_env_key_rules_manager(array_lex);
-			merged_lex = merging_array_lexeme(array_lex);
+			arr_lex = ft_split(lexeme, '$');
+			arr_len = ft_array_len(arr_lex);
+			arr_lex = array_lex_env_key_rules_manager(arr_lex, arr_len);
+			merged_lex = merging_array_lexeme(arr_lex);
 			break ;
 		}
 		c++;
 	}
-	free_array(array_lex);
+	free_array(arr_lex);
 	free(lexeme);
 	return (merged_lex);
 }
 
-char	**array_lex_env_key_rules_manager(char **arr_lex)
+char	**array_lex_env_key_rules_manager(char **arr_lex, int arr_len)
 {
 	size_t	idx;
 	size_t	pos;
-	int		arr_len;
 	char	**new_arr;
 
 	idx = -1;
-	arr_len = ft_array_len(arr_lex);
 	new_arr = (char **)ft_calloc(2, sizeof(char *) * arr_len);
 	while (arr_lex[++idx])
 	{
 		pos = 0;
-		while (env_var_key_rules_at_start(arr_lex[idx][pos]))
+		if (env_var_key_rules_at_start(arr_lex[idx][pos]))
+			pos++;
+		while (env_var_key_rules_at_middle(arr_lex[idx][pos]))
 			pos++;
 		if (pos > 0 && !env_var_key_rules_at_middle(arr_lex[idx][pos]))
 			new_arr = apply_rules_on_lex(new_arr, arr_lex[idx], pos);
@@ -67,20 +69,18 @@ char	**array_lex_env_key_rules_manager(char **arr_lex)
 
 char	**apply_rules_on_lex(char **arr_lex, char *lexeme, size_t pos)
 {
-	char	**new_arr;
 	size_t	id;
 
 	id = 0;
-	new_arr = arr_lex;
-	while (*new_arr)
+	while (*arr_lex)
 		id++;
-	while (new_arr[id])
+	while (arr_lex[id])
 	{
-		new_arr[id] = ft_substr(lexeme, 0, pos);
+		arr_lex[id] = ft_substr(lexeme, 0, pos);
 		if (pos < ft_strlen(lexeme))
-			new_arr[++id] = ft_substr(lexeme, pos, ft_strlen(lexeme) - pos);
+			arr_lex[++id] = ft_substr(lexeme, pos, ft_strlen(lexeme) - pos);
 	}
-	return (new_arr);
+	return (arr_lex);
 }
 
 char	*merging_array_lexeme(char **array_lex)
