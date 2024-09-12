@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/16 09:43:43 by umeneses          #+#    #+#             */
-/*   Updated: 2024/09/12 11:07:47 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/09/12 11:24:43 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ int	fork_and_execve(char **cmd, char *path)
 	}
 	free_array(all_envs);
 	waitpid(pid, &exit_status, 0);
-	return (exit_status_holder(exit_status));
+	return (exit_status_holder(exit_status, true));
 }
 
 char	*lookup_cmd_path(char *cmd_name)
