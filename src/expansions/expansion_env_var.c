@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   expansion_env_variable.c                           :+:      :+:    :+:   */
+/*   expansion_env_var.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/27 12:39:23 by umeneses          #+#    #+#             */
-/*   Updated: 2024/09/12 09:59:27 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/09/12 10:08:47 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,32 +86,6 @@ char	**apply_rules_on_lex(char **arr_lex, char *lexeme, size_t pos)
 		}
 	}
 	return (arr_lex);
-}
-
-char	**send_approved_var(char **new_arr, char *lexeme)
-{
-	size_t	id;
-
-	id = 0;
-	while (new_arr[id])
-		id++;
-	new_arr[id] = ft_strdup(lexeme);	
-	return (new_arr);
-}
-
-char	**free_runner_for_env_rules_manager(char **arr_lex, char **new_arr)
-{
-	if (*new_arr)
-	{
-		free_array(arr_lex);
-		arr_lex = NULL;
-	}
-	else
-	{
-		free_array(new_arr);
-		new_arr = arr_lex;
-	}
-	return (new_arr);
 }
 
 char	**expand_var_from_array(char **arr_lex)

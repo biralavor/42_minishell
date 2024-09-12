@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 11:12:53 by umeneses          #+#    #+#             */
-/*   Updated: 2024/09/11 16:20:09 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/09/12 10:03:55 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,8 @@
 #include "../../src/executor/env_var_rules.c"
 #include "../../src/expansions/expansion_manager.c"
 #include "../../src/expansions/expansion_detectors.c"
-#include "../../src/expansions/expansion_env_variable.c"
+#include "../../src/expansions/expansion_env_var.c"
+#include "../../src/expansions/expansion_env_var_utils.c"
 #include "../../src/expansions/expansion_question.c"
 #include "../../src/expansions/expansion_quotes.c"
 #include "../../src/expansions/expansion_home.c"
