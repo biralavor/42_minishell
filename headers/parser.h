@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/27 12:53:52 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/08/16 10:03:07 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/09/10 15:34:42 by tmalheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
  * @brief Checks each node of the token list calling for syntax_validation.
  * @param lst -> The token list.
 */
-void			syntax_analysis(t_token_list *lst);
+bool			syntax_analysis(t_token_list *lst);
 
 /**
  * @brief Checks for any grammar errors.
@@ -32,7 +32,7 @@ int				syntax_validations(t_token_list *lst);
  * @param lst -> The token list.
  * @param syntax_state -> a number that indicates if there is a grammar error.
 */
-void			check_syntax_state(t_token_list *lst, int syntax_state);
+bool			check_syntax_state(t_token_list *lst, int syntax_state);
 
 int				state_100(t_token_list *lst, int syntax_state);
 int				state_200(t_token_list *lst, int syntax_state);
@@ -98,7 +98,7 @@ t_token_list	*find_dst_node(t_token_list *lst, int dst_idx);
  * @brief Moves the source token.
  * @param lst -> The token list.
 */
-void			move(t_token_list *lst, t_token_list *src, t_token_list *dst);
+void			move(t_token_list **lst, t_token_list *src, t_token_list *dst);
 
 /*SYNTAX ERROR CHECKING FUNCTIONS*/
 

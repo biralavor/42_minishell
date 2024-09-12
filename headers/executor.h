@@ -6,7 +6,7 @@
 /*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/05 13:56:37 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/09/04 11:36:51 by tmalheir         ###   ########.fr       */
+/*   Updated: 2024/09/11 15:16:11 by tmalheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,10 @@ t_tree			*build_tree_recursive(t_token_list **lst);
 
 t_token_list	*fetch_token(t_token_list *lst);
 
-t_tree			*text(t_token_list *lst, t_token_list *split, t_tree *tree);
+t_tree			*get_text(t_token_list *lst, t_token_list *splited,
+					t_tree *tree);
+
+t_tree			*get_splited(t_token_list *splited, t_tree *tree);
 
 /*TREE BUILDING UTILS FUNCTIONS*/
 
@@ -57,7 +60,7 @@ t_token_list	*go_to_first_node(t_token_list *lst);
 
 /*EXECUTION FUNCTIONS*/
 
-int				tree_execution(t_tree *tree);
+int				tree_execution(t_tree *tree, int flag);
 
 int				execute(t_tree *tree);
 
@@ -89,9 +92,8 @@ int				pipe_execution(char **cmd, char *path);
 
 /*MANAGE REDIRECTS FUNCTIONS*/
 
-bool			is_redirect(int lst_type);
 
-int				manage_redirect(t_tree *tree);
+int				manage_redirect(t_tree *tree, int flag);
 
 /*PRINTING FUNCTIONS (TO DELETE)*/
 
@@ -102,5 +104,11 @@ void			ft_array_printer(char **array);
 /*UTILS FUNCTIONS*/
 
 int				fork_error(void);
+
+bool			is_redirect(int lst_type);
+
+bool			is_redir_out(int type);
+
+void			change_redir_flag(int *first_redir);
 
 #endif

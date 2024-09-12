@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/16 09:43:43 by umeneses          #+#    #+#             */
-/*   Updated: 2024/09/09 23:43:38 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/09/12 11:24:43 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,7 @@ int	fork_and_execve(char **cmd, char *path)
 	}
 	free_array(all_envs);
 	waitpid(pid, &exit_status, 0);
-	// return (exit_status_holder(exit_status));
-	return ((exit_status));
+	return (exit_status_holder(exit_status, true));
 }
 
 char	*lookup_cmd_path(char *cmd_name)
@@ -77,6 +76,7 @@ int	command_manager(char **cmd)
 	if (path)
 	{
 		exit_status = fork_and_execve(cmd, path);
+		free(path);
 	}
 	free_array(cmd);
 	return (exit_status);
@@ -109,7 +109,7 @@ int	execute(t_tree *tree)
 	return (exit_status);
 }
 
-int	tree_execution(t_tree *tree)
+int	tree_execution(t_tree *tree, int flag)
 {
 	int	exit_status;
 
@@ -123,12 +123,12 @@ int	tree_execution(t_tree *tree)
 	else if (tree->type == PIPE)
 		exit_status = manage_pipe(tree);
 	else if (is_redirect(tree->type))
-		exit_status = manage_redirect(tree);
+		exit_status = manage_redirect(tree, flag);
 /*
 	else if (tree->type == SUBSHELL)
 		manage_subshell(tree);
 */
-	else if (tree->type == WORD && *tree->command->lexeme)
+	else if (tree->type == WORD)
 		exit_status = execute(tree);
 	return (exit_status);
 }

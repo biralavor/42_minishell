@@ -6,7 +6,7 @@
 /*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/12 15:54:01 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/09/04 10:56:40 by tmalheir         ###   ########.fr       */
+/*   Updated: 2024/09/10 15:35:17 by tmalheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ t_token_list	*find_dst_node(t_token_list *lst, int dst_idx)
 	return (temp);
 }
 
-void	move(t_token_list *lst, t_token_list *src, t_token_list *dst)
+void	move(t_token_list **lst, t_token_list *src, t_token_list *dst)
 {
 	if (lst)
 	{
@@ -86,7 +86,7 @@ void	move(t_token_list *lst, t_token_list *src, t_token_list *dst)
 		if (dst->prev)
 			dst->prev->next = src;
 		else
-			lst = src;
+			*lst = src;
 		src->prev = dst->prev;
 		src->next = dst;
 		dst->prev = src;
