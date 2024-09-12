@@ -11,6 +11,7 @@
 - [x] Built-ins :tada: [https://github.com/biralavor/42_minishell/releases/tag/v0.6]
 - [x] Variables Expansion :tada: [https://github.com/biralavor/42_minishell/releases/tag/v0.7] and [https://github.com/biralavor/42_minishell/releases/tag/v0.8.2]
 - Next Steps on Project Management:
+  - [ ] Redirects of all types, except HereDoc
   - [ ] HereDoc Redirect
   - [ ] Signals Control
 - Possible Bonus Development:
