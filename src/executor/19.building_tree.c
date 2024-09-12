@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/05 13:55:37 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/09/12 10:51:35 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/09/12 11:20:55 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,13 +45,30 @@ t_tree	*get_splited(t_token_list *splited, t_tree *tree)
 	tree->left = build_tree_recursive(&left);
 	tree->right = build_tree_recursive(&right);
 	return (tree);
+
+	tree->type = splited->type;
+	right = splited->next;
+	if (right)
+		right->prev = NULL;
+	if (splited->prev)
+		left = splited->prev;
+	else
+		left = NULL;
+	if (left)
+		left->next = NULL;
+	free(splited);
+	tree->left = build_tree_recursive(&left);
+	tree->right = build_tree_recursive(&right);
+	return (tree);
 }
 
+t_tree	*get_text(t_token_list *lst, t_token_list *splited, t_tree *tree)
 t_tree	*get_text(t_token_list *lst, t_token_list *splited, t_tree *tree)
 {
 	t_token_list	*temp;
 
 	temp = go_to_first_node(lst);
+	if (!splited)
 	if (!splited)
 	{
 		tree->type = temp->type;
