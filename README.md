@@ -34,7 +34,9 @@
 > 6. [Preparing Execution in Binary Tree](https://github.com/biralavor/42_minishell#6-preparing-execution-in-binary-tree)
 > 7. [Execute](https://github.com/biralavor/42_minishell#7-execute)
 > > 7.1 [Expansion of special tokens](https://github.com/biralavor/42_minishell#71-expansion-of-special-tokens)
+> > 
 > > 7.2 [Built-ins](https://github.com/biralavor/42_minishell#72-built-ins)
+> > 
 > > 7.3 [Command Manager](https://github.com/biralavor/42_minishell#73-command-manager)
 
 
