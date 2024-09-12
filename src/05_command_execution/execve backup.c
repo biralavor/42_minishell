@@ -6,41 +6,34 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/16 09:43:43 by umeneses          #+#    #+#             */
-/*   Updated: 2024/09/12 11:24:43 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/08/28 15:53:24 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	fork_and_execve(char **cmd, char *path)
+void	fork_and_execve(char **cmd, char *path)
 {
-	int		exit_status;
 	char	**all_envs;
 	pid_t	pid;
 
 	all_envs = convert_envs_to_array(env_holder(NULL, false, false));
 	pid = fork();
 	if (pid == -1)
-		return (fork_error());
+	{
+		// pid error
+	}
 	if (pid == 0)
 	{
+		// check fork
 		// check signals
 		execve(path, cmd, all_envs);
-		if (errno == ENOENT)
-		{
-			ft_putstr_fd(cmd[0], STDERR_FILENO);
-			ft_putstr_fd(": command not found\n", STDERR_FILENO);
-			exit_status_holder(127, true);
-			// clear_all_to_exit_smoothly();
-		}
-		// else // outro tipo de erro
-		// {
-		// 	ft_printf("%s: %s\n", cmd[0], strerror(errno));
-		// }
 	}
+	// treat erros (path)
+	// free_array(cmd);
 	free_array(all_envs);
-	waitpid(pid, &exit_status, 0);
-	return (exit_status_holder(exit_status, true));
+	// exit (status == -1)
+	// close pid
 }
 
 char	*lookup_cmd_path(char *cmd_name)
@@ -59,76 +52,54 @@ char	*lookup_cmd_path(char *cmd_name)
 		return (to_execute);
 	}
 	else
-	{
-		free_array(all_paths);
 		return (cmd_name);
-	}
+	return (NULL);
 }
 
-int	command_manager(char **cmd)
+void	command_manager(char **cmd)
 {
-	int		exit_status;
 	char	*path;
 
 	path = NULL;
-	exit_status = 0;
 	path = lookup_cmd_path(cmd[0]);
-	if (path)
+	if (!path)
+		ft_printf("%s: command not found\n", cmd[0]);
+	else
 	{
-		exit_status = fork_and_execve(cmd, path);
+		fork_and_execve(cmd, path);
 		free(path);
 	}
-	free_array(cmd);
-	return (exit_status);
 }
 
-int	execute(t_tree *tree)
+void	execute(t_tree *tree)
 {
-	static int	exit_status;
-	char		**cmd;
+	char	**cmd;
 
-	cmd = NULL;
 	expansion_manager(tree->command);
+	cmd = convert_tokens_to_array(tree->command);
+	if (!cmd)
+		return ;
+	ft_array_printer(cmd);
 	if (builtins_detector(tree->command))
 		builtins_manager(tree->command);
 	else if (builtins_detector_with_possible_args(tree->command))
 		builtins_with_possible_args_manager(tree->command);
-	else
-	{
-		cmd = convert_tokens_to_array(tree->command);
-		if (!cmd)
-		{
-			exit_status = 1; // trocar por exit_holder
-			return (exit_status);
-		}
-		exit_status = command_manager(cmd); // trocar por exit_holder
-	}
+	else if (cmd)
+		command_manager(cmd);
 	// verify if !cmd[0]
 	// verify exit_status_holder()
 	// verify SIGINT
-	return (exit_status);
+	free_array(cmd);
 }
 
-int	tree_execution(t_tree *tree, int flag)
+void	tree_execution(t_tree *tree)
 {
-	int	exit_status;
-
-	exit_status = 2;
-	if (!tree)
-		return (exit_status);
-	else if (tree->type == OR)
-		exit_status = manage_or(tree);
-	else if (tree->type == AND)
-		exit_status = manage_and(tree);
-	else if (tree->type == PIPE)
-		exit_status = manage_pipe(tree);
-	else if (is_redirect(tree->type))
-		exit_status = manage_redirect(tree, flag);
-/*
-	else if (tree->type == SUBSHELL)
-		manage_subshell(tree);
-*/
-	else if (tree->type == WORD)
-		exit_status = execute(tree);
-	return (exit_status);
+	if (tree->left)
+		tree_execution(tree->left);
+	else if (tree->right)
+		tree_execution(tree->right);
+	else if (tree->command && tree->command->lexeme)
+	{
+		execute(tree);
+	}
 }
