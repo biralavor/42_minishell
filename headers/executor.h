@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/05 13:56:37 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/09/12 13:02:53 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/09/12 18:37:28 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ t_token_list	*go_to_first_node(t_token_list *lst);
 
 int				tree_execution(t_tree *tree, int flag);
 
-int				execute(t_tree *tree);
+int				manage_single_command(t_tree *tree);
 
 char			*lookup_cmd_path(char *cmd_name);
 

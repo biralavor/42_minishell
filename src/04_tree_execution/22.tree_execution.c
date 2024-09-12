@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   21.tree_execution.c                                :+:      :+:    :+:   */
+/*   22.tree_execution.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 18:09:53 by umeneses          #+#    #+#             */
-/*   Updated: 2024/09/12 18:10:04 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/09/12 18:37:16 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,6 @@ int	tree_execution(t_tree *tree, int flag)
 		manage_subshell(tree);
 */
 	else if (tree->type == WORD)
-		exit_status = execute(tree);
+		exit_status = manage_single_command(tree);
 	return (exit_status);
 }

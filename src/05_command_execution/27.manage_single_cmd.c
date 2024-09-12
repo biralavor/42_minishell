@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/16 09:43:43 by umeneses          #+#    #+#             */
-/*   Updated: 2024/09/12 18:09:51 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/09/12 18:37:40 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ int	command_manager(char **cmd)
 	return (exit_status);
 }
 
-int	execute(t_tree *tree)
+int	manage_single_command(t_tree *tree)
 {
 	static int	exit_status;
 	char		**cmd;
