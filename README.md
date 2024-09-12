@@ -9,14 +9,14 @@
 - [x] SubShell + Binary Tree + Environment Variables :tada: [https://github.com/biralavor/42_minishell/releases/tag/v0.4]
 - [x] Execution :tada: [https://github.com/biralavor/42_minishell/releases/tag/v0.6]
 - [x] Built-ins :tada: [https://github.com/biralavor/42_minishell/releases/tag/v0.6]
-- [x] Variables Expansion :tada: [https://github.com/biralavor/42_minishell/releases/tag/v0.7] and [https://github.com/biralavor/42_minishell/releases/tag/v0.8.2]
+- [x] Variables Expansion :tada: [https://github.com/biralavor/42_minishell/releases/tag/v0.7]
+- [x] Redirects of all types, except HereDoc :tada: [https://github.com/biralavor/42_minishell/releases/tag/v0.8.4]
 - Next Steps on Project Management:
-  - [ ] Redirects of all types, except HereDoc
   - [ ] HereDoc Redirect
   - [ ] Signals Control
 - Possible Bonus Development:
-  - [ ] If `&&` were inside `()`, it should execute with priority
-  - [ ] If `||` were inside `()`, it should execute with priority
+  - [ ] If `&&` were inside `()`, it should execute with priority (SUBSHELL)
+  - [ ] If `||` were inside `()`, it should execute with priority (SUBSHELL)
   - [ ] Expansion for wildcards (*)
 
 # Minishell, a tiny version of Bash -> B.orn A.gain SH.ell
@@ -29,11 +29,16 @@
 > 1. [Define Tokens and Check for initial errors, like: unmatched quotes or parentheses](https://github.com/biralavor/42_minishell#1-tokenization)
 > 2. [With Automata State in Lexer (token labeling), create the token list.](https://github.com/biralavor/42_minishell#2-lexer)
 > 3. [Parse (or verify sintax, similar language grammar)](https://github.com/biralavor/42_minishell#3-parser-or-syntax-grammar)
-> 4. [Apply Redirect rules, if detected](https://github.com/biralavor/42_minishell#4-redirects-manager)
+> 4. [Apply Redirect rules in Parse, if detected](https://github.com/biralavor/42_minishell#4-apply-redirect-rules-in-parse)
 > 5. [Build the Binary Tree, in recursive mode](https://github.com/biralavor/42_minishell#5-build-the-binary-tree-in-recursive-mode)
-> 6. [Execute from the Binary Tree](https://github.com/biralavor/42_minishell#6-execute-from-binary-tree)
-> 7. [Expansion of special tokens](https://github.com/biralavor/42_minishell#7-expansion-of-special-tokens)
-> 8. [Execute Built-ins, if detected, or Classic Commands with execve](https://github.com/biralavor/42_minishell#7-execute-built-ins-if-detected-or-classic-commands)
+> 6. [Preparing Execution in Binary Tree](https://github.com/biralavor/42_minishell#6-preparing-execution-in-binary-tree)
+> 7. [Execute](https://github.com/biralavor/42_minishell#7-execute)
+> > 7.1 [Expansion of special tokens](https://github.com/biralavor/42_minishell#71-expansion-of-special-tokens)
+> > 
+> > 7.2 [Built-ins](https://github.com/biralavor/42_minishell#72-built-ins)
+> > 
+> > 7.3 [Command Manager](https://github.com/biralavor/42_minishell#73-command-manager)
+
 
 ![Screenshot from 2024-08-20 15-11-03](https://github.com/user-attachments/assets/4c8e518f-fec8-493f-b47c-13f6001683a5)
 
@@ -72,7 +77,7 @@ Check this test: `echo oi > tudo > bem com voce > ?`
 ![Screenshot from 2024-08-05 16-58-40](https://github.com/user-attachments/assets/5b259735-d293-4537-916b-49218f20f573)
 
 
-## 4. Redirects Manager
+## 4. Apply Redirect rules in Parse
 - The goal here is to:
   - Detects if there is more then one redirect type
   - If so, it move tokens to a new order, for an easier futher execution
@@ -87,34 +92,46 @@ Now, we got un updated result:
 
 
 ## 5. Build the Binary Tree, in recursive mode
-
-![Screenshot from 2024-08-21 10-32-59](https://github.com/user-attachments/assets/678f6672-5e2a-40da-b14d-cbc7e27f452e)
-
-
-## 6. Execute from Binary Tree
-![Screenshot from 2024-08-20 09-42-39](https://github.com/user-attachments/assets/98e84684-d146-46c2-b885-dd8a63294d19)
-
-## 7. Expansion of special tokens
-![Screenshot from 2024-09-09 16-49-10](https://github.com/user-attachments/assets/3ad4bbe1-d608-4562-a7b7-c1fb7e0d5162)
+![Screenshot from 2024-09-12 12-29-38](https://github.com/user-attachments/assets/d248f2b5-46f8-4e70-9125-6df4f3a1cf0c)
 
 
-## 8. Execute Built-ins, if detected, or classic commands
-We have two built-in categories: with argument, and without arguments, like the image below.
+## 6. Preparing Execution in Binary Tree
+The Binary Tree will be executed, following the metacharacters rules:
 
-Therefor, also have a `bool builtin_detector()` and `void builtin_manager` for both types of built-ins.
+![Screenshot from 2024-09-12 12-28-23](https://github.com/user-attachments/assets/4f5e1700-3176-4b6a-a67e-bf556620e4b7)
 
-If the input isn't a Built-in, it runs `execve`.
+## 7. Execute
 
-![Screenshot from 2024-08-20 09-51-04](https://github.com/user-attachments/assets/b76bf67a-50a2-40fc-b7fc-ee9df47aab0d)
+![Screenshot from 2024-09-12 12-36-59](https://github.com/user-attachments/assets/5521ac35-07e8-46d1-aa8d-5b5bd9a78187)
 
-### built-in detector
+### 7.1. Expansion of special tokens
+- Expansion for:
+  - Quotes `"`
+  - tilde `~`
+  - dollar sign `$`
+
+![Screenshot from 2024-09-12 12-16-10](https://github.com/user-attachments/assets/5ced977f-8e35-4a2a-87de-6759c711ea71)
+
+- Built-ins, if detected, or classic commands. Therefor, also have a `bool builtin_detector()` and `void builtin_manager` for both types of built-ins.
+If the input isn't a Built-in, it runs `execve`. We have two built-in categories:
+  - with argument, and without arguments, like the image below.
+
+### 7.2 Built-ins
+- Built-in Detectors
+- Built-in Manager
+- Built-in Runners
+
+#### Built-in Detectors
 ![Screenshot from 2024-08-20 15-02-07](https://github.com/user-attachments/assets/d875d654-ca3d-49b8-976f-8bd33555e2d4)
 
-### built-in manager:
+#### Built-in Manager
 ![Screenshot from 2024-08-20 15-03-49](https://github.com/user-attachments/assets/5a1317c8-901d-4ec5-b35c-b81ccb1e949e)
 
-### built-in runners, goes like this:
+#### Built-in Runners, goes like this:
 ![Screenshot from 2024-08-20 15-04-45](https://github.com/user-attachments/assets/f8eab4cf-872f-475d-af50-8c9668988b97)
+
+### 7.3 Command Manager
+![Screenshot from 2024-09-12 12-49-23](https://github.com/user-attachments/assets/bd21e13a-79f9-4029-a767-9a48b5350555)
 
 
 # 42sp Team Project:
