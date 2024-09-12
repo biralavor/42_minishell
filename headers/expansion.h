@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/28 13:55:02 by umeneses          #+#    #+#             */
-/*   Updated: 2024/09/12 08:27:23 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/09/12 09:59:31 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,10 @@ bool	env_var_key_rules_at_start(char c);
 bool	env_var_key_rules_at_middle(char c);
 char	**array_lex_env_key_rules_manager(char **arr_lex, int arr_len);
 char	**apply_rules_on_lex(char **arr_lex, char *lexeme, size_t pos);
-char	*merging_array_lexeme(char **array_lexeme);
 char	**expand_var_from_array(char **array_lexeme);
+char	**send_approved_var(char **new_arr, char *lexeme);
+char	*merging_array_lexeme(char **array_lexeme);
+char	**free_runner_for_env_rules_manager(char **arr_lex, char **new_arr);
 
 bool	expansion_question_mark_detector(char *lexeme);
 char	*expansion_question_mark(char *lexeme);

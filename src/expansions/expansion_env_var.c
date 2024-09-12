@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   expansion_env_variable.c                           :+:      :+:    :+:   */
+/*   expansion_env_var.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/27 12:39:23 by umeneses          #+#    #+#             */
-/*   Updated: 2024/09/12 08:26:27 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/09/12 10:08:47 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ char	*expansion_env_var_runner(char *lexeme)
 			arr_lex = ft_split(lexeme, '$');
 			arr_len = ft_array_len(arr_lex);
 			arr_lex = array_lex_env_key_rules_manager(arr_lex, arr_len);
+			arr_lex = expand_var_from_array(arr_lex);
 			merged_lex = merging_array_lexeme(arr_lex);
 			break ;
 		}
@@ -54,16 +55,13 @@ char	**array_lex_env_key_rules_manager(char **arr_lex, int arr_len)
 			pos++;
 		while (env_var_key_rules_at_middle(arr_lex[idx][pos]))
 			pos++;
-		if (pos > 0 && !env_var_key_rules_at_middle(arr_lex[idx][pos]))
+		if (pos > 0 && arr_lex[idx][pos]
+			&& !env_var_key_rules_at_middle(arr_lex[idx][pos]))
 			new_arr = apply_rules_on_lex(new_arr, arr_lex[idx], pos);
+		else
+			new_arr = send_approved_var(new_arr, arr_lex[idx]);
 	}
-	if (*new_arr)
-		free_array(arr_lex);
-	else
-	{
-		free_array(new_arr);
-		new_arr = arr_lex;
-	}
+	new_arr = free_runner_for_env_rules_manager(arr_lex, new_arr);
 	return (new_arr);
 }
 
@@ -72,56 +70,62 @@ char	**apply_rules_on_lex(char **arr_lex, char *lexeme, size_t pos)
 	size_t	id;
 
 	id = 0;
-	while (*arr_lex)
-		id++;
+	if (*arr_lex)
+	{
+		while (*arr_lex)
+			id++;
+	}
+	else
+		arr_lex[id] = ft_substr(lexeme, 0, pos);
 	while (arr_lex[id])
 	{
-		arr_lex[id] = ft_substr(lexeme, 0, pos);
 		if (pos < ft_strlen(lexeme))
+		{
 			arr_lex[++id] = ft_substr(lexeme, pos, ft_strlen(lexeme) - pos);
+			id++;
+		}
 	}
 	return (arr_lex);
 }
 
-char	*merging_array_lexeme(char **array_lex)
-{
-	char	*merged_lex;
-	int		idx;
-
-	idx = 0;
-	merged_lex = NULL;
-	array_lex = expand_var_from_array(array_lex);
-	if (array_lex[idx])
-	{
-		merged_lex = ft_strdup(array_lex[idx]);
-		idx++;
-	}
-	while (array_lex[idx])
-	{	
-		merged_lex = ft_strjoin(merged_lex, array_lex[idx]);
-		idx++;
-	}
-	return (merged_lex);
-}
-
-char	**expand_var_from_array(char **array_lex)
+char	**expand_var_from_array(char **arr_lex)
 {
 	t_env_entry	*env_table;
 	char		*env_key;
 	int			idx;
 
 	idx = 0;
-	while (array_lex[idx])
+	while (arr_lex[idx])
 	{
-		env_key = ft_strdup(array_lex[idx]);
+		env_key = ft_strdup(arr_lex[idx]);
 		env_table = lookup_table(env_holder(NULL, false, false), env_key);
 		free(env_key);
 		if (env_table)
 		{
-			free(array_lex[idx]);
-			array_lex[idx] = ft_strdup(env_table->value);
+			free(arr_lex[idx]);
+			arr_lex[idx] = ft_strdup(env_table->value);
 		}
 		idx++;
 	}
-	return (array_lex);
+	return (arr_lex);
+}
+
+char	*merging_array_lexeme(char **arr_lex)
+{
+	char	*merged_lex;
+	int		idx;
+
+	idx = 0;
+	merged_lex = NULL;
+	if (arr_lex[idx])
+	{
+		merged_lex = ft_strdup(arr_lex[idx]);
+		idx++;
+	}
+	while (arr_lex[idx])
+	{	
+		merged_lex = ft_strjoin(merged_lex, arr_lex[idx]);
+		idx++;
+	}
+	return (merged_lex);
 }
