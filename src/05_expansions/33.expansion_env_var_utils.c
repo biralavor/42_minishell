@@ -1,16 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   expansion_env_var_utils.c                          :+:      :+:    :+:   */
+/*   33.expansion_env_var_utils.c                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 10:02:37 by umeneses          #+#    #+#             */
-/*   Updated: 2024/09/12 10:09:03 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/09/12 19:13:15 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+bool	env_var_key_rules_at_start(char c)
+{
+	if (ft_isalpha(c) || c == '_')
+		return (true);
+	return (false);
+}
+
+bool	env_var_key_rules_at_middle(char c)
+{
+	if (ft_isdigit(c) || ft_isalpha(c) || c == '_')
+		return (true);
+	return (false);
+}
 
 char	**send_approved_var(char **new_arr, char *lexeme)
 {
