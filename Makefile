@@ -73,6 +73,13 @@ SRC_FILES				+= ./04_tree_execution/24.manage_or_and.c
 SRC_FILES				+= ./04_tree_execution/25.manage_pipe.c
 SRC_FILES				+= ./04_tree_execution/26.manage_redirects.c
 SRC_FILES				+= ./04_tree_execution/27.manage_single_cmd.c
+SRC_FILES				+= ./05_expansions/28.expansion_manager.c
+SRC_FILES				+= ./05_expansions/29.expansion_detectors.c
+SRC_FILES				+= ./05_expansions/30.expansion_quotes.c
+SRC_FILES				+= ./05_expansions/31.expansion_tilde.c
+SRC_FILES				+= ./05_expansions/32.expansion_env_var.c
+SRC_FILES				+= ./05_expansions/33.expansion_env_var_utils.c
+SRC_FILES				+= ./05_expansions/34.expansion_question.c
 SRC_FILES				+= ./command_execution/29.command_runner.c
 SRC_FILES				+= ./command_execution/33.execve_utils.c
 SRC_FILES				+= ./command_execution/env_var_rules.c
@@ -88,13 +95,6 @@ SRC_FILES				+= ./builtins/31.builtins_utils.c
 SRC_FILES				+= ./builtins/34.builtins_exit.c
 SRC_FILES				+= ./builtins/builtins_cd_utils.c
 SRC_FILES				+= ./builtins/builtins_exit_utils.c
-SRC_FILES				+= ./expansions/expansion_manager.c
-SRC_FILES				+= ./expansions/expansion_detectors.c
-SRC_FILES				+= ./expansions/expansion_env_var.c
-SRC_FILES				+= ./expansions/expansion_env_var_utils.c
-SRC_FILES				+= ./expansions/expansion_question.c
-SRC_FILES				+= ./expansions/expansion_quotes.c
-SRC_FILES				+= ./expansions/expansion_home.c
 
 #SRC_FILES				= minishell_main.c
 
