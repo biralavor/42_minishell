@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/05 13:56:37 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/09/12 18:37:28 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/09/12 18:49:55 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ bool			is_cmd_with_valid_path(char *cmd_name);
 
 char			*testing_all_paths_with_cmd(char **path, char *cmd_name);
 
-int				command_manager(char **cmd);
+int				command_runner(char **cmd);
 
 int				manage_or(t_tree *tree);
 

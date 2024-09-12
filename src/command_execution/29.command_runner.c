@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   32.execve.c                                        :+:      :+:    :+:   */
+/*   28.command_runner.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/16 09:43:43 by umeneses          #+#    #+#             */
-/*   Updated: 2024/09/12 18:37:40 by umeneses         ###   ########.fr       */
+/*   Created: 2024/09/12 18:51:30 by umeneses          #+#    #+#             */
+/*   Updated: 2024/09/12 18:51:45 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ char	*lookup_cmd_path(char *cmd_name)
 	}
 }
 
-int	command_manager(char **cmd)
+int	command_runner(char **cmd)
 {
 	int		exit_status;
 	char	*path;
@@ -79,32 +79,5 @@ int	command_manager(char **cmd)
 		free(path);
 	}
 	free_array(cmd);
-	return (exit_status);
-}
-
-int	manage_single_command(t_tree *tree)
-{
-	static int	exit_status;
-	char		**cmd;
-
-	cmd = NULL;
-	expansion_manager(tree->command);
-	if (builtins_detector(tree->command))
-		builtins_manager(tree->command);
-	else if (builtins_detector_with_possible_args(tree->command))
-		builtins_with_possible_args_manager(tree->command);
-	else
-	{
-		cmd = convert_tokens_to_array(tree->command);
-		if (!cmd)
-		{
-			exit_status = 1; // trocar por exit_holder
-			return (exit_status);
-		}
-		exit_status = command_manager(cmd); // trocar por exit_holder
-	}
-	// verify if !cmd[0]
-	// verify exit_status_holder()
-	// verify SIGINT
 	return (exit_status);
 }

@@ -6,15 +6,12 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/16 09:43:43 by umeneses          #+#    #+#             */
-/*   Updated: 2024/09/10 14:32:04 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/09/12 18:54:30 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-/**
- * TODO: implementar função que trata expansão de variável
- */
 char	**convert_envs_to_array(t_env_entry *env_vars)
 {
 	int			idx;
@@ -35,29 +32,6 @@ char	**convert_envs_to_array(t_env_entry *env_vars)
 		idx++;
 	}
 	return (all_envs);
-}
-
-/**
- * TODO: implementar função que trata expansão de variável
- */
-char	**convert_tokens_to_array(t_token_list *lst)
-{
-	int				size;
-	int				idx;
-	char			**cmd;
-	t_token_list	*tmp;
-
-	idx = 0;
-	tmp = lst;
-	size = ft_lst_size(lst);
-	cmd = (char **)ft_calloc(1, sizeof(char *) * (size + 1));
-	while (tmp)
-	{
-		cmd[idx] = ft_strdup(tmp->lexeme);
-		tmp = tmp->next;
-		idx++;
-	}
-	return (cmd);
 }
 
 bool	is_cmd_with_valid_path(char *cmd_name)
