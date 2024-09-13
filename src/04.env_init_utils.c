@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   22.env_init_utils.c                                :+:      :+:    :+:   */
+/*   04.env_init_utils.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 12:58:03 by umeneses          #+#    #+#             */
-/*   Updated: 2024/09/06 13:53:04 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/09/13 12:09:55 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,6 @@ void	free_env_table(t_env_entry **table)
 		free(curr);
 		curr = tmp;
 	}
-	*table = NULL;
 }
 
 void	free_array(char **array)

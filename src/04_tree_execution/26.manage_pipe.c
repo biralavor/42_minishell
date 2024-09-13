@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   36.manage_pipe.c                                   :+:      :+:    :+:   */
+/*   26.manage_pipe.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/28 13:51:49 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/09/12 11:27:33 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/09/13 12:49:15 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,14 +31,13 @@ void	exec_2nd_child(t_tree *right, int *new_pipe)
 	close(new_pipe[1]);
 	dup2(new_pipe[0], STDIN_FILENO);
 	close(new_pipe[0]);
+	child_process_is_running(true, true);
 	exit_status = tree_execution(right, 0);
 	// close(STDERR_FILENO);
 	close(STDIN_FILENO);
 	close(STDOUT_FILENO);
-	(void)exit_status;
-	exit(0);
-//	free_token_tree(right);
-	// exit(exit_status); remover, já que é importante verificar se deu certo
+	clear_all_to_exit_smoothly();
+	exit(exit_status_holder(exit_status, true));
 }
 
 void	exec_1st_child(t_tree *left, int *new_pipe)
@@ -49,14 +48,24 @@ void	exec_1st_child(t_tree *left, int *new_pipe)
 	close(new_pipe[0]);
 	dup2(new_pipe[1], STDOUT_FILENO);
 	close(new_pipe[1]);
+	child_process_is_running(true, true);
 	exit_status = tree_execution(left, 0);
 	// close(STDERR_FILENO);
 	close(STDIN_FILENO);
 	close(STDOUT_FILENO);
-	(void)exit_status;
-	exit(0);
-//	free_token_tree(left);
-	// exit(exit_status); remover, já que é importante verificar se deu certo
+	clear_all_to_exit_smoothly();
+	exit(exit_status_holder(exit_status, true));
+}
+
+bool	child_process_is_running(bool update, bool caller)
+{
+	bool static child_process_holder;
+
+	if (update)
+		child_process_holder = caller;
+	if (caller)
+		return (child_process_holder);
+	return (child_process_holder);	
 }
 
 int	manage_pipe(t_tree *tree)
