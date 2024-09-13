@@ -6,7 +6,7 @@
 > The terminal is a file, therefor it treats all inputs as `strings`
 
 > [!IMPORTANT]
-> # Our Code Flow, in a Big Picture
+> ## Our Code Flow, in a Big Picture
 > After calling the `readline()` to capture user's input in the `main()`, our code goes basically like this:
 > 
 > 1. [Define Tokens and Check for initial errors, like: unmatched quotes or parentheses](https://github.com/biralavor/42_minishell#1-tokenization)
@@ -24,6 +24,7 @@
 
 ![Screenshot from 2024-08-20 15-11-03](https://github.com/user-attachments/assets/4c8e518f-fec8-493f-b47c-13f6001683a5)
 
+## Our Development Status
 - [x] Makefile working and calling minUnit tester :tada: [https://github.com/biralavor/42_minishell/releases/tag/v0.0.1]
 - [x] Test development with multiple files call, avoiding the **horrible monolith** file :tada: [https://github.com/biralavor/42_minishell/pull/31]
 - [x] Lexer :tada: [https://github.com/biralavor/42_minishell/releases/tag/v0.2]
@@ -111,14 +112,16 @@ The Binary Tree will be executed, following the metacharacters rules:
 
 ![Screenshot from 2024-09-12 12-16-10](https://github.com/user-attachments/assets/5ced977f-8e35-4a2a-87de-6759c711ea71)
 
-- Built-ins, if detected, or classic commands. Therefor, also have a `bool builtin_detector()` and `void builtin_manager` for both types of built-ins.
-If the input isn't a Built-in, it runs `execve`. We have two built-in categories:
-  - with argument, and without arguments, like the image below.
 
 ### 7.2 Built-ins
 - Built-in Detectors
 - Built-in Manager
 - Built-in Runners
+
+Built-ins, if detected, or classic commands. Therefor, also have a `bool builtin_detector()` and `void builtin_manager` for both types of built-ins.
+If the input isn't a Built-in, it runs `execve`. We have two built-in categories for our `minishell` version:
+ - Builtins without argument, like: `env`, `pwd`, `exit`.
+ - Builtins with argument, like: `echo`, `cd`, `export`, `unset`.
 
 #### Built-in Detectors
 ![Screenshot from 2024-08-20 15-02-07](https://github.com/user-attachments/assets/d875d654-ca3d-49b8-976f-8bd33555e2d4)
