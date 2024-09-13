@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 18:51:30 by umeneses          #+#    #+#             */
-/*   Updated: 2024/09/13 18:11:37 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/09/13 20:40:56 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	fork_and_execve(char **cmd, char *path)
 {
-	int		exit_status;
+	// int		exit_status;
 	char	**all_envs;
 	pid_t	pid;
 
@@ -33,8 +33,8 @@ int	fork_and_execve(char **cmd, char *path)
 		// rl_clear_history();
 		// check signals
 		// child_process_is_running(true, true)
-		execve(path, cmd, all_envs);
-		if (errno == ENOENT)
+		exit_status_holder(execve(path, cmd, all_envs), true);
+		if (exit_status_holder(0, false) != 0)
 		{
 			ft_putstr_fd(cmd[0], STDERR_FILENO);
 			ft_putstr_fd(": command not found\n", STDERR_FILENO);
@@ -44,14 +44,13 @@ int	fork_and_execve(char **cmd, char *path)
 			clear_all_to_exit_smoothly();
 			exit(exit_status_holder(127, true));
 		}
-		// else // outro tipo de erro
-		// {
-		// 	ft_printf("%s: %s\n", cmd[0], strerror(errno));
-		// }
 	}
-	free_array(all_envs);
-	waitpid(pid, &exit_status, 0);
-	return (exit_status_holder(exit_status, true));
+	else
+		free(path);
+	pid_exit_status_caller(pid);
+	if (!child_process_is_running(false, true))
+		free_array(all_envs);
+	return (exit_status_holder(0, false));
 }
 
 char	*lookup_cmd_path(char *cmd_name)
@@ -87,8 +86,9 @@ int	command_runner(char **cmd)
 	if (path)
 	{
 		exit_status = fork_and_execve(cmd, path);
-		free(path);
+		// free(path);
 	}
-	free_array(cmd);
+	// if (child_process_is_running(false, true))
+	// 	free_array(cmd);
 	return (exit_status);
 }
