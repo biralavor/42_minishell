@@ -1,6 +1,8 @@
 ### This is a wip ```README``` of `minishell` project
 
-![minishelln](https://github.com/biralavor/42_minishell/assets/80487147/9718ee86-fbb4-4625-b6cf-56176eb9d1a0)
+<img src="https://github.com/user-attachments/assets/aad813db-13ee-4665-bed0-d444a0c1dcdf" width="525" height="225" />
+<img src="https://github.com/biralavor/42_minishell/assets/80487147/9718ee86-fbb4-4625-b6cf-56176eb9d1a0" width="150" height="150" />
+
 
 # Minishell, a tiny version of Bash -> B.orn A.gain SH.ell
 > The terminal is a file, therefor it treats all inputs as `strings`
