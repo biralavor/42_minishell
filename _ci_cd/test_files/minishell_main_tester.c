@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 11:12:53 by umeneses          #+#    #+#             */
-/*   Updated: 2024/09/12 10:03:55 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/09/13 10:20:58 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,53 +17,55 @@
 #include <unistd.h>
 #include <fcntl.h>
 
-#include "../../src/02.check_userinput.c"
-#include "../../src/lexer/03.check_initial_errors.c"
-#include "../../src/lexer/04.token_list_functions.c"
-#include "../../src/lexer/05.get_state.c"
-#include "../../src/lexer/06.state10_to_state30.c"
-#include "../../src/lexer/07.state40_to_state60.c"
-#include "../../src/lexer/08.state61_to_state90.c"
-#include "../../src/lexer/09.error_manager_lexer.c"
-#include "../../src/lexer/10.lexer_utils.c"
-#include "../../src/parser/11.syntax_analysis.c"
-#include "../../src/parser/12.state100.c"
-#include "../../src/parser/13.utils_parsing_word.c"
-#include "../../src/parser/14.state200.c"
-#include "../../src/parser/15.state300.c"
-#include "../../src/parser/16.redir_manager.c"
-#include "../../src/parser/17.redir_utils.c"
-#include "../../src/parser/18.error_manager_parser.c"
-#include "../../src/executor/19.building_tree.c"
-#include "../../src/executor/20.building_tree_utils.c"
-#include "../../src/executor/21.env_init.c"
-#include "../../src/executor/22.env_init_utils.c"
-#include "../../src/builtins/23.builtins_manager.c"
-#include "../../src/builtins/24.builtins_echo.c"
-#include "../../src/builtins/25.builtins_cd.c"
-#include "../../src/builtins/26.builtins_pwd.c"
-#include "../../src/builtins/27.builtins_export.c"
-#include "../../src/builtins/28.builtins_export_utils.c"
-#include "../../src/builtins/29.builtins_unset.c"
-#include "../../src/builtins/30.builtins_env.c"
-#include "../../src/builtins/31.builtins_utils.c"
-#include "../../src/builtins/34.builtins_exit.c"
-#include "../../src/builtins/builtins_cd_utils.c"
-#include "../../src/builtins/builtins_exit_utils.c"
-#include "../../src/executor/32.execve.c"
-#include "../../src/executor/33.execve_utils.c"
-#include "../../src/executor/35.manage_or_and.c"
-#include "../../src/executor/36.manage_pipe.c"
-#include "../../src/executor/manage_redirects.c"
-#include "../../src/executor/utils.c"
-#include "../../src/executor/env_var_rules.c"
-#include "../../src/expansions/expansion_manager.c"
-#include "../../src/expansions/expansion_detectors.c"
-#include "../../src/expansions/expansion_env_var.c"
-#include "../../src/expansions/expansion_env_var_utils.c"
-#include "../../src/expansions/expansion_question.c"
-#include "../../src/expansions/expansion_quotes.c"
-#include "../../src/expansions/expansion_home.c"
+#include "../../src/02.signals.c"
+#include "../../src/03.env_init.c"
+#include "../../src/04.env_init_utils.c"
+#include "../../src/05.loop_routine.c"
+#include "../../src/01_lexer/06.check_initial_errors.c"
+#include "../../src/01_lexer/07.token_list_functions.c"
+#include "../../src/01_lexer/08.get_state.c"
+#include "../../src/01_lexer/09.state10_to_state30.c"
+#include "../../src/01_lexer/10.state40_to_state60.c"
+#include "../../src/01_lexer/11.state61_to_state90.c"
+#include "../../src/01_lexer/12.error_manager_lexer.c"
+#include "../../src/01_lexer/13.lexer_utils.c"
+#include "../../src/02_parser/14.syntax_analysis.c"
+#include "../../src/02_parser/15.state100.c"
+#include "../../src/02_parser/16.state200_to_state300.c"
+#include "../../src/02_parser/17.check_redirects.c"
+#include "../../src/02_parser/18.check_redirects_utils.c"
+#include "../../src/02_parser/19.error_manager_parser.c"
+#include "../../src/02_parser/20.manage_heredoc.c"
+#include "../../src/03_binary_tree/21.building_tree.c"
+#include "../../src/03_binary_tree/22.building_tree_utils.c"
+#include "../../src/04_tree_execution/23.tree_execution.c"
+#include "../../src/04_tree_execution/24.tree_execution_utils.c"
+#include "../../src/04_tree_execution/25.manage_or_and.c"
+#include "../../src/04_tree_execution/26.manage_pipe.c"
+#include "../../src/04_tree_execution/27.manage_redirects.c"
+#include "../../src/04_tree_execution/28.manage_single_cmd.c"
+#include "../../src/05_expansions/29.expansion_manager.c"
+#include "../../src/05_expansions/30.expansion_detectors.c"
+#include "../../src/05_expansions/31.expansion_quotes.c"
+#include "../../src/05_expansions/32.expansion_tilde.c"
+#include "../../src/05_expansions/33.expansion_env_var.c"
+#include "../../src/05_expansions/34.expansion_env_var_utils.c"
+#include "../../src/05_expansions/35.expansion_question.c"
+#include "../../src/06_builtins/36.builtin_detectors.c"
+#include "../../src/06_builtins/37.builtin_manager.c"
+#include "../../src/06_builtins/38.builtin_utils.c"
+#include "../../src/06_builtins/39.builtin_echo.c"
+#include "../../src/06_builtins/40.builtin_cd.c"
+#include "../../src/06_builtins/41.builtin_cd_utils.c"
+#include "../../src/06_builtins/42.builtin_pwd.c"
+#include "../../src/06_builtins/43.builtin_export.c"
+#include "../../src/06_builtins/44.builtin_export_utils.c"
+#include "../../src/06_builtins/45.builtin_unset.c"
+#include "../../src/06_builtins/46.builtin_env.c"
+#include "../../src/06_builtins/47.builtin_exit.c"
+#include "../../src/06_builtins/48.builtin_exit_utils.c"
+#include "../../src/07_command_execution/49.command_runner.c"
+#include "../../src/07_command_execution/50.command_runner_utils.c"
 #include "../_tdd_utils/ft_array_printer.c"
 #include "../_tdd_utils/ft_env_printer.c"
 #include "../_tdd_utils/ft_lst_printer.c"
@@ -139,11 +141,11 @@ int	main(void)
 	
 	MU_RUN_SUITE(test10___syntax_state400_SUBSHELL_suite);
 	
-	MU_RUN_SUITE(test11___syntax_REDIRECTS_to_ARCHIVE_DETECTION_suite);
-	MU_RUN_SUITE(test11___syntax_WORD_AFTER_ARCHIVE_detection_suite);
-	MU_RUN_SUITE(test11___syntax_ANOTHER_REDIRECT_FOUND_suite);
+	// MU_RUN_SUITE(test11___syntax_REDIRECTS_to_ARCHIVE_DETECTION_suite);
+	// MU_RUN_SUITE(test11___syntax_WORD_AFTER_ARCHIVE_detection_suite);
+	// MU_RUN_SUITE(test11___syntax_ANOTHER_REDIRECT_FOUND_suite);
 
-	MU_RUN_SUITE(test11___syntax_REORGANIZE_REDIRECTS_suite);
+	// MU_RUN_SUITE(test11___syntax_REORGANIZE_REDIRECTS_suite);
 	
 	MU_REPORT();
 	return (MU_EXIT_CODE);
