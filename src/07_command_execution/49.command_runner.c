@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   28.command_runner.c                                :+:      :+:    :+:   */
+/*   49.command_runner.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 18:51:30 by umeneses          #+#    #+#             */
-/*   Updated: 2024/09/12 18:51:45 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/09/13 12:47:08 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,19 +19,26 @@ int	fork_and_execve(char **cmd, char *path)
 	pid_t	pid;
 
 	all_envs = convert_envs_to_array(env_holder(NULL, false, false));
+	if (child_process_is_running(false, true))
+	{
+		env_holder(NULL, false, true);
+		rl_clear_history();
+	}
 	pid = fork();
 	if (pid == -1)
 		return (fork_error());
 	if (pid == 0)
 	{
+		// env_holder(NULL, false, true);
+		// rl_clear_history();
 		// check signals
 		execve(path, cmd, all_envs);
 		if (errno == ENOENT)
 		{
 			ft_putstr_fd(cmd[0], STDERR_FILENO);
 			ft_putstr_fd(": command not found\n", STDERR_FILENO);
-			exit_status_holder(127, true);
-			// clear_all_to_exit_smoothly();
+			clear_all_to_exit_smoothly();
+			exit(exit_status_holder(127, true));
 		}
 		// else // outro tipo de erro
 		// {
