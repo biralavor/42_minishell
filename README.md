@@ -2,23 +2,6 @@
 
 ![minishelln](https://github.com/biralavor/42_minishell/assets/80487147/9718ee86-fbb4-4625-b6cf-56176eb9d1a0)
 
-- [x] Makefile working and calling minUnit tester :tada: [https://github.com/biralavor/42_minishell/releases/tag/v0.0.1]
-- [x] Test development with multiple files call, avoiding the **horrible monolith** file :tada: [https://github.com/biralavor/42_minishell/pull/31]
-- [x] Lexer :tada: [https://github.com/biralavor/42_minishell/releases/tag/v0.2]
-- [x] Parser + Syntaxe Grammar :tada: [https://github.com/biralavor/42_minishell/releases/tag/v0.3]
-- [x] SubShell + Binary Tree + Environment Variables :tada: [https://github.com/biralavor/42_minishell/releases/tag/v0.4]
-- [x] Execution :tada: [https://github.com/biralavor/42_minishell/releases/tag/v0.6]
-- [x] Built-ins :tada: [https://github.com/biralavor/42_minishell/releases/tag/v0.6]
-- [x] Variables Expansion :tada: [https://github.com/biralavor/42_minishell/releases/tag/v0.7]
-- [x] Redirects of all types, except HereDoc :tada: [https://github.com/biralavor/42_minishell/releases/tag/v0.8.4]
-- Next Steps on Project Management:
-  - [ ] HereDoc Redirect
-  - [ ] Signals Control
-- Possible Bonus Development:
-  - [ ] If `&&` were inside `()`, it should execute with priority (SUBSHELL)
-  - [ ] If `||` were inside `()`, it should execute with priority (SUBSHELL)
-  - [ ] Expansion for wildcards (*)
-
 # Minishell, a tiny version of Bash -> B.orn A.gain SH.ell
 > The terminal is a file, therefor it treats all inputs as `strings`
 
@@ -39,8 +22,24 @@
 > > 
 > > 7.3 [Command Manager](https://github.com/biralavor/42_minishell#73-command-manager)
 
-
 ![Screenshot from 2024-08-20 15-11-03](https://github.com/user-attachments/assets/4c8e518f-fec8-493f-b47c-13f6001683a5)
+
+- [x] Makefile working and calling minUnit tester :tada: [https://github.com/biralavor/42_minishell/releases/tag/v0.0.1]
+- [x] Test development with multiple files call, avoiding the **horrible monolith** file :tada: [https://github.com/biralavor/42_minishell/pull/31]
+- [x] Lexer :tada: [https://github.com/biralavor/42_minishell/releases/tag/v0.2]
+- [x] Parser + Syntaxe Grammar :tada: [https://github.com/biralavor/42_minishell/releases/tag/v0.3]
+- [x] SubShell + Binary Tree + Environment Variables :tada: [https://github.com/biralavor/42_minishell/releases/tag/v0.4]
+- [x] Execution :tada: [https://github.com/biralavor/42_minishell/releases/tag/v0.6]
+- [x] Built-ins :tada: [https://github.com/biralavor/42_minishell/releases/tag/v0.6]
+- [x] Variables Expansion :tada: [https://github.com/biralavor/42_minishell/releases/tag/v0.7]
+- [x] Redirects of all types, except HereDoc :tada: [https://github.com/biralavor/42_minishell/releases/tag/v0.8.4]
+- Next Steps on Project Management:
+  - [ ] HereDoc Redirect
+  - [ ] Signals Control
+- Possible Bonus Development:
+  - [ ] If `&&` were inside `()`, it should execute with priority (SUBSHELL)
+  - [ ] If `||` were inside `()`, it should execute with priority (SUBSHELL)
+  - [ ] Expansion for wildcards (*)
 
 ## But first, let's talk about our TDD - Test Driven Development
 What we are testing, until so far:
