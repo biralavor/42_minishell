@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 18:51:30 by umeneses          #+#    #+#             */
-/*   Updated: 2024/09/13 12:47:08 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/09/13 18:11:37 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,11 +32,15 @@ int	fork_and_execve(char **cmd, char *path)
 		// env_holder(NULL, false, true);
 		// rl_clear_history();
 		// check signals
+		// child_process_is_running(true, true)
 		execve(path, cmd, all_envs);
 		if (errno == ENOENT)
 		{
 			ft_putstr_fd(cmd[0], STDERR_FILENO);
 			ft_putstr_fd(": command not found\n", STDERR_FILENO);
+			free_array(all_envs);
+			free(cmd);
+			free(path);
 			clear_all_to_exit_smoothly();
 			exit(exit_status_holder(127, true));
 		}
