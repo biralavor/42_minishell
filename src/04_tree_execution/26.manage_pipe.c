@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/28 13:51:49 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/09/13 12:49:15 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/09/13 16:11:05 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ void	exec_1st_child(t_tree *left, int *new_pipe)
 
 bool	child_process_is_running(bool update, bool caller)
 {
-	bool static child_process_holder;
+	static bool child_process_holder;
 
 	if (update)
 		child_process_holder = caller;
