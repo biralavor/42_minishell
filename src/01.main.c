@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   01.simple_main.c                                   :+:      :+:    :+:   */
+/*   01.main.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 10:53:12 by umeneses          #+#    #+#             */
-/*   Updated: 2024/09/12 11:07:31 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/09/13 09:42:51 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,9 @@ int	main(int ac, char **av, char **envp)
 		ft_printf(CYAN"It's a kind of magic, but not that much!\n"RESET);
 		exit (EXIT_FAILURE);
 	}
-	environment_init(envp);
 	// INIT_SIGNALS
 	// get_tty_proprieties
+	environment_init(envp);
 	while (true)
 	{
 		// set_tty_proprieties
