@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/27 12:53:52 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/09/12 14:45:50 by tmalheir         ###   ########.fr       */
+/*   Updated: 2024/09/13 09:17:56 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,6 @@ void			organize_redirects(t_token_list **lst);
 void			move(t_token_list **lst, t_token_list *src, t_token_list *dst);
 
 /*CHECK_REDIRECTS_UTILS*/
-
 
 /**
  * @brief Finds the index of the token to be moved.
