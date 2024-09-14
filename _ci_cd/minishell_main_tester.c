@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 11:12:53 by umeneses          #+#    #+#             */
-/*   Updated: 2024/09/13 10:20:58 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/09/14 13:26:26 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,17 +73,17 @@
 #include "../_tdd_utils/get_token_string.c"
 
 #include "minunit_utils.c"
-#include "test01_initial_errors.c"
-#include "test02_create_token.c"
-#include "test03_tokens_01_to_02.c"
-#include "test04_tokens_03_to_05.c"
-#include "test05_tokens_06_to_10.c"
-#include "test06_tokens_cadet.c"
-#include "test07_syntax_state100.c"
-#include "test08_syntax_state200.c"
-#include "test09_syntax_state300.c"
-#include "test10_syntax_state400.c"
-#include "test11_syntax_redirects.c"
+#include "./test_files/test01_initial_errors.c"
+#include "./test_files/test02_create_token.c"
+#include "./test_files/test03_tokens_01_to_02.c"
+#include "./test_files/test04_tokens_03_to_05.c"
+#include "./test_files/test05_tokens_06_to_10.c"
+#include "./test_files/test06_tokens_cadet.c"
+#include "./test_files/test07_syntax_state100.c"
+#include "./test_files/test08_syntax_state200.c"
+#include "./test_files/test09_syntax_state300.c"
+#include "./test_files/test10_syntax_state400.c"
+#include "./test_files/test11_syntax_redirects.c"
 
 int	main(void)
 {
