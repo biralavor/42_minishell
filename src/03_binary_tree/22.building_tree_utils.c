@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   20.building_tree_utils.c                           :+:      :+:    :+:   */
+/*   22.building_tree_utils.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 15:02:59 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/09/12 14:50:22 by tmalheir         ###   ########.fr       */
+/*   Updated: 2024/09/14 14:16:51 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,13 +44,13 @@ t_token_list	*go_to_first_node(t_token_list *lst)
 	return (node);
 }
 
-t_tree	*tree_holder(t_tree *tree, bool clear)
+t_tree	*tree_holder(t_tree *tree, bool clear_tree)
 {
 	static t_tree	*tree_holder;
 
 	if (tree)
 		tree_holder = tree;
-	else if (tree_holder && clear)
+	else if (tree_holder && clear_tree)
 	{
 		free_token_tree(tree_holder);
 		tree_holder = NULL;

@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/05 13:56:37 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/09/13 11:20:35 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/09/14 14:17:15 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ typedef struct s_tree
 */
 t_tree			*initiate_tree(t_token_list *lst);
 
-t_tree			*tree_holder(t_tree *tree, bool clear);
+t_tree			*tree_holder(t_tree *tree, bool clear_tree);
 
 t_tree			*build_tree_recursive(t_token_list **lst);
 
