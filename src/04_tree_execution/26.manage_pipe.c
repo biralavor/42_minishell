@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/28 13:51:49 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/09/13 16:11:05 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/09/14 14:08:37 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,9 +61,9 @@ bool	child_process_is_running(bool update, bool caller)
 {
 	static bool child_process_holder;
 
-	if (update)
+	if (update && caller)
 		child_process_holder = caller;
-	if (caller)
+	else if (caller)
 		return (child_process_holder);
 	return (child_process_holder);	
 }
