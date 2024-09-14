@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   expansion_home.c                                   :+:      :+:    :+:   */
+/*   32.expansion_tilde.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 16:11:20 by umeneses          #+#    #+#             */
-/*   Updated: 2024/09/09 22:11:34 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/09/14 18:53:14 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ char	*expansion_tilde_to_home(char *lexeme)
 			lexeme[0] = '\0';
 		home_path = lookup_table(env_holder(NULL, false, false), "HOME")->value;
 		new_lexeme = ft_strjoin(home_path, lexeme);
+		free(lexeme);
 	}
 	return (new_lexeme);
 }
