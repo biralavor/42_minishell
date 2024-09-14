@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   27.manage_single_cmd.c                             :+:      :+:    :+:   */
+/*   28.manage_single_cmd.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/16 09:43:43 by umeneses          #+#    #+#             */
-/*   Updated: 2024/09/12 18:54:09 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/09/14 14:54:40 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,9 @@ int	manage_single_command(t_tree *tree)
 			return (exit_status);
 		}
 		exit_status = command_runner(cmd); // trocar por exit_holder
+		if (exit_status_holder(0, false) == 177)
+			free(cmd);
+		free_array(cmd);
 	}
 	// verify if !cmd[0]
 	// verify exit_status_holder()

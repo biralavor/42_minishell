@@ -6,48 +6,46 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 18:51:30 by umeneses          #+#    #+#             */
-/*   Updated: 2024/09/13 12:47:08 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/09/14 15:30:35 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	fork_and_execve(char **cmd, char *path)
+void	fork_and_execve(char **cmd, char *path)
 {
-	int		exit_status;
 	char	**all_envs;
 	pid_t	pid;
 
-	all_envs = convert_envs_to_array(env_holder(NULL, false, false));
 	if (child_process_is_running(false, true))
 	{
 		env_holder(NULL, false, true);
 		rl_clear_history();
 	}
+	all_envs = convert_envs_to_array(env_holder(NULL, false, false));
 	pid = fork();
 	if (pid == -1)
-		return (fork_error());
+		fork_error();
+	child_process_is_running(true, true);
 	if (pid == 0)
 	{
-		// env_holder(NULL, false, true);
-		// rl_clear_history();
-		// check signals
-		execve(path, cmd, all_envs);
-		if (errno == ENOENT)
-		{
-			ft_putstr_fd(cmd[0], STDERR_FILENO);
-			ft_putstr_fd(": command not found\n", STDERR_FILENO);
-			clear_all_to_exit_smoothly();
-			exit(exit_status_holder(127, true));
-		}
-		// else // outro tipo de erro
-		// {
-		// 	ft_printf("%s: %s\n", cmd[0], strerror(errno));
-		// }
+		exit_status_holder(execve(path, cmd, all_envs), true);
+		if (exit_status_holder(0, false) != 0)
+			execve_error_manager(cmd, all_envs, path);
 	}
+	pid_exit_status_caller(pid);
 	free_array(all_envs);
-	waitpid(pid, &exit_status, 0);
-	return (exit_status_holder(exit_status, true));
+}
+
+void	execve_error_manager(char **cmd, char **all_envs, char *path)
+{
+	ft_putstr_fd(cmd[0], STDERR_FILENO);
+	ft_putstr_fd(": command not found\n", STDERR_FILENO);
+	free_array(all_envs);
+	free(path);
+	free(cmd);
+	clear_all_to_exit_smoothly();
+	exit(exit_status_holder(127, true));
 }
 
 char	*lookup_cmd_path(char *cmd_name)
@@ -82,9 +80,9 @@ int	command_runner(char **cmd)
 	path = lookup_cmd_path(cmd[0]);
 	if (path)
 	{
-		exit_status = fork_and_execve(cmd, path);
-		free(path);
+		fork_and_execve(cmd, path);
+		if (exit_status_holder(0, false) == 0)
+			free(path);
 	}
-	free_array(cmd);
 	return (exit_status);
 }

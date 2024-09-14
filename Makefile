@@ -266,7 +266,7 @@ go:					all
 					./$(NAME)
 
 gdb:				all
-					gdb --tui -ex 'b main' -ex 'run' ./$(NAME)
+					gdb --tui -ex 'b main' -ex 'set follow-fork-mode child' -ex 'run' ./$(NAME)
 
 val:				all
 					valgrind --leak-check=full --track-origins=yes --track-fds=yes --show-reachable=yes --suppressions=readline.sup ./$(NAME)

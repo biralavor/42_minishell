@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   expansion_env_var.c                                :+:      :+:    :+:   */
+/*   33.expansion_env_var.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/27 12:39:23 by umeneses          #+#    #+#             */
-/*   Updated: 2024/09/12 10:08:47 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/09/14 15:39:53 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,7 +123,7 @@ char	*merging_array_lexeme(char **arr_lex)
 		idx++;
 	}
 	while (arr_lex[idx])
-	{	
+	{
 		merged_lex = ft_strjoin(merged_lex, arr_lex[idx]);
 		idx++;
 	}

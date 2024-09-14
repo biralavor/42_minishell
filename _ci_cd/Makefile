@@ -6,7 +6,7 @@
 #    By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/12 11:46:22 by umeneses          #+#    #+#              #
-#    Updated: 2024/08/15 15:04:29 by umeneses         ###   ########.fr        #
+#    Updated: 2024/09/14 13:21:40 by umeneses         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,7 +26,7 @@ RESET			:= \033[0m
 #								PATHS										   #
 # **************************************************************************** #
 
-TEST_D				= ./test_files/
+TEST_D				= ./
 BUILD_D				= ./test_build/
 PROGRAM_TO_TEST_D	= ../
 LIBFT_D				= $(PROGRAM_TO_TEST_D)libs/libft/

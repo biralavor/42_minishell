@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   27.builtins_export.c                               :+:      :+:    :+:   */
+/*   43.builtin_export.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 13:23:46 by umeneses          #+#    #+#             */
-/*   Updated: 2024/09/06 17:00:10 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/09/14 15:39:30 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void	builtins_runner_export(char *arg)
 		ft_env_printer_classic(env_sorted);
 	}
 	else if (state == 404)
-	{	
+	{
 		write(2, "minishell: export: `", 20);
 		write(2, arg, ft_strlen(arg));
 		write(2, "': not a valid identifier\n", 26);
