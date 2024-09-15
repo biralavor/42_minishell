@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 12:58:03 by umeneses          #+#    #+#             */
-/*   Updated: 2024/09/15 14:46:18 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/09/15 15:21:25 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 t_env_entry	*goto_head_env_table(t_env_entry *table)
 {
-	while (table)
+	while (table->prev)
 	{
 		if (table->prev == NULL)
 			break ;
@@ -25,7 +25,7 @@ t_env_entry	*goto_head_env_table(t_env_entry *table)
 
 t_env_entry	*goto_end_env_table(t_env_entry *table)
 {
-	while (table)
+	while (table->next)
 	{
 		if (table->next == NULL)
 			break ;
