@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 13:23:46 by umeneses          #+#    #+#             */
-/*   Updated: 2024/09/15 17:20:19 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/09/15 17:56:54 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,9 +38,10 @@ void	builtins_runner_export(char *arg)
 	}
 	else if (state == 404)
 	{
-		write(2, "minishell: export: `", 20);
-		write(2, arg, ft_strlen(arg));
-		write(2, "': not a valid identifier\n", 26);
+		ft_putstr_fd("minishell: export: `", STDERR_FILENO);
+		ft_putstr_fd(arg, STDERR_FILENO);
+		ft_putendl_fd("': not a valid identifier", STDERR_FILENO);
+		exit_status_holder(1, true);
 	}
 }
 
