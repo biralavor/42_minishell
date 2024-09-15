@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 10:58:32 by umeneses          #+#    #+#             */
-/*   Updated: 2024/09/13 12:10:05 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/09/15 13:31:21 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,29 +81,29 @@ t_env_entry	*env_holder(t_env_entry *table, bool update, bool clear_table)
 	return (env_table_holder);
 }
 
-t_env_entry	*addto_env_table(t_env_entry *table, const char *key,
-							const char *value)
+t_env_entry	*create_new_entry(const char *key, const char *value, int size)
 {
 	t_env_entry	*new_entry;
-	t_env_entry	*tmp;
 
-	new_entry = alloc_table(table->size);
+	new_entry = alloc_table(size);
+	if (!new_entry)
+	{
+		ft_putendl_fd("Error: Could not create new entry", 2);
+		exit (EXIT_FAILURE);
+	}
 	new_entry->key = ft_strdup(key);
 	new_entry->value = ft_strdup(value);
-	if (table->next == NULL && table->prev == NULL
-		&& table->key == NULL && table->value == NULL)
+	return (new_entry);
+}
+
+void	addto_env_table(t_env_entry **table, t_env_entry *new_entry)
+{
+	if (table && new_entry)
 	{
-		free(table->key);
-		free(table->value);
-		free(table);
-		return (new_entry);
-	}
-	else
-	{
-		tmp = goto_end_env_table(table);
-		new_entry->prev = tmp;
-		tmp->next = new_entry;
-		return (table);
+		if (!*table)
+			*table = new_entry;
+		else
+			goto_end_env_table(*table)->next = new_entry;
 	}
 }
 

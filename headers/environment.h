@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/16 16:34:20 by umeneses          #+#    #+#             */
-/*   Updated: 2024/09/15 13:21:00 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/09/15 13:31:36 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,12 +45,12 @@ void			environment_init(char **envp);
  */
 t_env_entry		*alloc_table(int init_size);
 
+t_env_entry	*create_new_entry(const char *key, const char *value, int size);
+
 /**
- * @brief Adds a new entry to the environment table. If the table is NULL,
- * then it returns the new_entry. Otherwise, it will iterate through the table.
+ * @brief Adds a new entry to the environment table.
  */
-t_env_entry		*addto_env_table(t_env_entry *table, const char *key,
-					const char *value);
+void		addto_env_table(t_env_entry **table, t_env_entry *new_entry);
 
 /**
  * @brief Removes an entry from the environment table.
