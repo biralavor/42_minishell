@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 10:58:32 by umeneses          #+#    #+#             */
-/*   Updated: 2024/09/15 13:31:21 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/09/15 13:35:03 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	environment_init(char **envp)
 		{
 			key = ft_substr(*envp, 0, equal_sign - *envp);
 			value = ft_strdup(equal_sign + 1);
-			env_table = addto_env_table(env_table, key, value);
+			addto_env_table(&env_table, create_new_entry(key, value, env_table->size));
 			free(key);
 			free(value);
 		}
