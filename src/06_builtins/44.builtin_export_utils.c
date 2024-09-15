@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 13:23:46 by umeneses          #+#    #+#             */
-/*   Updated: 2024/09/15 14:02:23 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/09/15 14:58:19 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,10 @@ void	ft_env_printer_classic(t_env_entry *env_vars)
 	tmp = env_vars;
 	while (tmp)
 	{
-		ft_printf("declare -x %s=%s\n", tmp->key, tmp->value);
+		ft_putstr_fd("declare -x ", STDOUT_FILENO);
+		ft_putstr_fd(tmp->key, STDOUT_FILENO);
+		ft_putstr_fd("=", STDOUT_FILENO);
+		ft_putendl_fd(tmp->value, STDOUT_FILENO);
 		tmp = tmp->next;
 	}
 }
