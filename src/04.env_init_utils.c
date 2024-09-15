@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 12:58:03 by umeneses          #+#    #+#             */
-/*   Updated: 2024/09/13 12:09:55 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/09/15 13:20:51 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,22 +34,6 @@ t_env_entry	*goto_end_env_table(t_env_entry *table)
 		table = table->next;
 	}
 	return (table);
-}
-
-unsigned long	hash_maker(const char *key, int size)
-{
-	unsigned long	hash;
-	int				c;
-
-	hash = 5381;
-	c = *key;
-	while (c != '\0')
-	{
-		hash = ((hash << 5) + hash) + c;
-		key++;
-		c = *key;
-	}
-	return (hash % size);
 }
 
 void	free_env_table(t_env_entry **table)
