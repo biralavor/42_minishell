@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 13:23:46 by umeneses          #+#    #+#             */
-/*   Updated: 2024/09/15 17:20:09 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/09/15 18:14:06 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,28 @@ void	arg_handle_runner(t_env_entry *env_vars, char *arg)
 		var_key = ft_strdup(arg);
 		var_value = ft_strdup("");
 	}
-	addto_env_table(&env_vars, create_new_entry(var_key, var_value, env_vars->size));
+	if (lookup_table(env_vars, var_key))
+		replace_env_var(env_vars, var_key, var_value);
+	else
+		addto_env_table(&env_vars, create_new_entry(var_key, var_value, env_vars->size));
 	free(var_key);
 	free(var_value);
 	// env_holder(env_vars, true, false);
+}
+
+void	replace_env_var(t_env_entry *env_vars, char *var_key, char *var_value)
+{
+	while (env_vars)
+	{
+		if (ft_strncmp(env_vars->key, var_key, ft_strlen(var_key)) == 0)
+		{
+			free(env_vars->value);
+			env_vars->value = ft_strdup(var_value);
+			break ;
+		}
+		env_vars = env_vars->next;
+	}
+	env_vars = goto_head_env_table(env_vars);
 }
 
 int	arg_handle_state_detector(int state, char *arg)
