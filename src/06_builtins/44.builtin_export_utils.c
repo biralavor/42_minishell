@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 13:23:46 by umeneses          #+#    #+#             */
-/*   Updated: 2024/09/15 14:58:19 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/09/15 17:20:09 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,16 +37,21 @@ void	arg_handle_runner(t_env_entry *env_vars, char *arg)
 
 int	arg_handle_state_detector(int state, char *arg)
 {
+	int idx;
+
+	idx = 0;
 	if (!arg)
 		return (state = 0);
-	else if (arg[0] >= 'A' && arg[0] <= 'Z')
-		return (state = 100);
-	else if (arg[0] == '_')
-		return (state = 101);
-	else if (arg[0] >= 'a' && arg[0] <= 'z')
-		return (state = 200);
-	else
-		return (state = 404);
+	else if (env_var_key_rules_at_start(arg[idx]))
+	{
+		while (++idx)
+		{
+			if (env_var_key_rules_at_middle(arg[idx]))
+				if (arg[idx + 1] == '\0')
+					return (state = 100);
+		}
+	}
+	return (state = 404);
 }
 
 void	ft_env_printer_classic(t_env_entry *env_vars)

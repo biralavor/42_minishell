@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 13:23:46 by umeneses          #+#    #+#             */
-/*   Updated: 2024/09/15 16:48:38 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/09/15 17:20:19 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	builtins_runner_export(char *arg)
 		env_sorted = builtins_env_sort_manager(env_holder(NULL, false, false));
 		ft_env_printer_classic(env_sorted);
 	}
-	else if (state == 100 || state == 101 || state == 200)
+	else if (state == 100)
 	{
 		arg_handle_runner(env_holder(NULL, false, false), arg);
 		env_sorted = builtins_env_sort_manager(env_holder(NULL, false, false));
