@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 13:23:46 by umeneses          #+#    #+#             */
-/*   Updated: 2024/09/15 17:56:54 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/09/15 21:59:16 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,21 +19,21 @@ void	builtins_runner_export(char *arg)
 {
 	int			state;
 	t_env_entry	*env_sorted;
-	// t_env_entry	*tmp;
+	t_env_entry	*env_copy;
 
 	state = 0;
 	env_sorted = NULL;
-	// tmp = env_holder(NULL, false, false);
+	env_copy = copy_env_table(env_holder(NULL, false, false));
 	state = arg_handle_state_detector(state, arg);
 	if (state == 0)
 	{
-		env_sorted = builtins_env_sort_manager(env_holder(NULL, false, false));
+		env_sorted = builtins_env_sort_manager(env_copy);
 		ft_env_printer_classic(env_sorted);
 	}
 	else if (state == 100)
 	{
-		arg_handle_runner(env_holder(NULL, false, false), arg);
-		env_sorted = builtins_env_sort_manager(env_holder(NULL, false, false));
+		arg_handle_runner(env_copy, arg);
+		env_sorted = builtins_env_sort_manager(env_copy);
 		ft_env_printer_classic(env_sorted);
 	}
 	else if (state == 404)
@@ -43,6 +43,28 @@ void	builtins_runner_export(char *arg)
 		ft_putendl_fd("': not a valid identifier", STDERR_FILENO);
 		exit_status_holder(1, true);
 	}
+	free_env_table(&env_sorted);
+}
+
+t_env_entry	*copy_env_table(t_env_entry *env_vars)
+{
+	t_env_entry	*env_copy;
+	t_env_entry	*head;
+	t_env_entry	*curr;
+
+	env_copy = create_new_entry(env_vars->key, env_vars->value, env_vars->size);
+	if (!env_vars)
+		return (NULL);
+	head = env_vars->next;
+	curr = env_copy;
+	while (head != NULL)
+	{
+		curr->next = create_new_entry(head->key, head->value, head->size);
+		curr->next->prev = curr;
+		curr = curr->next;
+		head = head->next;
+	}
+	return (env_copy);
 }
 
 t_env_entry	*builtins_env_sort_manager(t_env_entry *current)
