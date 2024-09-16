@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   21.building_tree.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/05 13:55:37 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/09/14 15:41:24 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/09/16 09:16:27 by tmalheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,11 +70,11 @@ t_token_list	*fetch_token(t_token_list *lst)
 		temp = temp->prev;
 	if (temp && (is_redirect(temp->type)))
 		return (temp);
-/*	temp = go_to_first_node(lst);
+	temp = go_to_first_node(lst);
 	while (temp && temp->type != SUBSHELL)
 		temp = temp->next;
 	if (temp && temp->type == SUBSHELL)
-		return (temp);*/
+		return (temp);
 	return (NULL);
 }
 

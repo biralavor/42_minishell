@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   executor.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/05 13:56:37 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/09/14 15:31:11 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/09/16 09:26:40 by tmalheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,9 +94,9 @@ bool			child_process_is_running(bool update, bool caller);
 
 int				pipe_execution(char **cmd, char *path);
 
-/*MANAGE REDIRECTS FUNCTIONS*/
-
 int				manage_redirect(t_tree *tree, int flag);
+
+int				manage_subshell(t_tree *tree);
 
 /*PRINTING FUNCTIONS (TO DELETE)*/
 
