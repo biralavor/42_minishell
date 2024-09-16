@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 10:58:32 by umeneses          #+#    #+#             */
-/*   Updated: 2024/09/15 16:35:09 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/09/15 21:20:53 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,7 @@ void	environment_init(char **envp)
 	char		*equal_sign;
 	t_env_entry	*env_table;
 
-	env_table = alloc_table(ft_array_len(envp));
-	if (!env_table)
-	{
-		ft_putendl_fd("Error: Could not create environment table", STDERR_FILENO);
-		exit (exit_status_holder(1, true));
-	}
+	env_table = NULL;
 	while (envp && *envp)
 	{
 		equal_sign = ft_strchr(*envp, '=');
@@ -32,7 +27,7 @@ void	environment_init(char **envp)
 		{
 			key = ft_substr(*envp, 0, equal_sign - *envp);
 			value = ft_strdup(equal_sign + 1);
-			addto_env_table(&env_table, create_new_entry(key, value, env_table->size));
+			addto_env_table(&env_table, create_new_entry(key, value, ft_array_len(envp)));
 			free(key);
 			free(value);
 		}
@@ -62,7 +57,6 @@ t_env_entry	*env_holder(t_env_entry *table, bool update, bool clear_table)
 
 	if (table)
 	{
-		table = goto_head_env_table(table);
 		if (!env_table_holder && table->key)
 			env_table_holder = table;
 		else if (env_table_holder && table->key && update)
@@ -74,9 +68,8 @@ t_env_entry	*env_holder(t_env_entry *table, bool update, bool clear_table)
 	}
 	else if (env_table_holder && clear_table)
 	{
-		env_table_holder = goto_head_env_table(env_table_holder);
 		free_env_table(&env_table_holder);
-		env_table_holder = NULL;
+		free(env_table_holder);
 	}
 	return (env_table_holder);
 }
@@ -100,7 +93,7 @@ void	addto_env_table(t_env_entry **table, t_env_entry *new_entry)
 {
 	if (table && new_entry)
 	{
-		if (!(*table)->key)
+		if (!(*table))
 			*table = new_entry;
 		else
 		{
