@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 14:57:00 by umeneses          #+#    #+#             */
-/*   Updated: 2024/09/12 11:05:20 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/09/15 18:11:40 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,7 @@ void		builtins_runner_export(char *arg);
  * @param env_vars the environment variables.
  * @param arg the argument to be handled, a lexeme from t_token_list.
 */
-t_env_entry	*arg_handle_runner(t_env_entry *env_vars, char *arg);
+void		arg_handle_runner(t_env_entry *env_vars, char *arg);
 
 /**
  * @brief: Handles the state of the argument to be exported.
@@ -104,6 +104,8 @@ t_env_entry	*arg_handle_runner(t_env_entry *env_vars, char *arg);
  * @param state the handler state of the argument.
  */
 int			arg_handle_state_detector(int state, char *arg);
+
+void		replace_env_var(t_env_entry *env_vars, char *var_key, char *var_value);
 
 /**
  * @brief: Runs the unset - remove an environment variable - builtin command.

@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 13:23:46 by umeneses          #+#    #+#             */
-/*   Updated: 2024/09/14 15:39:30 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/09/15 17:56:54 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,28 +19,29 @@ void	builtins_runner_export(char *arg)
 {
 	int			state;
 	t_env_entry	*env_sorted;
-	t_env_entry	*tmp;
+	// t_env_entry	*tmp;
 
 	state = 0;
 	env_sorted = NULL;
-	tmp = env_holder(NULL, false, false);
+	// tmp = env_holder(NULL, false, false);
 	state = arg_handle_state_detector(state, arg);
 	if (state == 0)
 	{
-		env_sorted = builtins_env_sort_manager(tmp);
+		env_sorted = builtins_env_sort_manager(env_holder(NULL, false, false));
 		ft_env_printer_classic(env_sorted);
 	}
-	else if (state == 100 || state == 101 || state == 200)
+	else if (state == 100)
 	{
-		tmp = arg_handle_runner(tmp, arg);
-		env_sorted = builtins_env_sort_manager(tmp);
+		arg_handle_runner(env_holder(NULL, false, false), arg);
+		env_sorted = builtins_env_sort_manager(env_holder(NULL, false, false));
 		ft_env_printer_classic(env_sorted);
 	}
 	else if (state == 404)
 	{
-		write(2, "minishell: export: `", 20);
-		write(2, arg, ft_strlen(arg));
-		write(2, "': not a valid identifier\n", 26);
+		ft_putstr_fd("minishell: export: `", STDERR_FILENO);
+		ft_putstr_fd(arg, STDERR_FILENO);
+		ft_putendl_fd("': not a valid identifier", STDERR_FILENO);
+		exit_status_holder(1, true);
 	}
 }
 

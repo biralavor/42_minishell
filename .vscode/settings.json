@@ -1,6 +1,10 @@
 {
 	"files.associations": {
 		"minishell.h": "c",
-		"error_manager.h": "c"
+		"error_manager.h": "c",
+		"array": "c",
+		"string_view": "c",
+		"initializer_list": "c",
+		"utility": "c"
 	}
 }

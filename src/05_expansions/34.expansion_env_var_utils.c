@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   33.expansion_env_var_utils.c                       :+:      :+:    :+:   */
+/*   34.expansion_env_var_utils.c                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 10:02:37 by umeneses          #+#    #+#             */
-/*   Updated: 2024/09/12 19:13:15 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/09/15 17:17:00 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ bool	env_var_key_rules_at_start(char c)
 
 bool	env_var_key_rules_at_middle(char c)
 {
-	if (ft_isdigit(c) || ft_isalpha(c) || c == '_')
+	if (ft_isdigit(c) || env_var_key_rules_at_start(c))
 		return (true);
 	return (false);
 }
