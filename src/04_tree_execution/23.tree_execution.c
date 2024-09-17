@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   22.tree_execution.c                                :+:      :+:    :+:   */
+/*   23.tree_execution.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 18:09:53 by umeneses          #+#    #+#             */
-/*   Updated: 2024/09/12 18:37:16 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/09/16 09:13:30 by tmalheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,8 @@ int	tree_execution(t_tree *tree, int flag)
 		exit_status = manage_pipe(tree);
 	else if (is_redirect(tree->type))
 		exit_status = manage_redirect(tree, flag);
-/*
 	else if (tree->type == SUBSHELL)
-		manage_subshell(tree);
-*/
+		exit_status = manage_subshell(tree);
 	else if (tree->type == WORD)
 		exit_status = manage_single_command(tree);
 	return (exit_status);
