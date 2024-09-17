@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/28 13:55:02 by umeneses          #+#    #+#             */
-/*   Updated: 2024/09/12 09:59:31 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/09/17 17:20:48 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,13 @@ typedef struct s_new_lex
 }						t_new_lex;
 
 void	expansion_manager(t_token_list *cmd);
+int		next_char_counter(t_token_list *cmd);
 
 bool	expansion_quotes_detector(t_token_list *cmd);
-char	*expansion_quotes_runner(char *lexeme);
-char	*expansion_new_lexeme_after_quotes(char *lexeme, char *new_lexeme);
+char	*expansion_quotes_manager(t_token_list *cmd);
+char	*expansion_boundary_quotes_runner(char *lexeme, char *new_lexeme);
+char	*expansion_inside_quotes_runner(t_token_list *cmd, char *new_lexeme);
+void	expansion_merging_tokens(t_token_list *cmd);
 
 bool	expansion_tilde_detector(char *lexeme);
 char	*expansion_tilde_to_home(char *lexeme);

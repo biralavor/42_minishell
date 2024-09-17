@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   23.tree_execution.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 18:09:53 by umeneses          #+#    #+#             */
-/*   Updated: 2024/09/16 09:13:30 by tmalheir         ###   ########.fr       */
+/*   Updated: 2024/09/17 09:58:15 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ int	tree_execution(t_tree *tree, int flag)
 	int	exit_status;
 
 	exit_status = 2;
+	ft_lst_printer(tree->command);
 	if (!tree)
 		return (exit_status);
 	else if (tree->type == OR)

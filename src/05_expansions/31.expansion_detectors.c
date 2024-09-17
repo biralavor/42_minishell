@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   expansion_detectors.c                              :+:      :+:    :+:   */
+/*   31.expansion_detectors.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/26 18:31:10 by umeneses          #+#    #+#             */
-/*   Updated: 2024/09/11 16:10:24 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/09/17 12:26:15 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ bool	expansion_dollar_sign_detector(t_token_list *cmd)
 	int	idx;
 
 	idx = 0;
-	while (cmd->lexeme[idx])
+	while (cmd->lexeme && cmd->lexeme[idx] != '\0')
 	{
 		if (cmd->lexeme[idx] == '$')
 			return (true);
