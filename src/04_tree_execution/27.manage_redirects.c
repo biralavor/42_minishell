@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   manage_redirects.c                                 :+:      :+:    :+:   */
+/*   27.manage_redirects.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/04 10:20:13 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/09/11 15:28:49 by tmalheir         ###   ########.fr       */
+/*   Updated: 2024/09/18 15:27:35 by tmalheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ static void	apply_redirect(t_tree *tree, int *fd)
 
 static void	check_if_apply_redirect(t_tree *tree, int *first_redir, int new_fd)
 {
-	if (tree->type == REDIR_IN && !first_redir[0])
+	if ((tree->type == REDIR_IN || tree->type == REDIR_HDOC)&& !first_redir[0])
 	{
 		first_redir[0] = 1;
 		apply_redirect(tree, &new_fd);
