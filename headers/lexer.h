@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 13:32:19 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/09/17 17:12:17 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/09/19 13:17:28 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -151,6 +151,10 @@ int		ft_lst_size(t_token_list *lst);
  * @brief Assigns indexes for each node.
 */
 void	assign_lst_idx(t_token_list *lst);
+
+char	*inside_closed_quotes_remover(char *str);
+
+char	*update_str_if_inside_quotes(char *str);
 
 /**
  * @todo APAGAR ESTA FUNÇÃO NO FINAL DO PROJETO.
