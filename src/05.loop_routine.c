@@ -6,7 +6,7 @@
 /*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 09:20:45 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/09/18 15:21:45 by tmalheir         ###   ########.fr       */
+/*   Updated: 2024/09/20 15:12:49 by tmalheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,13 +101,18 @@ static int	check_delimiter(char *delimiter, int fd, char *input)
 	while (input && ft_strncmp(input, delimiter, (ft_strlen(delimiter) - 1)))
 	{
 		if (input)
-			input = ft_strjoin(input, "\n");
-		write(fd, input, ft_strlen(input));
+		{
+			write(fd, input, ft_strlen(input));
+			write(fd, "\n", 1);
+		}
 		input = readline(">");
 	}
+	if (input)
+		free(input);
 	return (0);
 }
 
+/*
 static char	*path_file(void)
 {
 	static int	file_nbr;
@@ -119,6 +124,30 @@ static char	*path_file(void)
 	free(nbr);
 	return (heredoc_path);
 }
+*/
+
+void	path_file(t_token_list *lst)
+{
+	static int		file_nbr;
+	char			*nbr;
+	char			*pathname;
+	t_token_list	*tmp;
+
+	nbr = ft_itoa(file_nbr);
+	pathname = ft_strjoin("/tmp/heredoc_", nbr);
+	tmp = lst;
+	while (tmp)
+	{
+		if (tmp->type == REDIR_HDOC)
+		{
+			tmp->next->type = ARCHIVE;
+			tmp->next->lexeme = ft_strdup(pathname);
+		}
+		tmp = tmp->next;
+	}
+	free(nbr);
+	free(pathname);
+}
 
 static void	check_heredoc(t_token_list *lst)
 {
@@ -127,7 +156,8 @@ static void	check_heredoc(t_token_list *lst)
 	char			*delimiter;
 	t_token_list	*tmp;
 
-	heredoc_fd = -1;
+	heredoc_fd = 0;
+	heredoc_input = NULL;
 	delimiter = NULL;
 	tmp = lst;
 	while (tmp->next)
@@ -135,8 +165,8 @@ static void	check_heredoc(t_token_list *lst)
 		if (tmp->type == REDIR_HDOC)
 		{
 			delimiter = ft_strdup(tmp->next->lexeme);
-			tmp->next->type = ARCHIVE;
-			tmp->next->lexeme = ft_strdup(path_file());
+			path_file(lst);
+//			tmp->next->lexeme = ft_strdup(path_file());
 			heredoc_fd = open(tmp->next->lexeme, O_CREAT | O_RDWR | O_TRUNC, 0644);
 			heredoc_input = readline(">");
 			if (!check_delimiter(delimiter, heredoc_fd, heredoc_input))
@@ -144,4 +174,7 @@ static void	check_heredoc(t_token_list *lst)
 		}
 		tmp = tmp->next;
 	}
+	close(heredoc_fd);
+	free(delimiter);
+	free(heredoc_input);
 }
