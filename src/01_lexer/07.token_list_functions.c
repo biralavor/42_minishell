@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 10:52:55 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/09/19 19:52:41 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/09/20 17:25:41 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ bool	create_token_list(char *str, t_token_list **lst)
 	int	idx;
 
 	idx = 0;
-	if (inside_quotes_detector(str) && check_closed_quotes(str))
+	if (check_closed_quotes(str) && inside_quotes_detector(str))
 		str = update_str_if_inside_quotes(str);
 	get_state(idx, str, lst);
 	assign_lst_idx(*lst);
@@ -63,16 +63,18 @@ static bool	inside_quotes_detector(char *str)
 	idx = 0;
 	while (str[idx] != '\0')
 	{
-		if (((str[idx - 1] && str[idx - 1] == ' ') || idx == 0)
+		if (idx > 0 && str[idx - 1] && str[idx - 1] == ' '
+			&& (str[idx] == '"' || str[idx] == '\''))
+			return (false);
+		else if (idx > 0 && str[idx - 1] && str[idx - 1] == '='
 			&&  (str[idx] == '"' || str[idx] == '\''))
 			return (false);
-		else if (str[idx - 1] && str[idx - 1] == '='
-			&&  (str[idx] == '"' || str[idx] == '\''))
+		else if (idx > 0 && str[idx - 1] && str[idx - 1] == '\''
+			&&  str[idx] == '$')
 			return (false);
-		else if (str[idx - 1] && str[idx - 1] == '\'' &&  str[idx] == '$')
-			return (false);
-		else if ((str[idx] == '"' || str[idx] == '\'') && str[idx - 1] != ' '
-			&& str[idx + 1] != '$' && str[idx + 1] != '\0')
+		else if (idx > 0 && (str[idx] == '"' || str[idx] == '\'')
+			&& str[idx - 1] != ' ' && str[idx + 1] != '$'
+			&& str[idx + 1] != '\0')
 			return (true);
 		idx++;
 	}

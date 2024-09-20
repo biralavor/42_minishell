@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   29.builtins_unset.c                                :+:      :+:    :+:   */
+/*   46.builtin_unset.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/14 12:08:16 by umeneses          #+#    #+#             */
-/*   Updated: 2024/09/02 23:04:06 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/09/20 14:54:52 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,39 +14,30 @@
 
 void	builtins_runner_unset(char *arg)
 {
-	t_env_entry	*toremove;
-	t_env_entry	*updated_table;
-
-	toremove = NULL;
-	toremove = lookup_table(env_holder(NULL, false, false), arg);
-	if (toremove)
-	{
-		updated_table = removefrom_env_table(toremove);
-		updated_table = env_holder(updated_table, true, false);
-	}
+	ft_lst_remove_node(env_holder(NULL, false, false), arg);
 }
 
-t_env_entry	*removefrom_env_table(t_env_entry *toremove)
+void	ft_lst_remove_node(t_env_entry *env_table, const char *arg)
 {
-	t_env_entry	*tmp;
+	t_env_entry	*next;
+	t_env_entry	*prev;
 
-	tmp = env_holder(NULL, false, false);
-	while (tmp)
+	next = NULL;
+	prev = NULL;
+	while (env_table != NULL)
 	{
-		if (tmp == toremove)
+		if (ft_strncmp(env_table->key, arg, ft_strlen(env_table->key)) == 0)
 		{
-			if (tmp->prev)
-				tmp->prev->next = tmp->next;
-			if (tmp->next)
-				tmp->next->prev = tmp->prev;
-			// if (tmp == env_vars)
-			// 	env_vars = tmp->next;
-			free(tmp->key);
-			free(tmp->value);
-			// free(tmp);
-			return (tmp);
+			next = env_table->next;
+			prev = env_table->prev;
+			prev->next = next;
+			next->prev = prev;
+			free(env_table->value);
+			free(env_table->key);
+			free(env_table);
+			// env_holder(env_table, true, false);
+			return ;
 		}
-		tmp = tmp->next;
+		env_table = env_table->next;
 	}
-	return (NULL);
 }
