@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   02.check_userinput.c                               :+:      :+:    :+:   */
+/*   05.loop_routine.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 09:20:45 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/09/12 11:22:48 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/09/20 11:54:25 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,11 @@ void	loop_routine(char *str)
 		error_manager_lexer(INITIAL_ERROR);
 	if (!create_token_list(str, &lst))
 		error_manager_lexer(LIST_NOT_CREATED);
+	if (ft_strncmp(lst->lexeme, "", ft_strlen(lst->lexeme)) == 0)
+	{
+		free_token_list(&lst);
+		return ;
+	}
 	if (syntax_analysis(lst))
 	{
 		token_tree = initiate_tree(lst);
