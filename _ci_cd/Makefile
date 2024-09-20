@@ -6,7 +6,7 @@
 #    By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/12 11:46:22 by umeneses          #+#    #+#              #
-#    Updated: 2024/09/14 13:21:40 by umeneses         ###   ########.fr        #
+#    Updated: 2024/09/20 18:48:40 by umeneses         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -68,7 +68,7 @@ CPPFLAGS	= $(addprefix -I, $(HEADERS)) -MMD -MP
 LDFLAGS		= $(addprefix -L, $(dir $(LIBS)))
 LDLIBS		= -lft -ldl -lreadline
 COMP_OBJS	= $(CC) $(CFLAGS) $(CPPFLAGS) -o $@ -c $<
-COMP_EXE	= $(CC) $(CFLAGS) $(CPPFLAGS) -o $(NAME) $(OBJ_FILES) $(LDFLAGS) $(LDLIBS) 
+COMP_EXE	= $(CC) $(CFLAGS) $(CPPFLAGS) $(OBJ_FILES) $(LDFLAGS) $(LDLIBS) -o $(NAME)
 
 # **************************************************************************** #
 #								DEFINES										   #
@@ -136,4 +136,7 @@ fclean:				clean
 
 re:					fclean all
 
-.PHONY:				all clean fclean re bonus
+gdb:				all
+					gdb --tui -ex 'b main' -ex 'set follow-fork-mode child' -ex 'run' ./$(NAME)
+
+.PHONY:				all clean fclean re bonus gdb
