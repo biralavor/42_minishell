@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/20 10:35:11 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/09/19 15:06:28 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/09/20 10:14:23 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,27 +74,14 @@ int	state_80(t_token_list **lst, char *str, int idx)
 	size_t			end;
 	char			*single_quotes;
 	t_token_list	*single_quotes_node;
-	bool			quote_detected;
 
-	quote_detected = false;
 	start = (size_t)idx;
+	idx++;
 	single_quotes_node = (t_token_list *)ft_calloc(1, sizeof(t_token_list));
-	while (str[idx])
-	{
-		if (str[idx - 1] && str[idx - 1] == ' ' && str[idx] == '\'')
-		{
-			ft_memmove(&str[idx], &str[idx + 1], ft_strlen(&str[idx + 1]) + 1);
-			quote_detected = true;
-		}
-		else if (quote_detected && str[idx] == '\'' && str[idx + 1] == '\0')
-		{
-			ft_memmove(&str[idx], &str[idx + 1], ft_strlen(&str[idx + 1]) + 1);
-			quote_detected = false;
-		}
+	while (str[idx] != '\'')
 		idx++;
-	}
 	end = (size_t)idx;
-	single_quotes = ft_strdup((const char *)str + start);
+	single_quotes = ft_substr((char const *)str, start, ((end - start) + 1));
 	single_quotes_node->lexeme = single_quotes;
 	single_quotes_node->type = SINGLE_QUOTES;
 	single_quotes_node->next_char = str[end + 1];
