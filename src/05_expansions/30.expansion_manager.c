@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/26 18:31:10 by umeneses          #+#    #+#             */
-/*   Updated: 2024/09/19 20:06:20 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/09/20 10:04:56 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,15 +19,19 @@ void	expansion_manager(t_token_list *cmd)
 	tmp = cmd;
 	while (tmp != NULL)
 	{
-		if (expansion_tilde_detector(tmp->lexeme))
-			tmp->lexeme = expansion_tilde_to_home(tmp->lexeme);
-		if (expansion_dollar_sign_detector(tmp))
-		{
-			if (expansion_question_mark_detector(tmp->lexeme))
-				tmp->lexeme = expansion_question_mark(tmp->lexeme);
-			tmp->lexeme = expansion_env_var_runner(tmp->lexeme, tmp->type);
-			// if (single_quote_detector(tmp->lexeme))
-			// 	tmp->lexeme = single_quote_remover(tmp->lexeme);
+		if (single_quote_detector(tmp->lexeme))
+			tmp->lexeme = single_quote_remover(tmp->lexeme);
+		else
+		{	
+			if (expansion_tilde_detector(tmp->lexeme))
+				tmp->lexeme = expansion_tilde_to_home(tmp->lexeme);
+			if (expansion_dollar_sign_detector(tmp))
+			{
+				if (expansion_question_mark_detector(tmp->lexeme))
+					tmp->lexeme = expansion_question_mark(tmp->lexeme);
+				if (expansion_dollar_sign_detector(tmp))
+					tmp->lexeme = expansion_env_var_runner(tmp->lexeme, tmp->type);
+			}
 		}
 		tmp = tmp->next;
 	}	
