@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 10:58:32 by umeneses          #+#    #+#             */
-/*   Updated: 2024/09/19 19:02:53 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/09/20 14:50:24 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ t_env_entry	*env_holder(t_env_entry *table, bool update, bool clear_table)
 			env_table_holder = table;
 		}
 	}
-	else if (env_table_holder && clear_table)
+	else if (env_table_holder->key && clear_table)
 	{
 		free_env_table(&env_table_holder);
 		free(env_table_holder);
