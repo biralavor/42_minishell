@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/27 12:39:23 by umeneses          #+#    #+#             */
-/*   Updated: 2024/09/19 19:24:57 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/09/20 10:59:34 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@ char	*expansion_env_var_runner(char *lexeme, int type)
 {
 	char	**arr_lex;
 	char	*merged_lex;
-	int		arr_len;
 	int		c;
 
 	c = 0;
@@ -26,11 +25,10 @@ char	*expansion_env_var_runner(char *lexeme, int type)
 	{
 		if (lexeme[c] == '$' && type == SINGLE_QUOTES)
 			return (lexeme);
-		else if (lexeme[c] == '$' && type != SINGLE_QUOTES && (lexeme[c + 1] != '?'))
+		else if (lexeme[c] == '$' && type != SINGLE_QUOTES
+			&& lexeme[c + 1] && (lexeme[c + 1] != '?'))
 		{
 			arr_lex = ft_split(lexeme, '$');
-			arr_len = ft_array_len(arr_lex);
-			// arr_lex = array_lex_env_key_rules_manager(arr_lex, arr_len);
 			arr_lex = expand_var_from_array(arr_lex);
 			merged_lex = merging_array_lexeme(arr_lex);
 			break ;
