@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 10:52:55 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/09/20 14:14:36 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/09/20 17:25:41 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,15 +63,18 @@ static bool	inside_quotes_detector(char *str)
 	idx = 0;
 	while (str[idx] != '\0')
 	{
-		if (idx == 0 && (str[idx] == '"' || str[idx] == '\''))
+		if (idx > 0 && str[idx - 1] && str[idx - 1] == ' '
+			&& (str[idx] == '"' || str[idx] == '\''))
 			return (false);
 		else if (idx > 0 && str[idx - 1] && str[idx - 1] == '='
 			&&  (str[idx] == '"' || str[idx] == '\''))
 			return (false);
-		else if (idx > 0 && str[idx - 1] && str[idx - 1] == '\'' &&  str[idx] == '$')
+		else if (idx > 0 && str[idx - 1] && str[idx - 1] == '\''
+			&&  str[idx] == '$')
 			return (false);
-		else if (idx > 0 && (str[idx] == '"' || str[idx] == '\'') && str[idx - 1] != ' '
-			&& str[idx + 1] != '$' && str[idx + 1] != '\0')
+		else if (idx > 0 && (str[idx] == '"' || str[idx] == '\'')
+			&& str[idx - 1] != ' ' && str[idx + 1] != '$'
+			&& str[idx + 1] != '\0')
 			return (true);
 		idx++;
 	}
