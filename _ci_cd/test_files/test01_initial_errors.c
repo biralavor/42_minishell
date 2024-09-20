@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 11:12:53 by umeneses          #+#    #+#             */
-/*   Updated: 2024/07/24 13:57:54 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/09/20 18:04:56 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ MU_TEST(check_single_quoting_error_test_tobe_false)
 	userinput_single_quotes = "'This' test 'tests single quotes";
 	expected_return_single_quotes = false;
 
-	actual_return_single_quotes = check_closed_single_quotes(userinput_single_quotes);
+	actual_return_single_quotes = check_closed_quotes(userinput_single_quotes);
 
 	// ASSERT -> check if the function worked as expected
 	mu_assert_int_eq(expected_return_single_quotes, actual_return_single_quotes);
@@ -104,7 +104,7 @@ MU_TEST(check_single_quoting_error_test_tobe_true)
 	userinput_single_quotes = "'This' test 'tests single' quotes";
 	expected_return_single_quotes = true;
 
-	actual_return_single_quotes = check_closed_single_quotes(userinput_single_quotes);
+	actual_return_single_quotes = check_closed_quotes(userinput_single_quotes);
 
 	// ASSERT -> check if the function worked as expected
 	mu_assert_int_eq(expected_return_single_quotes, actual_return_single_quotes);
@@ -121,7 +121,7 @@ MU_TEST(check_double_quoting_error_test_tobe_true)
 	userinput_double_quotes = "\"This test tests double quotes\"";
 	expected_return_double_quotes = true;
 
-	actual_return_double_quotes = check_closed_double_quotes(userinput_double_quotes);
+	actual_return_double_quotes = check_closed_quotes(userinput_double_quotes);
 
 	// ASSERT -> check if the function worked as expected
 	mu_assert_int_eq(expected_return_double_quotes, actual_return_double_quotes);
@@ -138,7 +138,7 @@ MU_TEST(check_double_quoting_error_test_tobe_false)
 	userinput_double_quotes = "\"This test tests double quotes";
 	expected_return_double_quotes = false;
 
-	actual_return_double_quotes = check_closed_double_quotes(userinput_double_quotes);
+	actual_return_double_quotes = check_closed_quotes(userinput_double_quotes);
 
 	// ASSERT -> check if the function worked as expected
 	mu_assert_int_eq(expected_return_double_quotes, actual_return_double_quotes);
@@ -235,7 +235,7 @@ MU_TEST(testing_lexeme_MIXED_quotes_double_is_even_single_is_odd_counter_error)
 	fd = 0;
 	open_redirect_stderr_to_dev_null(fd);
 	userinput = "Mussum Ipsum \"cacilds\" \'vidis litro abertis";
-	xpect_lexeme_validation = false; // checking if quotes pass or not
+	xpect_lexeme_validation = true; // checking if quotes pass or not
 
 	actual_lexeme_validation = check_initial_errors(userinput);
 

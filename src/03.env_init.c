@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 10:58:32 by umeneses          #+#    #+#             */
-/*   Updated: 2024/09/15 21:20:53 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/09/20 14:50:24 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ t_env_entry	*env_holder(t_env_entry *table, bool update, bool clear_table)
 			env_table_holder = table;
 		}
 	}
-	else if (env_table_holder && clear_table)
+	else if (env_table_holder->key && clear_table)
 	{
 		free_env_table(&env_table_holder);
 		free(env_table_holder);
@@ -110,7 +110,7 @@ t_env_entry	*lookup_table(t_env_entry *table, char *key)
 	entry = goto_head_env_table(table);
 	while (entry != NULL)
 	{
-		if (ft_strncmp(entry->key, key, ft_strlen(key)) == 0)
+		if (ft_strncmp(entry->key, key, ft_strlen(entry->key)) == 0)
 			return (entry);
 		entry = entry->next;
 	}

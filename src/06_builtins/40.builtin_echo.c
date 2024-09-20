@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   24.builtins_echo.c                                 :+:      :+:    :+:   */
+/*   40.builtin_echo.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 13:23:46 by umeneses          #+#    #+#             */
-/*   Updated: 2024/09/03 12:34:01 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/09/20 10:27:53 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,27 +14,31 @@
 
 void	builtins_runner_echo(t_token_list *lst, bool arg_option)
 {
+	short int		space;
 	t_token_list	*cmd;
 
 	cmd = lst->next;
-	if (NULL == cmd)
+	space = 0;
+	if (NULL == cmd || (cmd && cmd->lexeme == NULL))
 	{
-		write(1, "\n", 1);
+		write(STDOUT_FILENO, "\n", 1);
 		return ;
 	}
 	if (checking_cmd_arg_options(cmd->lexeme, "-n"))
 		cmd = cmd->next;
 	while (cmd)
 	{
+		if (space)
+			ft_putstr_fd(" ", STDOUT_FILENO);
+		else
+			space++;
 		ft_putstr_fd(cmd->lexeme, STDOUT_FILENO);
 		if (NULL == cmd->next)
 			break ;
-		else
-			ft_putstr_fd(" ", STDOUT_FILENO);
 		cmd = cmd->next;
 	}
 	arg_option = arg_option_holder(false, true);
 	if (!arg_option)
-		write(1, "\n", 1);
+		write(STDOUT_FILENO, "\n", 1);
 	exit_status_holder(0, true);
 }

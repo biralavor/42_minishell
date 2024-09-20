@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   builtins_exit_utils.c                              :+:      :+:    :+:   */
+/*   49.builtin_exit_utils.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 13:23:46 by umeneses          #+#    #+#             */
-/*   Updated: 2024/09/05 11:38:30 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/09/20 11:23:58 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,15 +15,17 @@
 int	exit_valid_code_manager(char *lexeme)
 {
 	int		exit_code;
+	int		atoi_code;
 
 	exit_code = 0;
+	atoi_code = 0;
 	exit_code = long_long_overflow_validation(lexeme);
 	if (exit_code != 2)
 	{
-		exit_code = ft_atoi(lexeme);
-		if (exit_code == 1 && ft_strlen(lexeme) == MIN_LEN_CODE)
+		atoi_code = ft_atoi(lexeme);
+		if (atoi_code == 1 && ft_strlen(lexeme) == MIN_LEN_CODE)
 			long_long_min_detected(true, false);
-		exit_code = exit_code % 256;
+		exit_code = atoi_code % 256;
 	}
 	return (exit_code);
 }

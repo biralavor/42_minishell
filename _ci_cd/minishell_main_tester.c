@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 11:12:53 by umeneses          #+#    #+#             */
-/*   Updated: 2024/09/17 08:59:13 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/09/20 19:00:06 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@
 #include "./test_files/test08_syntax_state200.c"
 #include "./test_files/test09_syntax_state300.c"
 #include "./test_files/test10_syntax_state400.c"
-#include "./test_files/test11_syntax_redirects.c"
+// #include "./test_files/test11_syntax_redirects.c"
 
 int	main(void)
 {

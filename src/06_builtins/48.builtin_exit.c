@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   47.builtin_exit.c                                  :+:      :+:    :+:   */
+/*   48.builtin_exit.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 13:23:46 by umeneses          #+#    #+#             */
-/*   Updated: 2024/09/14 14:23:58 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/09/20 11:17:10 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	builtins_runner_exit(t_token_list *lst)
 
 	cmd = lst->next;
 	exit_code = 0;
-	if (cmd && cmd->type == WORD)
+	if (cmd && (cmd->type == WORD || cmd->type == DOUBLE_QUOTES))
 	{
 		exit_code = exit_error_manager(cmd, exit_code);
 		if (cmd->lexeme && exit_code == 0)

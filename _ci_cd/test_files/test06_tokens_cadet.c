@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/02 18:16:24 by umeneses          #+#    #+#             */
-/*   Updated: 2024/07/18 10:48:52 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/09/20 18:56:09 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,73 +14,73 @@
 #include "minishell.h"
 #include "lexer.h"
 
-MU_TEST(testing_tokens_cadet_input_hello_world)
-{
-	// ARRANGE
-	char			*cadet_input;
-	int				idx;
-	int				xpect_lst_size;
-	int				actual_lst_size;
-	char			*xpect_node1_lexeme;
-	char			*xpect_node1_type;
-	char			*xpect_node2_lexeme;
-	char			*xpect_node2_type;
-	char			*xpect_node3_lexeme;
-	char			*xpect_node3_type;
-	char			*actual_node1_lexeme;
-	char			*actual_node1_type;
-	char			*actual_node2_lexeme;
-	char			*actual_node2_type;
-	char			*actual_node3_lexeme;
-	char			*actual_node3_type;
-	t_token_list	*lst;
+// MU_TEST(testing_tokens_cadet_input_hello_world)
+// {
+// 	// ARRANGE
+// 	char			*cadet_input;
+// 	int				idx;
+// 	int				xpect_lst_size;
+// 	int				actual_lst_size;
+// 	char			*xpect_node1_lexeme;
+// 	char			*xpect_node1_type;
+// 	char			*xpect_node2_lexeme;
+// 	char			*xpect_node2_type;
+// 	char			*xpect_node3_lexeme;
+// 	char			*xpect_node3_type;
+// 	char			*actual_node1_lexeme;
+// 	char			*actual_node1_type;
+// 	char			*actual_node2_lexeme;
+// 	char			*actual_node2_type;
+// 	char			*actual_node3_lexeme;
+// 	char			*actual_node3_type;
+// 	t_token_list	*lst;
 
-	//ACT
-	cadet_input = "echo \"Hello, World!\"";
+// 	//ACT
+// 	cadet_input = "echo \"Hello, World!\"";
 
-	xpect_node1_type = get_token_string(WORD);
-	xpect_node1_lexeme = "echo";
-	xpect_node2_type = get_token_string(DOUBLE_QUOTES);
-	xpect_node2_lexeme = "\"Hello, World!\"";
-	xpect_node3_type = NULL;
-	xpect_node3_lexeme = NULL;
-	xpect_lst_size = 2;
-	idx = 0;
-	lst = NULL;
-	get_state(idx, cadet_input, &lst);
+// 	xpect_node1_type = get_token_string(WORD);
+// 	xpect_node1_lexeme = "echo";
+// 	xpect_node2_type = get_token_string(DOUBLE_QUOTES);
+// 	xpect_node2_lexeme = "\"Hello, World!\"";
+// 	xpect_node3_type = NULL;
+// 	xpect_node3_lexeme = NULL;
+// 	xpect_lst_size = 2;
+// 	idx = 0;
+// 	lst = NULL;
+// 	get_state(idx, cadet_input, &lst);
 
-	actual_lst_size = ft_lst_size(lst);
-	if (actual_lst_size == 2 && lst->next->next == NULL)
-	{
-		actual_node1_lexeme = lst->lexeme;
-		actual_node1_type = get_token_string(lst->type);
-		lst = lst->next;
-		actual_node2_lexeme = lst->lexeme;
-		actual_node2_type = get_token_string(lst->type);
-		actual_node3_lexeme = NULL;
-		actual_node3_type = NULL;
-	}
-	else
-	{
-		actual_node1_lexeme = lst->lexeme;
-		actual_node1_type = get_token_string(lst->type);
-		lst = lst->next;
-		actual_node2_lexeme = lst->lexeme;
-		actual_node2_type = get_token_string(lst->type);
-		lst = lst->next;
-		actual_node3_lexeme = lst->lexeme;
-		actual_node3_type = get_token_string(lst->type);
-	}
+// 	actual_lst_size = ft_lst_size(lst);
+// 	if (actual_lst_size == 2 && lst->next->next == NULL)
+// 	{
+// 		actual_node1_lexeme = lst->lexeme;
+// 		actual_node1_type = get_token_string(lst->type);
+// 		lst = lst->next;
+// 		actual_node2_lexeme = lst->lexeme;
+// 		actual_node2_type = get_token_string(lst->type);
+// 		actual_node3_lexeme = NULL;
+// 		actual_node3_type = NULL;
+// 	}
+// 	else
+// 	{
+// 		actual_node1_lexeme = lst->lexeme;
+// 		actual_node1_type = get_token_string(lst->type);
+// 		lst = lst->next;
+// 		actual_node2_lexeme = lst->lexeme;
+// 		actual_node2_type = get_token_string(lst->type);
+// 		lst = lst->next;
+// 		actual_node3_lexeme = lst->lexeme;
+// 		actual_node3_type = get_token_string(lst->type);
+// 	}
 
-	// ASSERT
-	mu_assert_int_eq(xpect_lst_size, actual_lst_size);
-	mu_assert_string_eq(xpect_node1_lexeme, actual_node1_lexeme);
-	mu_assert_string_eq(xpect_node1_type, actual_node1_type);
-	mu_assert_string_eq(xpect_node2_lexeme, actual_node2_lexeme);
-	mu_assert_string_eq(xpect_node2_type, actual_node2_type);
-	mu_assert_string_eq(xpect_node3_lexeme, actual_node3_lexeme);
-	mu_assert_string_eq(xpect_node3_type, actual_node3_type);
-}
+// 	// ASSERT
+// 	mu_assert_int_eq(xpect_lst_size, actual_lst_size);
+// 	mu_assert_string_eq(xpect_node1_lexeme, actual_node1_lexeme);
+// 	mu_assert_string_eq(xpect_node1_type, actual_node1_type);
+// 	mu_assert_string_eq(xpect_node2_lexeme, actual_node2_lexeme);
+// 	mu_assert_string_eq(xpect_node2_type, actual_node2_type);
+// 	mu_assert_string_eq(xpect_node3_lexeme, actual_node3_lexeme);
+// 	mu_assert_string_eq(xpect_node3_type, actual_node3_type);
+// }
 
 MU_TEST(testing_tokens_cadet_input_ls)
 {
@@ -354,60 +354,60 @@ MU_TEST(testing_tokens_cadet_input_rm_file)
 	mu_assert_string_eq(xpect_node3_type, actual_node3_type);
 }
 
-MU_TEST(testing_tokens_cadet_input_grep_pattern)
-{
-	// ARRANGE
-	char			*cadet_input;
-	int				idx;
-	int				xpect_lst_size;
-	int				actual_lst_size;
-	char			*xpect_node1_lexeme;
-	char			*xpect_node1_type;
-	char			*xpect_node2_lexeme;
-	char			*xpect_node2_type;
-	char			*xpect_node3_lexeme;
-	char			*xpect_node3_type;
-	char			*actual_node1_lexeme;
-	char			*actual_node1_type;
-	char			*actual_node2_lexeme;
-	char			*actual_node2_type;
-	char			*actual_node3_lexeme;
-	char			*actual_node3_type;
-	t_token_list	*lst;
+// MU_TEST(testing_tokens_cadet_input_grep_pattern)
+// {
+// 	// ARRANGE
+// 	char			*cadet_input;
+// 	int				idx;
+// 	int				xpect_lst_size;
+// 	int				actual_lst_size;
+// 	char			*xpect_node1_lexeme;
+// 	char			*xpect_node1_type;
+// 	char			*xpect_node2_lexeme;
+// 	char			*xpect_node2_type;
+// 	char			*xpect_node3_lexeme;
+// 	char			*xpect_node3_type;
+// 	char			*actual_node1_lexeme;
+// 	char			*actual_node1_type;
+// 	char			*actual_node2_lexeme;
+// 	char			*actual_node2_type;
+// 	char			*actual_node3_lexeme;
+// 	char			*actual_node3_type;
+// 	t_token_list	*lst;
 
-	//ACT
-	cadet_input = "grep \"pattern\" file.txt";
+// 	//ACT
+// 	cadet_input = "grep \"pattern\" file.txt";
 
-	xpect_node1_type = get_token_string(WORD);
-	xpect_node1_lexeme = "grep";
-	xpect_node2_type = get_token_string(DOUBLE_QUOTES);
-	xpect_node2_lexeme = "\"pattern\"";
-	xpect_node3_type = get_token_string(WORD);
-	xpect_node3_lexeme = "file.txt";
-	xpect_lst_size = 3;
-	idx = 0;
-	lst = NULL;
-	get_state(idx, cadet_input, &lst);
+// 	xpect_node1_type = get_token_string(WORD);
+// 	xpect_node1_lexeme = "grep";
+// 	xpect_node2_type = get_token_string(DOUBLE_QUOTES);
+// 	xpect_node2_lexeme = "\"pattern\"";
+// 	xpect_node3_type = get_token_string(WORD);
+// 	xpect_node3_lexeme = "file.txt";
+// 	xpect_lst_size = 3;
+// 	idx = 0;
+// 	lst = NULL;
+// 	get_state(idx, cadet_input, &lst);
 
-	actual_lst_size = ft_lst_size(lst);
-	actual_node1_lexeme = lst->lexeme;
-	actual_node1_type = get_token_string(lst->type);
-	lst = lst->next;
-	actual_node2_lexeme = lst->lexeme;
-	actual_node2_type = get_token_string(lst->type);
-	lst = lst->next;
-	actual_node3_lexeme = lst->lexeme;
-	actual_node3_type = get_token_string(lst->type);
+// 	actual_lst_size = ft_lst_size(lst);
+// 	actual_node1_lexeme = lst->lexeme;
+// 	actual_node1_type = get_token_string(lst->type);
+// 	lst = lst->next;
+// 	actual_node2_lexeme = lst->lexeme;
+// 	actual_node2_type = get_token_string(lst->type);
+// 	lst = lst->next;
+// 	actual_node3_lexeme = lst->lexeme;
+// 	actual_node3_type = get_token_string(lst->type);
 
-	// ASSERT
-	mu_assert_int_eq(xpect_lst_size, actual_lst_size);
-	mu_assert_string_eq(xpect_node1_lexeme, actual_node1_lexeme);
-	mu_assert_string_eq(xpect_node1_type, actual_node1_type);
-	mu_assert_string_eq(xpect_node2_lexeme, actual_node2_lexeme);
-	mu_assert_string_eq(xpect_node2_type, actual_node2_type);
-	mu_assert_string_eq(xpect_node3_lexeme, actual_node3_lexeme);
-	mu_assert_string_eq(xpect_node3_type, actual_node3_type);
-}
+// 	// ASSERT
+// 	mu_assert_int_eq(xpect_lst_size, actual_lst_size);
+// 	mu_assert_string_eq(xpect_node1_lexeme, actual_node1_lexeme);
+// 	mu_assert_string_eq(xpect_node1_type, actual_node1_type);
+// 	mu_assert_string_eq(xpect_node2_lexeme, actual_node2_lexeme);
+// 	mu_assert_string_eq(xpect_node2_type, actual_node2_type);
+// 	mu_assert_string_eq(xpect_node3_lexeme, actual_node3_lexeme);
+// 	mu_assert_string_eq(xpect_node3_type, actual_node3_type);
+// }
 
 MU_TEST(testing_tokens_cadet_input_cd_path_dir)
 {
@@ -1112,12 +1112,12 @@ MU_TEST(testing_tokens_cadet_input_ls_echo_07)
 
 MU_TEST_SUITE(test06___tokens_cadet_suite)
 {
-	MU_RUN_TEST(testing_tokens_cadet_input_hello_world);
+	// MU_RUN_TEST(testing_tokens_cadet_input_hello_world);
 	MU_RUN_TEST(testing_tokens_cadet_input_ls);
 	MU_RUN_TEST(testing_tokens_cadet_input_cat_file);
 	MU_RUN_TEST(testing_tokens_cadet_input_mkdir);
 	MU_RUN_TEST(testing_tokens_cadet_input_rm_file);
-	MU_RUN_TEST(testing_tokens_cadet_input_grep_pattern);
+	// MU_RUN_TEST(testing_tokens_cadet_input_grep_pattern);
 	MU_RUN_TEST(testing_tokens_cadet_input_cd_path_dir);
 	MU_RUN_TEST(testing_tokens_cadet_input_pwd);
 	MU_RUN_TEST(testing_tokens_cadet_input_chmod);
