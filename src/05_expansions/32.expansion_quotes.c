@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 13:41:21 by umeneses          #+#    #+#             */
-/*   Updated: 2024/09/19 19:44:23 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/09/20 10:26:45 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,12 @@ char	*single_quote_remover(char *lex)
 	int		idx;
 
 	idx = 0;
+	if (lex[0] == '\'' && lex[1] == '\'' && !lex[2])
+	{
+		free(lex);
+		lex = NULL;
+		return (lex);
+	}
 	while (lex[idx])
 	{
 		if (lex[idx] == '\'')
