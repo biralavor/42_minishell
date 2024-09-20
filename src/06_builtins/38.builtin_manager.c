@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 13:23:46 by umeneses          #+#    #+#             */
-/*   Updated: 2024/09/18 14:57:00 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/09/20 10:47:10 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,11 @@ void	builtins_manager(t_token_list *lst)
 	arg_option = false;
 	while (cmd)
 	{
-		if (ft_strncmp(cmd->lexeme, "echo", 4) == 0)
+		if (cmd->lexeme && ft_strncmp(cmd->lexeme, "echo", 4) == 0)
 			builtins_runner_echo(cmd, arg_option);
-		else if (ft_strncmp(cmd->lexeme, "cd", 2) == 0)
+		else if (cmd->lexeme && ft_strncmp(cmd->lexeme, "cd", 2) == 0)
 			builtins_runner_cd(cmd);
-		else if (ft_strncmp(cmd->lexeme, "pwd", 3) == 0)
+		else if (cmd->lexeme && ft_strncmp(cmd->lexeme, "pwd", 3) == 0)
 			builtins_runner_pwd(cmd);
 		cmd = cmd->next;
 	}

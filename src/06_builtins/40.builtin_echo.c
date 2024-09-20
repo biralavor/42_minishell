@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 13:23:46 by umeneses          #+#    #+#             */
-/*   Updated: 2024/09/18 14:54:45 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/09/20 10:27:53 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	builtins_runner_echo(t_token_list *lst, bool arg_option)
 
 	cmd = lst->next;
 	space = 0;
-	if (NULL == cmd)
+	if (NULL == cmd || (cmd && cmd->lexeme == NULL))
 	{
 		write(STDOUT_FILENO, "\n", 1);
 		return ;
