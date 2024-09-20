@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/28 16:32:23 by umeneses          #+#    #+#             */
-/*   Updated: 2024/09/19 20:14:01 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/09/20 09:50:03 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,8 @@ char	*expansion_question_mark(char *lexeme)
 			idx += 2;
 			if (lexeme[idx])
 				splited[++id] = ft_substr(lexeme, idx, len - idx);
+			else
+				break ;
 		}
 		idx++;
 	}
