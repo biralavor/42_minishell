@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   25.builtins_cd.c                                   :+:      :+:    :+:   */
+/*   41.builtin_cd.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 13:23:46 by umeneses          #+#    #+#             */
-/*   Updated: 2024/09/09 16:10:04 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/09/21 14:52:15 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,12 @@ void	builtins_runner_cd(t_token_list *lst)
 
 	cmd = lst->next;
 	destiny_path = NULL;
+	if (cmd->lexeme && cmd->next && cmd->next->lexeme)
+	{
+		write(STDERR_FILENO, "bash cd: too many arguments\n", 28);
+		exit_status_holder(1, true);
+		return ;
+	}
 	while (cmd && cmd->type == WORD)
 	{
 		destiny_path = cmd->lexeme;
