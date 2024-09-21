@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 13:23:46 by umeneses          #+#    #+#             */
-/*   Updated: 2024/09/20 11:17:10 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/09/21 14:57:34 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,14 +42,14 @@ int	exit_error_manager(t_token_list *cmd, int exit_code)
 {
 	if (cmd->lexeme && cmd->next)
 	{
-		write(2, "bash exit: too many arguments\n", 30);
+		write(STDERR_FILENO, "bash exit: too many arguments\n", 30);
 		exit_code = 1;
 	}
 	else if (exit_code_not_numeric(cmd->lexeme))
 	{
-		write(2, "bash exit: ", 11);
-		write(2, cmd->lexeme, ft_strlen(cmd->lexeme));
-		write(2, ": numeric argument required\n", 28);
+		write(STDERR_FILENO, "bash exit: ", 11);
+		write(STDERR_FILENO, cmd->lexeme, ft_strlen(cmd->lexeme));
+		write(STDERR_FILENO, ": numeric argument required\n", 28);
 		exit_code = 2;
 	}
 	return (exit_code);
