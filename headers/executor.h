@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   executor.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/05 13:56:37 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/09/16 09:26:40 by tmalheir         ###   ########.fr       */
+/*   Updated: 2024/09/22 10:31:36 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,13 +84,15 @@ int				manage_or(t_tree *tree);
 
 int				manage_and(t_tree *tree);
 
-int				manage_pipe(t_tree *tree);
+void			manage_pipe(t_tree *tree);
 
 void			exec_1st_child(t_tree *left, int *new_pipe);
 
 void			exec_2nd_child(t_tree *right, int *new_pipe);
 
 bool			child_process_is_running(bool update, bool caller);
+
+void			wait_to_restore_fds(int *new_pipe, int *pid);
 
 int				pipe_execution(char **cmd, char *path);
 
