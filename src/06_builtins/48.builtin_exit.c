@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 13:23:46 by umeneses          #+#    #+#             */
-/*   Updated: 2024/09/21 14:57:34 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/09/21 22:15:41 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ void	builtins_runner_exit(t_token_list *lst)
 	if (llong_min_status)
 		exit_code = 1;
 	clear_all_to_exit_smoothly();
+	ft_putendl_fd("exit", STDOUT_FILENO);
 	exit(exit_status_holder(exit_code, true));
 }
 
