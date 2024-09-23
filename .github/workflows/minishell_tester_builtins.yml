@@ -6,7 +6,7 @@
 #    By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/23 16:00:54 by umeneses          #+#    #+#              #
-#    Updated: 2024/09/23 16:17:34 by umeneses         ###   ########.fr        #
+#    Updated: 2024/09/23 16:51:23 by umeneses         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,7 +32,7 @@ on:
     - '**release**'
 
 jobs:
-  test:
+  builtins:
     runs-on: ubuntu-latest
     defaults:
       run:
