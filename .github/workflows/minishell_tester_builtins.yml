@@ -6,12 +6,12 @@
 #    By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/23 16:00:54 by umeneses          #+#    #+#              #
-#    Updated: 2024/09/23 16:14:43 by umeneses         ###   ########.fr        #
+#    Updated: 2024/09/23 16:17:34 by umeneses         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 
-name: minishell_tester_builtins
+name: minishell tester >> builtins
 
 on:
   push:
