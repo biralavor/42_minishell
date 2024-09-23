@@ -6,7 +6,7 @@
 /*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 09:20:45 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/09/20 15:12:49 by tmalheir         ###   ########.fr       */
+/*   Updated: 2024/09/20 19:10:59 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,12 +85,16 @@ void	loop_routine(char *str)
 		error_manager_lexer(INITIAL_ERROR);
 	if (!create_token_list(str, &lst))
 		error_manager_lexer(LIST_NOT_CREATED);
+	if (ft_strncmp(lst->lexeme, "", ft_strlen(lst->lexeme)) == 0)
+	{
+		free_token_list(&lst);
+		return ;
+	}
 	if (syntax_analysis(lst))
 	{
 		check_heredoc(lst);
 		token_tree = initiate_tree(lst);
 		tree_holder(token_tree, false);
-		// token_tree = test_tree();
 		tree_execution(token_tree, 0);
 		free_token_tree(token_tree);
 	}

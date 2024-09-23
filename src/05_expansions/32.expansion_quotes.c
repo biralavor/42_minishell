@@ -1,51 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   expansion_quotes.c                                 :+:      :+:    :+:   */
+/*   32.expansion_quotes.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 13:41:21 by umeneses          #+#    #+#             */
-/*   Updated: 2024/09/11 13:37:13 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/09/20 10:26:45 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-char	*expansion_quotes_runner(char *lexeme)
+bool	single_quote_detector(char *lexeme)
 {
-	char	*new_lexeme;
-
-	new_lexeme = malloc(sizeof(char) * (ft_strlen(lexeme) + 1));
-	if (new_lexeme == NULL)
-		exit(EXIT_FAILURE);
-	new_lexeme = expansion_new_lexeme_after_quotes(lexeme, new_lexeme);
-	free(lexeme);
-	return (new_lexeme);
+	if (lexeme[0] == '\'')
+			return (true);
+	return (false);
 }
 
-char	*expansion_new_lexeme_after_quotes(char *lexeme, char *new_lexeme)
+char	*single_quote_remover(char *lex)
 {
 	int		idx;
-	int		idx_new;
-	char	quote_type;
 
-	idx = -1;
-	idx_new = -1;
-	quote_type = '\0';
-	while (lexeme[++idx])
+	idx = 0;
+	if (lex[0] == '\'' && lex[1] == '\'' && !lex[2])
 	{
-		if (quote_type == '\0' && (lexeme[idx] == '"' || lexeme[idx] == '\''))
-		{
-			quote_type = lexeme[idx];
-			while (lexeme[++idx])
-			{
-				new_lexeme[++idx_new] = lexeme[idx];
-				if (lexeme[idx] == quote_type)
-					break ;
-			}
-		}
+		free(lex);
+		lex = NULL;
+		return (lex);
 	}
-	new_lexeme[idx_new] = '\0';
-	return (new_lexeme);
+	while (lex[idx])
+	{
+		if (lex[idx] == '\'')
+			ft_memmove(&lex[idx], &lex[idx + 1], ft_strlen(&lex[idx + 1]) + 1);
+		idx++;
+	}
+	return (lex);
 }

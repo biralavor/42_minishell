@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   23.tree_execution.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 18:09:53 by umeneses          #+#    #+#             */
-/*   Updated: 2024/09/16 09:13:30 by tmalheir         ###   ########.fr       */
+/*   Updated: 2024/09/19 19:34:31 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int	tree_execution(t_tree *tree, int flag)
 		exit_status = manage_redirect(tree, flag);
 	else if (tree->type == SUBSHELL)
 		exit_status = manage_subshell(tree);
-	else if (tree->type == WORD)
+	else if (tree->type == WORD || tree->type == DOUBLE_QUOTES)
 		exit_status = manage_single_command(tree);
 	return (exit_status);
 }

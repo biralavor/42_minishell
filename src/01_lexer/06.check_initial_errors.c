@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   03.check_initial_errors.c                          :+:      :+:    :+:   */
+/*   06.check_initial_errors.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 07:45:31 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/08/16 09:46:13 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/09/17 17:12:51 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,50 +14,37 @@
 
 bool	check_initial_errors(char *str)
 {
-	if (!(check_closed_double_quotes(str))
-		|| !(check_closed_single_quotes(str))
+	if (!(check_closed_quotes(str))
 		|| !(check_closed_parenthesis(str)))
 		return (false);
 	else
 		return (true);
 }
 
-bool	check_closed_double_quotes(char *str)
+bool	check_closed_quotes(char *str)
 {
 	int		idx;
-	int		double_quote;
+	int		quote_idx;
+	char	quote_type;
 
 	idx = 0;
-	double_quote = 0;
+	quote_idx = 0;
+	quote_type = '\0';
 	while (str[idx])
 	{
-		if (str[idx] == '"')
-			double_quote += 1;
+		if (quote_type == '\0' && (str[idx] == '"' || str[idx] == '\''))
+		{
+			quote_type = str[idx];
+			quote_idx++;
+			idx++;
+		}
+		if (quote_type == str[idx])
+			quote_idx++;
 		idx++;
 	}
-	if (double_quote % 2 == 0)
+	if (quote_idx % 2 == 0)
 		return (true);
-	else
-		return (false);
-}
-
-bool	check_closed_single_quotes(char *str)
-{
-	int		idx;
-	int		single_quote;
-
-	idx = 0;
-	single_quote = 0;
-	while (str[idx])
-	{
-		if (str[idx] == '\'')
-			single_quote += 1;
-		idx++;
-	}
-	if (single_quote % 2 == 0)
-		return (true);
-	else
-		return (false);
+	return (false);
 }
 
 bool	check_closed_parenthesis(char *str)

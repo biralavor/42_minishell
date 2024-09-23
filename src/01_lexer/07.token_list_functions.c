@@ -1,28 +1,84 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   06.token_list_functions.c                          :+:      :+:    :+:   */
+/*   07.token_list_functions.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 10:52:55 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/09/12 13:49:01 by tmalheir         ###   ########.fr       */
+/*   Updated: 2024/09/20 17:25:41 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+static bool	inside_quotes_detector(char *str);
 
 bool	create_token_list(char *str, t_token_list **lst)
 {
 	int	idx;
 
 	idx = 0;
+	if (check_closed_quotes(str) && inside_quotes_detector(str))
+		str = update_str_if_inside_quotes(str);
 	get_state(idx, str, lst);
 	assign_lst_idx(*lst);
 	if (lst)
 		return (true);
 	else
 		return (false);
+}
+
+char	*update_str_if_inside_quotes(char *str)
+{
+	int		idx;
+	char	quote_type;
+
+	idx = 0;
+	quote_type = '\0';
+	while(str[idx])
+	{
+		if (quote_type == '\0' && str[idx - 1] && str[idx - 1] != ' '
+			&& (str[idx] == '"' || str[idx] == '\''))
+		{
+			quote_type = str[idx];
+			ft_memmove(&str[idx], &str[idx + 1], ft_strlen(&str[idx + 1]) + 1);
+		}
+		if (quote_type == str[idx])
+		{
+			quote_type = '\0';
+			ft_memmove(&str[idx], &str[idx + 1], ft_strlen(&str[idx + 1]) + 1);
+		}
+		idx++;
+	}
+	if (inside_quotes_detector(str) && check_closed_quotes(str))
+		update_str_if_inside_quotes(str);
+	return (str);
+}
+
+static bool	inside_quotes_detector(char *str)
+{
+	int	idx;
+
+	idx = 0;
+	while (str[idx] != '\0')
+	{
+		if (idx > 0 && str[idx - 1] && str[idx - 1] == ' '
+			&& (str[idx] == '"' || str[idx] == '\''))
+			return (false);
+		else if (idx > 0 && str[idx - 1] && str[idx - 1] == '='
+			&&  (str[idx] == '"' || str[idx] == '\''))
+			return (false);
+		else if (idx > 0 && str[idx - 1] && str[idx - 1] == '\''
+			&&  str[idx] == '$')
+			return (false);
+		else if (idx > 0 && (str[idx] == '"' || str[idx] == '\'')
+			&& str[idx - 1] != ' ' && str[idx + 1] != '$'
+			&& str[idx + 1] != '\0')
+			return (true);
+		idx++;
+	}
+	return (false);
 }
 
 void	create_new_node(t_token_list **root, t_token_list *token)

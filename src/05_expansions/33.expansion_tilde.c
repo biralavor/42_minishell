@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   32.expansion_tilde.c                               :+:      :+:    :+:   */
+/*   33.expansion_tilde.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 16:11:20 by umeneses          #+#    #+#             */
-/*   Updated: 2024/09/14 18:53:14 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/09/17 12:19:52 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,9 @@ bool	expansion_tilde_detector(char *lexeme)
 	int	idx;
 
 	idx = 0;
-	if (lexeme[idx] == '~')
-		return (true);
+	if (lexeme)
+		if (lexeme[idx] == '~')
+			return (true);
 	return (false);
 }
 

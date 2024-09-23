@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   47.builtin_exit.c                                  :+:      :+:    :+:   */
+/*   48.builtin_exit.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 13:23:46 by umeneses          #+#    #+#             */
-/*   Updated: 2024/09/14 14:23:58 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/09/21 22:15:41 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	builtins_runner_exit(t_token_list *lst)
 
 	cmd = lst->next;
 	exit_code = 0;
-	if (cmd && cmd->type == WORD)
+	if (cmd && (cmd->type == WORD || cmd->type == DOUBLE_QUOTES))
 	{
 		exit_code = exit_error_manager(cmd, exit_code);
 		if (cmd->lexeme && exit_code == 0)
@@ -35,6 +35,7 @@ void	builtins_runner_exit(t_token_list *lst)
 	if (llong_min_status)
 		exit_code = 1;
 	clear_all_to_exit_smoothly();
+	ft_putendl_fd("exit", STDOUT_FILENO);
 	exit(exit_status_holder(exit_code, true));
 }
 
@@ -42,14 +43,14 @@ int	exit_error_manager(t_token_list *cmd, int exit_code)
 {
 	if (cmd->lexeme && cmd->next)
 	{
-		write(2, "bash exit: too many arguments\n", 30);
+		write(STDERR_FILENO, "bash exit: too many arguments\n", 30);
 		exit_code = 1;
 	}
 	else if (exit_code_not_numeric(cmd->lexeme))
 	{
-		write(2, "bash exit: ", 11);
-		write(2, cmd->lexeme, ft_strlen(cmd->lexeme));
-		write(2, ": numeric argument required\n", 28);
+		write(STDERR_FILENO, "bash exit: ", 11);
+		write(STDERR_FILENO, cmd->lexeme, ft_strlen(cmd->lexeme));
+		write(STDERR_FILENO, ": numeric argument required\n", 28);
 		exit_code = 2;
 	}
 	return (exit_code);
