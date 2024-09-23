@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 13:23:46 by umeneses          #+#    #+#             */
-/*   Updated: 2024/09/20 10:27:53 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/09/23 18:36:23 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,11 @@ void	builtins_runner_echo(t_token_list *lst, bool arg_option)
 		write(STDOUT_FILENO, "\n", 1);
 		return ;
 	}
-	if (checking_cmd_arg_options(cmd->lexeme, "-n"))
-		cmd = cmd->next;
+	while (cmd)
+	{
+		if (checking_cmd_arg_options(cmd->lexeme, "-n"))
+			cmd = cmd->next;
+	}
 	while (cmd)
 	{
 		if (space)
