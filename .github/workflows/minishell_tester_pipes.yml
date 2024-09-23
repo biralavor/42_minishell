@@ -6,7 +6,7 @@
 #    By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/23 16:00:54 by umeneses          #+#    #+#              #
-#    Updated: 2024/09/23 16:51:48 by umeneses         ###   ########.fr        #
+#    Updated: 2024/09/23 19:26:34 by umeneses         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -43,6 +43,9 @@ jobs:
 
       - name: Building Program with MiniShell Makefile
         run: make
+
+      - name: Submodule Init
+        run: git submodule init
 
       - name: Running Tester for Builtins
         run: cd minishell_tester && ./tester pipes
