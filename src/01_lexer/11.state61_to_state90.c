@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   11.state61_to_state90.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/20 10:35:11 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/09/23 13:20:39 by tmalheir         ###   ########.fr       */
+/*   Updated: 2024/09/23 15:56:20 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ int	state_70(t_token_list **lst, char *str, int idx)
 	quote_detected = false;
 	start = (size_t)idx;
 	double_quotes_node = (t_token_list *)ft_calloc(1, sizeof(t_token_list));
-	while (str[idx++])
+	while (str[idx])
 	{
 		if ((str[idx - 1] && str[idx - 1] == ' ' && str[idx] == '"') || !idx)
 		{
@@ -56,6 +56,7 @@ int	state_70(t_token_list **lst, char *str, int idx)
 			ft_memmove(&str[idx], &str[idx + 1], ft_strlen(&str[idx + 1]) + 1);
 			quote_detected = false;
 		}
+		idx++;
 	}
 	end = (size_t)idx;
 	double_quotes_node->lexeme = ft_strdup((const char *)str + start);
