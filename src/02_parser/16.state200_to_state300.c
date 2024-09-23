@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   15.state200.c                                      :+:      :+:    :+:   */
+/*   16.state200_to_state300.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/03 14:37:37 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/09/12 14:14:32 by tmalheir         ###   ########.fr       */
+/*   Updated: 2024/09/23 15:25:40 by tmalheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	state_200(t_token_list *lst, int syntax_state)
 		syntax_state = 200;
 	else
 	{
-		error_manager_parser(UNEXPECTED_TOKEN, lst);
+		error_manager_parser(UNEXPECTED_TOKEN);
 		syntax_state = 201;
 	}
 	return (syntax_state);
@@ -39,7 +39,7 @@ int	state_300(t_token_list *lst, int syntax_state)
 		syntax_state = 300;
 	else
 	{
-		error_manager_parser(UNEXPECTED_TOKEN, lst);
+		error_manager_parser(UNEXPECTED_TOKEN);
 		syntax_state = 301;
 	}
 	return (syntax_state);

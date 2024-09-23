@@ -3,25 +3,28 @@
 /*                                                        :::      ::::::::   */
 /*   01.main.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 10:53:12 by umeneses          #+#    #+#             */
-/*   Updated: 2024/09/13 11:30:54 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/09/23 13:42:59 by tmalheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+static void	extra_args(void)
+{
+	ft_printf(RED"Error: minishell does not accept arguments.\n");
+	ft_printf(CYAN"It's a kind of magic, but not that much!\n"RESET);
+	exit (EXIT_FAILURE);
+}
 
 int	main(int ac, char **av, char **envp)
 {
 	char	*input;
 
 	if (ac > 1 && av)
-	{
-		ft_printf(RED"Error: minishell does not accept arguments.\n");
-		ft_printf(CYAN"It's a kind of magic, but not that much!\n"RESET);
-		exit (EXIT_FAILURE);
-	}
+		extra_args();
 	// INIT_SIGNALS
 	// get_tty_proprieties
 	environment_init(envp);

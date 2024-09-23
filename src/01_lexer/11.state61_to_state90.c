@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   11.state61_to_state90.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/20 10:35:11 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/09/20 10:14:23 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/09/23 13:20:39 by tmalheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,16 +38,15 @@ int	state_70(t_token_list **lst, char *str, int idx)
 {
 	size_t			start;
 	size_t			end;
-	char			*double_quotes;
 	t_token_list	*double_quotes_node;
 	bool			quote_detected;
 
 	quote_detected = false;
 	start = (size_t)idx;
 	double_quotes_node = (t_token_list *)ft_calloc(1, sizeof(t_token_list));
-	while (str[idx])
+	while (str[idx++])
 	{
-		if ((str[idx - 1] && str[idx - 1] == ' ' && str[idx] == '"') || idx == 0)
+		if ((str[idx - 1] && str[idx - 1] == ' ' && str[idx] == '"') || !idx)
 		{
 			ft_memmove(&str[idx], &str[idx + 1], ft_strlen(&str[idx + 1]) + 1);
 			quote_detected = true;
@@ -57,11 +56,9 @@ int	state_70(t_token_list **lst, char *str, int idx)
 			ft_memmove(&str[idx], &str[idx + 1], ft_strlen(&str[idx + 1]) + 1);
 			quote_detected = false;
 		}
-		idx++;
 	}
 	end = (size_t)idx;
-	double_quotes = ft_strdup((const char *)str + start);
-	double_quotes_node->lexeme = double_quotes;
+	double_quotes_node->lexeme = ft_strdup((const char *)str + start);
 	double_quotes_node->type = DOUBLE_QUOTES;
 	double_quotes_node->next_char = str[end + 1];
 	create_new_node(lst, double_quotes_node);

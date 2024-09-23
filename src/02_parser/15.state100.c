@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   14.state100.c                                      :+:      :+:    :+:   */
+/*   15.state100.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/04 16:20:31 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/09/12 14:11:39 by tmalheir         ###   ########.fr       */
+/*   Updated: 2024/09/23 11:25:05 by tmalheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,7 @@ int	state_100(t_token_list *lst, int syntax_state)
 	{
 		if (!check_lexeme_errors(lst->lexeme))
 		{
-			error_manager_parser(SYNTAX_ERROR, lst);
+			error_manager_parser(SYNTAX_ERROR);
 			syntax_state = 101;
 		}
 	}
