@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 07:45:31 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/09/17 17:12:51 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/09/23 10:48:06 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,9 @@ bool	check_closed_quotes(char *str)
 	idx = 0;
 	quote_idx = 0;
 	quote_type = '\0';
-	while (str[idx])
+	while (str[idx] != '\0')
 	{
-		if (quote_type == '\0' && (str[idx] == '"' || str[idx] == '\''))
+		if (quote_type == '\0' && str[idx] && (str[idx] == '"' || str[idx] == '\''))
 		{
 			quote_type = str[idx];
 			quote_idx++;
