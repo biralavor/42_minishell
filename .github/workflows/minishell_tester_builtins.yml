@@ -6,7 +6,7 @@
 #    By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/23 16:00:54 by umeneses          #+#    #+#              #
-#    Updated: 2024/09/23 16:05:40 by umeneses         ###   ########.fr        #
+#    Updated: 2024/09/23 16:14:43 by umeneses         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,16 +36,16 @@ jobs:
     runs-on: ubuntu-latest
     defaults:
       run:
-        working-directory: ./minishell_tester/
+        working-directory: ./
     steps:
       - name: Starting Github Actions
         uses: actions/checkout@v4.1.4
 
-      - name: Install CUnit
-        run: sudo apt-get update && sudo apt-get install -y libcunit1 libcunit1-doc libcunit1-dev
+      - name: Building Program with MiniShell Makefile
+        run: make
 
       - name: Running Tester for Builtins
-        run: ./tester builtins
+        run: cd minishell_tester && ./tester builtins
 
 # :: source minishell_tester repository ::
 # https://github.com/LucasKuhn/minishell_tester
