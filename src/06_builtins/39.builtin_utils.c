@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   31.builtins_utils.c                                :+:      :+:    :+:   */
+/*   39.builtin_utils.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 13:23:46 by umeneses          #+#    #+#             */
-/*   Updated: 2024/08/19 12:11:42 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/09/23 18:32:04 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ bool	arg_option_holder(bool update, bool call_status)
 
 bool	checking_cmd_arg_options(char *lexeme, char *arg)
 {
-	if (ft_strncmp(lexeme, arg, 2) == 0)
+	if (lexeme && ft_strncmp(lexeme, arg, ft_strlen(lexeme)) == 0)
 	{
 		arg_option_holder(true, true);
 		return (true);
