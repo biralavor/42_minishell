@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/27 12:39:23 by umeneses          #+#    #+#             */
-/*   Updated: 2024/09/20 10:59:34 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/09/23 12:13:25 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,8 +110,8 @@ char	**expand_var_from_array(char **arr_lex)
 				lex_rest = ft_substr(arr_lex[idx], ft_strlen(env_key),
 					ft_strlen(arr_lex[idx]) - ft_strlen(env_key));
 				free(arr_lex[idx]);
-				arr_lex[idx] = ft_strdup(env_table->value);
-				arr_lex[idx] = ft_strjoin(arr_lex[idx], lex_rest);
+				arr_lex[idx] = ft_strjoin(env_table->value, lex_rest);
+				free(lex_rest);
 			}
 			free(env_key);
 		}
