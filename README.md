@@ -15,14 +15,15 @@
 > 2. [With Automata State in Lexer (token labeling), create the token list.](https://github.com/biralavor/42_minishell#2-lexer)
 > 3. [Parse (or verify sintax, similar language grammar)](https://github.com/biralavor/42_minishell#3-parser-or-syntax-grammar)
 > 4. [Apply Redirect rules in Parse, if detected](https://github.com/biralavor/42_minishell#4-apply-redirect-rules-in-parse)
-> 5. [Build the Binary Tree, in recursive mode](https://github.com/biralavor/42_minishell#5-build-the-binary-tree-in-recursive-mode)
-> 6. [Preparing Execution in Binary Tree](https://github.com/biralavor/42_minishell#6-preparing-execution-in-binary-tree)
-> 7. [Execute](https://github.com/biralavor/42_minishell#7-execute)
-> > 7.1 [Expansion of special tokens](https://github.com/biralavor/42_minishell#71-expansion-of-special-tokens)
+> 5. Check HereDoc
+> 6. [Build the Binary Tree, in recursive mode](https://github.com/biralavor/42_minishell#5-build-the-binary-tree-in-recursive-mode)
+> 7. [Preparing Execution in Binary Tree](https://github.com/biralavor/42_minishell#6-preparing-execution-in-binary-tree)
+> 8. [Execute](https://github.com/biralavor/42_minishell#7-execute)
+> > 8.1 [Expansion of special tokens](https://github.com/biralavor/42_minishell#71-expansion-of-special-tokens)
 > > 
-> > 7.2 [Built-ins](https://github.com/biralavor/42_minishell#72-built-ins)
+> > 8.2 [Built-ins](https://github.com/biralavor/42_minishell#72-built-ins)
 > > 
-> > 7.3 [Command Manager](https://github.com/biralavor/42_minishell#73-command-manager)
+> > 8.3 [Command Manager](https://github.com/biralavor/42_minishell#73-command-manager)
 
 ![Screenshot from 2024-08-20 15-11-03](https://github.com/user-attachments/assets/4c8e518f-fec8-493f-b47c-13f6001683a5)
 
@@ -36,8 +37,11 @@
 - [x] Built-ins :tada: [https://github.com/biralavor/42_minishell/releases/tag/v0.6]
 - [x] Variables Expansion :tada: [https://github.com/biralavor/42_minishell/releases/tag/v0.7]
 - [x] Redirects of all types, except HereDoc :tada: [https://github.com/biralavor/42_minishell/releases/tag/v0.8.4]
+- [x] HereDoc Redirect :tada: [https://github.com/biralavor/42_minishell/releases/tag/v0.9.0]
 - Next Steps on Project Management:
-  - [ ] HereDoc Redirect
+  - [ ] Memory Leaks Management at: Lexer, Parser, HereDoc
+  - [ ] Memory Leaks Management at: Expansion, Builtins
+  - [ ] Memory Leaks Management at: Manage Single Command
   - [ ] Signals Control
 - Possible Bonus Development:
   - [ ] If `&&` were inside `()`, it should execute with priority (SUBSHELL)
@@ -93,20 +97,20 @@ Now, we got un updated result:
 ![Screenshot from 2024-08-05 16-56-17](https://github.com/user-attachments/assets/e88007e9-aedf-4ff1-954b-5c1698bd1c2b)
 
 
-## 5. Build the Binary Tree, in recursive mode
+## 6. Build the Binary Tree, in recursive mode
 ![Screenshot from 2024-09-12 12-29-38](https://github.com/user-attachments/assets/d248f2b5-46f8-4e70-9125-6df4f3a1cf0c)
 
 
-## 6. Preparing Execution in Binary Tree
+## 7. Preparing Execution in Binary Tree
 The Binary Tree will be executed, following the metacharacters rules:
 
 ![Screenshot from 2024-09-12 12-28-23](https://github.com/user-attachments/assets/4f5e1700-3176-4b6a-a67e-bf556620e4b7)
 
-## 7. Execute
+## 8. Execute
 
 ![Screenshot from 2024-09-12 12-36-59](https://github.com/user-attachments/assets/5521ac35-07e8-46d1-aa8d-5b5bd9a78187)
 
-### 7.1. Expansion of special tokens
+### 8.1. Expansion of special tokens
 - Expansion for:
   - Quotes `"`
   - tilde `~`
@@ -115,7 +119,7 @@ The Binary Tree will be executed, following the metacharacters rules:
 ![Screenshot from 2024-09-12 12-16-10](https://github.com/user-attachments/assets/5ced977f-8e35-4a2a-87de-6759c711ea71)
 
 
-### 7.2 Built-ins
+### 8.2 Built-ins
 - Built-in Detectors
 - Built-in Manager
 - Built-in Runners
@@ -134,7 +138,7 @@ If the input isn't a Built-in, it runs `execve`. We have two built-in categories
 #### Built-in Runners, goes like this:
 ![Screenshot from 2024-08-20 15-04-45](https://github.com/user-attachments/assets/f8eab4cf-872f-475d-af50-8c9668988b97)
 
-### 7.3 Command Manager
+### 8.3 Command Manager
 ![Screenshot from 2024-09-12 12-49-23](https://github.com/user-attachments/assets/bd21e13a-79f9-4029-a767-9a48b5350555)
 
 
