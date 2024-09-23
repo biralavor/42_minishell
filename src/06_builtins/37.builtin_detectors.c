@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   36.builtin_detectors.c                             :+:      :+:    :+:   */
+/*   37.builtin_detectors.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 19:09:05 by umeneses          #+#    #+#             */
-/*   Updated: 2024/09/16 09:23:06 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/09/23 09:03:57 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,9 @@ bool	builtins_detector(t_token_list *cmd)
 {
 	while (cmd)
 	{
-		if ((ft_strncmp(cmd->lexeme, "echo", 4) == 0)
-			|| (ft_strncmp(cmd->lexeme, "cd", 2) == 0)
-			|| (ft_strncmp(cmd->lexeme, "pwd", 3) == 0))
+		if ((ft_strncmp(cmd->lexeme, "echo", ft_strlen(cmd->lexeme)) == 0)
+			|| (ft_strncmp(cmd->lexeme, "cd", ft_strlen(cmd->lexeme)) == 0)
+			|| (ft_strncmp(cmd->lexeme, "pwd", ft_strlen(cmd->lexeme)) == 0))
 			return (true);
 		cmd = cmd->next;
 	}
@@ -32,10 +32,10 @@ bool	builtins_detector_with_possible_args(t_token_list *lst)
 	cmd = lst;
 	while (cmd && cmd->type == WORD)
 	{
-		if ((ft_strncmp(cmd->lexeme, "export", 6) == 0)
-			|| (ft_strncmp(cmd->lexeme, "unset", 5) == 0)
-			|| (ft_strncmp(cmd->lexeme, "env", 3) == 0)
-			|| (ft_strncmp(cmd->lexeme, "exit", 4) == 0))
+		if ((ft_strncmp(cmd->lexeme, "export", ft_strlen(cmd->lexeme)) == 0)
+			|| (ft_strncmp(cmd->lexeme, "unset", ft_strlen(cmd->lexeme)) == 0)
+			|| (ft_strncmp(cmd->lexeme, "env", ft_strlen(cmd->lexeme)) == 0)
+			|| (ft_strncmp(cmd->lexeme, "exit", ft_strlen(cmd->lexeme)) == 0))
 			return (true);
 		cmd = cmd->next;
 	}
