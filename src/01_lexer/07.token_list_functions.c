@@ -17,7 +17,8 @@ bool	create_token_list(char *str, t_token_list **lst)
 	int	idx;
 
 	idx = 0;
-	if (check_closed_quotes(str) && inside_quotes_detector(str))
+	if (check_closed_quotes(str)
+		&& inside_quotes_detector(str))
 		str = update_str_if_inside_quotes(str);
 	get_state(idx, str, lst);
 	assign_lst_idx(*lst);

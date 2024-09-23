@@ -21,9 +21,9 @@ bool	check_closed_quotes(char *str)
 	idx = 0;
 	quote_idx = 0;
 	quote_type = '\0';
-	while (str[idx])
+	while (str[idx] != '\0')
 	{
-		if (quote_type == '\0' && (str[idx] == '"' || str[idx] == '\''))
+		if (quote_type == '\0' && str[idx] && (str[idx] == '"' || str[idx] == '\''))
 		{
 			quote_type = str[idx];
 			quote_idx++;

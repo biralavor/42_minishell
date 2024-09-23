@@ -37,6 +37,7 @@ void	loop_routine(char *str)
 		error_manager_lexer(LIST_NOT_CREATED);
 	if (syntax_analysis(lst))
 	{
+		check_heredoc(lst);
 		token_tree = initiate_tree(lst);
 		tree_holder(token_tree, false);
 		tree_execution(token_tree, 0);
