@@ -1,0 +1,51 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    minishell_tester_pipes.yml                         :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2024/09/23 16:00:54 by umeneses          #+#    #+#              #
+#    Updated: 2024/09/23 16:19:56 by umeneses         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
+
+name: minishell tester >> pipes
+
+on:
+  push:
+    branches:
+    - main
+    - '**feature**'
+    - '**feat**'
+    - '**bugfix**'
+    - '**fix**'
+    - '**release**'
+  pull_request:
+    branches:
+    - main
+    - '**feature**'
+    - '**feat**'
+    - '**bugfix**'
+    - '**fix**'
+    - '**release**'
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./
+    steps:
+      - name: Starting Github Actions
+        uses: actions/checkout@v4.1.4
+
+      - name: Building Program with MiniShell Makefile
+        run: make
+
+      - name: Running Tester for Builtins
+        run: cd minishell_tester && ./tester pipes
+
+# :: source minishell_tester repository ::
+# https://github.com/LucasKuhn/minishell_tester
