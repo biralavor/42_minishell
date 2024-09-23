@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lexer.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 13:32:19 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/09/19 13:17:28 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/09/23 13:04:51 by tmalheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,6 +95,8 @@ int		state_90(t_token_list **lst, char *str, int idx);
  * @param str -> User input in command line.
 */
 bool	check_closed_quotes(char *str);
+
+bool	inside_quotes_detector(char *str);
 
 /**
  * @brief Checks for open parenthesis.
