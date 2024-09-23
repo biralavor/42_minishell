@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   07.token_list_functions.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 10:52:55 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/09/20 17:25:41 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/09/23 11:00:12 by tmalheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -143,7 +143,7 @@ void	free_token_list(t_token_list **lst)
 		curr = curr->next;
 		if (temp->lexeme)
 			free(temp->lexeme);
-		free(temp);
+//		free(temp);
 	}
-	temp = NULL;
+	*lst = NULL;
 }
