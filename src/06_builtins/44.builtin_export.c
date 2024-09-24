@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   43.builtin_export.c                                :+:      :+:    :+:   */
+/*   44.builtin_export.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 13:23:46 by umeneses          #+#    #+#             */
-/*   Updated: 2024/09/16 09:30:16 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/09/24 11:23:18 by tmalheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,20 +29,22 @@ void	builtins_runner_export(char *arg)
 	{
 		env_sorted = builtins_env_sort_manager(env_copy);
 		ft_env_printer_classic(env_sorted);
+		free_env_table(&env_sorted);
 	}
 	else if (state == 100)
 	{
 		arg_handle_runner(env_copy, arg);
 		env_sorted = builtins_env_sort_manager(env_copy);
+		free_env_table(&env_sorted);
 	}
 	else if (state == 404)
 	{
 		ft_putstr_fd("minishell: export: `", STDERR_FILENO);
 		ft_putstr_fd(arg, STDERR_FILENO);
 		ft_putendl_fd("': not a valid identifier", STDERR_FILENO);
+		free_env_table(&env_copy);
 		exit_status_holder(1, true);
 	}
-	free_env_table(&env_sorted);
 }
 
 t_env_entry	*copy_env_table(t_env_entry *env_vars)

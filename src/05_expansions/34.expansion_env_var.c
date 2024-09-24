@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   34.expansion_env_var.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/27 12:39:23 by umeneses          #+#    #+#             */
-/*   Updated: 2024/09/23 12:13:25 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/09/24 09:25:03 by tmalheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,10 +123,12 @@ char	**expand_var_from_array(char **arr_lex)
 char	*merging_array_lexeme(char **arr_lex)
 {
 	char	*merged_lex;
+	char	*tmp;
 	int		idx;
 
 	idx = 0;
 	merged_lex = NULL;
+	tmp = NULL;
 	if (arr_lex[idx])
 	{
 		merged_lex = ft_strdup(arr_lex[idx]);
@@ -134,7 +136,9 @@ char	*merging_array_lexeme(char **arr_lex)
 	}
 	while (arr_lex[idx])
 	{
-		merged_lex = ft_strjoin(merged_lex, arr_lex[idx]);
+		tmp = ft_strjoin(merged_lex, arr_lex[idx]);
+		free(merged_lex);
+		merged_lex = tmp;
 		idx++;
 	}
 	return (merged_lex);
