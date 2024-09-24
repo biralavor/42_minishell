@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 14:57:00 by umeneses          #+#    #+#             */
-/*   Updated: 2024/09/23 13:57:00 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/09/24 08:42:03 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ void		cd_error_msg(int destiny_len, char *destiny_path,
 /**
  * @brief: Checks if the builtin command has an argument.
 */
-bool		checking_cmd_arg_options(char *lexeme, char *arg);
+t_token_list	*checking_cmd_arg_options(t_token_list **cmd, char *arg);
 
 /**
  * @brief:
