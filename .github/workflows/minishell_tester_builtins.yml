@@ -6,10 +6,9 @@
 #    By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/23 16:00:54 by umeneses          #+#    #+#              #
-#    Updated: 2024/09/23 20:24:03 by umeneses         ###   ########.fr        #
+#    Updated: 2024/09/23 20:52:11 by umeneses         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
-
 
 name: minishell tester >> builtins
 
@@ -34,6 +33,7 @@ on:
 jobs:
   builtins:
     runs-on: ubuntu-latest
+    timeout-minutes: 1
     defaults:
       run:
         working-directory: ./
@@ -46,6 +46,7 @@ jobs:
 
       - name: Running Tester for Builtins
         run: cd minishell_tester && ./tester builtins
+
 
 # :: source minishell_tester repository ::
 # https://github.com/LucasKuhn/minishell_tester
