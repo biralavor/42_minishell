@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 13:23:46 by umeneses          #+#    #+#             */
-/*   Updated: 2024/09/21 22:15:41 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/09/24 11:24:18 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,8 +72,6 @@ void	pid_exit_status_caller(pid_t pid)
 	waitpid(pid, &status, 0);
 	if (WIFEXITED(status))
 		status = WEXITSTATUS(status);
-	if (status == 139)
-		status = 1;
 	exit_status_holder(status, true);
 }
 
