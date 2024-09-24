@@ -1,0 +1,52 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    tester_builder.yml                                 :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2024/06/12 11:07:38 by umeneses          #+#    #+#              #
+#    Updated: 2024/09/23 17:29:03 by umeneses         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
+name: tester_builder
+
+on:
+  push:
+    branches:
+    - main
+    - '**feature**'
+    - '**feat**'
+    - '**bugfix**'
+    - '**fix**'
+    - '**release**'
+  pull_request:
+    branches:
+    - main
+    - '**feature**'
+    - '**feat**'
+    - '**bugfix**'
+    - '**fix**'
+    - '**release**'
+
+jobs:
+  our_tester:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./_ci_cd/
+    steps:
+      - name: Starting Github Actions
+        uses: actions/checkout@v4.1.4
+
+      - name: Install CUnit
+        run: sudo apt-get update && sudo apt-get install -y libcunit1 libcunit1-doc libcunit1-dev
+
+      - name: Running Tester Makefile
+        run: make
+
+
+
+# :: github actions documentation ::
+# https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions

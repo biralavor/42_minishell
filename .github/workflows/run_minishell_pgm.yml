@@ -6,7 +6,7 @@
 #    By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/12 11:04:11 by umeneses          #+#    #+#              #
-#    Updated: 2024/07/17 19:05:04 by umeneses         ###   ########.fr        #
+#    Updated: 2024/09/23 17:28:49 by umeneses         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,7 +31,7 @@ on:
     - '**release**'
 
 jobs:
-  build:
+  minishell_program:
     runs-on: ubuntu-latest
     defaults:
       run:

@@ -1,16 +1,16 @@
 # **************************************************************************** #
 #                                                                              #
 #                                                         :::      ::::::::    #
-#    tester_builder.yml                                 :+:      :+:    :+:    #
+#    minishell_tester_redirects.yml                     :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
 #    By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2024/06/12 11:07:38 by umeneses          #+#    #+#              #
-#    Updated: 2024/07/17 19:36:03 by umeneses         ###   ########.fr        #
+#    Created: 2024/09/23 16:00:54 by umeneses          #+#    #+#              #
+#    Updated: 2024/09/24 11:40:07 by umeneses         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-name: tester_builder
+name: minishell tester >> redirects
 
 on:
   push:
@@ -31,22 +31,25 @@ on:
     - '**release**'
 
 jobs:
-  test:
+  redirects:
     runs-on: ubuntu-latest
+    timeout-minutes: 1
     defaults:
       run:
-        working-directory: ./_ci_cd/
+        working-directory: ./
     steps:
       - name: Starting Github Actions
         uses: actions/checkout@v4.1.4
 
-      - name: Install CUnit
-        run: sudo apt-get update && sudo apt-get install -y libcunit1 libcunit1-doc libcunit1-dev
-
-      - name: Running Tester Makefile
+      - name: Building Program with MiniShell Makefile
         run: make
 
+      - name: Submodule Init
+        run: git submodule init && git submodule update
+
+      - name: Running Tester for Builtins
+        run: cd minishell_tester && ./tester redirects
 
 
-# :: github actions documentation ::
-# https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions
+# :: source minishell_tester repository ::
+# https://github.com/LucasKuhn/minishell_tester

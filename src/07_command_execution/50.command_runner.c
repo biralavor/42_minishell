@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   49.command_runner.c                                :+:      :+:    :+:   */
+/*   50.command_runner.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 18:51:30 by umeneses          #+#    #+#             */
-/*   Updated: 2024/09/16 12:06:12 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/09/24 10:59:19 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	fork_and_execve(char **cmd, char *path)
 		rl_clear_history();
 	}
 	pid = fork();
-	if (pid == -1)
+	if (pid < 0)
 		fork_error();
 	child_process_is_running(true, true);
 	if (pid == 0)
@@ -35,6 +35,7 @@ void	fork_and_execve(char **cmd, char *path)
 	}
 	pid_exit_status_caller(pid);
 	free_array(all_envs);
+	free(path);
 }
 
 void	execve_error_manager(char **cmd, char **all_envs, char *path)
@@ -81,8 +82,8 @@ int	command_runner(char **cmd)
 	if (path)
 	{
 		fork_and_execve(cmd, path);
-		if (exit_status_holder(0, false) == 0)
-			free(path);
+		// if (exit_status_holder(0, false) == 0)
+		// 	free(path);
 	}
 	return (exit_status);
 }
