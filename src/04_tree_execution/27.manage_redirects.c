@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   27.manage_redirects.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/04 10:20:13 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/09/20 15:15:01 by tmalheir         ###   ########.fr       */
+/*   Updated: 2024/09/24 12:21:07 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,14 @@ static void	apply_redirect(t_tree *tree, int *fd)
 {
 	if (tree->type == REDIR_IN || tree->type == REDIR_HDOC)
 	{
-		dup2(*fd, STDIN_FILENO);
+		if (dup2(*fd, STDIN_FILENO) == -1)
+		exit(exit_status_holder(EXIT_FAILURE, true));
 		close(*fd);
 	}
 	if (tree->type == REDIR_OUT || tree->type == REDIR_OUTAPP)
 	{
-		dup2(*fd, STDOUT_FILENO);
+		if (dup2(*fd, STDOUT_FILENO) == -1)
+		exit(exit_status_holder(EXIT_FAILURE, true));
 		close(*fd);
 	}
 }
@@ -56,7 +58,11 @@ static int	open_redir_file(t_tree *tree, int *fd)
 	else if (tree->type == REDIR_OUTAPP)
 		*fd = open(pathname, O_WRONLY | O_CREAT | O_APPEND, 0644);
 	if (*fd < 0)
-		printf("TO RECLAMANDO, NÃO ACHEI O ARQUIVO %s\n", pathname);
+	{
+		ft_putendl_fd(" No such file or directory", STDERR_FILENO);
+		exit_status_holder(EXIT_FAILURE, true);
+		// printf("TO RECLAMANDO, NÃO ACHEI O ARQUIVO %s\n", pathname);
+	}
 	free(pathname);
 	return (*fd);
 }
@@ -64,15 +70,13 @@ static int	open_redir_file(t_tree *tree, int *fd)
 /**
  * @todo check if function has the right lines number when ret_code is removed
  */
-int	manage_redirect(t_tree *tree, int flag)
+void	manage_redirect(t_tree *tree, int flag)
 {
 	int				std_fd[2];
 	int				new_fd;
-	int				ret_code;
 	static int		first_redir[2];
 
-	new_fd = 0;
-	ret_code = 0;
+	new_fd = -1;
 	if (!flag)
 		change_redir_flag(first_redir);
 	open_redir_file(tree, &new_fd);
@@ -81,10 +85,11 @@ int	manage_redirect(t_tree *tree, int flag)
 	if (tree->right && !tree->right->right)
 		check_if_apply_redirect(tree, first_redir, new_fd);
 	if (tree->left)
-		ret_code = tree_execution(tree->left, 1);
-	dup2(std_fd[0], STDIN_FILENO);
-	dup2(std_fd[1], STDOUT_FILENO);
+		tree_execution(tree->left, 1);
+	if (dup2(std_fd[0], STDIN_FILENO) == -1)
+		exit(exit_status_holder(EXIT_FAILURE, true));
+	if (dup2(std_fd[1], STDOUT_FILENO) == -1)
+		exit(exit_status_holder(EXIT_FAILURE, true));
 	close(std_fd[0]);
 	close(std_fd[1]);
-	return (ret_code);
 }

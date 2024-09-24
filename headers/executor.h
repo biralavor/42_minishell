@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/05 13:56:37 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/09/22 10:31:36 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/09/24 12:19:33 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,7 @@ void			wait_to_restore_fds(int *new_pipe, int *pid);
 
 int				pipe_execution(char **cmd, char *path);
 
-int				manage_redirect(t_tree *tree, int flag);
+void			manage_redirect(t_tree *tree, int flag);
 
 int				manage_subshell(t_tree *tree);
 
