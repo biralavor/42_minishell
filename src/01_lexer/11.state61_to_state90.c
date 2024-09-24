@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/20 10:35:11 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/09/23 15:56:20 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/09/24 11:33:19 by tmalheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,8 @@ int	state_70(t_token_list **lst, char *str, int idx)
 	end = (size_t)idx;
 	double_quotes_node->lexeme = ft_strdup((const char *)str + start);
 	double_quotes_node->type = DOUBLE_QUOTES;
-	double_quotes_node->next_char = str[end + 1];
+//	if (str[end + 1])
+//		double_quotes_node->next_char = str[end + 1];
 	create_new_node(lst, double_quotes_node);
 	return (end + 1);
 }
