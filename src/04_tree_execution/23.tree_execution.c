@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 18:09:53 by umeneses          #+#    #+#             */
-/*   Updated: 2024/09/22 10:11:11 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/09/24 12:14:13 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	tree_execution(t_tree *tree, int flag)
 	else if (tree->type == PIPE)
 		manage_pipe(tree);
 	else if (is_redirect(tree->type))
-		exit_status = manage_redirect(tree, flag);
+		manage_redirect(tree, flag);
 	else if (tree->type == SUBSHELL)
 		exit_status = manage_subshell(tree);
 	else if (tree->type == WORD || tree->type == DOUBLE_QUOTES)
