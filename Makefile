@@ -267,7 +267,7 @@ go:					all
 					./$(NAME)
 
 gdb:				all
-					gdb --tui -ex 'b main' -ex 'set follow-fork-mode child' -ex 'run' ./$(NAME)
+					gdb --tui -ex 'b main' -ex 'set detach-on-fork off' -ex 'info inferiors' -ex 'run > /dev/null 2>&1' ./$(NAME)
 
 val:				all
 					valgrind --leak-check=full --track-origins=yes --track-fds=yes --show-reachable=yes --suppressions=readline.sup ./$(NAME)
