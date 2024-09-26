@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 22:17:27 by umeneses          #+#    #+#             */
-/*   Updated: 2024/09/26 09:08:08 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/09/26 14:55:06 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,9 @@ void	list_not_created(void);
  * @param error_id -> error number defined in enum e_error in this header.
  * @param lst -> the token list.
 */
-void	error_manager_parser(int error_id, char *lex, int syntax_state);
+void	error_manager_parser(int error_id, t_token_list *lst, int syntax_state);
+
+char	*get_metachar_type_as_str(int type);
 
 /**
  * @brief Prints an unexpected token error message.
@@ -75,11 +77,5 @@ void	unexpected_token_error(char *lex);
  * @param lst -> the token list.
 */
 void	syntax_error(void);
-
-/**
- * @brief Prints a command not found error message.
- * @param lst -> the token list.
-*/
-void	command_not_found(void);
 
 #endif
