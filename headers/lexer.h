@@ -6,7 +6,7 @@
 /*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 13:32:19 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/09/23 13:04:51 by tmalheir         ###   ########.fr       */
+/*   Updated: 2024/09/26 10:43:50 by tmalheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,7 @@ int		state_90(t_token_list **lst, char *str, int idx);
  * @brief Checks for double or single quoting errors.
  * @param str -> User input in command line.
 */
-bool	check_closed_quotes(char *str);
+int		check_closed_quotes(char *str);
 
 bool	inside_quotes_detector(char *str);
 

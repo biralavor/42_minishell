@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expansion.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/28 13:55:02 by umeneses          #+#    #+#             */
-/*   Updated: 2024/09/19 13:09:25 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/09/26 11:41:50 by tmalheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,8 @@ char	*merging_array_lexeme(char **array_lexeme);
 char	**free_runner_for_env_rules_manager(char **arr_lex, char **new_arr);
 bool	single_quote_detector(char *lexeme);
 char	*single_quote_remover(char *lexeme);
+bool	double_quote_detector(char *lexeme);
+char	*double_quote_remover(char *lex);
 
 bool	expansion_question_mark_detector(char *lexeme);
 char	*expansion_question_mark(char *lexeme);
