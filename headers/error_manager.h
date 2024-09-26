@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 22:17:27 by umeneses          #+#    #+#             */
-/*   Updated: 2024/09/26 11:13:25 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/09/26 14:55:06 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,11 +77,5 @@ void	unexpected_token_error(char *lex);
  * @param lst -> the token list.
 */
 void	syntax_error(void);
-
-// /**
-//  * @brief Prints a command not found error message.
-//  * @param lst -> the token list.
-// */
-// void	command_not_found(void);
 
 #endif

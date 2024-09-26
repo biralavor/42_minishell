@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 11:53:52 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/09/26 11:14:32 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/09/26 14:55:14 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,6 @@ void	error_manager_parser(int error_id, t_token_list *lst, int syntax_state)
 	}
 	else if (error_id == SYNTAX_ERROR)
 		syntax_error();
-	// else if (error_id == COMMAND_NOT_FOUND)
-	// 	command_not_found();
 }
 
 void	unexpected_token_error(char *lex)
@@ -70,8 +68,3 @@ char	*get_metachar_type_as_str(int type)
 		result = ft_strdup("<<");
 	return (result);
 }
-
-// void	command_not_found(void)
-// {
-// 	ft_putendl_fd("Command not found.\n", STDERR_FILENO);
-// }
