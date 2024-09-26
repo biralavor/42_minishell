@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/16 09:43:43 by umeneses          #+#    #+#             */
-/*   Updated: 2024/09/26 14:35:54 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/09/26 18:48:53 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,35 +14,40 @@
 
 int	manage_single_command(t_tree *tree)
 {
-	static int	exit_status;
-	char		**cmd;
-
-	cmd = NULL;
 	expansion_manager(tree->command);
 	if (builtins_detector(tree->command))
 		builtins_manager(tree->command);
 	else if (builtins_detector_with_possible_args(tree->command))
 		builtins_with_possible_args_manager(tree->command);
 	else
-	{
-		cmd = convert_tokens_to_array(tree->command);
-		if (!cmd)
-		{
-			exit_status = exit_status_holder(1, true); // trocar por exit_holder
-			return (exit_status);
-		}
-		exit_status = command_runner(cmd); // trocar por exit_holder
-		if (exit_status_holder(0, false) == 177 || exit_status_holder(0, false) == 127)
-		{
-			free(cmd);
-			return (exit_status_holder(0, false));
-		}
-		free_array(cmd);
-	}
-	// verify if !cmd[0]
+		preprocessing_for_command_runner(tree->command);
 	// verify exit_status_holder()
 	// verify SIGINT
-	return (exit_status);
+	return (exit_status_holder(0, false));
+}
+
+void	preprocessing_for_command_runner(t_token_list *command)
+{
+	char		**cmd;
+	bool		absolute_path;
+
+	cmd = NULL;
+	absolute_path = false;
+	cmd = convert_tokens_to_array(command);
+	if (!cmd)
+		exit_status_holder(1, true);
+	if (is_cmd_with_valid_path(cmd[0]))
+		absolute_path = true;
+	command_runner(cmd);
+	if (exit_status_holder(0, false) == 177
+		|| exit_status_holder(0, false) == 127)
+		{
+			free(cmd);
+			return ;
+		}
+	if (absolute_path)
+		cmd[0] = NULL;
+	free_array(cmd);
 }
 
 char	**convert_tokens_to_array(t_token_list *lst)
