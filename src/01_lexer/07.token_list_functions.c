@@ -6,7 +6,7 @@
 /*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 10:52:55 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/09/23 13:25:36 by tmalheir         ###   ########.fr       */
+/*   Updated: 2024/09/26 10:45:48 by tmalheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,9 @@ bool	create_token_list(char *str, t_token_list **lst)
 	int	idx;
 
 	idx = 0;
-	if (check_closed_quotes(str)
-		&& inside_quotes_detector(str))
-		str = update_str_if_inside_quotes(str);
+//	if (check_closed_quotes(str)
+//		&& inside_quotes_detector(str))
+//		str = update_str_if_inside_quotes(str);
 	get_state(idx, str, lst);
 	assign_lst_idx(*lst);
 	if (lst)

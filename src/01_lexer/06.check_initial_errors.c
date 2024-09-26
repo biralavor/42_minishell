@@ -6,13 +6,13 @@
 /*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 07:45:31 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/09/24 09:18:43 by tmalheir         ###   ########.fr       */
+/*   Updated: 2024/09/26 10:46:08 by tmalheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-bool	check_closed_quotes(char *str)
+int	check_closed_quotes(char *str)
 {
 	int		idx;
 	int		quote_idx;
@@ -35,11 +35,9 @@ bool	check_closed_quotes(char *str)
 		if (str[idx])
 			idx++;
 	}
-	if (quote_idx % 2 == 0)
-		return (true);
-	return (false);
+	return (quote_idx % 2 == 0);
 }
-
+/*
 bool	inside_quotes_detector(char *str)
 {
 	int	idx;
@@ -91,7 +89,7 @@ char	*update_str_if_inside_quotes(char *str)
 		update_str_if_inside_quotes(str);
 	return (str);
 }
-
+*/
 bool	check_closed_parenthesis(char *str)
 {
 	int		idx;

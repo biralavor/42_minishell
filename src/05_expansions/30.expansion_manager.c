@@ -3,26 +3,46 @@
 /*                                                        :::      ::::::::   */
 /*   30.expansion_manager.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/26 18:31:10 by umeneses          #+#    #+#             */
-/*   Updated: 2024/09/20 10:04:56 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/09/26 14:51:45 by tmalheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
+static char	*quote_detector(t_token_list *lst, char *lexeme, int *flag)
+{
+	int		idx;
+
+	idx = 0;
+	while (lexeme[idx])
+	{
+		if (lexeme[idx] == '\'')
+		{
+			*flag = 1;
+			return (lst->lexeme = single_quote_remover(lst->lexeme));
+		}
+		else if (lexeme[idx] == '"')
+			return (lst->lexeme = double_quote_remover(lst->lexeme));
+		idx++;
+	}
+	return (lst->lexeme);
+}
+
 void	expansion_manager(t_token_list *cmd)
 {
+	int				flag;
 	t_token_list	*tmp;
 
+	flag = 0;
 	tmp = cmd;
 	while (tmp != NULL)
 	{
-		if (single_quote_detector(tmp->lexeme))
-			tmp->lexeme = single_quote_remover(tmp->lexeme);
-		else
-		{	
+		tmp->lexeme = quote_detector(tmp, tmp->lexeme, &flag);
+		if (!flag)
+		{
 			if (expansion_tilde_detector(tmp->lexeme))
 				tmp->lexeme = expansion_tilde_to_home(tmp->lexeme);
 			if (expansion_dollar_sign_detector(tmp))
@@ -34,7 +54,7 @@ void	expansion_manager(t_token_list *cmd)
 			}
 		}
 		tmp = tmp->next;
-	}	
+	}
 }
 
 int	next_char_counter(t_token_list *cmd)

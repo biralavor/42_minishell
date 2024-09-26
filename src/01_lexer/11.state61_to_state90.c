@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   11.state61_to_state90.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/20 10:35:11 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/09/24 11:33:19 by tmalheir         ###   ########.fr       */
+/*   Updated: 2024/09/26 15:21:34 by tmalheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,32 +38,28 @@ int	state_70(t_token_list **lst, char *str, int idx)
 {
 	size_t			start;
 	size_t			end;
-	t_token_list	*double_quotes_node;
-	bool			quote_detected;
+	t_token_list	*double_q;
 
-	quote_detected = false;
 	start = (size_t)idx;
-	double_quotes_node = (t_token_list *)ft_calloc(1, sizeof(t_token_list));
+	double_q = (t_token_list *)ft_calloc(1, sizeof(t_token_list));
 	while (str[idx])
 	{
-		if ((str[idx - 1] && str[idx - 1] == ' ' && str[idx] == '"') || !idx)
+		if (str[idx] == '"')
 		{
-			ft_memmove(&str[idx], &str[idx + 1], ft_strlen(&str[idx + 1]) + 1);
-			quote_detected = true;
+			if (str[idx + 1] && (str[idx] != '(') && (str[idx] != ')')
+				&& (str[idx] != '|') && (str[idx] != '&') && (str[idx] != '>')
+				&& (str[idx] != '<') && !(is_blank(str[idx])))
+				idx++;
+			else
+				break ;
 		}
-		else if (quote_detected && str[idx] == '"' && str[idx + 1] == '\0')
-		{
-			ft_memmove(&str[idx], &str[idx + 1], ft_strlen(&str[idx + 1]) + 1);
-			quote_detected = false;
-		}
-		idx++;
+		else
+			idx++;
 	}
 	end = (size_t)idx;
-	double_quotes_node->lexeme = ft_strdup((const char *)str + start);
-	double_quotes_node->type = DOUBLE_QUOTES;
-//	if (str[end + 1])
-//		double_quotes_node->next_char = str[end + 1];
-	create_new_node(lst, double_quotes_node);
+	double_q->lexeme = ft_strdup((const char *)str + start);
+	double_q->type = DOUBLE_QUOTES;
+	create_new_node(lst, double_q);
 	return (end + 1);
 }
 
@@ -71,20 +67,28 @@ int	state_80(t_token_list **lst, char *str, int idx)
 {
 	size_t			start;
 	size_t			end;
-	char			*single_quotes;
-	t_token_list	*single_quotes_node;
+	t_token_list	*single;
 
 	start = (size_t)idx;
 	idx++;
-	single_quotes_node = (t_token_list *)ft_calloc(1, sizeof(t_token_list));
-	while (str[idx] != '\'')
+	single = (t_token_list *)ft_calloc(1, sizeof(t_token_list));
+	while (str[idx])
+	{
+		if (str[idx] == '\'')
+		{
+			if (str[idx + 1] && (str[idx] != '(') && (str[idx] != ')')
+				&& (str[idx] != '|') && (str[idx] != '&') && (str[idx] != '>')
+				&& (str[idx] != '<') && !(is_blank(str[idx])))
+				idx++;
+			else
+				break ;
+		}
 		idx++;
+	}
 	end = (size_t)idx;
-	single_quotes = ft_substr((char const *)str, start, ((end - start) + 1));
-	single_quotes_node->lexeme = single_quotes;
-	single_quotes_node->type = SINGLE_QUOTES;
-	single_quotes_node->next_char = str[end + 1];
-	create_new_node(lst, single_quotes_node);
+	single->lexeme = ft_substr((char const *)str, start, ((end - start) + 1));
+	single->type = SINGLE_QUOTES;
+	create_new_node(lst, single);
 	return (end + 1);
 }
 
@@ -92,7 +96,6 @@ int	state_90(t_token_list **lst, char *str, int idx)
 {
 	size_t			start;
 	size_t			end;
-	char			*just_str;
 	t_token_list	*just_str_node;
 
 	if (is_blank(str[idx]))
@@ -102,14 +105,12 @@ int	state_90(t_token_list **lst, char *str, int idx)
 	just_str_node = (t_token_list *)ft_calloc(1, sizeof(t_token_list));
 	while ((str[idx] != '(') && (str[idx] != ')') && (str[idx] != '|')
 		&& (str[idx] != '&') && (str[idx] != '>') && (str[idx] != '<')
-		&& (str[idx] != '"') && (str[idx] != '\'') && !(is_blank(str[idx]))
-		&& (str[idx]))
+		&& !(is_blank(str[idx])) && (str[idx]))
 		idx++;
 	end = (size_t)(idx - 1);
-	just_str = ft_substr((const char *)str, start, ((end - start) + 1));
-	just_str_node->lexeme = just_str;
+	just_str_node->lexeme = ft_substr((const char *)str, start,
+			((end - start) + 1));
 	just_str_node->type = WORD;
-	just_str_node->next_char = str[end + 1];
 	create_new_node(lst, just_str_node);
 	return (end + 1);
 }
