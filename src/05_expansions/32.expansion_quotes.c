@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 13:41:21 by umeneses          #+#    #+#             */
-/*   Updated: 2024/09/26 15:38:31 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/09/26 15:40:00 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,10 +70,8 @@ bool	double_quote_detector(char *lexeme)
 char	*double_quote_remover(char *lex)
 {
 	int		idx;
-	int		flag;
 
 	idx = 0;
-	flag = 0;
 	if (lex[idx] == '"' && lex[idx + 1] == '"' && !lex[idx + 2])
 	{
 		free(lex);
