@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   error_manager.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 22:17:27 by umeneses          #+#    #+#             */
-/*   Updated: 2024/09/23 11:23:50 by tmalheir         ###   ########.fr       */
+/*   Updated: 2024/09/26 09:08:08 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,13 +62,13 @@ void	list_not_created(void);
  * @param error_id -> error number defined in enum e_error in this header.
  * @param lst -> the token list.
 */
-void	error_manager_parser(int error_id);
+void	error_manager_parser(int error_id, char *lex, int syntax_state);
 
 /**
  * @brief Prints an unexpected token error message.
  * @param lst -> the token list.
 */
-void	unexpected_token_error(void);
+void	unexpected_token_error(char *lex);
 
 /**
  * @brief Prints a syntax error message.
