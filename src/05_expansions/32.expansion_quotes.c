@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   32.expansion_quotes.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 13:41:21 by umeneses          #+#    #+#             */
-/*   Updated: 2024/09/26 14:53:20 by tmalheir         ###   ########.fr       */
+/*   Updated: 2024/09/26 15:38:31 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,8 @@ bool	single_quote_detector(char *lexeme)
 char	*single_quote_remover(char *lex)
 {
 	int		idx;
-	int		flag;
 
 	idx = 0;
-	flag = 0;
 	if (lex[idx] == '\'' && lex[idx + 1] == '\'' && !lex[idx + 2])
 	{
 		free(lex);
