@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 13:23:46 by umeneses          #+#    #+#             */
-/*   Updated: 2024/09/21 14:52:15 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/09/26 16:32:53 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,11 @@ void	builtins_runner_cd(t_token_list *lst)
 	int				destiny_len;
 	char			*destiny_path;
 
+	if (!lst->next)
+	{
+		builtins_cd_switch_home_dir();
+		return ;
+	}
 	cmd = lst->next;
 	destiny_path = NULL;
 	if (cmd->lexeme && cmd->next && cmd->next->lexeme)
