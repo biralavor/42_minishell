@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   15.state100.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/04 16:20:31 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/09/23 11:25:05 by tmalheir         ###   ########.fr       */
+/*   Updated: 2024/09/26 09:12:57 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,8 +88,9 @@ int	state_100(t_token_list *lst, int syntax_state)
 	{
 		if (!check_lexeme_errors(lst->lexeme))
 		{
-			error_manager_parser(SYNTAX_ERROR);
 			syntax_state = 101;
+			error_manager_parser(SYNTAX_ERROR, lst->lexeme, syntax_state);
+			exit_status_holder(2, true);
 		}
 	}
 	return (syntax_state);
