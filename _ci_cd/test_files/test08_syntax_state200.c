@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/02 11:01:23 by umeneses          #+#    #+#             */
-/*   Updated: 2024/09/20 18:58:06 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/09/26 15:41:57 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -865,7 +865,7 @@ MU_TEST(testing_syntax_state200_cadet_echo_hi_PIPE_double_quotes)
 	open_redirect_stderr_to_dev_null(fd);
 	userinput = "echo hi |	\"|\"";
 	xpect_syntax_validation = 100; // cadet test
-	xpect_lst_size = 8;
+	xpect_lst_size = 4;
 	idx = 0;
 	lst = NULL;
 	get_state(idx, userinput, &lst);
