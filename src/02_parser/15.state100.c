@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/04 16:20:31 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/09/26 09:12:57 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/09/26 11:04:09 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,7 @@ int	state_100(t_token_list *lst, int syntax_state)
 		if (!check_lexeme_errors(lst->lexeme))
 		{
 			syntax_state = 101;
-			error_manager_parser(SYNTAX_ERROR, lst->lexeme, syntax_state);
+			error_manager_parser(SYNTAX_ERROR, lst, syntax_state);
 			exit_status_holder(2, true);
 		}
 	}
