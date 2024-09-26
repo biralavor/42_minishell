@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/16 09:43:43 by umeneses          #+#    #+#             */
-/*   Updated: 2024/09/26 14:35:54 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/09/26 18:30:20 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,10 @@ int	manage_single_command(t_tree *tree)
 {
 	static int	exit_status;
 	char		**cmd;
+	bool		absolute_path;
 
 	cmd = NULL;
+	absolute_path = false;
 	expansion_manager(tree->command);
 	if (builtins_detector(tree->command))
 		builtins_manager(tree->command);
@@ -31,12 +33,17 @@ int	manage_single_command(t_tree *tree)
 			exit_status = exit_status_holder(1, true); // trocar por exit_holder
 			return (exit_status);
 		}
+		if (is_cmd_with_valid_path(cmd[0]))
+			absolute_path = true;
 		exit_status = command_runner(cmd); // trocar por exit_holder
-		if (exit_status_holder(0, false) == 177 || exit_status_holder(0, false) == 127)
+		if (exit_status_holder(0, false) == 177
+			|| exit_status_holder(0, false) == 127)
 		{
 			free(cmd);
 			return (exit_status_holder(0, false));
 		}
+		if (absolute_path)
+			cmd[0] = NULL;
 		free_array(cmd);
 	}
 	// verify if !cmd[0]
