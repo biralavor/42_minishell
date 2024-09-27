@@ -10,7 +10,7 @@
 #                                                                              #
 # **************************************************************************** #
 
-name: tester_builder
+name: our_own_tester
 
 on:
   push:
@@ -45,7 +45,6 @@ jobs:
 
       - name: Running Tester Makefile
         run: make
-
 
 
 # :: github actions documentation ::
