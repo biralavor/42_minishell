@@ -10,7 +10,7 @@
 #                                                                              #
 # **************************************************************************** #
 
-name: program_builder
+name: norminette
 
 on:
   push:
@@ -31,7 +31,7 @@ on:
     - '**release**'
 
 jobs:
-  minishell_program:
+  norminette:
     runs-on: ubuntu-latest
     defaults:
       run:
@@ -60,21 +60,6 @@ jobs:
       - name: Running Norminette
         run: norminette -R CheckForbiddenSourceHeader ./headers/ ./libs/ ./src/
 
-      - name: Install Valgrind
-        run: sudo aptitude install -y valgrind
-
-      - name: Run Valgrind
-        id: valgrind_check
-        run: |
-          OUTPUT=$(valgrind --track-origins=yes --leak-check=full --suppressions=./readline.sup ./minishell 2>&1)
-          LAST_LINE=$(echo "$OUTPUT" | tail -n 1)
-          if [[ $LAST_LINE == *"ERROR SUMMARY:"* ]]; then
-            ERROR_SUMMARY=$(echo "$LAST_LINE" | grep -oP 'ERROR SUMMARY: \K[0-9]+ errors from [0-9]+ contexts')
-            if [[ $ERROR_SUMMARY != "0 errors from 0 contexts" ]]; then
-              echo "Valgrind detected memory leaks."
-              exit 1
-            fi
-          fi
 
 # :: github actions documentation ::
 # https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions
