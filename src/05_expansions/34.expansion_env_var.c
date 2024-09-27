@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/27 12:39:23 by umeneses          #+#    #+#             */
-/*   Updated: 2024/09/27 11:19:26 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/09/27 13:54:12 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,25 +108,27 @@ char	**expand_var_from_array(char **arr_lex)
 		{
 			env_key = ft_substr(arr_lex[idx], 0, c + 1);
 			env_table = lookup_table(env_holder(NULL, false, false), env_key);
-			if (env_table)
+			if (!env_table && ft_strncmp(arr_lex[idx], env_key, ft_strlen(arr_lex[idx])) == 0)
+				not_found = true;
+			else if (env_table && env_table->value)
 			{
 				lex_rest = ft_substr(arr_lex[idx], ft_strlen(env_key),
 					ft_strlen(arr_lex[idx]) - ft_strlen(env_key));
 				free(arr_lex[idx]);
 				arr_lex[idx] = ft_strjoin(env_table->value, lex_rest);
 				free(lex_rest);
+				free(env_key);
+				break ;
 			}
-			if (!env_table && ft_strncmp(arr_lex[idx], env_key, ft_strlen(arr_lex[idx])) == 0)
-				not_found = true;
 			free(env_key);
 		}
-		if (not_found)
+		idx++;
+		if (not_found && !arr_lex[idx - 1][c])
 		{
-			free(arr_lex[idx]);
-			arr_lex[idx] = NULL;
+			free(arr_lex[idx - 1]);
+			arr_lex[idx - 1] = NULL;
 			exit_status_holder(0, true);
 		}
-		idx++;
 	}
 	return (arr_lex);
 }
