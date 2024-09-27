@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   34.expansion_env_var.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/27 12:39:23 by umeneses          #+#    #+#             */
-/*   Updated: 2024/09/24 09:25:03 by tmalheir         ###   ########.fr       */
+/*   Updated: 2024/09/27 11:19:26 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,8 @@ char	*expansion_env_var_runner(char *lexeme, int type)
 		{
 			arr_lex = ft_split(lexeme, '$');
 			arr_lex = expand_var_from_array(arr_lex);
-			merged_lex = merging_array_lexeme(arr_lex);
+			if (arr_lex)
+				merged_lex = merging_array_lexeme(arr_lex);
 			break ;
 		}
 		c++;
@@ -95,9 +96,11 @@ char	**expand_var_from_array(char **arr_lex)
 	size_t		idx;
 	size_t		c;
 	char		*lex_rest;
+	bool		not_found;
 
 	idx = 0;
 	lex_rest = NULL;
+	not_found = false;
 	while (arr_lex[idx])
 	{
 		c = -1;
@@ -113,7 +116,15 @@ char	**expand_var_from_array(char **arr_lex)
 				arr_lex[idx] = ft_strjoin(env_table->value, lex_rest);
 				free(lex_rest);
 			}
+			if (!env_table && ft_strncmp(arr_lex[idx], env_key, ft_strlen(arr_lex[idx])) == 0)
+				not_found = true;
 			free(env_key);
+		}
+		if (not_found)
+		{
+			free(arr_lex[idx]);
+			arr_lex[idx] = NULL;
+			exit_status_holder(0, true);
 		}
 		idx++;
 	}
@@ -129,7 +140,7 @@ char	*merging_array_lexeme(char **arr_lex)
 	idx = 0;
 	merged_lex = NULL;
 	tmp = NULL;
-	if (arr_lex[idx])
+	if (arr_lex && arr_lex[idx])
 	{
 		merged_lex = ft_strdup(arr_lex[idx]);
 		idx++;
