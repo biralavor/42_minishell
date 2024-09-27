@@ -6,7 +6,7 @@
 /*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/20 10:35:11 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/09/26 15:21:34 by tmalheir         ###   ########.fr       */
+/*   Updated: 2024/09/26 17:15:02 by tmalheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,17 +38,24 @@ int	state_70(t_token_list **lst, char *str, int idx)
 {
 	size_t			start;
 	size_t			end;
+	bool			flag;
 	t_token_list	*double_q;
 
 	start = (size_t)idx;
+	flag = false;
 	double_q = (t_token_list *)ft_calloc(1, sizeof(t_token_list));
 	while (str[idx])
 	{
-		if (str[idx] == '"')
+		if (str[idx] == '"' && !flag)
 		{
-			if (str[idx + 1] && (str[idx] != '(') && (str[idx] != ')')
-				&& (str[idx] != '|') && (str[idx] != '&') && (str[idx] != '>')
-				&& (str[idx] != '<') && !(is_blank(str[idx])))
+			flag = true;
+			idx++;
+		}
+		if (str[idx] == '"' && flag)
+		{
+			if (str[idx + 1] && (str[idx + 1] != '(') && (str[idx + 1] != ')')
+				&& (str[idx + 1] != '|') && (str[idx + 1] != '&') && (str[idx + 1] != '>')
+				&& (str[idx + 1] != '<') && !(is_blank(str[idx + 1])))
 				idx++;
 			else
 				break ;
@@ -57,7 +64,7 @@ int	state_70(t_token_list **lst, char *str, int idx)
 			idx++;
 	}
 	end = (size_t)idx;
-	double_q->lexeme = ft_strdup((const char *)str + start);
+	double_q->lexeme = ft_substr((char const *)str, start, ((end - start) + 1));
 	double_q->type = DOUBLE_QUOTES;
 	create_new_node(lst, double_q);
 	return (end + 1);
