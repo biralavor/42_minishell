@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   17.redir_utils.c                                   :+:      :+:    :+:   */
+/*   18.check_redirects_utils.c                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/12 15:54:01 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/09/12 14:34:12 by tmalheir         ###   ########.fr       */
+/*   Updated: 2024/09/27 10:19:32 by tmalheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,10 @@ int	find_src_idx(t_token_list *lst)
 		if (is_redirect(temp->type))
 		{
 			if ((temp->next && temp->next->next)
-				&& (temp->next->type == ARCHIVE
-					&& temp->next->next->type == WORD))
+				&& (temp->next->type == ARCHIVE)
+					&& (temp->next->next->type == WORD
+					|| temp->next->next->type == DOUBLE_QUOTES
+					|| temp->next->next->type == SINGLE_QUOTES))
 			{
 				src_idx = temp->next->next->idx;
 				break ;
