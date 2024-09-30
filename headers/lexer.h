@@ -6,7 +6,7 @@
 /*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 13:32:19 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/09/26 10:43:50 by tmalheir         ###   ########.fr       */
+/*   Updated: 2024/09/30 14:43:57 by tmalheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,21 @@ bool	create_token_list(char *str, t_token_list **lst);
 */
 void	create_new_node(t_token_list **root, t_token_list *token);
 
+/**
+ * @brief Assigns indexes for each node.
+*/
+void	assign_lst_idx(t_token_list *lst);
+
+/**
+ * @brief Gets the size of the token list.
+*/
+int		ft_lst_size(t_token_list *lst);
+
+/**
+ * @brief Frees the used memory to create the token list.
+*/
+void	free_token_list(t_token_list **lst);
+
 /*STATE FUNCTIONS*/
 
 /**
@@ -96,7 +111,11 @@ int		state_90(t_token_list **lst, char *str, int idx);
 */
 int		check_closed_quotes(char *str);
 
-bool	inside_quotes_detector(char *str);
+/**
+ * @brief Checks if there are parenthesis between quotes.
+ * @param str -> User input in command line.
+*/
+int		between_quotes(int idx, char *str);
 
 /**
  * @brief Checks for open parenthesis.
@@ -104,17 +123,7 @@ bool	inside_quotes_detector(char *str);
 */
 bool	check_closed_parenthesis(char *str);
 
-/**
- * @brief Checks for empty parenthesis.
- * @param str -> User input in command line.
-*/
-bool	is_empty(char *str);
-
-/**
- * @brief Checks if there are parenthesis between quotes.
- * @param str -> User input in command line.
-*/
-int		between_quotes(int idx, char *str);
+int		between_parenthesis(int idx, char *str);
 
 /**
  * @brief Checks if the number of open and close parenthesis token is equal.
@@ -123,8 +132,6 @@ int		between_quotes(int idx, char *str);
  * @param close -> the number of close parenthesis token.
 */
 bool	match_parenthesis(int open, int close);
-
-int		between_parenthesis(int idx, char *str);
 
 /*UTILS*/
 
@@ -140,19 +147,14 @@ int		check_next_char(char curr, char next);
 int		is_blank(char c);
 
 /**
- * @brief Frees the used memory to create the token list.
+ * @brief Checks for empty parenthesis.
+ * @param str -> User input in command line.
 */
-void	free_token_list(t_token_list **lst);
+bool	is_empty(char *str);
 
-/**
- * @brief Gets the size of the token list.
-*/
-int		ft_lst_size(t_token_list *lst);
+int		check_double(char *str, int idx, bool flag);
 
-/**
- * @brief Assigns indexes for each node.
-*/
-void	assign_lst_idx(t_token_list *lst);
+int		check_single(char *str, int idx);
 
 char	*inside_closed_quotes_remover(char *str);
 

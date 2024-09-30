@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   26.manage_pipe.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/28 13:51:49 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/09/24 11:27:20 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/09/30 14:50:30 by tmalheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,9 @@ static void	close_pipes(int *new_pipe)
 
 void	exec_2nd_child(t_tree *right, int *new_pipe)
 {
+	int	flag;
+
+	flag = 0;
 	if (NULL == right)
 		exit(exit_status_holder(EXIT_FAILURE, true));
 	close(new_pipe[1]);
@@ -27,7 +30,7 @@ void	exec_2nd_child(t_tree *right, int *new_pipe)
 		exit(exit_status_holder(EXIT_FAILURE, true));
 	close(new_pipe[0]);
 	child_process_is_running(true, true);
-	tree_execution(right, 0);
+	tree_execution(right, &flag);
 	close(STDIN_FILENO);
 	close(STDOUT_FILENO);
 	clear_all_to_exit_smoothly();
@@ -36,6 +39,9 @@ void	exec_2nd_child(t_tree *right, int *new_pipe)
 
 void	exec_1st_child(t_tree *left, int *new_pipe)
 {
+	int	flag;
+
+	flag = 0;
 	if (NULL == left)
 		exit(exit_status_holder(EXIT_FAILURE, true));
 	close(new_pipe[0]);
@@ -43,7 +49,7 @@ void	exec_1st_child(t_tree *left, int *new_pipe)
 		exit(exit_status_holder(EXIT_FAILURE, true));
 	close(new_pipe[1]);
 	child_process_is_running(true, true);
-	tree_execution(left, 0);
+	tree_execution(left, &flag);
 	close(STDIN_FILENO);
 	close(STDOUT_FILENO);
 	clear_all_to_exit_smoothly();
@@ -52,13 +58,13 @@ void	exec_1st_child(t_tree *left, int *new_pipe)
 
 bool	child_process_is_running(bool update, bool caller)
 {
-	static bool child_process_holder;
+	static bool	child_process_holder;
 
 	if (update && caller)
 		child_process_holder = caller;
 	else if (caller)
 		return (child_process_holder);
-	return (child_process_holder);	
+	return (child_process_holder);
 }
 
 void	wait_to_restore_fds(int *new_pipe, int *pid)

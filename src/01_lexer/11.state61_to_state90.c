@@ -6,7 +6,7 @@
 /*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/20 10:35:11 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/09/26 17:15:02 by tmalheir         ###   ########.fr       */
+/*   Updated: 2024/09/30 14:34:59 by tmalheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,27 +44,9 @@ int	state_70(t_token_list **lst, char *str, int idx)
 	start = (size_t)idx;
 	flag = false;
 	double_q = (t_token_list *)ft_calloc(1, sizeof(t_token_list));
-	while (str[idx])
-	{
-		if (str[idx] == '"' && !flag)
-		{
-			flag = true;
-			idx++;
-		}
-		if (str[idx] == '"' && flag)
-		{
-			if (str[idx + 1] && (str[idx + 1] != '(') && (str[idx + 1] != ')')
-				&& (str[idx + 1] != '|') && (str[idx + 1] != '&') && (str[idx + 1] != '>')
-				&& (str[idx + 1] != '<') && !(is_blank(str[idx + 1])))
-				idx++;
-			else
-				break ;
-		}
-		else
-			idx++;
-	}
-	end = (size_t)idx;
-	double_q->lexeme = ft_substr((char const *)str, start, ((end - start) + 1));
+	end = check_double(str, idx, flag);
+	double_q->lexeme = ft_substr((char const *)str,
+			start, ((end - start) + 1));
 	double_q->type = DOUBLE_QUOTES;
 	create_new_node(lst, double_q);
 	return (end + 1);
@@ -79,20 +61,7 @@ int	state_80(t_token_list **lst, char *str, int idx)
 	start = (size_t)idx;
 	idx++;
 	single = (t_token_list *)ft_calloc(1, sizeof(t_token_list));
-	while (str[idx])
-	{
-		if (str[idx] == '\'')
-		{
-			if (str[idx + 1] && (str[idx] != '(') && (str[idx] != ')')
-				&& (str[idx] != '|') && (str[idx] != '&') && (str[idx] != '>')
-				&& (str[idx] != '<') && !(is_blank(str[idx])))
-				idx++;
-			else
-				break ;
-		}
-		idx++;
-	}
-	end = (size_t)idx;
+	end = check_single(str, idx);
 	single->lexeme = ft_substr((char const *)str, start, ((end - start) + 1));
 	single->type = SINGLE_QUOTES;
 	create_new_node(lst, single);

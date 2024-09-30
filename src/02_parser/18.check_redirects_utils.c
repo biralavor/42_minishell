@@ -6,7 +6,7 @@
 /*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/12 15:54:01 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/09/27 10:19:32 by tmalheir         ###   ########.fr       */
+/*   Updated: 2024/09/30 14:48:39 by tmalheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int	find_src_idx(t_token_list *lst)
 		{
 			if ((temp->next && temp->next->next)
 				&& (temp->next->type == ARCHIVE)
-					&& (temp->next->next->type == WORD
+				&& (temp->next->next->type == WORD
 					|| temp->next->next->type == DOUBLE_QUOTES
 					|| temp->next->next->type == SINGLE_QUOTES))
 			{
