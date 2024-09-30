@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 18:51:30 by umeneses          #+#    #+#             */
-/*   Updated: 2024/09/24 10:59:19 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/09/28 19:30:57 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ void	fork_and_execve(char **cmd, char *path)
 	child_process_is_running(true, true);
 	if (pid == 0)
 	{
+		quit_signal_unblocker(g_sigmonitor);
 		exit_status_holder(execve(path, cmd, all_envs), true);
 		if (exit_status_holder(0, false) != 0)
 			execve_error_manager(cmd, all_envs, path);
