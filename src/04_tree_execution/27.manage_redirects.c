@@ -6,20 +6,20 @@
 /*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/04 10:20:13 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/09/27 10:54:20 by tmalheir         ###   ########.fr       */
+/*   Updated: 2024/09/30 11:35:42 by tmalheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static void	apply_redirect(t_tree *tree, int *fd)
+static int	apply_redirect(t_tree *tree, int *fd)
 {
 	if (tree->type == REDIR_IN || tree->type == REDIR_HDOC)
 	{
 		if (dup2(*fd, STDIN_FILENO) == -1)
 		{
 			close(*fd);
-			exit(exit_status_holder(EXIT_FAILURE, true));
+			return (exit_status_holder(EXIT_FAILURE, true));
 		}
 		close(*fd);
 	}
@@ -28,7 +28,7 @@ static void	apply_redirect(t_tree *tree, int *fd)
 		if (dup2(*fd, STDOUT_FILENO) == -1)
 		{
 			close(*fd);
-			exit(exit_status_holder(EXIT_FAILURE, true));
+			return (exit_status_holder(EXIT_FAILURE, true));
 		}
 		close(*fd);
 	}
@@ -36,7 +36,7 @@ static void	apply_redirect(t_tree *tree, int *fd)
 
 static void	check_if_apply_redirect(t_tree *tree, int *first_redir, int new_fd)
 {
-	if ((tree->type == REDIR_IN || tree->type == REDIR_HDOC)&& !first_redir[0])
+	if ((tree->type == REDIR_IN || tree->type == REDIR_HDOC) && !first_redir[0])
 	{
 		first_redir[0] = 1;
 		apply_redirect(tree, &new_fd);
@@ -86,9 +86,6 @@ static int	open_redir_file(char *pathname, int type, int *fd)
 	return (exit_status_holder(0, true));
 }
 
-/**
- * @todo check if function has the right lines number when ret_code is removed
- */
 void	manage_redirect(t_tree *tree, int flag)
 {
 	int				std_fd[2];
@@ -100,8 +97,7 @@ void	manage_redirect(t_tree *tree, int flag)
 	if (!flag)
 		change_redir_flag(first_redir);
 	pathname = ft_strdup(tree->right->command->lexeme);
-	open_redir_file(pathname, tree->type, &new_fd);
-	if (exit_status_holder(0, false) == 1)
+	if (open_redir_file(pathname, tree->type, &new_fd) == 1)
 		return ;
 	std_fd[0] = dup(STDIN_FILENO);
 	std_fd[1] = dup(STDOUT_FILENO);
@@ -110,9 +106,141 @@ void	manage_redirect(t_tree *tree, int flag)
 	if (tree->left)
 		tree_execution(tree->left, 1);
 	if (dup2(std_fd[0], STDIN_FILENO) == -1)
+		exit_status_holder(EXIT_FAILURE, true);
+	if (dup2(std_fd[1], STDOUT_FILENO) == -1)
+		exit_status_holder(EXIT_FAILURE, true);
+	close(std_fd[0]);
+	close(std_fd[1]);
+}
+
+/*
+TESTE
+void	manage_redirect(t_tree *tree, int *flag)
+{
+	int				std_fd[2];
+	int				new_fd;
+//	static int		first_redir[2];
+	char			*pathname;
+
+	new_fd = -1;
+	std_fd[0] = dup(STDIN_FILENO);
+	std_fd[1] = dup(STDOUT_FILENO);
+	if (tree->left && is_redirect(tree->left->type))
+	{
+		(*flag)++;
+		tree_execution(tree->left, flag);
+	}
+	if (*flag == -1)
+	{
+		if (dup2(std_fd[0], STDIN_FILENO) == -1)
+			exit(exit_status_holder(EXIT_FAILURE, true));
+		if (dup2(std_fd[1], STDOUT_FILENO) == -1)
+			exit(exit_status_holder(EXIT_FAILURE, true));
+		close(std_fd[0]);
+		close(std_fd[1]);
+		return ;
+	}
+	pathname = ft_strdup(tree->right->command->lexeme);
+	if (open_redir_file(pathname, tree->type, &new_fd))
+	{
+		*flag = -1;
+		return ;
+	}
+
+	if (tree->type == REDIR_IN || tree->type == REDIR_HDOC)
+	{
+		if (dup2(new_fd, STDIN_FILENO) == -1)
+		{
+			close(new_fd);
+			exit(exit_status_holder(EXIT_FAILURE, true));
+		}
+		close(new_fd);
+
+	}
+	else if (tree->type == REDIR_OUT || tree->type == REDIR_OUTAPP)
+	{
+		if (dup2(new_fd, STDOUT_FILENO) == -1)
+		{
+			close(new_fd);
+			exit(exit_status_holder(EXIT_FAILURE, true));
+		}
+		close(new_fd);
+	}
+	if (*flag != 0)
+	{
+		(*flag)--;
+		return ;
+	}
+	t_tree	*tmp;
+
+	tmp = tree;
+	while(tmp && tmp->left)
+		tmp = tmp->left;
+	tree_execution(tmp, flag);
+//	if (tree->right && !tree->right->right)
+//		check_if_apply_redirect(tree, first_redir, new_fd);
+//		apply_redirect(tree, &new_fd);
+	if (dup2(std_fd[0], STDIN_FILENO) == -1)
 		exit(exit_status_holder(EXIT_FAILURE, true));
 	if (dup2(std_fd[1], STDOUT_FILENO) == -1)
 		exit(exit_status_holder(EXIT_FAILURE, true));
 	close(std_fd[0]);
 	close(std_fd[1]);
 }
+*/
+
+/*
+TESTE
+void	manage_redirect(t_tree *tree, int *flag)
+{
+	int				std_fd[2];
+	int				new_fd;
+	static int		first_redir[2];
+	char			*pathname;
+
+	new_fd = -1;
+	if (!flag)
+		change_redir_flag(first_redir);
+	if (tree == NULL)
+		return ;
+	std_fd[0] = dup(STDIN_FILENO);
+	std_fd[1] = dup(STDOUT_FILENO);
+	if (is_redirect(tree->type))
+	{
+		*flag = *flag + 1;
+		manage_redirect(tree->left, flag);
+	}
+	if (*flag == -1)
+	{
+		close(std_fd[0]);
+		close(std_fd[1]);
+		return ;
+	}
+	pathname = ft_strdup(tree->right->command->lexeme);
+	if (open_redir_file(pathname, tree->type, &new_fd))
+	{
+		*flag = -1;
+		close(std_fd[0]);
+		close(std_fd[1]);
+		return ;
+	}
+	if (*flag > 0)
+	{
+		*flag = *flag - 1;
+		check_if_apply_redirect(tree, first_redir, new_fd);
+		close(std_fd[0]);
+		close(std_fd[1]);
+		return ;
+	}
+	while (tree->left)
+		tree = tree->left;
+	if (!is_redirect(tree->type))
+		tree_execution(tree,1);
+	if (dup2(std_fd[0], STDIN_FILENO) == -1 )
+		exit(exit_status_holder(EXIT_FAILURE, true));
+	if (dup2(std_fd[1], STDOUT_FILENO) == -1)
+		exit(exit_status_holder(EXIT_FAILURE, true));
+	close(std_fd[0]);
+	close(std_fd[1]);
+	}
+*/
