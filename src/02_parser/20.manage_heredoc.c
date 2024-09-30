@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   20.manage_heredoc.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 18:23:53 by umeneses          #+#    #+#             */
-/*   Updated: 2024/09/23 11:30:37 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/09/30 14:48:17 by tmalheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,6 @@ void	check_heredoc(t_token_list *lst)
 	if (heredoc_input != NULL)
 		free(heredoc_input);
 }
-
 
 void	path_file(t_token_list *lst)
 {

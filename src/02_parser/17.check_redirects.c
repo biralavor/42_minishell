@@ -6,7 +6,7 @@
 /*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/15 14:52:43 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/09/27 10:17:31 by tmalheir         ###   ########.fr       */
+/*   Updated: 2024/09/30 14:47:29 by tmalheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,8 @@ void	define_archive_token(t_token_list *lst)
 	{
 		if ((is_redirect(temp->type))
 			&& (temp->next && (temp->next->type == WORD
-			|| temp->next->type == DOUBLE_QUOTES
-			|| temp->next->type == SINGLE_QUOTES)))
+					|| temp->next->type == DOUBLE_QUOTES
+					|| temp->next->type == SINGLE_QUOTES)))
 			temp->next->type = ARCHIVE;
 		temp = temp->next;
 	}

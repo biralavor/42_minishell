@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   19.error_manager_parser.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 11:53:52 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/09/26 14:55:14 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/09/30 14:49:11 by tmalheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ void	syntax_error(void)
 
 char	*get_metachar_type_as_str(int type)
 {
-	char *result;
+	char	*result;
 
 	result = NULL;
 	if (type == PIPE)

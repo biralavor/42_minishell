@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   10.lexer_utils.c                                   :+:      :+:    :+:   */
+/*   13.lexer_utils.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/20 10:12:37 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/08/16 09:46:39 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/09/30 14:42:06 by tmalheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,27 +42,45 @@ bool	is_empty(char *str)
 	return (true);
 }
 
-int	between_quotes(int idx, char *str)
+int	check_double(char *str, int idx, bool flag)
 {
-	if (str[idx] == '"')
+	while (str[idx])
 	{
-		idx++;
-		while (str[idx] != '"')
+		if (str[idx] == '"' && !flag)
+		{
+			flag = true;
 			idx++;
-	}
-	else if (str[idx] == '\'')
-	{
-		idx++;
-		while (str[idx] != '\'')
+		}
+		if (str[idx] == '"' && flag)
+		{
+			if (str[idx + 1] && (str[idx + 1] != '(') && (str[idx + 1] != ')')
+				&& (str[idx + 1] != '|') && (str[idx + 1] != '&')
+				&& (str[idx + 1] != '>') && (str[idx + 1] != '<')
+				&& !(is_blank(str[idx + 1])))
+				idx++;
+			else
+				break ;
+		}
+		else
 			idx++;
 	}
 	return (idx);
 }
 
-bool	match_parenthesis(int open, int close)
+int	check_single(char *str, int idx)
 {
-	if (open != close)
-		return (false);
-	else
-		return (true);
+	while (str[idx])
+	{
+		if (str[idx] == '\'')
+		{
+			if (str[idx + 1] && (str[idx] != '(') && (str[idx] != ')')
+				&& (str[idx] != '|') && (str[idx] != '&') && (str[idx] != '>')
+				&& (str[idx] != '<') && !(is_blank(str[idx])))
+				idx++;
+			else
+				break ;
+		}
+		idx++;
+	}
+	return (idx);
 }

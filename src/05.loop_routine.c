@@ -6,7 +6,7 @@
 /*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 09:20:45 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/09/30 11:22:33 by tmalheir         ###   ########.fr       */
+/*   Updated: 2024/09/30 11:50:30 by tmalheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ void	loop_routine(char *str)
 		check_heredoc(lst);
 		token_tree = initiate_tree(lst);
 		tree_holder(token_tree, false);
-		tree_execution(token_tree, flag);
+		tree_execution(token_tree, &flag);
 		free_token_tree(token_tree);
 	}
 }

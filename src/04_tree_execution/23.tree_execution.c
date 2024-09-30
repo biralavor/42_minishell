@@ -6,13 +6,13 @@
 /*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 18:09:53 by umeneses          #+#    #+#             */
-/*   Updated: 2024/09/30 11:20:14 by tmalheir         ###   ########.fr       */
+/*   Updated: 2024/09/30 13:15:16 by tmalheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	tree_execution(t_tree *tree, int flag)
+int	tree_execution(t_tree *tree, int *flag)
 {
 	int	exit_status;
 
