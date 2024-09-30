@@ -6,7 +6,7 @@
 /*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/04 10:20:13 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/09/30 14:56:07 by tmalheir         ###   ########.fr       */
+/*   Updated: 2024/09/30 16:51:49 by tmalheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,13 @@ static int	open_redir_file(char *pathname, int type, int *fd)
 	return (exit_status_holder(0, true));
 }
 
-void	manage_redirect(t_tree *tree, int *flag)
+static void	close_fds(int *fd)
+{
+	close(fd[0]);
+	close(fd[1]);
+}
+
+int	manage_redirect(t_tree *tree, int *flag)
 {
 	int		std_fd[2];
 	int		new_fd;
@@ -81,7 +87,7 @@ void	manage_redirect(t_tree *tree, int *flag)
 
 	new_fd = -1;
 	if (tree == NULL)
-		return ;
+		return (exit_status_holder(EXIT_SUCCESS, 0));
 	std_fd[0] = dup(STDIN_FILENO);
 	std_fd[1] = dup(STDOUT_FILENO);
 	if (is_redirect(tree->type))
@@ -95,41 +101,38 @@ void	manage_redirect(t_tree *tree, int *flag)
 	if (*flag == -1)
 	{
 		if (dup2(std_fd[0], STDIN_FILENO) == -1)
-			exit(exit_status_holder(EXIT_FAILURE, true));
+			return (exit_status_holder(EXIT_FAILURE, true));
 		if (dup2(std_fd[1], STDOUT_FILENO) == -1)
-			exit(exit_status_holder(EXIT_FAILURE, true));
-		close(std_fd[0]);
-		close(std_fd[1]);
-		return ;
+			return (exit_status_holder(EXIT_FAILURE, true));
+		close_fds(std_fd);
+		return (exit_status_holder(EXIT_SUCCESS, 0));
 	}
 	pathname = ft_strdup(tree->right->command->lexeme);
 	if (open_redir_file(pathname, tree->type, &new_fd))
 	{
 		*flag = -1;
 		if (dup2(std_fd[0], STDIN_FILENO) == -1)
-			exit(exit_status_holder(EXIT_FAILURE, true));
+			return (exit_status_holder(EXIT_FAILURE, true));
 		if (dup2(std_fd[1], STDOUT_FILENO) == -1)
-			exit(exit_status_holder(EXIT_FAILURE, true));
-		close(std_fd[0]);
-		close(std_fd[1]);
-		return ;
+			return (exit_status_holder(EXIT_FAILURE, true));
+		close_fds(std_fd);
+		return (exit_status_holder(EXIT_FAILURE, 0));
 	}
 	apply_redirect(tree, &new_fd);
 	if (*flag > 0)
 	{
 		*flag = *flag - 1;
-		close(std_fd[0]);
-		close(std_fd[1]);
-		return ;
+		close_fds(std_fd);
+		return (exit_status_holder(EXIT_SUCCESS, 0));
 	}
 	while (tree->left)
 		tree = tree->left;
 	if (!is_redirect(tree->type))
 		tree_execution(tree, flag);
 	if (dup2(std_fd[0], STDIN_FILENO) == -1)
-		exit(exit_status_holder(EXIT_FAILURE, true));
+		return (exit_status_holder(EXIT_FAILURE, true));
 	if (dup2(std_fd[1], STDOUT_FILENO) == -1)
-		exit(exit_status_holder(EXIT_FAILURE, true));
-	close(std_fd[0]);
-	close(std_fd[1]);
+		return (exit_status_holder(EXIT_FAILURE, true));
+	close_fds(std_fd);
+	return (exit_status_holder(EXIT_SUCCESS, 0));
 }
