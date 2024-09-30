@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 13:23:46 by umeneses          #+#    #+#             */
-/*   Updated: 2024/09/24 11:24:18 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/09/28 20:10:26 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ int	exit_status_holder(int actual_exit_status, bool update)
 
 void	pid_exit_status_caller(pid_t pid)
 {
-	int	status;
+	static int	status;
 
 	waitpid(pid, &status, 0);
 	if (WIFEXITED(status))
