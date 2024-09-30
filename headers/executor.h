@@ -6,7 +6,7 @@
 /*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/05 13:56:37 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/09/30 11:19:51 by tmalheir         ###   ########.fr       */
+/*   Updated: 2024/09/30 11:50:52 by tmalheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ t_token_list	*go_to_first_node(t_token_list *lst);
 
 /*EXECUTION FUNCTIONS*/
 
-int				tree_execution(t_tree *tree, int flag);
+int				tree_execution(t_tree *tree, int *flag);
 
 int				manage_single_command(t_tree *tree);
 
@@ -98,7 +98,7 @@ void			wait_to_restore_fds(int *new_pipe, int *pid);
 
 int				pipe_execution(char **cmd, char *path);
 
-void			manage_redirect(t_tree *tree, int flag);
+void			manage_redirect(t_tree *tree, int *flag);
 
 int				manage_subshell(t_tree *tree);
 
