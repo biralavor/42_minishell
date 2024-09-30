@@ -6,13 +6,15 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 10:53:20 by umeneses          #+#    #+#             */
-/*   Updated: 2024/09/13 09:17:43 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/09/28 20:56:02 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MINISHELL_H
 # define MINISHELL_H
 
+# include <signal.h>
+# include <termios.h>
 # include <stdbool.h>
 # include <stdio.h>
 # include <stdlib.h>
@@ -42,11 +44,23 @@
 # include "builtins.h"
 # include "expansion.h"
 
+extern volatile sig_atomic_t	g_sigmonitor;
+
 /*INITIAL FUNCTIONS*/
 /**
  * @brief     -> main function that calls for lexer, parser and executor.
  * @param str -> User input in command line.
 */
 void	loop_routine(char *str);
+
+void	signals_init(void);
+void	signals_manager(int sig_nbr);
+void	interrupt_signal_runner(void);
+void	quit_signal_blocker(int sig_nbr);
+void	quit_signal_unblocker(int sig_nbr);
+
+void	tty_proprieties_manager(bool update);
+
+bool	is_after_loop(bool update);
 
 #endif
