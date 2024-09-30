@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 09:20:45 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/09/26 16:02:54 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/09/28 19:56:46 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 bool	check_initial_errors(char *str)
 {
-	if (!(check_closed_quotes(str))
-		|| !(check_closed_parenthesis(str)))
+	if (str && (!check_closed_quotes(str)
+		|| !check_closed_parenthesis(str)))
 		return (false);
 	else
 		return (true);
@@ -28,7 +28,7 @@ void	loop_routine(char *str)
 
 	lst = NULL;
 	token_tree = NULL;
-	if (str[0] == '#')
+	if ((str && str[0] == '#'))
 		return ;
 	if (!check_initial_errors(str))
 	{
@@ -39,7 +39,8 @@ void	loop_routine(char *str)
 		error_manager_lexer(LIST_NOT_CREATED);
 	if (syntax_analysis(lst))
 	{
-		check_heredoc(lst);
+		if (lst && lst->next)
+			check_heredoc(lst);
 		token_tree = initiate_tree(lst);
 		tree_holder(token_tree, false);
 		tree_execution(token_tree, 0);
