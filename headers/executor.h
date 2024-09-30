@@ -6,7 +6,7 @@
 /*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/05 13:56:37 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/09/30 11:50:52 by tmalheir         ###   ########.fr       */
+/*   Updated: 2024/09/30 16:21:43 by tmalheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,7 @@ void			wait_to_restore_fds(int *new_pipe, int *pid);
 
 int				pipe_execution(char **cmd, char *path);
 
-void			manage_redirect(t_tree *tree, int *flag);
+int				manage_redirect(t_tree *tree, int *flag);
 
 int				manage_subshell(t_tree *tree);
 
