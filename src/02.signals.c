@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 09:47:06 by umeneses          #+#    #+#             */
-/*   Updated: 2024/09/30 18:51:35 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/09/30 21:16:50 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,11 +48,11 @@ void	interrupt_signal_runner(void)
 {
 	if (child_process_is_running(false, true))
 		env_holder(NULL, false, true);
-	// if (is_heredoc_running(false, true))
-	// {
-	// 	fprintf(stderr, ">>>>>>> heredoc is running\n");
-	// 	close(STDIN_FILENO);
-	// }
+	if (is_heredoc_running(false, true))
+	{
+		fprintf(stderr, ">>>>>>> heredoc is running\n");
+		// close(STDIN_FILENO);
+	}
 	rl_on_new_line();
 	rl_replace_line("", 0);
 	ft_putstr_fd("\n", STDOUT_FILENO);
