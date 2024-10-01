@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   20.manage_heredoc.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 18:23:53 by umeneses          #+#    #+#             */
 /*   Updated: 2024/10/01 14:14:09 by umeneses         ###   ########.fr       */

@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   27.manage_redirects.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/04 10:20:13 by tmalheir          #+#    #+#             */
 /*   Updated: 2024/10/01 14:11:22 by umeneses         ###   ########.fr       */

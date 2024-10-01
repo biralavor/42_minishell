@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   05.loop_routine.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 09:20:45 by tmalheir          #+#    #+#             */
 /*   Updated: 2024/10/01 14:13:22 by umeneses         ###   ########.fr       */
