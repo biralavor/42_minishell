@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   07.token_list_functions.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 10:52:55 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/09/30 14:09:00 by tmalheir         ###   ########.fr       */
+/*   Updated: 2024/10/01 14:13:28 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,14 @@ bool	create_token_list(char *str, t_token_list **lst)
 	int	idx;
 
 	idx = 0;
-	get_state(idx, str, lst);
-	assign_lst_idx(*lst);
+//	if (check_closed_quotes(str)
+//		&& inside_quotes_detector(str))
+//		str = update_str_if_inside_quotes(str);
+	if (str)
+	{	
+		get_state(idx, str, lst);
+		assign_lst_idx(*lst);
+	}
 	if (lst)
 		return (true);
 	else
