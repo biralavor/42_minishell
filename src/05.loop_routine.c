@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 09:20:45 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/09/26 16:02:54 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/10/01 09:57:55 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,14 +30,14 @@ void	loop_routine(char *str)
 	token_tree = NULL;
 	if (str[0] == '#')
 		return ;
-	if (!check_initial_errors(str))
+	if (str && !check_initial_errors(str))
 	{
 		error_manager_lexer(INITIAL_ERROR);
 		return ;
 	}
-	if (!create_token_list(str, &lst))
+	if (str && !create_token_list(str, &lst))
 		error_manager_lexer(LIST_NOT_CREATED);
-	if (syntax_analysis(lst))
+	if (lst && syntax_analysis(lst))
 	{
 		check_heredoc(lst);
 		token_tree = initiate_tree(lst);
