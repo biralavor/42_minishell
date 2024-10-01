@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 10:53:20 by umeneses          #+#    #+#             */
-/*   Updated: 2024/09/30 18:41:19 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/10/01 10:30:56 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,6 @@ void	signals_manager(int sig_nbr);
 void	interrupt_signal_runner(void);
 void	quit_signal_blocker(void);
 void	quit_signal_unblocker(int sig_nbr);
-void	eot_signal_runner(void);
 
 void	tty_proprieties_manager(bool update);
 
