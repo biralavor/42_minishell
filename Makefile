@@ -73,6 +73,7 @@ SRC_FILES				+= ./04_tree_execution/24.tree_execution_utils.c
 SRC_FILES				+= ./04_tree_execution/25.manage_or_and.c
 SRC_FILES				+= ./04_tree_execution/26.manage_pipe.c
 SRC_FILES				+= ./04_tree_execution/27.manage_redirects.c
+SRC_FILES				+= ./04_tree_execution/manage_redirects_utils.c
 SRC_FILES				+= ./04_tree_execution/28.manage_subshell.c
 SRC_FILES				+= ./04_tree_execution/29.manage_single_cmd.c
 SRC_FILES				+= ./05_expansions/30.expansion_manager.c
