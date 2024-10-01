@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   16.check_redirects.c                               :+:      :+:    :+:   */
+/*   17.check_redirects.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/15 14:52:43 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/09/12 14:37:52 by tmalheir         ###   ########.fr       */
+/*   Updated: 2024/09/30 14:47:29 by tmalheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,9 @@ void	define_archive_token(t_token_list *lst)
 	while (temp)
 	{
 		if ((is_redirect(temp->type))
-			&& (temp->next && temp->next->type == WORD))
+			&& (temp->next && (temp->next->type == WORD
+					|| temp->next->type == DOUBLE_QUOTES
+					|| temp->next->type == SINGLE_QUOTES)))
 			temp->next->type = ARCHIVE;
 		temp = temp->next;
 	}

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   05.loop_routine.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 09:20:45 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/09/26 16:02:54 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/09/30 11:50:30 by tmalheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,11 @@ bool	check_initial_errors(char *str)
 
 void	loop_routine(char *str)
 {
+	int				flag;
 	t_token_list	*lst;
 	t_tree			*token_tree;
 
+	flag = 0;
 	lst = NULL;
 	token_tree = NULL;
 	if (str[0] == '#')
@@ -42,7 +44,7 @@ void	loop_routine(char *str)
 		check_heredoc(lst);
 		token_tree = initiate_tree(lst);
 		tree_holder(token_tree, false);
-		tree_execution(token_tree, 0);
+		tree_execution(token_tree, &flag);
 		free_token_tree(token_tree);
 	}
 }

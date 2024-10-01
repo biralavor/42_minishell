@@ -6,7 +6,7 @@
 /*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 07:45:31 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/09/26 10:46:08 by tmalheir         ###   ########.fr       */
+/*   Updated: 2024/09/30 14:18:08 by tmalheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,59 +37,24 @@ int	check_closed_quotes(char *str)
 	}
 	return (quote_idx % 2 == 0);
 }
-/*
-bool	inside_quotes_detector(char *str)
-{
-	int	idx;
 
-	idx = 0;
-	while (str[idx] != '\0')
+int	between_quotes(int idx, char *str)
+{
+	if (str[idx] == '"')
 	{
-		if (idx > 0 && str[idx - 1] && str[idx - 1] == ' '
-			&& (str[idx] == '"' || str[idx] == '\''))
-			return (false);
-		else if (idx > 0 && str[idx - 1] && str[idx - 1] == '='
-			&& (str[idx] == '"' || str[idx] == '\''))
-			return (false);
-		else if (idx > 0 && str[idx - 1] && str[idx - 1] == '\''
-			&& str[idx] == '$')
-			return (false);
-		else if (idx > 0 && (str[idx] == '"' || str[idx] == '\'')
-			&& str[idx - 1] != ' ' && str[idx + 1] != '$'
-			&& str[idx + 1] != '\0')
-			return (true);
 		idx++;
+		while (str[idx] != '"')
+			idx++;
 	}
-	return (false);
+	else if (str[idx] == '\'')
+	{
+		idx++;
+		while (str[idx] != '\'')
+			idx++;
+	}
+	return (idx);
 }
 
-char	*update_str_if_inside_quotes(char *str)
-{
-	int		idx;
-	char	quote_type;
-
-	idx = 1;
-	quote_type = '\0';
-	while (str[idx])
-	{
-		if (quote_type == '\0' && str[idx - 1] && str[idx - 1] != ' '
-			&& (str[idx] == '"' || str[idx] == '\''))
-		{
-			quote_type = str[idx];
-			ft_memmove(&str[idx], &str[idx + 1], ft_strlen(&str[idx + 1]) + 1);
-		}
-		if (quote_type == str[idx])
-		{
-			quote_type = '\0';
-			ft_memmove(&str[idx], &str[idx + 1], ft_strlen(&str[idx + 1]) + 1);
-		}
-		idx++;
-	}
-	if (inside_quotes_detector(str) && check_closed_quotes(str))
-		update_str_if_inside_quotes(str);
-	return (str);
-}
-*/
 bool	check_closed_parenthesis(char *str)
 {
 	int		idx;
@@ -137,4 +102,12 @@ int	between_parenthesis(int idx, char *str)
 		idx++;
 	}
 	return (end);
+}
+
+bool	match_parenthesis(int open, int close)
+{
+	if (open != close)
+		return (false);
+	else
+		return (true);
 }

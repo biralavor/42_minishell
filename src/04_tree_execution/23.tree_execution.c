@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   23.tree_execution.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 18:09:53 by umeneses          #+#    #+#             */
-/*   Updated: 2024/09/24 12:14:13 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/09/30 16:21:25 by tmalheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	tree_execution(t_tree *tree, int flag)
+int	tree_execution(t_tree *tree, int *flag)
 {
 	int	exit_status;
 
@@ -26,7 +26,7 @@ int	tree_execution(t_tree *tree, int flag)
 	else if (tree->type == PIPE)
 		manage_pipe(tree);
 	else if (is_redirect(tree->type))
-		manage_redirect(tree, flag);
+		exit_status = manage_redirect(tree, flag);
 	else if (tree->type == SUBSHELL)
 		exit_status = manage_subshell(tree);
 	else if (tree->type == WORD || tree->type == DOUBLE_QUOTES)
