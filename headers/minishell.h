@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 10:53:20 by umeneses          #+#    #+#             */
-/*   Updated: 2024/10/01 10:30:56 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/10/01 11:42:02 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,5 +62,7 @@ void	quit_signal_unblocker(int sig_nbr);
 void	tty_proprieties_manager(bool update);
 
 bool	is_after_loop(bool update);
+
+void	control_d_handler(char *input);
 
 #endif

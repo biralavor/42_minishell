@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 10:53:12 by umeneses          #+#    #+#             */
-/*   Updated: 2024/09/30 18:43:45 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/10/01 11:42:04 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,17 @@ static void	extra_args(void)
 	ft_printf(RED"Error: minishell does not accept arguments.\n");
 	ft_printf(CYAN"It's a kind of magic, but not that much!\n"RESET);
 	exit (EXIT_FAILURE);
+}
+
+void	control_d_handler(char *input)
+{
+	if (input == NULL)
+	{
+		ft_putendl_fd("exit", STDOUT_FILENO);
+		env_holder(NULL, false, true);
+		free(input);
+		exit(exit_status_holder(0, true));
+	}
 }
 
 int	main(int ac, char **av, char **envp)
@@ -34,6 +45,7 @@ int	main(int ac, char **av, char **envp)
 		signals_manager(g_sigmonitor);
 		// sigquit_case() -> Ctrl+/
 		input = readline(GREEN"<<< Born Again (mini) SHell >>>$ "RESET);
+		control_d_handler(input);
 		is_after_loop(true);
 		add_history(input);
 		loop_routine(input);
