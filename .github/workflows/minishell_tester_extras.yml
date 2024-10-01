@@ -1,0 +1,55 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    minishell_tester_builtins.yml                      :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2024/09/23 16:00:54 by umeneses          #+#    #+#              #
+#    Updated: 2024/09/24 09:13:00 by umeneses         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
+name: minishell tester >> extras
+
+on:
+  push:
+    branches:
+    - main
+    - '**feature**'
+    - '**feat**'
+    - '**bugfix**'
+    - '**fix**'
+    - '**release**'
+  pull_request:
+    branches:
+    - main
+    - '**feature**'
+    - '**feat**'
+    - '**bugfix**'
+    - '**fix**'
+    - '**release**'
+
+jobs:
+  extras:
+    runs-on: ubuntu-latest
+    timeout-minutes: 1
+    defaults:
+      run:
+        working-directory: ./
+    steps:
+      - name: Starting Github Actions
+        uses: actions/checkout@v4.1.4
+
+      - name: Building Program with MiniShell Makefile
+        run: make
+
+      - name: Submodule Init
+        run: git submodule init && git submodule update
+
+      - name: Running Tester for Extras
+        run: cd minishell_tester && ./tester extras
+
+
+# :: source minishell_tester repository ::
+# https://github.com/LucasKuhn/minishell_tester
