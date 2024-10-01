@@ -36,13 +36,14 @@
 - [x] Execution :tada: [https://github.com/biralavor/42_minishell/releases/tag/v0.6]
 - [x] Built-ins :tada: [https://github.com/biralavor/42_minishell/releases/tag/v0.6]
 - [x] Variables Expansion :tada: [https://github.com/biralavor/42_minishell/releases/tag/v0.7]
-- [x] Redirects of all types, except HereDoc :tada: [https://github.com/biralavor/42_minishell/releases/tag/v0.8.4]
+- [x] Redirects of all types, except HereDoc :tada: [https://github.com/biralavor/42_minishell/releases/tag/v0.9.5]
 - [x] HereDoc Redirect :tada: [https://github.com/biralavor/42_minishell/releases/tag/v0.9.0]
+- [x] Signals Control -> Ctrl+C and Ctrl+D :tada: [https://github.com/biralavor/42_minishell/releases/tag/v0.9.6]
 - Next Steps on Project Management:
   - [ ] Memory Leaks Management at: Lexer, Parser, HereDoc
   - [ ] Memory Leaks Management at: Expansion, Builtins
   - [ ] Memory Leaks Management at: Manage Single Command
-  - [ ] Signals Control
+  - [ ] Signals Control -> Ctrl + \
 - Possible Bonus Development:
   - [ ] If `&&` were inside `()`, it should execute with priority (SUBSHELL)
   - [ ] If `||` were inside `()`, it should execute with priority (SUBSHELL)
@@ -61,12 +62,10 @@ What we are testing, until so far:
 
 ![Screenshot from 2024-07-15 19-26-19](https://github.com/user-attachments/assets/2e1d496e-029d-4a42-a11e-bc3f00e6d3d8)
 
-
 ## 1. Tokenization
 - Define Tokens for possible user's input:
 
 ![Screenshot from 2024-08-05 16-42-40](https://github.com/user-attachments/assets/46778f94-5c54-4bfd-bdab-08b3c74dc5f9)
-
 
 ## 2. Lexer
 - The hability to label specific strings as tokens, like below:
