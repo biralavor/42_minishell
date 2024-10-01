@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   01.main.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 10:53:12 by umeneses          #+#    #+#             */
-/*   Updated: 2024/09/23 13:42:59 by tmalheir         ###   ########.fr       */
+/*   Updated: 2024/09/30 18:43:45 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,14 +25,16 @@ int	main(int ac, char **av, char **envp)
 
 	if (ac > 1 && av)
 		extra_args();
-	// INIT_SIGNALS
-	// get_tty_proprieties
+	signals_init();
+	tty_proprieties_manager(false);
 	environment_init(envp);
 	while (true)
 	{
-		// set_tty_proprieties
+		is_after_loop(false);
+		signals_manager(g_sigmonitor);
 		// sigquit_case() -> Ctrl+/
 		input = readline(GREEN"<<< Born Again (mini) SHell >>>$ "RESET);
+		is_after_loop(true);
 		add_history(input);
 		loop_routine(input);
 		wait(NULL);

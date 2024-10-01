@@ -6,13 +6,15 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 10:53:20 by umeneses          #+#    #+#             */
-/*   Updated: 2024/09/13 09:17:43 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/09/30 18:41:19 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MINISHELL_H
 # define MINISHELL_H
 
+# include <signal.h>
+# include <termios.h>
 # include <stdbool.h>
 # include <stdio.h>
 # include <stdlib.h>
@@ -48,5 +50,18 @@
  * @param str -> User input in command line.
 */
 void	loop_routine(char *str);
+
+extern volatile sig_atomic_t	g_sigmonitor;
+
+void	signals_init(void);
+void	signals_manager(int sig_nbr);
+void	interrupt_signal_runner(void);
+void	quit_signal_blocker(void);
+void	quit_signal_unblocker(int sig_nbr);
+void	eot_signal_runner(void);
+
+void	tty_proprieties_manager(bool update);
+
+bool	is_after_loop(bool update);
 
 #endif
