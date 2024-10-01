@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/16 09:43:43 by umeneses          #+#    #+#             */
-/*   Updated: 2024/09/26 18:48:53 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/09/27 11:16:25 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,11 @@
 int	manage_single_command(t_tree *tree)
 {
 	expansion_manager(tree->command);
-	if (builtins_detector(tree->command))
+	if (!tree->command->lexeme)
+		return (exit_status_holder(0, false));
+	else if (tree->command->lexeme && builtins_detector(tree->command))
 		builtins_manager(tree->command);
-	else if (builtins_detector_with_possible_args(tree->command))
+	else if (tree->command->lexeme && builtins_detector_with_possible_args(tree->command))
 		builtins_with_possible_args_manager(tree->command);
 	else
 		preprocessing_for_command_runner(tree->command);

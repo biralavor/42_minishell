@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 11:01:38 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/09/20 19:18:34 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/09/27 17:39:05 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	error_manager_lexer(int error_id)
 void	initial_error(void)
 {
 	ft_putendl_fd("Quoting or parenthesis error", STDERR_FILENO);
-	exit_status_holder(1, true);
+	exit_status_holder(2, true);
 	return ;
 }
 
