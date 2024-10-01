@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 11:12:53 by umeneses          #+#    #+#             */
-/*   Updated: 2024/09/20 19:00:06 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/10/01 12:33:07 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@
 #include "../../src/04_tree_execution/27.manage_redirects.c"
 #include "../../src/04_tree_execution/28.manage_subshell.c"
 #include "../../src/04_tree_execution/29.manage_single_cmd.c"
+#include "../../src/04_tree_execution/manage_redirects_utils.c"
 #include "../../src/05_expansions/30.expansion_manager.c"
 #include "../../src/05_expansions/31.expansion_detectors.c"
 #include "../../src/05_expansions/32.expansion_quotes.c"
