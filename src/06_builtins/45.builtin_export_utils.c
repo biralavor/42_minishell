@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 13:23:46 by umeneses          #+#    #+#             */
-/*   Updated: 2024/09/20 12:48:29 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/10/01 12:48:36 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,17 +40,19 @@ void	arg_handle_runner(t_env_entry *env_vars, char *arg)
 
 void	replace_env_var(t_env_entry *env_vars, char *var_key, char *var_value)
 {
-	while (env_vars)
+	t_env_entry	*tmp;
+
+	tmp = env_vars;
+	while (tmp)
 	{
-		if (ft_strncmp(env_vars->key, var_key, ft_strlen(var_key)) == 0)
+		if (ft_strncmp(tmp->key, var_key, ft_strlen(tmp->key)) == 0)
 		{
-			free(env_vars->value);
-			env_vars->value = ft_strdup(var_value);
+			free(tmp->value);
+			tmp->value = ft_strdup(var_value);
 			break ;
 		}
-		env_vars = env_vars->next;
+		tmp = tmp->next;
 	}
-	env_vars = goto_head_env_table(env_vars);
 }
 
 int	arg_handle_state_detector(int state, char *arg)
