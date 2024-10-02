@@ -89,7 +89,10 @@ jobs:
 
               # Check for memory leaks
               if grep -q "ERROR SUMMARY: [^0]" valgrind-out.txt; then
-                echo "Memory leak detected during: $line"
+                echo "😭 😭 😭 😭 😭 😭 😭 😭 😭"
+                echo "Memory leak detected in Segment: $TEST_FILE"
+                echo "Memory leak detected at line:"
+                echo "$line"
                 cat valgrind-out.txt  # Display the Valgrind output
                 LEAKS_FOUND=$((LEAKS_FOUND+1))  # Increment leaks counter
               fi
