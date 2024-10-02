@@ -55,10 +55,10 @@ jobs:
           TEST_FILE: minishell_tester/redirects
         run: |
           echo "Running Valgrind tests..."
-          valgrind --tool=memcheck ./build/minishell
+          valgrind --tool=memcheck ./minishell
           while IFS= read -r line || [[ -n "$line" ]]; do
             echo "Testing: $line"
-            ./build/minishell "$line"
+            ./minishell "$line"
             echo "------------------------"
           done < $TEST_FILE
   
