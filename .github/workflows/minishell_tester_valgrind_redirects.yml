@@ -54,7 +54,7 @@ jobs:
         run: make
 
       - name: Minishell_Tester Starting Up Simulation
-        run: cd minshell_tester ; chmod 000 ./test_files/invalid_permission ;
+        run: cd minishell_tester ; chmod 000 ./test_files/invalid_permission ;
              mkdir ./outfiles ; mkdir ./mini_outfiles ; mkdir ./bash_outfiles ;
              cd ..
 
