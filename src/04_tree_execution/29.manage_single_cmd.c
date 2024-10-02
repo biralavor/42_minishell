@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/16 09:43:43 by umeneses          #+#    #+#             */
-/*   Updated: 2024/09/27 11:16:25 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/10/02 10:12:58 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,11 @@
 int	manage_single_command(t_tree *tree)
 {
 	expansion_manager(tree->command);
-	if (!tree->command->lexeme)
+	if (!tree->command->lexeme && !tree->command->next)
 		return (exit_status_holder(0, false));
-	else if (tree->command->lexeme && builtins_detector(tree->command))
+	else if (tree->command && builtins_detector(tree->command))
 		builtins_manager(tree->command);
-	else if (tree->command->lexeme && builtins_detector_with_possible_args(tree->command))
+	else if (tree->command && builtins_detector_with_possible_args(tree->command))
 		builtins_with_possible_args_manager(tree->command);
 	else
 		preprocessing_for_command_runner(tree->command);
@@ -37,7 +37,7 @@ void	preprocessing_for_command_runner(t_token_list *command)
 	absolute_path = false;
 	cmd = convert_tokens_to_array(command);
 	if (!cmd)
-		exit_status_holder(1, true);
+		exit_status_holder(EXIT_FAILURE, true);
 	if (is_cmd_with_valid_path(cmd[0]))
 		absolute_path = true;
 	command_runner(cmd);

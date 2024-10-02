@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   executor.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/05 13:56:37 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/10/01 10:28:21 by tmalheir         ###   ########.fr       */
+/*   Updated: 2024/10/01 17:49:40 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,5 +131,9 @@ bool			is_redirect(int lst_type);
 bool			is_redir_out(int type);
 
 void			change_redir_flag(int *first_redir);
+
+bool			directory_detector(char *path);
+
+bool			permission_denied_detector(char *path);
 
 #endif

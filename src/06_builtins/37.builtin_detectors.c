@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 19:09:05 by umeneses          #+#    #+#             */
-/*   Updated: 2024/09/23 09:03:57 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/10/02 10:11:41 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@ bool	builtins_detector(t_token_list *cmd)
 {
 	while (cmd)
 	{
+		if (!cmd->lexeme && cmd->next && cmd->next->type == WORD)
+			cmd = cmd->next;
 		if ((ft_strncmp(cmd->lexeme, "echo", ft_strlen(cmd->lexeme)) == 0)
 			|| (ft_strncmp(cmd->lexeme, "cd", ft_strlen(cmd->lexeme)) == 0)
 			|| (ft_strncmp(cmd->lexeme, "pwd", ft_strlen(cmd->lexeme)) == 0))
@@ -32,6 +34,8 @@ bool	builtins_detector_with_possible_args(t_token_list *lst)
 	cmd = lst;
 	while (cmd && cmd->type == WORD)
 	{
+		if (!cmd->lexeme && cmd->next && cmd->next->type == WORD)
+			cmd = cmd->next;
 		if ((ft_strncmp(cmd->lexeme, "export", ft_strlen(cmd->lexeme)) == 0)
 			|| (ft_strncmp(cmd->lexeme, "unset", ft_strlen(cmd->lexeme)) == 0)
 			|| (ft_strncmp(cmd->lexeme, "env", ft_strlen(cmd->lexeme)) == 0)
