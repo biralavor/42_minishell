@@ -55,7 +55,7 @@ jobs:
           TEST_FILE: minishell_tester/redirects
         run: |
           echo "Running Valgrind tests..."
-          valgrind --tool=memcheck ./minishell
+          valgrind --tool=memcheck --track-origins=yes --leak-check=full --suppressions=./readline.sup ./minishell
           while IFS= read -r line || [[ -n "$line" ]]; do
             echo "Testing: $line"
             ./minishell "$line"
