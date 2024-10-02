@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 13:23:46 by umeneses          #+#    #+#             */
-/*   Updated: 2024/09/24 09:00:13 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/10/02 10:51:53 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,7 @@
 
 void	builtins_runner_echo(t_token_list *lst, bool arg_option)
 {
-	short int		space;
-	// t_token_list	*cmd;
+	short int	space;
 
 	lst = lst->next;
 	space = 0;
@@ -31,7 +30,8 @@ void	builtins_runner_echo(t_token_list *lst, bool arg_option)
 			ft_putstr_fd(" ", STDOUT_FILENO);
 		else
 			space++;
-		ft_putstr_fd(lst->lexeme, STDOUT_FILENO);
+		if (lst->lexeme != NULL)
+			ft_putstr_fd(lst->lexeme, STDOUT_FILENO);
 		if (NULL == lst->next)
 			break ;
 		lst = lst->next;
@@ -39,5 +39,6 @@ void	builtins_runner_echo(t_token_list *lst, bool arg_option)
 	arg_option = arg_option_holder(false, true);
 	if (!arg_option)
 		write(STDOUT_FILENO, "\n", 1);
-	exit_status_holder(0, true);
+	arg_option_holder(false, false);
+	exit_status_holder(EXIT_SUCCESS, true);
 }
