@@ -10,7 +10,7 @@
 #                                                                              #
 # **************************************************************************** #
 
-name: minishell tester >> valgrind_syntax
+name: minishell tester >> valgrind
 
 on:
   push:
@@ -31,7 +31,7 @@ on:
     - '**release**'
 
 jobs:
-  valgrind_syntax:
+  valgrind_for_all_segments:
     runs-on: ubuntu-latest
     timeout-minutes: 2
     defaults:
