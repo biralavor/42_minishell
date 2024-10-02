@@ -1,0 +1,148 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    minishell_tester_syntax.yml                        :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2024/09/23 16:00:54 by umeneses          #+#    #+#              #
+#    Updated: 2024/09/26 08:39:23 by umeneses         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
+name: minishell tester >> valgrind
+
+on:
+  push:
+    branches:
+    - main
+    - '**feature**'
+    - '**feat**'
+    - '**bugfix**'
+    - '**fix**'
+    - '**release**'
+  pull_request:
+    branches:
+    - main
+    - '**feature**'
+    - '**feat**'
+    - '**bugfix**'
+    - '**fix**'
+    - '**release**'
+
+jobs:
+  valgrind_for_all_segments:
+    runs-on: ubuntu-latest
+    timeout-minutes: 7
+    defaults:
+      run:
+        working-directory: ./
+    steps:
+      - name: Starting Github Actions
+        uses: actions/checkout@v4.1.4
+
+      - name: Install Aptitude
+        run: sudo apt-get install aptitude
+
+      - name: Install Valgrind
+        run: sudo aptitude install -y valgrind
+
+      - name: Submodule Init
+        run: git submodule init && git submodule update
+
+      - name: Building Program with MiniShell Makefile
+        run: make
+
+      - name: Minishell_Tester Starting Up Simulation
+        run: |
+          cd minishell_tester
+          chmod 000 ./test_files/invalid_permission
+          mkdir outfiles mini_outfiles bash_outfiles
+          cd ..
+
+      - name: Run Valgrind Tests
+        run: |
+          echo "Running Valgrind tests..."
+
+          # List of TEST_FILEs to loop over
+          TEST_FILES=("minishell_tester/syntax" "minishell_tester/builtins" "minishell_tester/pipes" "minishell_tester/redirects"  "minishell_tester/extras"  "minishell_tester/manual_tests/mandatory")
+          
+          # Set counters to track errors and leaks
+          LEAKS_FOUND=0
+          EXIT_CODE_ERRORS=0
+
+          # Disable exit on non-zero status
+          set +e
+          
+          for TEST_FILE in "${TEST_FILES[@]}"; do
+            echo "Testing with: $TEST_FILE"
+            
+            # Read each line of the current TEST_FILE
+            while IFS= read -r line || [[ -n "$line" ]]; do
+              echo "Test case: $line"
+              
+              # Run minishell with input from the test case and 'exit', capture Valgrind output
+              echo -e "$line\nexit" | valgrind --tool=memcheck --track-origins=yes --leak-check=full --suppressions=./readline.sup ./minishell > valgrind-out.txt 2>&1
+
+              # Capture the exit code of the last command (minishell)
+              exit_code=$?
+
+              # Check for memory leaks
+              if grep -q "ERROR SUMMARY: [^0]" valgrind-out.txt; then
+                echo "😭 😭 😭 😭 😭 😭 😭 😭 😭"
+                echo "Memory leak detected in Segment: $TEST_FILE"
+                echo "Memory leak detected at line:"
+                echo "$line"
+                cat valgrind-out.txt  # Display the Valgrind output
+                LEAKS_FOUND=$((LEAKS_FOUND+1))  # Increment leaks counter
+              fi
+
+              # Check the exit code (you can assert expected codes here)
+              echo "Exit code: $exit_code for test case: $line"
+              if [[ "$line" == *"exit"* && "$exit_code" -ne 0 ]]; then
+                echo "Non-zero exit code detected for exit command"
+                EXIT_CODE_ERRORS=$((EXIT_CODE_ERRORS+1))  # Increment exit code error counter
+              fi
+
+              echo "No memory leaks detected for: $line"
+              echo "------------------------"
+            done < $TEST_FILE
+            
+          done
+          
+          # Re-enable exit on non-zero status for any further steps
+          set -e
+          
+          # Final error reporting
+          echo "Summary of Test Run:"
+          if [[ "$LEAKS_FOUND" -ne 0 ]]; then
+            echo "$LEAKS_FOUND memory leaks detected."
+          fi
+          
+          if [[ "$EXIT_CODE_ERRORS" -ne 0 ]]; then
+            echo "$EXIT_CODE_ERRORS incorrect exit codes detected."
+          fi
+
+          if [[ "$LEAKS_FOUND" -ne 0 || "$EXIT_CODE_ERRORS" -ne 0 ]]; then
+            echo "Test run completed with errors."
+            exit 1  # Fail the job if any errors were found
+          else
+            echo "All tests passed successfully!"
+          fi
+          
+      - name: Minishell_Tester CleanUp
+        run: |
+            cd minishell_tester
+            chmod 666 ./test_files/invalid_permission
+            rm -rf outfiles mini_outfiles bash_outfiles
+            cd ..
+          
+      - name: Upload Test Results
+        uses: actions/upload-artifact@v4
+        with:
+          name: valgrind-results
+          path: valgrind-out.txt
+
+
+# :: source minishell_tester repository ::
+# https://github.com/LucasKuhn/minishell_tester
