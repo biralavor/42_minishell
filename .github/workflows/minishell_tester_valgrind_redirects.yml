@@ -1,0 +1,67 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    minishell_tester_syntax.yml                        :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2024/09/23 16:00:54 by umeneses          #+#    #+#              #
+#    Updated: 2024/09/26 08:39:23 by umeneses         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
+name: minishell tester >> valgrind_redirects
+
+on:
+  push:
+    branches:
+    - main
+    - '**feature**'
+    - '**feat**'
+    - '**bugfix**'
+    - '**fix**'
+    - '**release**'
+  pull_request:
+    branches:
+    - main
+    - '**feature**'
+    - '**feat**'
+    - '**bugfix**'
+    - '**fix**'
+    - '**release**'
+
+jobs:
+  valgrind_redirects:
+    runs-on: ubuntu-latest
+    timeout-minutes: 1
+    defaults:
+      run:
+        working-directory: ./
+    steps:
+      - name: Starting Github Actions
+        uses: actions/checkout@v4.1.4
+
+      - name: Building Program with MiniShell Makefile
+        run: make
+
+      - name: Run Valgrind Tests
+        env:
+          TEST_FILE: minishell_tester/redirects
+        run: |
+          echo "Running Valgrind tests..."
+          valgrind --tool=memcheck ./build/minishell
+          while IFS= read -r line || [[ -n "$line" ]]; do
+            echo "Testing: $line"
+            ./build/minishell "$line"
+            echo "------------------------"
+          done < $TEST_FILE
+  
+      - name: Upload Test Results
+        uses: actions/upload-artifact@v2
+        with:
+          name: valgrind-results
+          path: valgrind-out.txt
+
+
+# :: source minishell_tester repository ::
+# https://github.com/LucasKuhn/minishell_tester
