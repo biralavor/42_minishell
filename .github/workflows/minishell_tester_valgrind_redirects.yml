@@ -57,7 +57,7 @@ jobs:
           done < $TEST_FILE
   
       - name: Upload Test Results
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v4
         with:
           name: valgrind-results
           path: valgrind-out.txt
