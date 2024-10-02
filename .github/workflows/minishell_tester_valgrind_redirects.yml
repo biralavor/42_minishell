@@ -52,10 +52,16 @@ jobs:
 
       - name: Building Program with MiniShell Makefile
         run: make
+      
+      - name: Copying Executable to Minishell_Tester folder
+        run: cp minishell minishell_tester
+
+      - name: Accessing from Minishell_Tester folder
+        run: cd minishell_tester
 
       - name: Run Valgrind Tests
         env:
-          TEST_FILE: minishell_tester/redirects
+          TEST_FILE: redirects
         run: |
           echo "Running Valgrind tests..."
           valgrind --tool=memcheck --track-origins=yes --leak-check=full --suppressions=./readline.sup ./minishell
@@ -73,6 +79,9 @@ jobs:
         with:
           name: valgrind-results
           path: valgrind-out.txt
+      
+      - name: Removing Executable from Minishell_Tester folder
+        run: rm minishell
 
 
 # :: source minishell_tester repository ::
