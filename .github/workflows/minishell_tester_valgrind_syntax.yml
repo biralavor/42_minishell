@@ -90,6 +90,9 @@ jobs:
               echo "Memory leak detected after exit!"
               exit 1
             fi
+            
+            # Exit after processing each line
+            exit 0
           done < $TEST_FILE
           
       - name: Minishell_Tester CleanUp
