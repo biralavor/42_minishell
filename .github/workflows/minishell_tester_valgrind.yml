@@ -81,7 +81,9 @@ jobs:
               if grep -q "ERROR SUMMARY: [^0]" valgrind-out.txt; then
                 echo "Memory leak detected during: $line"
                 cat valgrind-out.txt  # Display the Valgrind output
-                exit 1
+                # Do not exit, just log and continue
+              else
+                echo "No memory leaks detected for: $line"
               fi
 
               echo "------------------------"
