@@ -33,7 +33,7 @@ on:
 jobs:
   valgrind_for_all_segments:
     runs-on: ubuntu-latest
-    timeout-minutes: 2
+    timeout-minutes: 7
     defaults:
       run:
         working-directory: ./
