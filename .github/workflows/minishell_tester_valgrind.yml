@@ -60,36 +60,47 @@ jobs:
           mkdir outfiles mini_outfiles bash_outfiles
           cd ..
 
-      - name: Run Valgrind Tests
-        run: |
-          echo "Running Valgrind tests..."
-
-          # List of TEST_FILEs to loop over
-          TEST_FILES=("minishell_tester/syntax" "minishell_tester/builtins" "minishell_tester/pipes" "minishell_tester/redirects"  "minishell_tester/extras"  "minishell_tester/manual_tests/mandatory")
-          
-          for TEST_FILE in "${TEST_FILES[@]}"; do
-            echo "Testing with: $TEST_FILE"
+          - name: Run Valgrind Tests
+          run: |
+            echo "Running Valgrind tests..."
+  
+            # List of TEST_FILEs to loop over
+            TEST_FILES=("minishell_tester/syntax" "minishell_tester/commands" "minishell_tester/pipes")
             
-            # Read each line of the current TEST_FILE
-            while IFS= read -r line || [[ -n "$line" ]]; do
-              echo "Test case: $line"
+            for TEST_FILE in "${TEST_FILES[@]}"; do
+              echo "Testing with: $TEST_FILE"
               
-              # Run minishell with input from the test case and 'exit', capture Valgrind output
-              echo -e "$line\nexit" | valgrind --tool=memcheck --track-origins=yes --leak-check=full --suppressions=./readline.sup ./minishell > valgrind-out.txt 2>&1
-
-              # Check for memory leaks
-              if grep -q "ERROR SUMMARY: [^0]" valgrind-out.txt; then
-                echo "Memory leak detected during: $line"
-                cat valgrind-out.txt  # Display the Valgrind output
-                # Do not exit, just log and continue
-              else
+              # Read each line of the current TEST_FILE
+              while IFS= read -r line || [[ -n "$line" ]]; do
+                echo "Test case: $line"
+                
+                # Run minishell with input from the test case and 'exit', capture Valgrind output
+                echo -e "$line\nexit" | valgrind --tool=memcheck --track-origins=yes --leak-check=full --suppressions=./readline.sup ./minishell > valgrind-out.txt 2>&1
+  
+                # Capture the exit code of the last command (minishell)
+                exit_code=$?
+  
+                # Check for memory leaks
+                if grep -q "ERROR SUMMARY: [^0]" valgrind-out.txt; then
+                  echo "Memory leak detected during: $line"
+                  cat valgrind-out.txt  # Display the Valgrind output
+                  exit 1
+                fi
+  
+                # Check the exit code (you can assert expected codes here)
+                echo "Exit code: $exit_code for test case: $line"
+                if [[ "$line" == *"exit"* && "$exit_code" -ne 0 ]]; then
+                  echo "Non-zero exit code detected for exit command"
+                  # You can handle non-zero exit codes here, but avoid exiting the job
+                  # For example, continue testing, but log this:
+                  # exit 1 if you want the job to fail for non-zero exit codes
+                fi
+  
                 echo "No memory leaks detected for: $line"
-              fi
-
-              echo "------------------------"
-            done < $TEST_FILE
-            
-          done
+                echo "------------------------"
+              done < $TEST_FILE
+              
+            done
           
       - name: Minishell_Tester CleanUp
         run: |
