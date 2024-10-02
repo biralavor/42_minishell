@@ -1,0 +1,88 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    minishell_tester_syntax.yml                        :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2024/09/23 16:00:54 by umeneses          #+#    #+#              #
+#    Updated: 2024/09/26 08:39:23 by umeneses         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
+name: minishell tester >> valgrind_syntax
+
+on:
+  push:
+    branches:
+    - main
+    - '**feature**'
+    - '**feat**'
+    - '**bugfix**'
+    - '**fix**'
+    - '**release**'
+  pull_request:
+    branches:
+    - main
+    - '**feature**'
+    - '**feat**'
+    - '**bugfix**'
+    - '**fix**'
+    - '**release**'
+
+jobs:
+  valgrind_syntax:
+    runs-on: ubuntu-latest
+    timeout-minutes: 2
+    defaults:
+      run:
+        working-directory: ./
+    steps:
+      - name: Starting Github Actions
+        uses: actions/checkout@v4.1.4
+
+      - name: Install Aptitude
+        run: sudo apt-get install aptitude
+
+      - name: Install Valgrind
+        run: sudo aptitude install -y valgrind
+
+      - name: Submodule Init
+        run: git submodule init && git submodule update
+
+      - name: Building Program with MiniShell Makefile
+        run: make
+
+      - name: Minishell_Tester Starting Up Simulation
+        run: cd minshell_tester ; chmod 000 ./test_files/invalid_permission ;
+             mkdir ./outfiles ; mkdir ./mini_outfiles ; mkdir ./bash_outfiles ;
+             cd ..
+
+      - name: Run Valgrind Tests
+        env:
+          TEST_FILE: minishell_tester/syntax
+        run: |
+          echo "Running Valgrind tests..."
+          valgrind --tool=memcheck --track-origins=yes --leak-check=full --suppressions=./readline.sup ./minishell
+          while IFS= read -r line || [[ -n "$line" ]]; do
+            echo "Testing: $line"
+            # Redirect stdin to /dev/null
+            echo "$line" > /dev/null
+            # Run minishell with redirected stdin
+            ./minishell
+            echo "------------------------"
+          done < $TEST_FILE
+  
+      - name: Upload Test Results
+        uses: actions/upload-artifact@v4
+        with:
+          name: valgrind-results
+          path: valgrind-out.txt
+      
+      - name: Minishell_Tester Finishing Simulation
+        run: cd minishell_tester ; chmod 666 ./test_files/invalid_permission ;
+             rm -rf ./outfiles ; rm -rf ./mini_outfiles ; rm -rf ./bash_outfiles
+
+
+# :: source minishell_tester repository ::
+# https://github.com/LucasKuhn/minishell_tester
