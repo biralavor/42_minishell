@@ -65,7 +65,7 @@ jobs:
           echo "Running Valgrind tests..."
 
           # List of TEST_FILEs to loop over
-          TEST_FILES=("minishell_tester/syntax" "minishell_tester/commands" "minishell_tester/pipes")
+          TEST_FILES=("minishell_tester/syntax" "minishell_tester/builtins" "minishell_tester/pipes" "minishell_tester/redirects"  "minishell_tester/extras"  "minishell_tester/manual_tests/mandatory")
           
           for TEST_FILE in "${TEST_FILES[@]}"; do
             echo "Testing with: $TEST_FILE"
