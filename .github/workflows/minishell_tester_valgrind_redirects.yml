@@ -41,6 +41,9 @@ jobs:
       - name: Starting Github Actions
         uses: actions/checkout@v4.1.4
 
+      - name: Install Aptitude
+        run: sudo apt-get install aptitude
+
       - name: Install Valgrind
         run: sudo aptitude install -y valgrind
 
