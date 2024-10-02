@@ -47,6 +47,9 @@ jobs:
       - name: Install Valgrind
         run: sudo aptitude install -y valgrind
 
+      - name: Submodule Init
+        run: git submodule init && git submodule update
+
       - name: Building Program with MiniShell Makefile
         run: make
 
