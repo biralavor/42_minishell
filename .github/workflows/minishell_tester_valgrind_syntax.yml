@@ -54,9 +54,11 @@ jobs:
         run: make
 
       - name: Minishell_Tester Starting Up Simulation
-        run: cd minishell_tester ; chmod 000 ./test_files/invalid_permission ;
-             mkdir ./outfiles ; mkdir ./mini_outfiles ; mkdir ./bash_outfiles ;
-             cd ..
+        run: |
+          cd minishell_tester
+          chmod 000 ./test_files/invalid_permission
+          mkdir outfiles mini_outfiles bash_outfiles
+          cd ..
 
       - name: Run Valgrind Tests
         env:
@@ -71,17 +73,37 @@ jobs:
             # Run minishell with redirected stdin
             ./minishell
             echo "------------------------"
+            
+            # Check for memory leaks
+            if grep -q "ERROR SUMMARY:" valgrind-out.txt; then
+              echo "Memory leak detected!"
+              exit 1
+            fi
+            
+            # Send 'exit'
+            echo "exit" > /dev/null
+            ./minishell
+            echo "------------------------"
+            
+            # Check again for memory leaks
+            if grep -q "ERROR SUMMARY:" valgrind-out.txt; then
+              echo "Memory leak detected after exit!"
+              exit 1
+            fi
           done < $TEST_FILE
-  
+          
+      - name: Minishell_Tester CleanUp
+        run: |
+            cd minishell_tester
+            chmod 666 ./test_files/invalid_permission
+            rm -rf outfiles mini_outfiles bash_outfiles
+            cd ..
+          
       - name: Upload Test Results
         uses: actions/upload-artifact@v4
         with:
           name: valgrind-results
           path: valgrind-out.txt
-      
-      - name: Minishell_Tester Finishing Simulation
-        run: cd minishell_tester ; chmod 666 ./test_files/invalid_permission ;
-             rm -rf ./outfiles ; rm -rf ./mini_outfiles ; rm -rf ./bash_outfiles
 
 
 # :: source minishell_tester repository ::
