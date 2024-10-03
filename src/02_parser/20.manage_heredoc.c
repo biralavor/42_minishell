@@ -6,7 +6,7 @@
 /*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 18:23:53 by umeneses          #+#    #+#             */
-/*   Updated: 2024/10/03 11:17:34 by tmalheir         ###   ########.fr       */
+/*   Updated: 2024/10/03 11:36:47 by tmalheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,9 +76,12 @@ int	check_delimiter(char *delimiter, int fd, char *input)
 {
 	while (input && ft_strncmp(input, delimiter, (ft_strlen(delimiter) - 1)))
 	{
-		if (input)
+		int	idx;
+
+		idx = 0;
+		if (input[idx])
 		{
-			write(fd, input, ft_strlen(input));
+			write(fd, &input[idx], 1);
 			write(fd, "\n", 1);
 		}
 		is_heredoc_running(true, false);
