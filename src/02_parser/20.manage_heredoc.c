@@ -6,7 +6,7 @@
 /*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 18:23:53 by umeneses          #+#    #+#             */
-/*   Updated: 2024/10/01 14:14:09 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/10/03 10:58:34 by tmalheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,13 @@
 void	check_heredoc(t_token_list *lst)
 {
 	int				heredoc_fd;
+	int				flag;
 	char			*heredoc_input;
 	char			*delimiter;
 	t_token_list	*tmp;
 
 	heredoc_fd = -1;
+	flag = 0;
 	heredoc_input = NULL;
 	delimiter = NULL;
 	tmp = lst;
@@ -27,7 +29,7 @@ void	check_heredoc(t_token_list *lst)
 	{
 		if (tmp->type == REDIR_HDOC)
 		{
-			delimiter = ft_strdup(tmp->next->lexeme);
+			delimiter = redir_quote_detector(ft_strdup(tmp->next->lexeme), &flag);
 			path_file(lst);
 			heredoc_fd_reset(&heredoc_fd);
 			heredoc_fd = open(tmp->next->lexeme, O_CREAT | O_RDWR | O_TRUNC, 0644);
