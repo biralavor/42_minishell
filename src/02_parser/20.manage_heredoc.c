@@ -6,11 +6,12 @@
 /*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 18:23:53 by umeneses          #+#    #+#             */
-/*   Updated: 2024/10/03 10:58:34 by tmalheir         ###   ########.fr       */
+/*   Updated: 2024/10/03 11:17:34 by tmalheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+static int	check_fd_error(int heredoc_fd);
 
 void	check_heredoc(t_token_list *lst)
 {
@@ -33,12 +34,8 @@ void	check_heredoc(t_token_list *lst)
 			path_file(lst);
 			heredoc_fd_reset(&heredoc_fd);
 			heredoc_fd = open(tmp->next->lexeme, O_CREAT | O_RDWR | O_TRUNC, 0644);
-			if (heredoc_fd == -1)
-			{
-				ft_putendl_fd("Failed to open heredoc file\n", STDERR_FILENO);
-				exit_status_holder(EXIT_FAILURE, true);
-				break ;
-			}
+			if (check_fd_error(heredoc_fd))
+				break;
 			heredoc_input = readline(BLUE"(mini)heredoc> "RESET);
 			if (!check_delimiter(delimiter, heredoc_fd, heredoc_input))
 				break ;
@@ -113,17 +110,13 @@ void	heredoc_fd_reset(int *heredoc_fd)
 	}
 }
 
-
-/*
-static char	*path_file(void)
+static int	check_fd_error(int heredoc_fd)
 {
-	static int	file_nbr;
-	char		*nbr;
-	char		*heredoc_path;
-
-	nbr = ft_itoa(file_nbr);
-	heredoc_path = ft_strjoin("/tmp/heredoc_", nbr);
-	free(nbr);
-	return (heredoc_path);
+	if (heredoc_fd == -1)
+	{
+		ft_putendl_fd("Failed to open heredoc file\n", STDERR_FILENO);
+		exit_status_holder(EXIT_FAILURE, true);
+		return (1);
+	}
+	return (0);
 }
-*/
