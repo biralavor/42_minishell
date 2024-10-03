@@ -45,6 +45,7 @@ FILES			+= ft_split.c
 FILES			+= ft_strchr.c
 FILES			+= ft_strlcat.c
 FILES			+= ft_strncmp.c
+FILES			+= ft_strcmp.c
 FILES			+= ft_strdup.c
 FILES			+= ft_striteri.c
 FILES			+= ft_strjoin.c
