@@ -6,12 +6,13 @@
 /*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 18:23:53 by umeneses          #+#    #+#             */
-/*   Updated: 2024/10/03 11:36:47 by tmalheir         ###   ########.fr       */
+/*   Updated: 2024/10/03 12:32:45 by tmalheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 static int	check_fd_error(int heredoc_fd);
+static int	check_dollar_sign(char *input, int idx, int fd);
 
 void	check_heredoc(t_token_list *lst)
 {
@@ -79,11 +80,13 @@ int	check_delimiter(char *delimiter, int fd, char *input)
 		int	idx;
 
 		idx = 0;
-		if (input[idx])
+		while (input[idx])
 		{
+			idx = check_dollar_sign(input, idx, fd);
 			write(fd, &input[idx], 1);
-			write(fd, "\n", 1);
+			idx++;
 		}
+		write(fd, "\n", 1);
 		is_heredoc_running(true, false);
 		free(input);
 		input = readline(BLUE"(mini)heredoc> "RESET);
@@ -91,6 +94,33 @@ int	check_delimiter(char *delimiter, int fd, char *input)
 	if (input)
 		free(input);
 	return (0);
+}
+
+static int	check_dollar_sign(char *input, int idx, int fd)
+{
+	size_t	start;
+	size_t	end;
+	char	*var;
+
+	start = 0;
+	end = 0;
+	var = NULL;
+	if (input[idx] == '$')
+	{
+		start = (size_t)idx;
+		while (input[idx] && !is_blank(input[idx]))
+			idx++;
+		end = (size_t)idx;
+		var = expansion_env_var_runner((ft_substr(input, start, (end - start))), 0);
+		idx = 0;
+		while (var[idx])
+		{
+			write(fd, &var[idx], 1);
+			idx++;
+		}
+		return (end);
+	}
+	return (idx);
 }
 
 bool	is_heredoc_running(bool update, bool caller)
