@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   50.command_runner.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 18:51:30 by umeneses          #+#    #+#             */
-/*   Updated: 2024/10/01 22:17:19 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/10/03 15:58:56 by tmalheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ void	fork_and_execve(char **cmd, char *path)
 	all_envs = convert_envs_to_array(env_holder(NULL, false, false));
 	if (child_process_is_running(false, true))
 	{
+		printf("True da true\n");
 		env_holder(NULL, false, true);
 		rl_clear_history();
 	}
@@ -34,6 +35,7 @@ void	fork_and_execve(char **cmd, char *path)
 			execve_error_manager(cmd, all_envs, path);
 	}
 	pid_exit_status_caller(pid);
+	child_process_is_running(true, false);
 	free_array(all_envs);
 	free(path);
 }

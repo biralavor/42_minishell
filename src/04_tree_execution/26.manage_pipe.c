@@ -6,7 +6,7 @@
 /*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/28 13:51:49 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/09/30 14:50:30 by tmalheir         ###   ########.fr       */
+/*   Updated: 2024/10/03 15:57:36 by tmalheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ bool	child_process_is_running(bool update, bool caller)
 {
 	static bool	child_process_holder;
 
-	if (update && caller)
+	if (update)
 		child_process_holder = caller;
 	else if (caller)
 		return (child_process_holder);

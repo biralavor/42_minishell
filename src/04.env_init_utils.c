@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   04.env_init_utils.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 12:58:03 by umeneses          #+#    #+#             */
-/*   Updated: 2024/09/15 20:59:57 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/10/03 15:37:08 by tmalheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 t_env_entry	*goto_head_env_table(t_env_entry *table)
 {
-	while (table->prev)
+	while (table && table->prev)
 	{
 		if (table->prev == NULL)
 			break ;
