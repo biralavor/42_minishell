@@ -6,7 +6,7 @@
 /*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 18:23:53 by umeneses          #+#    #+#             */
-/*   Updated: 2024/10/03 12:32:45 by tmalheir         ###   ########.fr       */
+/*   Updated: 2024/10/03 14:56:12 by tmalheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,12 +102,11 @@ static int	check_dollar_sign(char *input, int idx, int fd)
 	size_t	end;
 	char	*var;
 
-	start = 0;
+	start = idx;
 	end = 0;
 	var = NULL;
 	if (input[idx] == '$')
 	{
-		start = (size_t)idx;
 		while (input[idx] && !is_blank(input[idx]))
 			idx++;
 		end = (size_t)idx;
@@ -119,6 +118,7 @@ static int	check_dollar_sign(char *input, int idx, int fd)
 			idx++;
 		}
 		return (end);
+		free(var);
 	}
 	return (idx);
 }
