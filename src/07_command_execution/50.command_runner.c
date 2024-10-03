@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 18:51:30 by umeneses          #+#    #+#             */
-/*   Updated: 2024/10/03 14:33:47 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/10/03 14:53:10 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,12 +49,12 @@ void	execve_error_manager(char **cmd, char **all_envs, char *path)
 		ft_putstr_fd(": Permission denied\n", STDERR_FILENO);
 		exit_status_holder(126, true);
 	}
-	else if (access(lookup_cmd_path(path), F_OK) == 0 && (*path != '/' || *path != '.'))
+	else if (access(path, F_OK) == -1 && (*path != '/' || *path != '.'))
 	{
 		ft_putstr_fd(": command not found\n", STDERR_FILENO);
 		exit_status_holder(127, true);
 	}
-	else if (access(path, F_OK) == -1)
+	else
 	{
 		ft_putstr_fd(": No such file or directory\n", STDERR_FILENO);
 		exit_status_holder(127, true);
