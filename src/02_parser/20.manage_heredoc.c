@@ -6,13 +6,14 @@
 /*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 18:23:53 by umeneses          #+#    #+#             */
-/*   Updated: 2024/10/03 14:56:12 by tmalheir         ###   ########.fr       */
+/*   Updated: 2024/10/03 15:13:37 by tmalheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 static int	check_fd_error(int heredoc_fd);
 static int	check_dollar_sign(char *input, int idx, int fd);
+static int	check_question_mark(int idx, int fd);
 
 void	check_heredoc(t_token_list *lst)
 {
@@ -105,7 +106,7 @@ static int	check_dollar_sign(char *input, int idx, int fd)
 	start = idx;
 	end = 0;
 	var = NULL;
-	if (input[idx] == '$')
+	if (input[idx] == '$' && (input[idx + 1] && input[idx + 1] != '?'))
 	{
 		while (input[idx] && !is_blank(input[idx]))
 			idx++;
@@ -120,7 +121,24 @@ static int	check_dollar_sign(char *input, int idx, int fd)
 		return (end);
 		free(var);
 	}
+	else if (input[idx] == '$' && (input[idx + 1] && input[idx + 1] == '?'))
+		idx = check_question_mark(idx, fd);
 	return (idx);
+}
+
+static int	check_question_mark(int idx, int fd)
+{
+	int		idx_exit_status;
+	char	*exit_status;
+
+	idx_exit_status = 0;
+	exit_status = ft_itoa(exit_status_holder(0, false));
+	while (exit_status[idx_exit_status])
+	{
+		write(fd, &exit_status[idx_exit_status], 1);
+		idx_exit_status++;
+	}
+	return (idx + 2);
 }
 
 bool	is_heredoc_running(bool update, bool caller)
