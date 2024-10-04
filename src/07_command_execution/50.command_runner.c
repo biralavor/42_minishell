@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 18:51:30 by umeneses          #+#    #+#             */
-/*   Updated: 2024/10/04 19:18:54 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/10/04 19:54:48 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,9 +100,11 @@ bool	directory_detector(char *path)
 {
 	struct stat	statbuf;
 
-	stat(path, &statbuf);
-	if (S_ISDIR(statbuf.st_mode) && access(path, F_OK) == 0)
-		return (true);
+	if (stat(path, &statbuf) == 0)
+	{
+		if (S_ISDIR(statbuf.st_mode) && access(path, F_OK) == 0)
+			return (true);
+	}
 	return (false);
 }
 
