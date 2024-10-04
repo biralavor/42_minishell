@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   34.expansion_env_var.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/27 12:39:23 by umeneses          #+#    #+#             */
-/*   Updated: 2024/09/27 15:35:01 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/10/04 11:31:35 by tmalheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,7 +122,7 @@ char	**expand_var_from_array(char **arr_lex)
 			}
 			free(env_key);
 		}
-		if (not_found && (ft_array_len(arr_lex) == 1 || !arr_lex[idx - 1]))
+		if (not_found && (ft_array_len(arr_lex) == 1 || (idx > 0 && !arr_lex[idx - 1])))
 		{
 			free(arr_lex[idx]);
 			arr_lex[idx] = NULL;
