@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   29.manage_single_cmd.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/16 09:43:43 by umeneses          #+#    #+#             */
-/*   Updated: 2024/10/02 10:12:58 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/10/04 13:48:38 by tmalheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,11 @@ int	manage_single_command(t_tree *tree)
 		return (exit_status_holder(0, false));
 	else if (tree->command && builtins_detector(tree->command))
 		builtins_manager(tree->command);
-	else if (tree->command && builtins_detector_with_possible_args(tree->command))
+	else if (tree->command
+		&& builtins_detector_with_possible_args(tree->command))
 		builtins_with_possible_args_manager(tree->command);
 	else
 		preprocessing_for_command_runner(tree->command);
-	// verify exit_status_holder()
-	// verify SIGINT
 	return (exit_status_holder(0, false));
 }
 
@@ -43,10 +42,10 @@ void	preprocessing_for_command_runner(t_token_list *command)
 	command_runner(cmd);
 	if (exit_status_holder(0, false) == 177
 		|| exit_status_holder(0, false) == 127)
-		{
-			free(cmd);
-			return ;
-		}
+	{
+		free(cmd);
+		return ;
+	}
 	if (absolute_path)
 		cmd[0] = NULL;
 	free_array(cmd);

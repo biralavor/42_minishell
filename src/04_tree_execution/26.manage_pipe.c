@@ -3,20 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   26.manage_pipe.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/28 13:51:49 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/10/04 10:23:20 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/10/04 14:03:59 by tmalheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-static void	close_pipes(int *new_pipe)
-{
-	close(new_pipe[0]);
-	close(new_pipe[1]);
-}
 
 void	exec_2nd_child(t_tree *right, int *new_pipe)
 {
@@ -87,20 +81,12 @@ void	manage_pipe(t_tree *tree)
 		if (pid[0] < 0)
 			fork_error();
 		else if (pid[0] == 0)
-		{
-			close(new_pipe[0]);
-			exec_1st_child(tree->left, new_pipe);
-			close(new_pipe[1]);
-		}
+			prepare_1st_child(tree, new_pipe);
 		pid[1] = fork();
 		if (pid[1] < 0)
 			fork_error();
 		else if (pid[1] == 0)
-		{
-			close(new_pipe[1]);
-			exec_2nd_child(tree->right, new_pipe);
-			close(new_pipe[0]);
-		}
+			prepare_2nd_child(tree, new_pipe);
 		wait_to_restore_fds(new_pipe, pid);
 	}
 	else
