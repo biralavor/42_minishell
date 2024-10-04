@@ -127,6 +127,9 @@ jobs:
             echo "Test run completed with errors."
             exit 1  # Fail the job if any errors were found
           else
+            echo "🎊 🎊 🎊"
+            echo "😎 😎 😎"
+            echo "🎉 🎉 🎉"   
             echo "All tests passed successfully!"
           fi
           

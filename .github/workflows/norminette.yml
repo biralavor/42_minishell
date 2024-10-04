@@ -66,10 +66,16 @@ jobs:
               failed_count=$((failed_count + 1))
             fi
           done
-          echo "Norminette failed for $failed_count file(s)"
-          
+
           if [ "$failed_count" -gt 0 ]; then
+            echo "😭 😭 😭 "
+            echo -e "\033[1;31mNorminette failed for $failed_count file(s)\033[0m"
             exit 1
+          else
+            echo "🎊 🎊 🎊"
+            echo "😎 😎 😎"
+            echo "🎉 🎉 🎉"  
+            echo -e "\033[1;32mAll files passed Norminette\033[0m"
           fi
 
 
