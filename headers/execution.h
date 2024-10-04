@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/05 13:56:37 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/10/04 17:51:54 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/10/04 19:17:28 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -143,5 +143,7 @@ void			change_redir_flag(int *first_redir);
 bool			directory_detector(char *path);
 
 bool			permission_denied_detector(char *path);
+
+void			clearing_execve_error_manager(char **cmd, char **all_envs, char *path);
 
 #endif
