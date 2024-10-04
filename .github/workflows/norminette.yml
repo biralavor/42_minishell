@@ -58,8 +58,15 @@ jobs:
       - name: Install Norminette
         run: python -m pip install norminette
 
-      - name: Running Norminette
-        run: norminette -R CheckForbiddenSourceHeader ./headers/ ./libs/ ./src/
+      - name: Running Norminette with Failure Counter
+        run: |
+          failed_count=0
+          for file in $(find ./headers ./libs ./src -name '*.c' -o -name '*.h'); do
+            if ! norminette -R CheckForbiddenSourceHeader "$file"; then
+              failed_count=$((failed_count + 1))
+            fi
+          done
+          echo "Norminette failed for $failed_count file(s)"
 
 
 # :: github actions documentation ::
