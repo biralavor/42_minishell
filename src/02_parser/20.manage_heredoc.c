@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   20.manage_heredoc.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 18:23:53 by umeneses          #+#    #+#             */
-/*   Updated: 2024/10/03 15:13:37 by tmalheir         ###   ########.fr       */
+/*   Updated: 2024/10/04 11:35:05 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,11 @@ void	check_heredoc(t_token_list *lst)
 	char			*heredoc_input;
 	char			*delimiter;
 	t_token_list	*tmp;
+	int				line;
 
-	heredoc_fd = -1;
+	line = 0;
 	flag = 0;
+	heredoc_fd = -1;
 	heredoc_input = NULL;
 	delimiter = NULL;
 	tmp = lst;
@@ -38,13 +40,17 @@ void	check_heredoc(t_token_list *lst)
 			heredoc_fd = open(tmp->next->lexeme, O_CREAT | O_RDWR | O_TRUNC, 0644);
 			if (check_fd_error(heredoc_fd))
 				break;
+			is_heredoc_running(true, true);
 			heredoc_input = readline(BLUE"(mini)heredoc> "RESET);
-			if (!check_delimiter(delimiter, heredoc_fd, heredoc_input))
+			line++;
+			heredoc_forcing_exit_warning(heredoc_input, delimiter, line, heredoc_fd);
+			if (!check_delimiter(delimiter, heredoc_fd, heredoc_input, line))
 				break ;
 		}
 		tmp = tmp->next;
 	}
 	heredoc_fd_reset(&heredoc_fd);
+	is_heredoc_running(false, false);
 	if (delimiter != NULL)
 		free(delimiter);
 }
@@ -66,7 +72,6 @@ void	path_file(t_token_list *lst)
 			tmp->next->type = ARCHIVE;
 			free(tmp->next->lexeme);
 			tmp->next->lexeme = ft_strdup(pathname);
-			is_heredoc_running(true, false);
 		}
 		tmp = tmp->next;
 	}
@@ -74,23 +79,25 @@ void	path_file(t_token_list *lst)
 	free(pathname);
 }
 
-int	check_delimiter(char *delimiter, int fd, char *input)
+int	check_delimiter(char *delimiter, int fd, char *input, int line)
 {
+	int	idx;
+
+	idx = 0;
 	while (input && ft_strncmp(input, delimiter, (ft_strlen(delimiter) - 1)))
 	{
-		int	idx;
-
-		idx = 0;
 		while (input[idx])
 		{
 			idx = check_dollar_sign(input, idx, fd);
 			write(fd, &input[idx], 1);
 			idx++;
 		}
-		write(fd, "\n", 1);
-		is_heredoc_running(true, false);
+		// 	write(fd, "\n", 1);
 		free(input);
+		is_heredoc_running(true, true);
 		input = readline(BLUE"(mini)heredoc> "RESET);
+		line++;
+		heredoc_forcing_exit_warning(input, delimiter, line, fd);
 	}
 	if (input)
 		free(input);
@@ -145,9 +152,11 @@ bool	is_heredoc_running(bool update, bool caller)
 {
 	static bool	heredoc_running;
 
-	if (update && !caller)
-		heredoc_running = update;
+	if (update && caller)
+		heredoc_running = true;
 	else if (!update && caller)
+		return (heredoc_running);
+	else if (!update && !caller)
 		heredoc_running = false;
 	return (heredoc_running);
 }
@@ -170,4 +179,20 @@ static int	check_fd_error(int heredoc_fd)
 		return (1);
 	}
 	return (0);
+}
+
+void	heredoc_forcing_exit_warning(char *input, char *delimiter, int line, int fd)
+{
+	if (input == NULL)
+	{
+		ft_putstr_fd(" here-document at line ", STDERR_FILENO);
+		ft_putstr_fd(ft_itoa(line), STDERR_FILENO);
+		ft_putstr_fd(" delimited by end-of-file (wanted `", STDERR_FILENO);
+		ft_putstr_fd(delimiter, STDERR_FILENO);
+		ft_putendl_fd("')", STDERR_FILENO);
+		env_holder(NULL, false, true);
+		close(fd);
+		free(input);
+		exit(exit_status_holder(EXIT_SUCCESS, true));
+	}
 }

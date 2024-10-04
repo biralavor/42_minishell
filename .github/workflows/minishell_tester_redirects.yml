@@ -33,7 +33,7 @@ on:
 jobs:
   redirects:
     runs-on: ubuntu-latest
-    timeout-minutes: 1
+    timeout-minutes: 2
     defaults:
       run:
         working-directory: ./

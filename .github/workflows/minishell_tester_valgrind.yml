@@ -116,18 +116,22 @@ jobs:
           # Final error reporting
           echo "Summary of Test Run:"
           if [[ "$LEAKS_FOUND" -ne 0 ]]; then
-            echo "$LEAKS_FOUND memory leaks detected."
+            echo "\033[1;31m$LEAKS_FOUND memory leaks detected.\033[0m"
           fi
           
           if [[ "$EXIT_CODE_ERRORS" -ne 0 ]]; then
-            echo "$EXIT_CODE_ERRORS incorrect exit codes detected."
+            echo "\033[1;31m$EXIT_CODE_ERRORS incorrect exit codes detected.\033[0m"
           fi
 
           if [[ "$LEAKS_FOUND" -ne 0 || "$EXIT_CODE_ERRORS" -ne 0 ]]; then
-            echo "Test run completed with errors."
+            echo "😭 😭 😭 "
+            echo "\033[1;31mTest run completed with errors.\033[0m"
             exit 1  # Fail the job if any errors were found
           else
-            echo "All tests passed successfully!"
+            echo "🎊 🎊 🎊"
+            echo "😎 😎 😎"
+            echo "🎉 🎉 🎉"   
+            echo "\033[1;32mAll Valgrind tests passed successfully! CONGRATS!\033[0m"
           fi
           
       - name: Minishell_Tester CleanUp

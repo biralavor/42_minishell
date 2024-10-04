@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   50.command_runner.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 18:51:30 by umeneses          #+#    #+#             */
-/*   Updated: 2024/10/04 10:22:24 by tmalheir         ###   ########.fr       */
+/*   Updated: 2024/10/04 10:25:46 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void	fork_and_execve(char **cmd, char *path)
 			execve_error_manager(cmd, all_envs, path);
 	}
 	pid_exit_status_caller(pid);
-	child_process_is_running(true, false);
+	child_process_is_running(false, false);
 	free_array(all_envs);
 	free(path);
 }
