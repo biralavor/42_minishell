@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 11:12:53 by umeneses          #+#    #+#             */
-/*   Updated: 2024/10/01 12:33:07 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/10/04 16:53:40 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@
 #include "../../src/04_tree_execution/27.manage_redirects.c"
 #include "../../src/04_tree_execution/28.manage_subshell.c"
 #include "../../src/04_tree_execution/29.manage_single_cmd.c"
+#include "../../src/04_tree_execution/manage_pipe_utils.c"
 #include "../../src/04_tree_execution/manage_redirects_utils.c"
 #include "../../src/05_expansions/30.expansion_manager.c"
 #include "../../src/05_expansions/31.expansion_detectors.c"
@@ -53,6 +54,7 @@
 #include "../../src/05_expansions/34.expansion_env_var.c"
 #include "../../src/05_expansions/35.expansion_env_var_utils.c"
 #include "../../src/05_expansions/36.expansion_question.c"
+#include "../../src/05_expansions/expansion_env_var_utils_2.c"
 #include "../../src/06_builtins/37.builtin_detectors.c"
 #include "../../src/06_builtins/38.builtin_manager.c"
 #include "../../src/06_builtins/39.builtin_utils.c"
