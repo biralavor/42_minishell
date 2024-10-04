@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 18:51:30 by umeneses          #+#    #+#             */
-/*   Updated: 2024/10/04 10:25:46 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/10/04 11:53:53 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,7 @@ void	fork_and_execve(char **cmd, char *path)
 
 	all_envs = convert_envs_to_array(env_holder(NULL, false, false));
 	if (child_process_is_running(false, true))
-	{
-		printf("True da true\n");
 		env_holder(NULL, false, true);
-		rl_clear_history();
-	}
 	pid = fork();
 	if (pid < 0)
 		fork_error();
