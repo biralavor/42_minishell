@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 18:51:30 by umeneses          #+#    #+#             */
-/*   Updated: 2024/10/04 12:20:52 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/10/04 14:44:38 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,22 +39,23 @@ void	fork_and_execve(char **cmd, char *path)
 void	execve_error_manager(char **cmd, char **all_envs, char *path)
 {
 	ft_putstr_fd(path, STDERR_FILENO);
-	if ((*path == '/' || *path == '.') && !access(path, F_OK))
+	if ((*path == '/' || *path == '.') && !access(path, F_OK)
+		&& !access(path, X_OK) && directory_detector(path))
 	{
 		ft_putstr_fd(": Is a directory\n", STDERR_FILENO);
 		exit_status_holder(126, true);
 	}
-	else if ((*path != '/' || *path != '.'))
-	{
-		ft_putstr_fd(": command not found\n", STDERR_FILENO);
-		exit_status_holder(127, true);
-	}
-	else if (access(path, R_OK | W_OK) == -1 && !access(path, F_OK))
+	else if (permission_denied_detector(path))
 	{
 		ft_putstr_fd(": Permission denied\n", STDERR_FILENO);
 		exit_status_holder(126, true);
 	}
-	else if (access(path, F_OK) == -1)
+	else if (access(path, F_OK) == -1 && (*path != '/' || *path != '.'))
+	{
+		ft_putstr_fd(": command not found\n", STDERR_FILENO);
+		exit_status_holder(127, true);
+	}
+	else
 	{
 		ft_putstr_fd(": No such file or directory\n", STDERR_FILENO);
 		exit_status_holder(127, true);
@@ -105,22 +106,16 @@ int	command_runner(char **cmd)
 bool	directory_detector(char *path)
 {
 	struct stat	statbuf;
-	int			status;
 
-	status = stat(path, &statbuf);
-	if (path[0] == '/' || (path[0] == '.' && path[1] == '/'))
-	{
-		if (S_ISDIR(statbuf.st_mode))
+	stat(path, &statbuf);
+	if (S_ISDIR(statbuf.st_mode))
 		return (true);
-	}
-	else if (status == -1)
-		return (false);
 	return (false);
 }
 
 bool	permission_denied_detector(char *path)
 {
-	if (access(path, X_OK) == -1)
+	if (!access(path, F_OK) && access(path, X_OK) == -1)
 		return (true);
 	return (false);
 }
