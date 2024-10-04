@@ -6,7 +6,7 @@
 /*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/27 12:39:23 by umeneses          #+#    #+#             */
-/*   Updated: 2024/10/04 11:31:35 by tmalheir         ###   ########.fr       */
+/*   Updated: 2024/10/04 15:41:53 by tmalheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,93 +66,58 @@ char	**array_lex_env_key_rules_manager(char **arr_lex, int arr_len)
 	return (new_arr);
 }
 
-char	**apply_rules_on_lex(char **arr_lex, char *lexeme, size_t pos)
+static void	process_entry(char **arr_lex, size_t idx, bool *not_found)
 {
-	size_t	id;
+	t_env_entry	*env_table;
+	char		*env_key;
+	size_t		c;
+	char		*lex_rest;
 
-	id = 0;
-	if (*arr_lex)
+	c = -1;
+	while (arr_lex[idx][++c])
 	{
-		while (*arr_lex)
-			id++;
-	}
-	else
-		arr_lex[id] = ft_substr(lexeme, 0, pos);
-	while (arr_lex[id])
-	{
-		if (pos < ft_strlen(lexeme))
+		env_key = ft_substr(arr_lex[idx], 0, c + 1);
+		env_table = lookup_table(env_holder(NULL, false, false), env_key);
+		if (!env_table && !ft_strncmp(arr_lex[idx], env_key,
+				ft_strlen(arr_lex[idx])))
+			*not_found = true;
+		else if (env_table && env_table->value)
 		{
-			arr_lex[++id] = ft_substr(lexeme, pos, ft_strlen(lexeme) - pos);
-			id++;
+			lex_rest = ft_substr(arr_lex[idx], ft_strlen(env_key),
+					ft_strlen(arr_lex[idx]) - ft_strlen(env_key));
+			free(arr_lex[idx]);
+			arr_lex[idx] = ft_strjoin(env_table->value, lex_rest);
+			free(lex_rest);
+			free(env_key);
+			break ;
 		}
+		free(env_key);
 	}
-	return (arr_lex);
+}
+
+static void	handle_not_found(char **arr_lex, size_t idx, bool not_found)
+{
+	if (not_found && (ft_array_len(arr_lex) == 1
+			|| (idx > 0 && !arr_lex[idx - 1])))
+	{
+		free(arr_lex[idx]);
+		arr_lex[idx] = NULL;
+		exit_status_holder(0, true);
+	}
 }
 
 char	**expand_var_from_array(char **arr_lex)
 {
-	t_env_entry	*env_table;
-	char		*env_key;
-	size_t		idx;
-	size_t		c;
-	char		*lex_rest;
-	bool		not_found;
+	size_t	idx;
+	bool	not_found;
 
 	idx = 0;
-	lex_rest = NULL;
 	not_found = false;
 	while (arr_lex[idx])
 	{
-		c = -1;
-		while (arr_lex[idx][++c])
-		{
-			env_key = ft_substr(arr_lex[idx], 0, c + 1);
-			env_table = lookup_table(env_holder(NULL, false, false), env_key);
-			if (!env_table && ft_strncmp(arr_lex[idx], env_key, ft_strlen(arr_lex[idx])) == 0)
-				not_found = true;
-			else if (env_table && env_table->value)
-			{
-				lex_rest = ft_substr(arr_lex[idx], ft_strlen(env_key),
-					ft_strlen(arr_lex[idx]) - ft_strlen(env_key));
-				free(arr_lex[idx]);
-				arr_lex[idx] = ft_strjoin(env_table->value, lex_rest);
-				free(lex_rest);
-				free(env_key);
-				break ;
-			}
-			free(env_key);
-		}
-		if (not_found && (ft_array_len(arr_lex) == 1 || (idx > 0 && !arr_lex[idx - 1])))
-		{
-			free(arr_lex[idx]);
-			arr_lex[idx] = NULL;
-			exit_status_holder(0, true);
-		}
+		process_entry(arr_lex, idx, &not_found);
+		handle_not_found(arr_lex, idx, not_found);
 		idx++;
 	}
 	return (arr_lex);
-}
-
-char	*merging_array_lexeme(char **arr_lex)
-{
-	char	*merged_lex;
-	char	*tmp;
-	int		idx;
-
-	idx = 0;
-	merged_lex = NULL;
-	tmp = NULL;
-	if (arr_lex && arr_lex[idx])
-	{
-		merged_lex = ft_strdup(arr_lex[idx]);
-		idx++;
-	}
-	while (arr_lex[idx])
-	{
-		tmp = ft_strjoin(merged_lex, arr_lex[idx]);
-		free(merged_lex);
-		merged_lex = tmp;
-		idx++;
-	}
-	return (merged_lex);
 }

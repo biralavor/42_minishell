@@ -83,6 +83,7 @@ SRC_FILES				+= ./05_expansions/32.expansion_quotes.c
 SRC_FILES				+= ./05_expansions/33.expansion_tilde.c
 SRC_FILES				+= ./05_expansions/34.expansion_env_var.c
 SRC_FILES				+= ./05_expansions/35.expansion_env_var_utils.c
+SRC_FILES				+= ./05_expansions/expansion_env_var_utils_2.c
 SRC_FILES				+= ./05_expansions/36.expansion_question.c
 SRC_FILES				+= ./06_builtins/37.builtin_detectors.c
 SRC_FILES				+= ./06_builtins/38.builtin_manager.c
