@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   04.env_init_utils.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 12:58:03 by umeneses          #+#    #+#             */
-/*   Updated: 2024/10/03 15:37:08 by tmalheir         ###   ########.fr       */
+/*   Updated: 2024/10/04 09:26:58 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,8 @@ void	free_array(char **array)
 {
 	char	**tmp;
 
+	if (NULL == array || *array == NULL)
+		return ;
 	tmp = array;
 	while (*tmp)
 	{
