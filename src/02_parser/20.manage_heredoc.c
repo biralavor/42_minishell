@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   20.manage_heredoc.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 18:23:53 by umeneses          #+#    #+#             */
-/*   Updated: 2024/10/03 15:13:37 by tmalheir         ###   ########.fr       */
+/*   Updated: 2024/10/04 10:56:35 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ void	check_heredoc(t_token_list *lst)
 			delimiter = redir_quote_detector(ft_strdup(tmp->next->lexeme), &flag);
 			path_file(lst);
 			heredoc_fd_reset(&heredoc_fd);
+			is_heredoc_running(true, true);
 			heredoc_fd = open(tmp->next->lexeme, O_CREAT | O_RDWR | O_TRUNC, 0644);
 			if (check_fd_error(heredoc_fd))
 				break;
@@ -45,6 +46,7 @@ void	check_heredoc(t_token_list *lst)
 		tmp = tmp->next;
 	}
 	heredoc_fd_reset(&heredoc_fd);
+	is_heredoc_running(false, false);
 	if (delimiter != NULL)
 		free(delimiter);
 }
@@ -66,7 +68,6 @@ void	path_file(t_token_list *lst)
 			tmp->next->type = ARCHIVE;
 			free(tmp->next->lexeme);
 			tmp->next->lexeme = ft_strdup(pathname);
-			is_heredoc_running(true, false);
 		}
 		tmp = tmp->next;
 	}
@@ -87,8 +88,8 @@ int	check_delimiter(char *delimiter, int fd, char *input)
 			write(fd, &input[idx], 1);
 			idx++;
 		}
-		write(fd, "\n", 1);
-		is_heredoc_running(true, false);
+		// 	write(fd, "\n", 1);
+		is_heredoc_running(true, true);
 		free(input);
 		input = readline(BLUE"(mini)heredoc> "RESET);
 	}
@@ -145,9 +146,11 @@ bool	is_heredoc_running(bool update, bool caller)
 {
 	static bool	heredoc_running;
 
-	if (update && !caller)
-		heredoc_running = update;
+	if (update && caller)
+		heredoc_running = true;
 	else if (!update && caller)
+		return (heredoc_running);
+	else if (!update && !caller)
 		heredoc_running = false;
 	return (heredoc_running);
 }
