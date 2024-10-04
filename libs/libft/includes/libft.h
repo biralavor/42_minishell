@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/19 14:20:18 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/09/09 23:24:28 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/10/03 12:26:24 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ size_t			ft_strlcat(char *dst, const char *src, size_t size);
 size_t			ft_strlcpy(char *dst, const char *src, size_t size);
 size_t			ft_strlen(const char *str);
 int				ft_strncmp(const char *str1, const char *str2, size_t n);
+int				ft_strcmp(const char *s1, const char *s2);
 char			*ft_strnstr(const char *big, const char *little, size_t len);
 char			*ft_strrchr(const char *str, int c);
 int				ft_tolower(int c);
