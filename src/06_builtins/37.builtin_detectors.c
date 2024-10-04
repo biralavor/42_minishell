@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 19:09:05 by umeneses          #+#    #+#             */
-/*   Updated: 2024/10/02 10:11:41 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/10/03 12:22:11 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,9 @@ bool	builtins_detector(t_token_list *cmd)
 	{
 		if (!cmd->lexeme && cmd->next && cmd->next->type == WORD)
 			cmd = cmd->next;
-		if ((ft_strncmp(cmd->lexeme, "echo", ft_strlen(cmd->lexeme)) == 0)
-			|| (ft_strncmp(cmd->lexeme, "cd", ft_strlen(cmd->lexeme)) == 0)
-			|| (ft_strncmp(cmd->lexeme, "pwd", ft_strlen(cmd->lexeme)) == 0))
+		if ((ft_strcmp(cmd->lexeme, "echo") == 0)
+			|| (ft_strcmp(cmd->lexeme, "cd") == 0)
+			|| (ft_strcmp(cmd->lexeme, "pwd") == 0))
 			return (true);
 		cmd = cmd->next;
 	}
@@ -36,10 +36,10 @@ bool	builtins_detector_with_possible_args(t_token_list *lst)
 	{
 		if (!cmd->lexeme && cmd->next && cmd->next->type == WORD)
 			cmd = cmd->next;
-		if ((ft_strncmp(cmd->lexeme, "export", ft_strlen(cmd->lexeme)) == 0)
-			|| (ft_strncmp(cmd->lexeme, "unset", ft_strlen(cmd->lexeme)) == 0)
-			|| (ft_strncmp(cmd->lexeme, "env", ft_strlen(cmd->lexeme)) == 0)
-			|| (ft_strncmp(cmd->lexeme, "exit", ft_strlen(cmd->lexeme)) == 0))
+		if ((ft_strcmp(cmd->lexeme, "export") == 0)
+			|| (ft_strcmp(cmd->lexeme, "unset") == 0)
+			|| (ft_strcmp(cmd->lexeme, "env") == 0)
+			|| (ft_strcmp(cmd->lexeme, "exit") == 0))
 			return (true);
 		cmd = cmd->next;
 	}
