@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   26.manage_pipe.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/28 13:51:49 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/10/03 15:57:36 by tmalheir         ###   ########.fr       */
+/*   Updated: 2024/10/04 10:23:20 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,10 +60,12 @@ bool	child_process_is_running(bool update, bool caller)
 {
 	static bool	child_process_holder;
 
-	if (update)
-		child_process_holder = caller;
-	else if (caller)
+	if (update && caller)
+		child_process_holder = true;
+	else if (!update && caller)
 		return (child_process_holder);
+	else if (!update && !caller)
+		child_process_holder = false;
 	return (child_process_holder);
 }
 
