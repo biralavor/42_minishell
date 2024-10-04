@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   34.expansion_env_var_utils.c                       :+:      :+:    :+:   */
+/*   35.expansion_env_var_utils.c                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 10:02:37 by umeneses          #+#    #+#             */
-/*   Updated: 2024/09/15 17:17:00 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/10/04 15:39:14 by tmalheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,4 +50,27 @@ char	**free_runner_for_env_rules_manager(char **arr_lex, char **new_arr)
 		new_arr = arr_lex;
 	}
 	return (new_arr);
+}
+
+char	**apply_rules_on_lex(char **arr_lex, char *lexeme, size_t pos)
+{
+	size_t	id;
+
+	id = 0;
+	if (*arr_lex)
+	{
+		while (*arr_lex)
+			id++;
+	}
+	else
+		arr_lex[id] = ft_substr(lexeme, 0, pos);
+	while (arr_lex[id])
+	{
+		if (pos < ft_strlen(lexeme))
+		{
+			arr_lex[++id] = ft_substr(lexeme, pos, ft_strlen(lexeme) - pos);
+			id++;
+		}
+	}
+	return (arr_lex);
 }
