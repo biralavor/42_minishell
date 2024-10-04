@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   05.loop_routine.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 09:20:45 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/10/01 14:13:22 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/10/04 09:08:57 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	loop_routine(char *str)
 	flag = 0;
 	lst = NULL;
 	token_tree = NULL;
-	if (str[0] == '#')
+	if (str[0] == '#' || str[0] == '\0')
 		return ;
 	if (str && !check_initial_errors(str))
 	{
