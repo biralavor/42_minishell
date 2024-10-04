@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   32.expansion_quotes.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 13:41:21 by umeneses          #+#    #+#             */
-/*   Updated: 2024/09/26 15:40:00 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/10/04 14:14:16 by tmalheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ bool	double_quote_detector(char *lexeme)
 		while (lexeme[idx])
 		{
 			if (lexeme[idx] == '"')
-					return (true);
+				return (true);
 			idx++;
 		}
 	}
