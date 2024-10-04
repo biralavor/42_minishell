@@ -67,6 +67,10 @@ jobs:
             fi
           done
           echo "Norminette failed for $failed_count file(s)"
+          
+          if [ "$failed_count" -gt 0 ]; then
+            exit 1
+          fi
 
 
 # :: github actions documentation ::
