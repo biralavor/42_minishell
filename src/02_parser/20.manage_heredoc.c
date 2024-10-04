@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 18:23:53 by umeneses          #+#    #+#             */
-/*   Updated: 2024/10/04 10:56:35 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/10/04 11:18:34 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,10 +35,10 @@ void	check_heredoc(t_token_list *lst)
 			delimiter = redir_quote_detector(ft_strdup(tmp->next->lexeme), &flag);
 			path_file(lst);
 			heredoc_fd_reset(&heredoc_fd);
-			is_heredoc_running(true, true);
 			heredoc_fd = open(tmp->next->lexeme, O_CREAT | O_RDWR | O_TRUNC, 0644);
 			if (check_fd_error(heredoc_fd))
 				break;
+			is_heredoc_running(true, true);
 			heredoc_input = readline(BLUE"(mini)heredoc> "RESET);
 			if (!check_delimiter(delimiter, heredoc_fd, heredoc_input))
 				break ;
@@ -89,8 +89,8 @@ int	check_delimiter(char *delimiter, int fd, char *input)
 			idx++;
 		}
 		// 	write(fd, "\n", 1);
-		is_heredoc_running(true, true);
 		free(input);
+		is_heredoc_running(true, true);
 		input = readline(BLUE"(mini)heredoc> "RESET);
 	}
 	if (input)
