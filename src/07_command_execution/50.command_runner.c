@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 18:51:30 by umeneses          #+#    #+#             */
-/*   Updated: 2024/10/04 14:44:38 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/10/04 18:38:18 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,17 +90,14 @@ char	*lookup_cmd_path(char *cmd_name)
 	}
 }
 
-int	command_runner(char **cmd)
+void	command_runner(char **cmd)
 {
-	int		exit_status;
 	char	*path;
 
 	path = NULL;
-	exit_status = 0;
 	path = lookup_cmd_path(cmd[0]);
 	if (path)
 		fork_and_execve(cmd, path);
-	return (exit_status);
 }
 
 bool	directory_detector(char *path)
