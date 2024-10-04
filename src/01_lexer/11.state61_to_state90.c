@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   11.state61_to_state90.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/20 10:35:11 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/10/01 13:57:58 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/10/04 11:57:08 by tmalheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,8 @@ int	state_70(t_token_list **lst, char *str, int idx)
 			start, ((end - start) + 1));
 	double_q->type = DOUBLE_QUOTES;
 	create_new_node(lst, double_q);
+	if (!str[end])
+		return (end);
 	return (end + 1);
 }
 
