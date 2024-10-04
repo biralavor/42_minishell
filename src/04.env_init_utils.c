@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 12:58:03 by umeneses          #+#    #+#             */
-/*   Updated: 2024/10/04 09:26:58 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/10/04 09:39:58 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ void	free_array(char **array)
 {
 	char	**tmp;
 
-	if (NULL == array || *array == NULL)
+	if (NULL == array)
 		return ;
 	tmp = array;
 	while (*tmp)
