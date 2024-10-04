@@ -33,6 +33,7 @@ on:
 jobs:
   our_tester:
     runs-on: ubuntu-latest
+    timeout-minutes: 2
     defaults:
       run:
         working-directory: ./_ci_cd/

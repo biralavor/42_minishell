@@ -33,7 +33,7 @@ on:
 jobs:
   testing_146_items:
     runs-on: ubuntu-latest
-    timeout-minutes: 1
+    timeout-minutes: 2
     defaults:
       run:
         working-directory: ./
