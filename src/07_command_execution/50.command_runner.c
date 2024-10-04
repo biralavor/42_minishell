@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 18:51:30 by umeneses          #+#    #+#             */
-/*   Updated: 2024/10/04 11:53:53 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/10/04 12:20:52 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,8 @@ char	*lookup_cmd_path(char *cmd_name)
 
 	to_execute = NULL;
 	env_path = lookup_table(env_holder(NULL, false, false), "PATH");
-	all_paths = ft_split(env_path->value, ':');
+	if (env_path)
+		all_paths = ft_split(env_path->value, ':');
 	if (!is_cmd_with_valid_path(cmd_name))
 	{
 		to_execute = testing_all_paths_with_cmd(all_paths, cmd_name);
