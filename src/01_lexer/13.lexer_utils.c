@@ -6,7 +6,7 @@
 /*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/20 10:12:37 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/09/30 14:42:06 by tmalheir         ###   ########.fr       */
+/*   Updated: 2024/10/04 11:55:38 by tmalheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ int	check_double(char *str, int idx, bool flag)
 				&& !(is_blank(str[idx + 1])))
 				idx++;
 			else
-				break ;
+				return (idx);
 		}
 		else
 			idx++;

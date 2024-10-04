@@ -6,7 +6,7 @@
 /*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 15:49:51 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/09/26 15:32:48 by tmalheir         ###   ########.fr       */
+/*   Updated: 2024/10/04 11:35:35 by tmalheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	get_state(int idx, char *str, t_token_list **lst)
 {
-	while (str[idx])
+	while (str && str[idx])
 	{
 		if (str[idx] == '(')
 			idx = state_20(lst, str, idx);
@@ -37,6 +37,6 @@ void	get_state(int idx, char *str, t_token_list **lst)
 		else
 			lexer_error();
 	}
-	if (str[0] == '\0')
+	if (str && str[0] == '\0')
 		idx = state_10(lst, idx);
 }
