@@ -3,20 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   29.manage_single_cmd.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/16 09:43:43 by umeneses          #+#    #+#             */
-/*   Updated: 2024/10/04 13:48:38 by tmalheir         ###   ########.fr       */
+/*   Updated: 2024/10/04 17:31:55 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	manage_single_command(t_tree *tree)
+void	manage_single_command(t_tree *tree)
 {
-	expansion_manager(tree->command);
+	if (tree->command)
+		expansion_manager(tree->command);
 	if (!tree->command->lexeme && !tree->command->next)
-		return (exit_status_holder(0, false));
+		return ;
 	else if (tree->command && builtins_detector(tree->command))
 		builtins_manager(tree->command);
 	else if (tree->command
@@ -24,7 +25,6 @@ int	manage_single_command(t_tree *tree)
 		builtins_with_possible_args_manager(tree->command);
 	else
 		preprocessing_for_command_runner(tree->command);
-	return (exit_status_holder(0, false));
 }
 
 void	preprocessing_for_command_runner(t_token_list *command)

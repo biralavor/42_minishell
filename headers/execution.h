@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   executor.h                                         :+:      :+:    :+:   */
+/*   execution.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/05 13:56:37 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/10/04 14:04:11 by tmalheir         ###   ########.fr       */
+/*   Updated: 2024/10/04 17:51:54 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef EXECUTOR_H
-# define EXECUTOR_H
+#ifndef EXECUTION_H
+# define EXECUTION_H
 
 # include "environment.h"
 
@@ -60,9 +60,9 @@ t_token_list	*go_to_first_node(t_token_list *lst);
 
 /*EXECUTION FUNCTIONS*/
 
-int				tree_execution(t_tree *tree, int *flag);
+void			tree_execution(t_tree *tree, int *flag);
 
-int				manage_single_command(t_tree *tree);
+void			manage_single_command(t_tree *tree);
 
 void			preprocessing_for_command_runner(t_token_list *lst);
 
@@ -80,11 +80,11 @@ bool			is_cmd_with_valid_path(char *cmd_name);
 
 char			*testing_all_paths_with_cmd(char **path, char *cmd_name);
 
-int				command_runner(char **cmd);
+void			command_runner(char **cmd);
 
-int				manage_or(t_tree *tree);
+void			manage_or(t_tree *tree);
 
-int				manage_and(t_tree *tree);
+void			manage_and(t_tree *tree);
 
 int				manage_subshell(t_tree *tree);
 
