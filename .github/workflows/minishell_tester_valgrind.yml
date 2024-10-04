@@ -67,7 +67,7 @@ jobs:
           # List of TEST_FILEs to loop over
           TEST_FILES=("minishell_tester/syntax" "minishell_tester/builtins" "minishell_tester/pipes" "minishell_tester/redirects"  "minishell_tester/extras"  "minishell_tester/manual_tests/mandatory")
           
-          # Set counters to track leaks
+          # Set counter to track memory leaks
           LEAKS_FOUND=0
 
           # Disable exit on non-zero status
@@ -91,9 +91,9 @@ jobs:
                 echo "$line"
                 cat valgrind-out.txt  # Display the Valgrind output
                 LEAKS_FOUND=$((LEAKS_FOUND+1))  # Increment leaks counter
+              else
+                echo "No memory leaks detected for: $line"
               fi
-
-              echo "No memory leaks detected for: $line"
               echo "------------------------"
             done < $TEST_FILE
             
@@ -106,12 +106,7 @@ jobs:
           echo "Summary of Test Run:"
           if [[ "$LEAKS_FOUND" -ne 0 ]]; then
             echo -e "\033[1;31m$LEAKS_FOUND memory leaks detected.\033[0m"
-          fi
-
-          if [[ "$LEAKS_FOUND" -ne 0]]; then
-            echo "😭 😭 😭 "
-            echo -e "\033[1;31mTest run completed with errors.\033[0m"
-            exit 1  # Fail the job if any errors were found
+            exit 1  # Fail the job if any memory leaks were found
           else
             echo "🎊 🎊 🎊"
             echo "😎 😎 😎"
