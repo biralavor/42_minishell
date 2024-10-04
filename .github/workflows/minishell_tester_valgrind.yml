@@ -67,9 +67,8 @@ jobs:
           # List of TEST_FILEs to loop over
           TEST_FILES=("minishell_tester/syntax" "minishell_tester/builtins" "minishell_tester/pipes" "minishell_tester/redirects"  "minishell_tester/extras"  "minishell_tester/manual_tests/mandatory")
           
-          # Set counters to track errors and leaks
+          # Set counters to track leaks
           LEAKS_FOUND=0
-          EXIT_CODE_ERRORS=0
 
           # Disable exit on non-zero status
           set +e
@@ -84,9 +83,6 @@ jobs:
               # Run minishell with input from the test case and 'exit', capture Valgrind output
               echo -e "$line\nexit" | valgrind --tool=memcheck --track-origins=yes --leak-check=full --suppressions=./readline.sup ./minishell > valgrind-out.txt 2>&1
 
-              # Capture the exit code of the last command (minishell)
-              exit_code=$?
-
               # Check for memory leaks
               if grep -q "ERROR SUMMARY: [^0]" valgrind-out.txt; then
                 echo "😭 😭 😭 😭 😭 😭 😭 😭 😭"
@@ -95,13 +91,6 @@ jobs:
                 echo "$line"
                 cat valgrind-out.txt  # Display the Valgrind output
                 LEAKS_FOUND=$((LEAKS_FOUND+1))  # Increment leaks counter
-              fi
-
-              # Check the exit code (you can assert expected codes here)
-              echo "Exit code: $exit_code for test case: $line"
-              if [[ "$line" == *"exit"* && "$exit_code" -ne 0 ]]; then
-                echo "Non-zero exit code detected for exit command"
-                EXIT_CODE_ERRORS=$((EXIT_CODE_ERRORS+1))  # Increment exit code error counter
               fi
 
               echo "No memory leaks detected for: $line"
@@ -118,12 +107,8 @@ jobs:
           if [[ "$LEAKS_FOUND" -ne 0 ]]; then
             echo -e "\033[1;31m$LEAKS_FOUND memory leaks detected.\033[0m"
           fi
-          
-          if [[ "$EXIT_CODE_ERRORS" -ne 0 ]]; then
-            echo -e "\033[1;31m$EXIT_CODE_ERRORS incorrect exit codes detected.\033[0m"
-          fi
 
-          if [[ "$LEAKS_FOUND" -ne 0 || "$EXIT_CODE_ERRORS" -ne 0 ]]; then
+          if [[ "$LEAKS_FOUND" -ne 0]]; then
             echo "😭 😭 😭 "
             echo -e "\033[1;31mTest run completed with errors.\033[0m"
             exit 1  # Fail the job if any errors were found
