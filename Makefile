@@ -215,7 +215,7 @@ COMP_EXE	= $(CC) $(CFLAGS) $(LDFLAGS) $(OBJS_ALL) $(LDLIBS) -o $(NAME)
 #								TARGETS										   #
 # **************************************************************************** #
 
-all: 				$(NAME)
+all: 				libft_lib $(NAME)
 
 $(BUILD_D)%.o:		%.c
 					@$(MKDIR) $(dir $@)
@@ -224,7 +224,7 @@ $(BUILD_D)%.o:		%.c
 					@echo "$(NAME)	compiling -> $(GREEN)$(notdir $<)"
 					@printf "$(RESET)"
 
-$(NAME):			libft_lib $(OBJS_ALL)
+$(NAME):			$(OBJS_ALL)
 					@$(COMP_EXE)
 					@printf "$(GREEN)"
 					@echo "--------------------------------------------------------------------"
