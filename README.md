@@ -39,10 +39,11 @@
 - [x] Redirects of all types, except HereDoc :tada: [https://github.com/biralavor/42_minishell/releases/tag/v0.9.5]
 - [x] HereDoc Redirect :tada: [https://github.com/biralavor/42_minishell/releases/tag/v0.9.0]
 - [x] Signals Control -> Ctrl+C and Ctrl+D :tada: [https://github.com/biralavor/42_minishell/releases/tag/v0.9.6]
+- [x] Memory Leaks Management at: Lexer, Parser :tada: [https://github.com/biralavor/42_minishell/releases/tag/v0.9.8]
+- [x] Memory Leaks Management at: Expansion, Builtins :tada: [https://github.com/biralavor/42_minishell/releases/tag/v0.9.8]
+- [x] Memory Leaks Management at: Manage Single Command :tada: [https://github.com/biralavor/42_minishell/releases/tag/v0.9.8]
 - Next Steps on Project Management:
-  - [ ] Memory Leaks Management at: Lexer, Parser, HereDoc
-  - [ ] Memory Leaks Management at: Expansion, Builtins
-  - [ ] Memory Leaks Management at: Manage Single Command
+  - [ ] Memory Leaks Management at: HereDoc, when Ctrl+C is activated
   - [ ] Signals Control -> Ctrl + \
 - Possible Bonus Development:
   - [ ] If `&&` were inside `()`, it should execute with priority (SUBSHELL)
