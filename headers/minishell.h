@@ -64,5 +64,6 @@ void	tty_proprieties_manager(bool update);
 bool	is_after_loop(bool update);
 
 void	control_d_handler(char *input);
+bool	addto_history_detector(const char *input);
 
 #endif
