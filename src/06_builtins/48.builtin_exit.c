@@ -20,6 +20,7 @@ void	builtins_runner_exit(t_token_list *lst)
 
 	cmd = lst->next;
 	exit_code = 0;
+	ft_putendl_fd("exit", STDOUT_FILENO);
 	if (cmd && (cmd->type == WORD || cmd->type == DOUBLE_QUOTES))
 	{
 		exit_code = exit_error_manager(cmd, exit_code);
@@ -28,13 +29,9 @@ void	builtins_runner_exit(t_token_list *lst)
 	}
 	llong_min_status = long_long_min_detected(false, true);
 	if (exit_code == 1 && !llong_min_status)
-	{
 		exit_status_holder(1, true);
-		return ;
-	}
 	if (llong_min_status)
 		exit_code = 1;
-	ft_putendl_fd("exit", STDOUT_FILENO);
 	clear_all_to_exit_smoothly();
 	exit(exit_status_holder(exit_code, true));
 }
