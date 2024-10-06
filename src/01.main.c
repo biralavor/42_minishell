@@ -44,6 +44,24 @@ void	sigquit_activated(void)
 		ft_putendl_fd(RED"^\\quit (core dumped) T.T"RESET, STDERR_FILENO);
 		tty_proprieties_manager(true);
 	}
+
+bool	addto_history_detector(const char *input)
+{
+	int	idx;
+
+	idx = 0;
+	if (!ft_strcmp(input, ""))
+		return (false);
+	else
+	{
+		while (input[idx])
+		{
+			if (input[idx] != 32)
+				return (true);
+			idx++;
+		}
+	}
+	return (false);
 }
 
 int	main(int ac, char **av, char **envp)
@@ -65,7 +83,8 @@ int	main(int ac, char **av, char **envp)
 		input = readline(GREEN"<<< Born Again (mini) SHell >>>$ "RESET);
 		control_d_handler(input);
 		is_after_loop(true);
-		add_history(input);
+		if (addto_history_detector(input))
+			add_history(input);
 		loop_routine(input);
 		wait(NULL);
 		free(input);

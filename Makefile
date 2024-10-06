@@ -122,7 +122,7 @@ OBJS_ALL				= $(TDD_OBJS_FILES) $(OBJS_FILES)
 
 NAME_BONUS				= minishell_bonus
 
-SRC_FILES_BONUS			=
+SRC_FILES_BONUS			= $(SRC_FILES_ALL)
 
 SRC_BONUS_ALL			= $(addprefix $(SRC_BONUS_D), $(SRC_FILES_BONUS))
 
