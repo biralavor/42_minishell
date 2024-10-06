@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 18:23:53 by umeneses          #+#    #+#             */
-/*   Updated: 2024/10/04 11:35:05 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/10/04 23:11:00 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,16 @@ void	check_heredoc(t_token_list *lst)
 			is_heredoc_running(true, true);
 			heredoc_input = readline(BLUE"(mini)heredoc> "RESET);
 			line++;
-			heredoc_forcing_exit_warning(heredoc_input, delimiter, line, heredoc_fd);
+			if (g_sigmonitor == SIGINT)
+			{
+				free(heredoc_input);
+				return ;
+			}
+			if (heredoc_input == NULL)
+			{
+				heredoc_forcing_exit_warning(heredoc_input, delimiter, line, heredoc_fd);
+				free_token_list(&tmp);
+			}
 			if (!check_delimiter(delimiter, heredoc_fd, heredoc_input, line))
 				break ;
 		}
@@ -97,6 +106,11 @@ int	check_delimiter(char *delimiter, int fd, char *input, int line)
 		is_heredoc_running(true, true);
 		input = readline(BLUE"(mini)heredoc> "RESET);
 		line++;
+		if (g_sigmonitor == SIGINT)
+		{
+			free(input);
+			return (1);
+		}
 		heredoc_forcing_exit_warning(input, delimiter, line, fd);
 	}
 	if (input)
@@ -183,16 +197,18 @@ static int	check_fd_error(int heredoc_fd)
 
 void	heredoc_forcing_exit_warning(char *input, char *delimiter, int line, int fd)
 {
-	if (input == NULL)
-	{
-		ft_putstr_fd(" here-document at line ", STDERR_FILENO);
-		ft_putstr_fd(ft_itoa(line), STDERR_FILENO);
-		ft_putstr_fd(" delimited by end-of-file (wanted `", STDERR_FILENO);
-		ft_putstr_fd(delimiter, STDERR_FILENO);
-		ft_putendl_fd("')", STDERR_FILENO);
-		env_holder(NULL, false, true);
-		close(fd);
-		free(input);
-		exit(exit_status_holder(EXIT_SUCCESS, true));
-	}
+	char	*line_as_str;
+
+	line_as_str = ft_itoa(line);
+	ft_putstr_fd(" here-document at line ", STDERR_FILENO);
+	ft_putstr_fd(line_as_str, STDERR_FILENO);
+	ft_putstr_fd(" delimited by end-of-file (wanted `", STDERR_FILENO);
+	ft_putstr_fd(delimiter, STDERR_FILENO);
+	ft_putendl_fd("')", STDERR_FILENO);
+	env_holder(NULL, false, true);
+	close(fd);
+	free(input);
+	free(line_as_str);
+	free(delimiter);
+	exit(exit_status_holder(EXIT_SUCCESS, true));
 }
