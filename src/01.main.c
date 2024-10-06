@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 10:53:12 by umeneses          #+#    #+#             */
-/*   Updated: 2024/10/06 23:28:13 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/10/06 23:32:53 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,22 @@ bool	addto_history_detector(const char *input)
 		}
 	}
 	return (false);
+}
+
+bool	is_interactive(void)
+{
+	if (isatty(STDIN_FILENO))
+		return (true);
+	return (false);
+}
+
+void	sigquit_activated(void)
+{
+	if (exit_status_holder(0, false) == 131)
+	{
+		ft_putendl_fd(RED"^\\quit (core dumped) T.T"RESET, STDERR_FILENO);
+		tty_proprieties_manager(true);
+	}
 }
 
 int	main(int ac, char **av, char **envp)
