@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 10:53:12 by umeneses          #+#    #+#             */
-/*   Updated: 2024/10/06 23:20:29 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/10/06 23:27:14 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,22 @@ void	control_d_handler(char *input)
 		env_holder(NULL, false, true);
 		free(input);
 		exit(exit_status_holder(0, true));
+	}
+}
+
+bool	is_interactive(void)
+{
+	if (isatty(STDIN_FILENO))
+		return (true);
+	return (false);
+}
+
+void	sigquit_activated(void)
+{
+	if (exit_status_holder(0, false) == 131)
+	{
+		ft_putendl_fd(RED"^\\quit (core dumped) T.T"RESET, STDERR_FILENO);
+		tty_proprieties_manager(true);
 	}
 }
 
