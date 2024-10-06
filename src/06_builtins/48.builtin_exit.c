@@ -29,7 +29,10 @@ void	builtins_runner_exit(t_token_list *lst)
 	}
 	llong_min_status = long_long_min_detected(false, true);
 	if (exit_code == 1 && !llong_min_status)
+	{
 		exit_status_holder(1, true);
+		return ;
+	}
 	if (llong_min_status)
 		exit_code = 1;
 	clear_all_to_exit_smoothly();
@@ -38,17 +41,17 @@ void	builtins_runner_exit(t_token_list *lst)
 
 int	exit_error_manager(t_token_list *cmd, int exit_code)
 {
-	if (cmd->lexeme && cmd->next)
-	{
-		write(STDERR_FILENO, "bash exit: too many arguments\n", 30);
-		exit_code = 1;
-	}
-	else if (exit_code_not_numeric(cmd->lexeme))
+	if (exit_code_not_numeric(cmd->lexeme))
 	{
 		write(STDERR_FILENO, "bash exit: ", 11);
 		write(STDERR_FILENO, cmd->lexeme, ft_strlen(cmd->lexeme));
 		write(STDERR_FILENO, ": numeric argument required\n", 28);
 		exit_code = 2;
+	}
+	else if (cmd->lexeme && cmd->next)
+	{
+		write(STDERR_FILENO, "bash exit: too many arguments\n", 30);
+		exit_code = 1;
 	}
 	return (exit_code);
 }
