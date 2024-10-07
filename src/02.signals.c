@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 09:47:06 by umeneses          #+#    #+#             */
-/*   Updated: 2024/10/06 23:38:59 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/10/06 23:43:48 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,16 +104,6 @@ void	interrupt_signal_runner(int sig)
 // 	// rl_replace_line("", 0);
 // }
 
-void	tty_proprieties_manager(bool restore)
-{
-	static struct termios	terminal;
-
-	if (restore)
-		tcsetattr(STDIN_FILENO, TCSANOW, &terminal);
-	else
-		tcgetattr(STDIN_FILENO, &terminal);
-}
-
 bool	is_after_loop(bool update)
 {
 	static bool	after_loop;
@@ -121,4 +111,13 @@ bool	is_after_loop(bool update)
 	if (update)
 		after_loop = true;
 	return (after_loop);
+}
+
+void	sigquit_activated(void)
+{
+	if (exit_status_holder(0, false) == 131)
+	{
+		ft_putendl_fd(RED"^\\quit (core dumped) T.T"RESET, STDERR_FILENO);
+		tty_proprieties_manager(true);
+	}
 }
