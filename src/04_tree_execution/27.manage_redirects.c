@@ -6,7 +6,7 @@
 /*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/04 10:20:13 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/10/01 14:11:22 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/10/07 12:02:41 by tmalheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,11 +66,13 @@ static int	apply_redirect(t_tree *tree, int *fd)
 static int	open_redir_file(t_tree *tree, int *fd)
 {
 	int		type;
+	int		flag;
 	char	*pathname;
 
+	flag = 0;
 	type = tree->type;
 	pathname = ft_strdup(tree->right->command->lexeme);
-	pathname = redir_quote_detector(pathname, 0);
+	pathname = redir_quote_detector(pathname, &flag);
 	if (type == REDIR_IN || type == REDIR_HDOC)
 		*fd = open(pathname, O_RDONLY);
 	else if (type == REDIR_OUT)
