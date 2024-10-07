@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   03.env_init.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 10:58:32 by umeneses          #+#    #+#             */
-/*   Updated: 2024/09/24 10:54:51 by tmalheir         ###   ########.fr       */
+/*   Updated: 2024/10/07 16:32:17 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,9 +57,9 @@ t_env_entry	*env_holder(t_env_entry *table, bool update, bool clear_table)
 
 	if (table)
 	{
-		if (!env_table_holder && table->key)
+		if (!env_table_holder && table && update)
 			env_table_holder = table;
-		else if (env_table_holder && table->key && update)
+		else if (env_table_holder && table && update)
 		{
 			if (env_table_holder && (env_table_holder != table))
 				free_env_table(&env_table_holder);
