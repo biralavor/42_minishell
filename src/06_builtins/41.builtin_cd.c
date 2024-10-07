@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 13:23:46 by umeneses          #+#    #+#             */
-/*   Updated: 2024/09/26 16:32:53 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/10/07 13:31:30 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,9 +35,7 @@ void	builtins_runner_cd(t_token_list *lst)
 	{
 		destiny_path = cmd->lexeme;
 		destiny_len = ft_strlen(destiny_path);
-		if (ft_strncmp(destiny_path, "..", 2) == 0)
-			builtins_cd_switch_parent_dir();
-		else if (chdir(destiny_path) != 0)
+		if (chdir(destiny_path) != 0)
 			cd_error_msg(destiny_len, destiny_path, chdir(destiny_path));
 		else
 			builtins_cd_switch_new_dir(destiny_path);
@@ -69,28 +67,5 @@ void	builtins_cd_switch_home_dir(void)
 	home_path = ft_strjoin(home_path, "/");
 	chdir(home_path);
 	free(home_path);
-	exit_status_holder(0, true);
-}
-
-void	builtins_cd_switch_parent_dir(void)
-{
-	int		idx;
-	char	*actual_path;
-	char	*parent_path;
-
-	idx = 0;
-	actual_path = NULL;
-	parent_path = NULL;
-	actual_path = getcwd(actual_path, 100);
-	parent_path = actual_path;
-	while (actual_path[idx])
-		idx++;
-	while (parent_path[idx] != '/')
-	{
-		parent_path[idx] = '\0';
-		idx--;
-	}
-	chdir(parent_path);
-	free(actual_path);
 	exit_status_holder(0, true);
 }

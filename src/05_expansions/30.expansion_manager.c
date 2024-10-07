@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   30.expansion_manager.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/26 18:31:10 by umeneses          #+#    #+#             */
-/*   Updated: 2024/10/04 14:16:02 by tmalheir         ###   ########.fr       */
+/*   Updated: 2024/10/07 14:41:59 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,8 @@ void	expansion_manager(t_token_list *cmd)
 		tmp->lexeme = quote_detector(tmp, tmp->lexeme, &flag);
 		if (!flag)
 		{
+			if (expansion_parent_dir_detector(tmp->lexeme))
+				tmp->lexeme = expansion_parent_dir_runner(tmp->lexeme);
 			if (expansion_tilde_detector(tmp->lexeme))
 				tmp->lexeme = expansion_tilde_to_home(tmp->lexeme);
 			if (expansion_dollar_sign_detector(tmp))
