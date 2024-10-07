@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 13:23:46 by umeneses          #+#    #+#             */
-/*   Updated: 2024/10/07 16:33:48 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/10/07 18:46:49 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ void	builtins_runner_export(char *arg)
 	state = 0;
 	env_sorted = NULL;
 	env_copy = copy_env_table(env_holder(NULL, false, false));
+	// env_copy = env_holder(NULL, false, false);
 	state = arg_handle_state_detector(state, arg);
 	if (state == 0)
 	{
@@ -34,8 +35,8 @@ void	builtins_runner_export(char *arg)
 	else if (state == 100)
 	{
 		arg_handle_runner(env_copy, arg);
-		env_sorted = builtins_env_sort_manager(env_copy);
-		free_env_table(&env_sorted);
+		// env_sorted = builtins_env_sort_manager(env_copy);
+		// free_env_table(&env_copy);
 	}
 	else if (state == 404)
 	{
@@ -45,7 +46,7 @@ void	builtins_runner_export(char *arg)
 		free_env_table(&env_copy);
 		exit_status_holder(EXIT_FAILURE, true);
 	}
-	env_holder(env_copy, true, false);
+	// env_holder(env_copy, true, false);
 }
 
 t_env_entry	*copy_env_table(t_env_entry *env_vars)
@@ -55,6 +56,8 @@ t_env_entry	*copy_env_table(t_env_entry *env_vars)
 	t_env_entry	*curr;
 
 	if (!env_vars)
+		return (NULL);
+	if (!env_vars->key || !env_vars->value || !env_vars->size)
 		return (NULL);
 	env_copy = create_new_entry(env_vars->key, env_vars->value, env_vars->size);
 	if (!env_copy)
