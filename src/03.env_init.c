@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 10:58:32 by umeneses          #+#    #+#             */
-/*   Updated: 2024/10/07 16:32:17 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/10/07 18:26:20 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,7 @@ t_env_entry	*env_holder(t_env_entry *table, bool update, bool clear_table)
 	{
 		free_env_table(&env_table_holder);
 		free(env_table_holder);
+		env_table_holder = NULL;
 	}
 	return (env_table_holder);
 }
@@ -82,7 +83,7 @@ t_env_entry	*create_new_entry(const char *key, const char *value, int size)
 	if (!new_entry)
 	{
 		ft_putendl_fd("Error: Could not create new entry", STDERR_FILENO);
-		exit (exit_status_holder(1, true));
+		exit (exit_status_holder(EXIT_FAILURE, true));
 	}
 	new_entry->key = ft_strdup(key);
 	new_entry->value = ft_strdup(value);
