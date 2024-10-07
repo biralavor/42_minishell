@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 14:57:00 by umeneses          #+#    #+#             */
-/*   Updated: 2024/09/24 08:42:03 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/10/07 14:41:03 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,11 +65,6 @@ void		builtins_cd_switch_new_dir(char *destiny_path);
  * @brief: Switches to the home directory, if user input is `cd ~`.
  */
 void		builtins_cd_switch_home_dir(void);
-
-/**
- * @brief: Switches to the old directory, if user input is `cd ..`.
-*/
-void		builtins_cd_switch_parent_dir(void);
 
 bool		is_path_a_directory(char *path);
 
