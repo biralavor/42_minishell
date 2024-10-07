@@ -70,7 +70,7 @@ FILES			+= ft_merge_strings.c
 
 SRC_FILES		= $(addprefix $(SRC_D), $(FILES))
 
-OBJS			= $(addprefix $(BUILD_D), $(SRC_FILES:%.c=%.o))
+OBJS			= $(addprefix $(BUILD_D), $(FILES:%.c=%.o))
 
 #!----------------------------------------------------------------------------#
 #                             COMMANDS                                        #
@@ -89,7 +89,6 @@ AR				= ar rcs
 CFLAGS 			= -Wall -Wextra -Werror $(DFLAGS)
 CPPFLAGS		= $(addprefix -I, $(HEADERS_D)) -MMD -MP
 DFLAGS			= -g3
-#LDLIBS			= -lft
 
 #!----------------------------------------------------------------------------#
 #                             COMPILATION                                     #
@@ -112,7 +111,7 @@ $(NAME):			$(OBJS)
 					@echo "--------------------------------------------------------------------"
 					@printf "$(RESET)"
 					
-$(BUILD_D)%.o:		%.c
+$(BUILD_D)%.o:		$(SRC_D)%.c
 					@printf "$(YELLOW)"
 					@$(MKDIR) $(dir $@)
 					@$(COMPILE_OBJS)
@@ -136,6 +135,4 @@ fclean:				clean
 
 re:					fclean all
 
-.PHONY:				all clean fclean re $(NAME)
-
-
+.PHONY:				all clean fclean re
