@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 12:58:03 by umeneses          #+#    #+#             */
-/*   Updated: 2024/10/07 13:00:15 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/10/07 17:16:52 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,17 +39,18 @@ void	free_env_table(t_env_entry **table)
 	t_env_entry	*tmp;
 	t_env_entry	*curr;
 
-	if (NULL == *table)
+	if (!table || !*table)
 		return ;
 	curr = *table;
-	while (curr != NULL)
+	while (curr)
 	{
 		tmp = curr->next;
 		if (curr->key != NULL)
 			free(curr->key);
 		if (curr->value != NULL)
 			free(curr->value);
-		free(curr);
+		if (curr)
+			free(curr);
 		curr = tmp;
     }
 	*table = NULL;

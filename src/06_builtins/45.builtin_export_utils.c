@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 13:23:46 by umeneses          #+#    #+#             */
-/*   Updated: 2024/10/01 12:48:36 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/10/07 18:44:14 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void	arg_handle_runner(t_env_entry *env_vars, char *arg)
 		addto_env_table(&env_vars, create_new_entry(var_key, var_value, env_vars->size));
 	free(var_key);
 	free(var_value);
-	// env_holder(env_vars, true, false);
+	env_holder(env_vars, true, false);
 }
 
 void	replace_env_var(t_env_entry *env_vars, char *var_key, char *var_value)
@@ -88,7 +88,9 @@ void	ft_env_printer_classic(t_env_entry *env_vars)
 		ft_putstr_fd("declare -x ", STDOUT_FILENO);
 		ft_putstr_fd(tmp->key, STDOUT_FILENO);
 		ft_putstr_fd("=", STDOUT_FILENO);
-		ft_putendl_fd(tmp->value, STDOUT_FILENO);
+		ft_putstr_fd("\"", STDOUT_FILENO);
+		ft_putstr_fd(tmp->value, STDOUT_FILENO);
+		ft_putendl_fd("\"", STDOUT_FILENO);
 		tmp = tmp->next;
 	}
 }
