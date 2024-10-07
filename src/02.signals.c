@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 09:47:06 by umeneses          #+#    #+#             */
-/*   Updated: 2024/10/06 23:43:48 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/10/07 15:15:11 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,9 +69,9 @@ void	interrupt_signal_runner(int sig)
 		close(STDIN_FILENO);
 		close(STDERR_FILENO);	
 	}
+	ft_putstr_fd("\n", STDOUT_FILENO);
 	rl_on_new_line();
 	rl_replace_line("", 0);
-	ft_putstr_fd("\n", STDOUT_FILENO);
 	if (!is_after_loop(false))
 		rl_redisplay();
 	exit_status_holder(130, true);
