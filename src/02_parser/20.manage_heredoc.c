@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 18:23:53 by umeneses          #+#    #+#             */
-/*   Updated: 2024/10/07 13:54:06 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/10/07 13:57:43 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,17 +43,17 @@ void	check_heredoc(t_token_list *lst)
 			is_heredoc_running(true, true);
 			heredoc_input = readline(BLUE"(mini)heredoc> "RESET);
 			line++;
-			// if (g_sigmonitor == SIGINT)
-			// {
-			// 	free(heredoc_input);
-			// 	return ;
-			// }
+			if (g_sigmonitor == SIGINT)
+			{
+				free(heredoc_input);
+				return ;
+			}
 			if (heredoc_input == NULL)
 			{
 				heredoc_forcing_exit_warning(heredoc_input, delimiter, line, heredoc_fd);
 				free_token_list(&tmp);
 			}
-			if (!check_delimiter(delimiter, heredoc_fd, heredoc_input, line))
+			if (delimiter && !check_delimiter(delimiter, heredoc_fd, heredoc_input, line))
 				break ;
 		}
 		tmp = tmp->next;
@@ -106,11 +106,11 @@ int	check_delimiter(char *delimiter, int fd, char *input, int line)
 		is_heredoc_running(true, true);
 		input = readline(BLUE"(mini)heredoc> "RESET);
 		line++;
-		// if (g_sigmonitor == SIGINT)
-		// {
-		// 	free(input);
-		// 	return (1);
-		// }
+		if (g_sigmonitor == SIGINT)
+		{
+			free(input);
+			return (1);
+		}
 		// heredoc_forcing_exit_warning(input, delimiter, line, fd);
 	}
 	if (input)
