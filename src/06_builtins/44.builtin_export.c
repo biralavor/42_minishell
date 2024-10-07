@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   44.builtin_export.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 13:23:46 by umeneses          #+#    #+#             */
-/*   Updated: 2024/09/24 11:23:18 by tmalheir         ###   ########.fr       */
+/*   Updated: 2024/10/07 16:33:48 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,9 @@ void	builtins_runner_export(char *arg)
 		ft_putstr_fd(arg, STDERR_FILENO);
 		ft_putendl_fd("': not a valid identifier", STDERR_FILENO);
 		free_env_table(&env_copy);
-		exit_status_holder(1, true);
+		exit_status_holder(EXIT_FAILURE, true);
 	}
+	env_holder(env_copy, true, false);
 }
 
 t_env_entry	*copy_env_table(t_env_entry *env_vars)
@@ -53,14 +54,25 @@ t_env_entry	*copy_env_table(t_env_entry *env_vars)
 	t_env_entry	*head;
 	t_env_entry	*curr;
 
-	env_copy = create_new_entry(env_vars->key, env_vars->value, env_vars->size);
 	if (!env_vars)
 		return (NULL);
+	env_copy = create_new_entry(env_vars->key, env_vars->value, env_vars->size);
+	if (!env_copy)
+	{
+		ft_putendl_fd("Error: Failed to create new entry", STDERR_FILENO);
+		return (NULL);
+	}
 	head = env_vars->next;
 	curr = env_copy;
 	while (head != NULL)
 	{
 		curr->next = create_new_entry(head->key, head->value, head->size);
+		if (!curr->next)
+		{
+			ft_putendl_fd("Error: Failed to create new entry", STDERR_FILENO);
+			free_env_table(&env_copy);
+			return (NULL);
+		}
 		curr->next->prev = curr;
 		curr = curr->next;
 		head = head->next;
