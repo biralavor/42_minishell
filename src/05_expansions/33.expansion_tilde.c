@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 16:11:20 by umeneses          #+#    #+#             */
-/*   Updated: 2024/10/06 22:57:40 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/10/06 23:00:21 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ char	*expansion_tilde_to_home(char *lexeme)
 {
 	char	*home_path;
 	char	*new_lexeme;
-	bool 	tilde_not_alone;
+	bool	tilde_not_alone;
 
 	home_path = NULL;
 	new_lexeme = NULL;
