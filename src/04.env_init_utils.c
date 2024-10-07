@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 12:58:03 by umeneses          #+#    #+#             */
-/*   Updated: 2024/10/04 09:39:58 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/10/07 13:00:15 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,14 +58,19 @@ void	free_env_table(t_env_entry **table)
 void	free_array(char **array)
 {
 	char	**tmp;
+	int		idx;
 
-	if (NULL == array)
+	idx = 0;
+	if (!array)
 		return ;
 	tmp = array;
-	while (*tmp)
+	if (tmp[idx] == NULL && tmp[idx + 1])
+		idx++;
+	while (tmp[idx] != NULL)
 	{
-		free(*tmp);
-		tmp++;
+		free(tmp[idx]);
+		idx++;
 	}
 	free(array);
+	array = NULL;
 }
