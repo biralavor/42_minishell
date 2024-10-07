@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 09:47:06 by umeneses          #+#    #+#             */
-/*   Updated: 2024/10/04 22:53:26 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/10/06 23:38:59 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void	signals_init(bool interactive)
 			perror("sigaction error");
 			exit(exit_status_holder(EXIT_FAILURE, true));
 		}
-		fprintf(stderr, YELLOW"g_sigmonitor em signals init: %d\n"RESET, g_sigmonitor);
+		// fprintf(stderr, YELLOW"g_sigmonitor em signals init: %d\n"RESET, g_sigmonitor);
 	}
 	else
 	{
