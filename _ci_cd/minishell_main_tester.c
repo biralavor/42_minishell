@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 11:12:53 by umeneses          #+#    #+#             */
-/*   Updated: 2024/10/04 16:53:40 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/10/06 23:45:49 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 #include "../../src/03.env_init.c"
 #include "../../src/04.env_init_utils.c"
 #include "../../src/05.loop_routine.c"
+#include "../../src/tty_proprieties.c"
 #include "../../src/01_lexer/06.check_initial_errors.c"
 #include "../../src/01_lexer/07.token_list_functions.c"
 #include "../../src/01_lexer/08.get_state.c"

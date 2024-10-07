@@ -51,6 +51,7 @@ SRC_FILES				+= 02.signals.c
 SRC_FILES				+= 03.env_init.c
 SRC_FILES				+= 04.env_init_utils.c
 SRC_FILES				+= 05.loop_routine.c
+SRC_FILES				+= tty_proprieties.c
 SRC_FILES				+= ./01_lexer/06.check_initial_errors.c
 SRC_FILES				+= ./01_lexer/07.token_list_functions.c
 SRC_FILES				+= ./01_lexer/08.get_state.c
@@ -100,8 +101,6 @@ SRC_FILES				+= ./06_builtins/48.builtin_exit.c
 SRC_FILES				+= ./06_builtins/49.builtin_exit_utils.c
 SRC_FILES				+= ./07_command_execution/50.command_runner.c
 SRC_FILES				+= ./07_command_execution/51.command_runner_utils.c
-
-#SRC_FILES				= minishell_main.c
 
 SRC_FILES_ALL			= $(addprefix $(SRC_D), $(SRC_FILES))
 

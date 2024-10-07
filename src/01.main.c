@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 10:53:12 by umeneses          #+#    #+#             */
-/*   Updated: 2024/10/01 11:42:04 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/10/06 23:43:52 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,14 +55,16 @@ int	main(int ac, char **av, char **envp)
 
 	if (ac > 1 && av)
 		extra_args();
-	signals_init();
+	signals_init(is_interactive());
 	tty_proprieties_manager(false);
 	environment_init(envp);
+	// signals_manager(g_sigmonitor);
 	while (true)
 	{
 		is_after_loop(false);
-		signals_manager(g_sigmonitor);
-		// sigquit_case() -> Ctrl+/
+		sigquit_activated();
+		// fprintf(stderr, BLUE"exit_status: %d\n"RESET, exit_status_holder(0, false));
+		// fprintf(stderr, YELLOW"g_sigmonitor na main: %d\n"RESET, g_sigmonitor);
 		input = readline(GREEN"<<< Born Again (mini) SHell >>>$ "RESET);
 		control_d_handler(input);
 		is_after_loop(true);
