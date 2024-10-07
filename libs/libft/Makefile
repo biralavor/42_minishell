@@ -70,7 +70,7 @@ FILES			+= ft_merge_strings.c
 
 SRC_FILES		= $(addprefix $(SRC_D), $(FILES))
 
-OBJS			= $(addprefix $(BUILD_D), $(SRC_FILES:%.c=%.o))
+OBJS			= $(addprefix $(BUILD_D), $(FILES:%.c=%.o))
 
 #!----------------------------------------------------------------------------#
 #                             COMMANDS                                        #
@@ -80,35 +80,28 @@ MKDIR			= mkdir -p
 RM				= rm -rf
 SLEEP			= sleep 0.1
 CC				= cc
-AR				= ar -rcs
+AR				= ar rcs
 
 #!----------------------------------------------------------------------------#
 #                                  FLAGS                                      #
 #!----------------------------------------------------------------------------#
 
 CFLAGS 			= -Wall -Wextra -Werror $(DFLAGS)
-CPPFLAGS		= $(addprefix -I , $(HEADERS_D)) -MMD -MP
+CPPFLAGS		= $(addprefix -I, $(HEADERS_D)) -MMD -MP
 DFLAGS			= -g3
 
 #!----------------------------------------------------------------------------#
 #                             COMPILATION                                     #
 #!----------------------------------------------------------------------------#
 
-COMPILE_OBJS		= $(CC) $(CFLAGS) $(CPPFLAGS) -c $< -o $@
-COMPILE_LIB		= @$(AR) $(NAME) $(OBJS)
+COMPILE_OBJS	= $(CC) $(CFLAGS) $(CPPFLAGS) -c $< -o $@
+COMPILE_LIB		= $(AR) $@ $^
 
 #!----------------------------------------------------------------------------#
 #                              TARGETS                                        #
 #!----------------------------------------------------------------------------#
 
 all:				$(NAME)
-
-$(BUILD_D)%.o:		%.c
-					@printf "$(YELLOW)"
-					@$(MKDIR) $(dir $@)
-					@$(COMPILE_OBJS)
-
-					@echo "$(NAME)		compiling -> $(GREEN)$(notdir $<)"
 
 $(NAME):			$(OBJS)
 					@$(COMPILE_LIB)
@@ -117,6 +110,15 @@ $(NAME):			$(OBJS)
 					@echo "		$(NAME) READY!"
 					@echo "--------------------------------------------------------------------"
 					@printf "$(RESET)"
+					
+$(BUILD_D)%.o:		$(SRC_D)%.c
+					@printf "$(YELLOW)"
+					@$(MKDIR) $(dir $@)
+					@$(COMPILE_OBJS)
+					@echo "$(NAME)		compiling -> $(GREEN)$(notdir $<)"
+					@printf "$(RESET)"
+
+-include $(OBJS:.o=.d)
 
 clean:
 					@printf "$(RED)"
@@ -133,6 +135,4 @@ fclean:				clean
 
 re:					fclean all
 
-.PHONY:				all clean fclean re $(NAME)
-
-
+.PHONY:				all clean fclean re
