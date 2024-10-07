@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expansion.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/28 13:55:02 by umeneses          #+#    #+#             */
-/*   Updated: 2024/09/26 11:41:50 by tmalheir         ###   ########.fr       */
+/*   Updated: 2024/10/07 14:42:19 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,9 @@ char	*remove_quotes_manager(t_token_list *cmd);
 char	*expansion_boundary_quotes_runner(char *lexeme, char *new_lexeme);
 char	*expansion_inside_quotes_runner(t_token_list *cmd, char *new_lexeme);
 void	expansion_merging_tokens(t_token_list *cmd, char *new_lexeme);
+
+bool	expansion_parent_dir_detector(char *lex);
+char	*expansion_parent_dir_runner(char *lex);
 
 bool	expansion_tilde_detector(char *lexeme);
 char	*expansion_tilde_to_home(char *lexeme);
