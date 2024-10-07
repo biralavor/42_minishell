@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 10:53:12 by umeneses          #+#    #+#             */
-/*   Updated: 2024/10/06 23:13:44 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/10/06 23:20:29 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ void	sigquit_activated(void)
 		ft_putendl_fd(RED"^\\quit (core dumped) T.T"RESET, STDERR_FILENO);
 		tty_proprieties_manager(true);
 	}
+}
 
 bool	addto_history_detector(const char *input)
 {
@@ -78,8 +79,8 @@ int	main(int ac, char **av, char **envp)
 	{
 		is_after_loop(false);
 		sigquit_activated();
-		fprintf(stderr, BLUE"exit_status: %d\n"RESET, exit_status_holder(0, false));
-		fprintf(stderr, YELLOW"g_sigmonitor na main: %d\n"RESET, g_sigmonitor);
+		// fprintf(stderr, BLUE"exit_status: %d\n"RESET, exit_status_holder(0, false));
+		// fprintf(stderr, YELLOW"g_sigmonitor na main: %d\n"RESET, g_sigmonitor);
 		input = readline(GREEN"<<< Born Again (mini) SHell >>>$ "RESET);
 		control_d_handler(input);
 		is_after_loop(true);
