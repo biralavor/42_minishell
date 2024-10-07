@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/07 13:22:09 by umeneses          #+#    #+#             */
-/*   Updated: 2024/10/07 14:55:06 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/10/07 15:03:00 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,14 @@ bool	expansion_parent_dir_detector(char *lex)
 	int	idx;
 
 	idx = 0;
-	while(lex[idx])
-	{
-		if (lex[idx] == '.' && lex[idx + 1] == '.')
-			return (true);
-		idx++;
+	if (lex)
+	{	
+		while(lex[idx])
+		{
+			if (lex[idx] == '.' && lex[idx + 1] == '.')
+				return (true);
+			idx++;
+		}
 	}
 	return (false);
 }
