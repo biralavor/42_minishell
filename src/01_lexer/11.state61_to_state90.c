@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   11.state61_to_state90.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/20 10:35:11 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/10/08 14:17:33 by tmalheir         ###   ########.fr       */
+/*   Updated: 2024/10/08 18:40:21 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,17 @@ int	state_90(t_token_list **lst, char *str, int idx)
 	while ((str[idx] != '(') && (str[idx] != ')') && (str[idx] != '|')
 		&& (str[idx] != '&') && (str[idx] != '>') && (str[idx] != '<')
 		&& !(is_blank(str[idx])) && (str[idx]))
+	{
+		if (str[idx] == '"')
+		{
+			while(str[++idx] != '"')
+			{
+				if (str[idx] == '"')
+					break;	
+			}
+		}
 		idx++;
+	}
 	end = (size_t)(idx - 1);
 	just_str_node->lexeme = ft_substr((const char *)str, start,
 			((end - start) + 1));
