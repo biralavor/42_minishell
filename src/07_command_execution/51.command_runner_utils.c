@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   51.command_runner_utils.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/16 09:43:43 by umeneses          #+#    #+#             */
-/*   Updated: 2024/10/07 22:57:15 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/10/08 18:08:37 by tmalheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,8 @@ char	**convert_envs_to_array(t_env_entry *env_vars)
 
 bool	is_cmd_with_absolute_path(char *cmd_name)
 {
-	if (access(cmd_name, F_OK) == 0)
+	// if (access(cmd_name, F_OK) == 0)
+	if (ft_strchr(cmd_name, '/'))
 		return (true);
 	return (false);
 }
