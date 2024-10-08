@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 18:51:30 by umeneses          #+#    #+#             */
-/*   Updated: 2024/10/07 22:27:23 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/10/07 22:30:56 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,21 +43,20 @@ char	*lookup_cmd_path(char *cmd_name)
 	char		*to_execute;
 	t_env_entry	*env_path;
 
+	all_paths = NULL;
 	to_execute = NULL;
-	env_path = lookup_table(env_holder(NULL, false, false), "PATH");
-	if (env_path)
-		all_paths = ft_split(env_path->value, ':');
+	env_path = NULL;
 	if (!is_cmd_with_absolute_path(cmd_name))
 	{
+		env_path = lookup_table(env_holder(NULL, false, false), "PATH");
+		if (env_path)
+			all_paths = ft_split(env_path->value, ':');
 		to_execute = testing_all_paths_with_cmd(all_paths, cmd_name);
 		free_array(all_paths);
 		return (to_execute);
 	}
 	else
-	{
-		free_array(all_paths);
 		return (cmd_name);
-	}
 }
 
 void	command_runner(char **cmd)
