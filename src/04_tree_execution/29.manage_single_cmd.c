@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/16 09:43:43 by umeneses          #+#    #+#             */
-/*   Updated: 2024/10/08 09:42:14 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/10/08 10:01:54 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ void	preprocessing_for_command_runner(t_token_list *command)
 	// 	absolute_path = true;
 	command_runner(cmd);
 	if (exit_status_holder(0, false) == 177 
+		|| exit_status_holder(0, false) == 126
 		|| exit_status_holder(0, false) == 127)
 	{
 		cmd[0] = ft_strdup(command->lexeme);
