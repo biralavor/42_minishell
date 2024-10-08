@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/14 12:08:16 by umeneses          #+#    #+#             */
-/*   Updated: 2024/10/08 13:04:22 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/10/08 13:39:22 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,17 @@ void	builtins_runner_unset(char *arg)
 	char		*var_key;
 
 	next = NULL;
-	var_key = ft_strdup(++arg);
-	arg--;
+	var_key = NULL;
 	tmp = env_holder(NULL, false, false);
-	ft_lst_remove_node(tmp, next, var_key);
-	free(var_key);
+	if (*arg == '$')
+	{
+		var_key = ft_strdup(++arg);
+		arg--;
+		ft_lst_remove_node(tmp, next, var_key);
+		free(var_key);
+	}
+	else
+		ft_lst_remove_node(tmp, next, arg);
 }
 
 void	ft_lst_remove_node(t_env_entry *tmp, t_env_entry *next,
@@ -36,7 +42,9 @@ void	ft_lst_remove_node(t_env_entry *tmp, t_env_entry *next,
 			if (tmp->prev == NULL)
 			{
 				next = tmp->next;
-				free(tmp->value);
+				env_holder(next, true, false);
+				if (tmp->value)
+					free(tmp->value);
 				free(tmp->key);
 				free(tmp);
 				tmp = next;
@@ -44,7 +52,8 @@ void	ft_lst_remove_node(t_env_entry *tmp, t_env_entry *next,
 			}
 			tmp->prev->next = tmp->next;
 			// tmp->next->prev = tmp->prev;
-			free(tmp->value);
+			if (tmp->value)
+				free(tmp->value);
 			free(tmp->key);
 			free(tmp);
 			return ;
