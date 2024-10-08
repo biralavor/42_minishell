@@ -6,7 +6,7 @@
 /*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 18:23:53 by umeneses          #+#    #+#             */
-/*   Updated: 2024/10/08 13:26:29 by tmalheir         ###   ########.fr       */
+/*   Updated: 2024/10/08 15:42:48 by tmalheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,7 +103,7 @@ int	check_delimiter(char *delimiter, int fd, char *input, int line)
 		}
 		return (0);
 	}
-	while (input && ft_strncmp(input, delimiter, ft_strlen(delimiter)))
+	while (input && ft_strcmp(input, delimiter))
 	{
 		idx = 0;
 		while (input[idx])
