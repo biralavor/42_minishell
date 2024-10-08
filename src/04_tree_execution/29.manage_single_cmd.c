@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/16 09:43:43 by umeneses          #+#    #+#             */
-/*   Updated: 2024/10/07 22:27:23 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/10/08 09:42:14 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,12 +43,16 @@ void	preprocessing_for_command_runner(t_token_list *command)
 	if (exit_status_holder(0, false) == 177 
 		|| exit_status_holder(0, false) == 127)
 	{
+		cmd[0] = ft_strdup(command->lexeme);
 		free_array(cmd);
 		return ;
 	}
 	// if (absolute_path)
-	// 	cmd[0] = ft_strdup(command->lexeme);
-	free_array(cmd);
+	if (cmd)
+	{
+		// cmd[0] = ft_strdup(command->lexeme);
+		free_array(cmd);
+	}
 }
 
 char	**convert_tokens_to_array(t_token_list *lst)
