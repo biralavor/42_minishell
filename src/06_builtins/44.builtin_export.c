@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 13:23:46 by umeneses          #+#    #+#             */
-/*   Updated: 2024/10/08 16:46:43 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/10/08 17:08:34 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,7 +108,7 @@ bool	builtins_is_env_sorted(t_env_entry *env_vars)
 	tmp = env_vars;
 	while (tmp && tmp->next)
 	{
-		if (ft_strncmp(tmp->key, tmp->next->key, ft_strlen(tmp->key)) > 0)
+		if (ft_strcmp(tmp->key, tmp->next->key) > 0)
 			return (false);
 		tmp = tmp->next;
 	}
@@ -122,7 +122,7 @@ t_env_entry	*sorted_env_insert(t_env_entry **head, t_env_entry *new)
 
 	curr = *head;
 	prev = NULL;
-	while (curr && ft_strncmp(curr->key, new->key, ft_strlen(curr->key)) <= 0)
+	while (curr && ft_strcmp(curr->key, new->key) <= 0)
 	{
 		prev = curr;
 		curr = curr->next;
