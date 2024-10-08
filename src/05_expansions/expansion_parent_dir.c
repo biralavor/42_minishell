@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/07 13:22:09 by umeneses          #+#    #+#             */
-/*   Updated: 2024/10/07 15:03:00 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/10/08 08:10:34 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ char	*expansion_parent_dir_runner(char *lex)
 	char	*parent_path;
 
 	idx = 0;
-	slash = 0;
+	slash = 1;
 	while(lex[idx])
 	{
 		if (lex[idx] == '/')
