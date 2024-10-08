@@ -6,7 +6,7 @@
 /*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/20 10:35:11 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/10/04 11:57:08 by tmalheir         ###   ########.fr       */
+/*   Updated: 2024/10/08 14:17:33 by tmalheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,8 @@ int	state_80(t_token_list **lst, char *str, int idx)
 	single->lexeme = ft_substr((char const *)str, start, ((end - start) + 1));
 	single->type = SINGLE_QUOTES;
 	create_new_node(lst, single);
+	if (!str[end])
+		return (end);
 	return (end + 1);
 }
 
