@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   20.manage_heredoc.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 18:23:53 by umeneses          #+#    #+#             */
-/*   Updated: 2024/10/04 23:11:00 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/10/08 08:43:31 by tmalheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,16 +92,16 @@ int	check_delimiter(char *delimiter, int fd, char *input, int line)
 {
 	int	idx;
 
-	idx = 0;
-	while (input && ft_strncmp(input, delimiter, (ft_strlen(delimiter) - 1)))
+	while (input && ft_strncmp(input, delimiter, ft_strlen(delimiter)))
 	{
+		idx = 0;
 		while (input[idx])
 		{
 			idx = check_dollar_sign(input, idx, fd);
 			write(fd, &input[idx], 1);
 			idx++;
 		}
-		// 	write(fd, "\n", 1);
+		write(fd, "\n", 1);
 		free(input);
 		is_heredoc_running(true, true);
 		input = readline(BLUE"(mini)heredoc> "RESET);
@@ -111,8 +111,9 @@ int	check_delimiter(char *delimiter, int fd, char *input, int line)
 			free(input);
 			return (1);
 		}
-		heredoc_forcing_exit_warning(input, delimiter, line, fd);
 	}
+	if (g_sigmonitor == SIGINT)
+		heredoc_forcing_exit_warning(input, delimiter, line, fd);
 	if (input)
 		free(input);
 	return (0);
