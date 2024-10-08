@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/26 18:31:10 by umeneses          #+#    #+#             */
-/*   Updated: 2024/10/08 18:11:10 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/10/08 19:10:15 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static char	*quote_detector(t_token_list *lst, char *lexeme, int *flag)
 		}
 		else if (lexeme[idx] == '"')
 		{
-			if (ft_strcmp(lst->prev->lexeme, "export") == 0)
+			if (lst->prev && ft_strcmp(lst->prev->lexeme, "export") == 0)
 			{
 				flag = 0;
 				return (lst->lexeme);
