@@ -6,7 +6,7 @@
 /*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/16 09:43:43 by umeneses          #+#    #+#             */
-/*   Updated: 2024/10/08 18:16:18 by tmalheir         ###   ########.fr       */
+/*   Updated: 2024/10/08 19:19:00 by tmalheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,20 +48,11 @@ void	preprocessing_for_command_runner(t_token_list *command)
 		free_array(cmd);
 		return ;
 	}
-//	if (absolute_path)
+	// if (absolute_path)
 	if (cmd)
 	{
 		// cmd[0] = ft_strdup(command->lexeme);
-
 		free_array(cmd);
-
-		// if (cmd[0])
-		// 	free_array(cmd);
-		// else
-		// {
-		// 	cmd[0] = malloc(1);
-		// 	free_array(cmd);
-		// }
 	}
 }
 
