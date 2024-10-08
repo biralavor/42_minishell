@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 14:57:00 by umeneses          #+#    #+#             */
-/*   Updated: 2024/10/07 14:41:03 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/10/08 12:52:17 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,7 +117,7 @@ void		builtins_runner_unset(char *arg);
  * @param arg the argument to be removed.
  */
 void		ft_lst_remove_node(t_env_entry *tmp, t_env_entry *next,
-			const char *arg);
+			const char *var_key);
 
 /**
  * @brief: Runs the env, which prints environment variables - builtin command.
