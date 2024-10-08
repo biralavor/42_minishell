@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   50.command_runner.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 18:51:30 by umeneses          #+#    #+#             */
-/*   Updated: 2024/10/08 09:21:15 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/10/08 16:05:39 by tmalheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,8 @@ char	*lookup_cmd_path(char *cmd_name)
 		return (to_execute);
 	}
 	else
-		return (ft_strdup(cmd_name));
+		return (cmd_name);
+//		return (ft_strdup(cmd_name));
 }
 
 void	command_runner(char **cmd)
