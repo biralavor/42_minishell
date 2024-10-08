@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 18:51:30 by umeneses          #+#    #+#             */
-/*   Updated: 2024/10/07 21:11:38 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/10/07 21:47:28 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	fork_and_execve(char **cmd, char *path)
 	pid_exit_status_caller(pid);
 	child_process_is_running(false, false);
 	free_array(all_envs);
-	free(path);
+	// free_array(cmd);
 }
 
 char	*lookup_cmd_path(char *cmd_name)

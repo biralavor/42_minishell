@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/16 09:43:43 by umeneses          #+#    #+#             */
-/*   Updated: 2024/10/07 13:07:28 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/10/07 21:28:50 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ void	preprocessing_for_command_runner(t_token_list *command)
 	if (exit_status_holder(0, false) == 177
 		|| exit_status_holder(0, false) == 127)
 	{
-		free(cmd);
+		free_array(cmd);
 		return ;
 	}
 	if (absolute_path)

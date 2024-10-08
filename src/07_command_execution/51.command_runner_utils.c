@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   33.execve_utils.c                                  :+:      :+:    :+:   */
+/*   51.command_runner_utils.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/16 09:43:43 by umeneses          #+#    #+#             */
-/*   Updated: 2024/09/12 18:54:30 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/10/07 21:30:37 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,9 +53,7 @@ char	*testing_all_paths_with_cmd(char **all_paths, char *cmd_name)
 		to_execute = ft_merge_strings(ft_strjoin(all_paths[idx], "/"),
 				ft_strdup(cmd_name));
 		if (is_cmd_with_valid_path(to_execute))
-		{
 			return (to_execute);
-		}
 		free(to_execute);
 		to_execute = NULL;
 		idx++;
