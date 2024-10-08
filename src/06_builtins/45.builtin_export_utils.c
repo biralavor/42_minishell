@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 13:23:46 by umeneses          #+#    #+#             */
-/*   Updated: 2024/10/07 18:44:14 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/10/08 12:22:17 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void	replace_env_var(t_env_entry *env_vars, char *var_key, char *var_value)
 	tmp = env_vars;
 	while (tmp)
 	{
-		if (ft_strncmp(tmp->key, var_key, ft_strlen(tmp->key)) == 0)
+		if (ft_strcmp(var_key, tmp->key) == 0)
 		{
 			free(tmp->value);
 			tmp->value = ft_strdup(var_value);
