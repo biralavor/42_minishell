@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 13:23:46 by umeneses          #+#    #+#             */
-/*   Updated: 2024/10/08 12:22:17 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/10/08 16:55:09 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	arg_handle_runner(t_env_entry *env_vars, char *arg)
 	else
 	{
 		var_key = ft_strdup(arg);
-		var_value = ft_strdup("");
+		var_value = ft_strdup("\n");
 	}
 	if (lookup_table(env_vars, var_key))
 		replace_env_var(env_vars, var_key, var_value);
@@ -45,7 +45,7 @@ void	replace_env_var(t_env_entry *env_vars, char *var_key, char *var_value)
 	tmp = env_vars;
 	while (tmp)
 	{
-		if (ft_strcmp(var_key, tmp->key) == 0)
+		if (var_key && ft_strcmp(var_key, tmp->key) == 0)
 		{
 			free(tmp->value);
 			tmp->value = ft_strdup(var_value);
@@ -66,13 +66,12 @@ int	arg_handle_state_detector(int state, char *arg)
 	{
 		while (++idx)
 		{
-			if (env_var_key_rules_at_middle(arg[idx]) || arg[idx] == '=')
-			{
-				if (arg[idx + 1] == '\0')
-					return (state = 100);
-			}
-			else
-				break ;
+			if (arg[idx] && env_var_key_rules_at_middle(arg[idx])
+				&& arg[idx + 1] == '=')
+				return (state = 100);
+			else if (arg[idx] == '\0' || (arg[idx]
+				&& env_var_key_rules_at_middle(arg[idx])))
+				return (state = 200);
 		}
 	}
 	return (state = 404);
@@ -87,10 +86,15 @@ void	ft_env_printer_classic(t_env_entry *env_vars)
 	{
 		ft_putstr_fd("declare -x ", STDOUT_FILENO);
 		ft_putstr_fd(tmp->key, STDOUT_FILENO);
-		ft_putstr_fd("=", STDOUT_FILENO);
-		ft_putstr_fd("\"", STDOUT_FILENO);
-		ft_putstr_fd(tmp->value, STDOUT_FILENO);
-		ft_putendl_fd("\"", STDOUT_FILENO);
+		if (ft_strcmp(tmp->value, "\n") != 0)
+		{
+			ft_putstr_fd("=", STDOUT_FILENO);
+			ft_putstr_fd("\"", STDOUT_FILENO);
+			ft_putstr_fd(tmp->value, STDOUT_FILENO);
+			ft_putendl_fd("\"", STDOUT_FILENO);
+		}
+		else
+			ft_putstr_fd("\n", STDOUT_FILENO);
 		tmp = tmp->next;
 	}
 }

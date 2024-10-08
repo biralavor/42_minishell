@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 10:58:32 by umeneses          #+#    #+#             */
-/*   Updated: 2024/10/07 18:26:20 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/10/08 16:33:33 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,8 @@ t_env_entry	*create_new_entry(const char *key, const char *value, int size)
 		exit (exit_status_holder(EXIT_FAILURE, true));
 	}
 	new_entry->key = ft_strdup(key);
-	new_entry->value = ft_strdup(value);
+	if (value)
+		new_entry->value = ft_strdup(value);
 	return (new_entry);
 }
 
