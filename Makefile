@@ -102,6 +102,7 @@ SRC_FILES				+= ./06_builtins/48.builtin_exit.c
 SRC_FILES				+= ./06_builtins/49.builtin_exit_utils.c
 SRC_FILES				+= ./07_command_execution/50.command_runner.c
 SRC_FILES				+= ./07_command_execution/51.command_runner_utils.c
+SRC_FILES				+= ./07_command_execution/execve_error_manager.c
 
 SRC_FILES_ALL			= $(addprefix $(SRC_D), $(SRC_FILES))
 
