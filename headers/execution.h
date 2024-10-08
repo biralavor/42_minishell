@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/05 13:56:37 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/10/04 19:17:28 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/10/07 22:27:23 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ char			**convert_tokens_to_array(t_token_list *lst);
 
 char			**convert_envs_to_array(t_env_entry *env_vars);
 
-bool			is_cmd_with_valid_path(char *cmd_name);
+bool			is_cmd_with_absolute_path(char *cmd_name);
 
 char			*testing_all_paths_with_cmd(char **path, char *cmd_name);
 
@@ -144,6 +144,6 @@ bool			directory_detector(char *path);
 
 bool			permission_denied_detector(char *path);
 
-void			clearing_execve_error_manager(char **cmd, char **all_envs, char *path);
+void			clearing_execve_error_manager(char **cmd, char **all_envs);
 
 #endif
