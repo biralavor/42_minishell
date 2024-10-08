@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/07 21:11:15 by umeneses          #+#    #+#             */
-/*   Updated: 2024/10/07 21:11:46 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/10/07 21:25:28 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void	execve_error_manager(char **cmd, char **all_envs, char *path)
 		ft_putstr_fd(": command not found\n", STDERR_FILENO);
 		exit_status_holder(127, true);
 	}
-	clearing_execve_error_manager(cmd, all_envs, path);
+	clearing_execve_error_manager(cmd, all_envs);
 }
 
 bool	directory_detector(char *path)
@@ -59,11 +59,10 @@ bool	permission_denied_detector(char *path)
 	return (false);
 }
 
-void	clearing_execve_error_manager(char **cmd, char **all_envs, char *path)
+void	clearing_execve_error_manager(char **cmd, char **all_envs)
 {
 	free_array(all_envs);
-	free(path);
-	free(cmd);
+	free_array(cmd);
 	clear_all_to_exit_smoothly();
 	exit(exit_status_holder(0, false));
 }
