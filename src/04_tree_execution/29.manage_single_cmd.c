@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   29.manage_single_cmd.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/16 09:43:43 by umeneses          #+#    #+#             */
-/*   Updated: 2024/10/08 10:01:54 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/10/08 19:19:00 by tmalheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,11 +40,11 @@ void	preprocessing_for_command_runner(t_token_list *command)
 	// if (is_cmd_with_absolute_path(cmd[0]))
 	// 	absolute_path = true;
 	command_runner(cmd);
-	if (exit_status_holder(0, false) == 177 
+	if (exit_status_holder(0, false) == 177
 		|| exit_status_holder(0, false) == 126
 		|| exit_status_holder(0, false) == 127)
 	{
-		cmd[0] = ft_strdup(command->lexeme);
+		// cmd[0] = ft_strdup(command->lexeme);
 		free_array(cmd);
 		return ;
 	}
