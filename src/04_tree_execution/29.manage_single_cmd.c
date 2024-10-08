@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   29.manage_single_cmd.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/16 09:43:43 by umeneses          #+#    #+#             */
-/*   Updated: 2024/10/08 10:01:54 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/10/08 17:43:25 by tmalheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void	preprocessing_for_command_runner(t_token_list *command)
 	// if (is_cmd_with_absolute_path(cmd[0]))
 	// 	absolute_path = true;
 	command_runner(cmd);
-	if (exit_status_holder(0, false) == 177 
+	if (exit_status_holder(0, false) == 177
 		|| exit_status_holder(0, false) == 126
 		|| exit_status_holder(0, false) == 127)
 	{
@@ -48,11 +48,20 @@ void	preprocessing_for_command_runner(t_token_list *command)
 		free_array(cmd);
 		return ;
 	}
-	// if (absolute_path)
+//	if (absolute_path)
 	if (cmd)
 	{
 		// cmd[0] = ft_strdup(command->lexeme);
+
 		free_array(cmd);
+
+		// if (cmd[0])
+		// 	free_array(cmd);
+		// else
+		// {
+		// 	cmd[0] = malloc(1);
+		// 	free_array(cmd);
+		// }
 	}
 }
 

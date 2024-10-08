@@ -6,7 +6,7 @@
 /*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 18:51:30 by umeneses          #+#    #+#             */
-/*   Updated: 2024/10/08 16:05:39 by tmalheir         ###   ########.fr       */
+/*   Updated: 2024/10/08 17:48:56 by tmalheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,10 @@ void	fork_and_execve(char **cmd, char *path)
 	pid_exit_status_caller(pid);
 	child_process_is_running(false, false);
 	free_array(all_envs);
-	if (path)
+	if (cmd[0] != path)
+	{
 		free(path);
+	}
 }
 
 char	*lookup_cmd_path(char *cmd_name)
@@ -58,7 +60,7 @@ char	*lookup_cmd_path(char *cmd_name)
 	}
 	else
 		return (cmd_name);
-//		return (ft_strdup(cmd_name));
+		// return (ft_strdup(cmd_name));
 }
 
 void	command_runner(char **cmd)
