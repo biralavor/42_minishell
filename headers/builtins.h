@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 14:57:00 by umeneses          #+#    #+#             */
-/*   Updated: 2024/10/08 12:52:17 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/10/08 16:43:23 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,10 @@
 # define LONG_MAX_CODE "9223372036854775807"
 # define LONG_MIN_CODE "-9223372036854775807"
 
+void	execute_multiple_args(t_token_list *args, void (*func)(char *));
+
 /**
- * @brief: Calls the respective builtin function.
+ * @brief: Calls the qqrespective builtin function.
 */
 void		builtins_manager(t_token_list *cmd);
 

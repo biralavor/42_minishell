@@ -6,11 +6,20 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 13:23:46 by umeneses          #+#    #+#             */
-/*   Updated: 2024/10/03 12:22:38 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/10/08 15:34:35 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+void	execute_multiple_args(t_token_list *args, void (*func)(char *))
+{
+	while (args)
+	{
+		func(args->lexeme);
+		args = args->next;
+	}
+}
 
 void	builtins_manager(t_token_list *lst)
 {
@@ -33,28 +42,23 @@ void	builtins_manager(t_token_list *lst)
 
 void	builtins_with_possible_args_manager(t_token_list *lst)
 {
-	t_token_list	*cmd;
+	t_token_list    *cmd;
 
 	cmd = lst;
-	while (cmd)
+	if (ft_strcmp(cmd->lexeme, "export") == 0)
 	{
-		if (ft_strcmp(cmd->lexeme, "export") == 0)
-		{
-			if (cmd->next && cmd->next->type == WORD)
-				builtins_runner_export(cmd->next->lexeme);
-			else
-				builtins_runner_export(NULL);
-		}
-		else if (ft_strcmp(cmd->lexeme, "unset") == 0
-			&& cmd->next && cmd->next->type == WORD)
-			builtins_runner_unset(cmd->next->lexeme);
-		else if (ft_strcmp(cmd->lexeme, "env") == 0)
-			builtins_runner_env();
-		else if (ft_strcmp(cmd->lexeme, "exit") == 0)
-		{
-			builtins_runner_exit(cmd);
-			break ;
-		}
-		cmd = cmd->next;
+		if (cmd->next && cmd->next->type == WORD)
+			execute_multiple_args(cmd->next, builtins_runner_export);
+		else
+			builtins_runner_export(NULL);
+	}
+	else if (ft_strcmp(cmd->lexeme, "unset") == 0
+		&& cmd->next && cmd->next->type == WORD)
+		execute_multiple_args(cmd->next, builtins_runner_unset);
+	else if (ft_strcmp(cmd->lexeme, "env") == 0)
+		builtins_runner_env();
+	else if (ft_strcmp(cmd->lexeme, "exit") == 0)
+	{
+		builtins_runner_exit(cmd);
 	}
 }
