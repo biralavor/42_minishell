@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 13:23:46 by umeneses          #+#    #+#             */
-/*   Updated: 2024/10/07 18:46:49 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/10/08 17:08:34 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	builtins_runner_export(char *arg)
 		ft_env_printer_classic(env_sorted);
 		free_env_table(&env_sorted);
 	}
-	else if (state == 100)
+	else if (state == 100 || state == 200)
 	{
 		arg_handle_runner(env_copy, arg);
 		// env_sorted = builtins_env_sort_manager(env_copy);
@@ -108,7 +108,7 @@ bool	builtins_is_env_sorted(t_env_entry *env_vars)
 	tmp = env_vars;
 	while (tmp && tmp->next)
 	{
-		if (ft_strncmp(tmp->key, tmp->next->key, ft_strlen(tmp->key)) > 0)
+		if (ft_strcmp(tmp->key, tmp->next->key) > 0)
 			return (false);
 		tmp = tmp->next;
 	}
@@ -122,7 +122,7 @@ t_env_entry	*sorted_env_insert(t_env_entry **head, t_env_entry *new)
 
 	curr = *head;
 	prev = NULL;
-	while (curr && ft_strncmp(curr->key, new->key, ft_strlen(curr->key)) <= 0)
+	while (curr && ft_strcmp(curr->key, new->key) <= 0)
 	{
 		prev = curr;
 		curr = curr->next;
