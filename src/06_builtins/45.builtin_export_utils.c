@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 13:23:46 by umeneses          #+#    #+#             */
-/*   Updated: 2024/10/08 17:24:05 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/10/08 17:49:32 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,19 +64,18 @@ int	arg_handle_state_detector(int state, char *arg)
 		return (state = 0);
 	else if (env_var_key_rules_at_start(arg[idx]))
 	{
-		if (arg[idx + 1])
+		if (arg[idx + 1] && env_var_key_rules_at_middle(arg[idx]))
 		{
-			while (++idx && arg[idx] && env_var_key_rules_at_middle(arg[idx]))
+			while ((++idx && arg[idx] && env_var_key_rules_at_middle(arg[idx]))
+				|| arg[idx] == '=')
 			{
-				if (arg[idx + 1] == '=')
+				if (arg[idx] == '=')
 					return (state = 100);
-				else if (arg[idx + 1] == '\0')
+				else if (arg[idx] != '=' && arg[idx + 1] == '\0')
 					return (state = 200);
-				else
-					return (state = 404);
 			}
 		}
-		else
+		else if (env_var_key_rules_at_middle(arg[idx]))
 			return (state = 200);
 	}
 	return (state = 404);
