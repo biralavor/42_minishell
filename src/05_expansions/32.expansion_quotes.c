@@ -6,7 +6,7 @@
 /*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 13:41:21 by umeneses          #+#    #+#             */
-/*   Updated: 2024/10/07 16:25:26 by tmalheir         ###   ########.fr       */
+/*   Updated: 2024/10/08 13:18:54 by tmalheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,7 @@ char	*single_quote_remover(char *lex)
 	if (lex[idx] == '\'' && lex[idx + 1] == '\'' && !lex[idx + 2])
 	{
 		free(lex);
-		lex = NULL;
-		return (lex);
+		return (NULL);
 	}
 	while (lex[idx])
 	{
@@ -76,8 +75,7 @@ char	*double_quote_remover(char *lex)
 	if (lex[idx] == '"' && lex[idx + 1] == '"' && !lex[idx + 2])
 	{
 		free(lex);
-		lex = NULL;
-		return (lex);
+		return (NULL);
 	}
 	while (lex[idx])
 	{
