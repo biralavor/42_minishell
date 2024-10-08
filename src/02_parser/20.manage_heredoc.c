@@ -6,7 +6,7 @@
 /*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 18:23:53 by umeneses          #+#    #+#             */
-/*   Updated: 2024/10/08 13:16:52 by tmalheir         ###   ########.fr       */
+/*   Updated: 2024/10/08 13:26:29 by tmalheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@ void	check_heredoc(t_token_list *lst)
 	char			*delimiter;
 	t_token_list	*tmp;
 	int				line;
-	int				idx;
 
 	line = 0;
 	flag = 0;
@@ -31,7 +30,6 @@ void	check_heredoc(t_token_list *lst)
 	heredoc_input = NULL;
 	delimiter = NULL;
 	tmp = lst;
-	idx = 0;
 	while (tmp->next)
 	{
 		if (tmp->type == REDIR_HDOC)
@@ -94,7 +92,6 @@ void	path_file(t_token_list *lst)
 int	check_delimiter(char *delimiter, int fd, char *input, int line)
 {
 	int	idx;
-	int	count;
 
 	if (delimiter == NULL)
 	{
@@ -102,7 +99,6 @@ int	check_delimiter(char *delimiter, int fd, char *input, int line)
 		{
 			if (input)
 				free (input);
-			count = 0;
 			input = readline(BLUE"(mini)heredoc> "RESET);
 		}
 		return (0);
