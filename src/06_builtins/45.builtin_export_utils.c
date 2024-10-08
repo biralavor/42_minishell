@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 13:23:46 by umeneses          #+#    #+#             */
-/*   Updated: 2024/10/08 17:49:32 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/10/08 18:49:06 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,9 +93,12 @@ void	ft_env_printer_classic(t_env_entry *env_vars)
 		if (ft_strcmp(tmp->value, "\n") != 0)
 		{
 			ft_putstr_fd("=", STDOUT_FILENO);
-			ft_putstr_fd("\"", STDOUT_FILENO);
+			if (*tmp->value != '\"')
+				ft_putstr_fd("\"", STDOUT_FILENO);
 			ft_putstr_fd(tmp->value, STDOUT_FILENO);
-			ft_putendl_fd("\"", STDOUT_FILENO);
+			if (*tmp->value != '\"')
+				ft_putstr_fd("\"", STDOUT_FILENO);
+			ft_putstr_fd("\n", STDOUT_FILENO);
 		}
 		else
 			ft_putstr_fd("\n", STDOUT_FILENO);
