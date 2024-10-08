@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/16 09:43:43 by umeneses          #+#    #+#             */
-/*   Updated: 2024/10/07 22:27:23 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/10/07 22:57:15 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,13 +45,15 @@ char	*testing_all_paths_with_cmd(char **all_paths, char *cmd_name)
 {
 	int		idx;
 	char	*to_execute;
+	char	*path_with_slash;
 
 	to_execute = NULL;
+	path_with_slash = NULL;
 	idx = 0;
 	while (all_paths[idx])
 	{
-		to_execute = ft_merge_strings(ft_strjoin(all_paths[idx], "/"),
-			cmd_name);
+		path_with_slash = ft_strjoin(all_paths[idx], "/");
+		to_execute = ft_merge_strings(path_with_slash, ft_strdup(cmd_name));
 		if (is_cmd_with_absolute_path(to_execute))
 			return (to_execute);
 		free(to_execute);
