@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   21.building_tree.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/05 13:55:37 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/09/27 13:35:16 by tmalheir         ###   ########.fr       */
+/*   Updated: 2024/10/09 12:18:00 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,5 +96,7 @@ t_tree	*build_tree_recursive(t_token_list **lst)
 
 t_tree	*initiate_tree(t_token_list *lst)
 {
+	if (!lst)
+		return (NULL);
 	return (build_tree_recursive(&lst));
 }
