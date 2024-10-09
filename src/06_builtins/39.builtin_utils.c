@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 13:23:46 by umeneses          #+#    #+#             */
-/*   Updated: 2024/10/02 10:49:14 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/10/08 20:59:57 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,11 +30,10 @@ t_token_list	*checking_cmd_arg_options(t_token_list **cmd, char *arg)
 	t_token_list	*tmp;
 
 	tmp = *cmd;
-	if (tmp->lexeme && ft_strncmp(tmp->lexeme, arg, 2) == 0)
+	if (tmp->lexeme && ft_strcmp(tmp->lexeme, arg) == 0)
 	{
 		arg_option_holder(true, true);
-		while (tmp && tmp->lexeme && ft_strncmp(tmp->lexeme, arg,
-				ft_strlen(tmp->lexeme)) == 0)
+		while (tmp && tmp->lexeme && ft_strcmp(tmp->lexeme, arg) == 0)
 			tmp = tmp->next;
 		return (tmp);
 	}
