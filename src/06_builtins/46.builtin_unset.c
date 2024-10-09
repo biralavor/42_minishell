@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   46.builtin_unset.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/14 12:08:16 by umeneses          #+#    #+#             */
-/*   Updated: 2024/10/08 13:39:22 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/10/09 12:31:05 by tmalheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	builtins_runner_unset(char *arg)
 
 	next = NULL;
 	var_key = NULL;
-	tmp = env_holder(NULL, false, false);
+	tmp = copy_env_table(env_holder(NULL, false, false));
 	if (*arg == '$')
 	{
 		var_key = ft_strdup(++arg);
@@ -35,29 +35,35 @@ void	builtins_runner_unset(char *arg)
 void	ft_lst_remove_node(t_env_entry *tmp, t_env_entry *next,
 	const char *var_key)
 {
-	while (tmp != NULL)
+	next = tmp;
+	while (tmp)
 	{
 		if (ft_strcmp(var_key, tmp->key) == 0)
 		{
 			if (tmp->prev == NULL)
 			{
 				next = tmp->next;
-				env_holder(next, true, false);
+				tmp->next->prev = NULL;
 				if (tmp->value)
 					free(tmp->value);
 				free(tmp->key);
 				free(tmp);
-				tmp = next;
+				(void)env_holder(next, true, false);
 				return ;
 			}
 			tmp->prev->next = tmp->next;
-			// tmp->next->prev = tmp->prev;
+			if(tmp->next)
+				tmp->next->prev = tmp->prev;
+			next = tmp->prev;
 			if (tmp->value)
 				free(tmp->value);
 			free(tmp->key);
 			free(tmp);
+			tmp = goto_head_env_table(next);
+			(void)env_holder(tmp, true, false);
 			return ;
 		}
 		tmp = tmp->next;
 	}
+	free_env_table(&next);
 }
