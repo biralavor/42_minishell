@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 13:23:46 by umeneses          #+#    #+#             */
-/*   Updated: 2024/10/08 23:48:11 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/10/08 23:51:22 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ void	builtins_manager_cd(t_token_list *lst)
 	}
 	cmd = lst->next;
 	destiny_path = NULL;
+	destiny_len = 0;
 	if (cmd->lexeme && cmd->next && cmd->next->lexeme)
 	{
 		write(STDERR_FILENO, "bash cd: too many arguments\n", 28);
