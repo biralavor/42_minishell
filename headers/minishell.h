@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 10:53:20 by umeneses          #+#    #+#             */
-/*   Updated: 2024/10/04 22:39:13 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/10/09 20:50:47 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,9 +54,8 @@ void	loop_routine(char *str);
 extern volatile sig_atomic_t	g_sigmonitor;
 
 void	signals_init(bool interactive);
-// void	signals_manager(int sig_nbr);
+
 void	interrupt_signal_runner(int sig);
-// void	quit_signal_blocker(void);
 
 void	tty_proprieties_manager(bool update);
 

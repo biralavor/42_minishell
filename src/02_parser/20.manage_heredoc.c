@@ -6,11 +6,12 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 18:23:53 by umeneses          #+#    #+#             */
-/*   Updated: 2024/10/09 20:02:21 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/10/09 20:50:55 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
 static int	check_fd_error(int heredoc_fd);
 static int	check_dollar_sign(char *input, int idx, int fd);
 static int	check_question_mark(int idx, int fd);
@@ -54,6 +55,7 @@ void	check_heredoc(t_token_list *lst)
 	}
 	heredoc_fd_reset(&heredoc_fd);
 	dup2(original_stdin, STDIN_FILENO);
+	close(original_stdin);
 	is_heredoc_running(false, false);
 	if (delimiter != NULL)
 		free(delimiter);

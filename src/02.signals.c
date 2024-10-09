@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 09:47:06 by umeneses          #+#    #+#             */
-/*   Updated: 2024/10/09 19:56:20 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/10/09 20:52:03 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,10 +68,9 @@ void	interrupt_signal_runner(int sig)
 		fprintf(stderr, YELLOW"  interrupt_signal_runner\n");
 		fprintf(stderr, YELLOW"g_sigmonitor na interrupt_signal_runner: %d\n"RESET, g_sigmonitor);
 		token_list_holder(NULL, false, true);
-		close(STDIN_FILENO);
 		is_heredoc_running(false, false);
-		// close(STDOUT_FILENO);
-		// close(STDERR_FILENO);
+		close(STDIN_FILENO);
+		close(STDERR_FILENO);
 	}
 	ft_putstr_fd("\n", STDOUT_FILENO);
 	rl_on_new_line();
