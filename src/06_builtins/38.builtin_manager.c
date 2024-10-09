@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 13:23:46 by umeneses          #+#    #+#             */
-/*   Updated: 2024/10/08 23:15:29 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/10/08 23:21:30 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void	builtins_manager(t_token_list *lst)
 
 void	builtins_with_possible_args_manager(t_token_list *lst)
 {
-	t_token_list    *cmd;
+	t_token_list	*cmd;
 
 	cmd = lst;
 	if (ft_strcmp(cmd->lexeme, "export") == 0)

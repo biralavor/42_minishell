@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 13:23:46 by umeneses          #+#    #+#             */
-/*   Updated: 2024/10/08 18:49:06 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/10/08 23:20:01 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,8 @@ void	arg_handle_runner(t_env_entry *env_vars, char *arg)
 	if (lookup_table(env_vars, var_key))
 		replace_env_var(env_vars, var_key, var_value);
 	else
-		addto_env_table(&env_vars, create_new_entry(var_key, var_value, env_vars->size));
+		addto_env_table(&env_vars,
+			create_new_entry(var_key, var_value, env_vars->size));
 	free(var_key);
 	free(var_value);
 	env_holder(env_vars, true, false);
@@ -57,7 +58,7 @@ void	replace_env_var(t_env_entry *env_vars, char *var_key, char *var_value)
 
 int	arg_handle_state_detector(int state, char *arg)
 {
-	int idx;
+	int	idx;
 
 	idx = 0;
 	if (!arg)
