@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 09:47:06 by umeneses          #+#    #+#             */
-/*   Updated: 2024/10/09 11:01:23 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/10/09 17:44:37 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,6 @@ void	signals_init(bool interactive)
 			perror("sigaction error");
 			exit(exit_status_holder(EXIT_FAILURE, true));
 		}
-		// fprintf(stderr, YELLOW"g_sigmonitor em signals init: %d\n"RESET, g_sigmonitor);
 	}
 	else
 	{
@@ -66,9 +65,13 @@ void	interrupt_signal_runner(int sig)
 		env_holder(NULL, false, true);
 	if (is_heredoc_running(false, true))
 	{
+		fprintf(stderr, YELLOW"  interrupt_signal_runner\n");
+		fprintf(stderr, YELLOW"g_sigmonitor na interrupt_signal_runner: %d\n"RESET, g_sigmonitor);
 		token_list_holder(NULL, false, true);
 		close(STDIN_FILENO);
-		close(STDERR_FILENO);
+		is_heredoc_running(false, false);
+		// close(STDOUT_FILENO);
+		// close(STDERR_FILENO);
 	}
 	ft_putstr_fd("\n", STDOUT_FILENO);
 	rl_on_new_line();
@@ -118,7 +121,7 @@ void	sigquit_activated(void)
 {
 	if (exit_status_holder(0, false) == 131)
 	{
-		ft_putendl_fd(RED"^\\quit (core dumped) T.T"RESET, STDERR_FILENO);
+		ft_putendl_fd(RED" quit (core dumped) T.T"RESET, STDERR_FILENO);
 		tty_proprieties_manager(true);
 	}
 }

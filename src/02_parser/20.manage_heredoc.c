@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 18:23:53 by umeneses          #+#    #+#             */
-/*   Updated: 2024/10/09 12:10:29 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/10/09 17:37:08 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,12 +39,7 @@ void	check_heredoc(t_token_list *lst)
 			heredoc_fd_reset(&heredoc_fd);
 			heredoc_fd = open(tmp->next->lexeme, O_CREAT | O_RDWR | O_TRUNC, 0644);
 			if (check_fd_error(heredoc_fd))
-				break;
-			is_heredoc_running(true, true);
-			heredoc_input = readline(BLUE"(mini)heredoc> "RESET);
-			line++;
-			// if (heredoc_input == NULL)
-			// 	break ;
+				break ;
 			if (!check_delimiter(delimiter, heredoc_fd, heredoc_input, line))
 				break ;
 		}
@@ -90,10 +85,20 @@ int	check_delimiter(char *delimiter, int fd, char *input, int line)
 		ft_putendl_fd(" syntax error near unexpected token `newline'", STDERR_FILENO);
 		return (exit_status_holder(2, true));
 	}
-	while (input && ft_strcmp(input, delimiter))
+	while (true)
 	{
+		is_heredoc_running(true, true);
+		input = readline(BLUE"(mini)heredoc<< "RESET);
+		line++;
 		idx = 0;
-		while (input[idx])
+		if (!input)
+			break ;
+		if (!ft_strcmp(input, delimiter))
+		{
+			is_heredoc_running(false, false);
+			break ;
+		}
+		while (input && input[idx])
 		{
 			idx = check_dollar_sign(input, idx, fd);
 			write(fd, &input[idx], 1);
@@ -101,11 +106,9 @@ int	check_delimiter(char *delimiter, int fd, char *input, int line)
 		}
 		write(fd, "\n", 1);
 		free(input);
-		is_heredoc_running(true, true);
-		input = readline(BLUE"(mini)heredoc> "RESET);
-		line++;
 	}
-	if (g_sigmonitor == SIGQUIT)
+	fprintf(stderr, YELLOW"g_sigmonitor na HEREDOC: %d\n"RESET, g_sigmonitor);
+	if (input == NULL && is_heredoc_running(false, true) && g_sigmonitor != SIGINT)
 		heredoc_forcing_exit_warning(input, delimiter, line, fd);
 	if (input)
 		free(input);
@@ -191,8 +194,11 @@ static int	check_fd_error(int heredoc_fd)
 
 void	heredoc_forcing_exit_warning(char *input, char *delimiter, int line, int fd)
 {
-	char	*line_as_str;
+	char			*line_as_str;
+	t_token_list	*tmp;
 
+	(void)fd;
+	tmp = token_list_holder(NULL, false, false);
 	line_as_str = ft_itoa(line);
 	ft_putstr_fd(" here-document at line ", STDERR_FILENO);
 	ft_putstr_fd(line_as_str, STDERR_FILENO);
@@ -200,9 +206,7 @@ void	heredoc_forcing_exit_warning(char *input, char *delimiter, int line, int fd
 	ft_putstr_fd(delimiter, STDERR_FILENO);
 	ft_putendl_fd("')", STDERR_FILENO);
 	env_holder(NULL, false, true);
-	close(fd);
 	free(input);
 	free(line_as_str);
-	free(delimiter);
-	exit(exit_status_holder(EXIT_SUCCESS, true));
+	exit_status_holder(EXIT_SUCCESS, true);
 }
