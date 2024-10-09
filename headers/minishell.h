@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 10:53:20 by umeneses          #+#    #+#             */
-/*   Updated: 2024/10/04 22:39:13 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/10/09 18:15:20 by tmalheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,8 @@
 # define PURPLE	"\033[0;35m"
 # define CYAN	"\033[0;36m"
 # define RESET	"\033[0m"
+
+# define PATH_MAX 4096
 
 # include "../libs/libft/includes/libft.h"
 # include "lexer.h"
