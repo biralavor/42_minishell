@@ -6,7 +6,7 @@
 /*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 13:23:46 by umeneses          #+#    #+#             */
-/*   Updated: 2024/10/09 20:12:15 by tmalheir         ###   ########.fr       */
+/*   Updated: 2024/10/09 20:22:28 by tmalheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,10 +75,10 @@ void	builtins_runner_cd(t_token_list *lst)
 		update_oldpwd(1, actual_path);
 		// builtins_cd_switch_new_dir(destiny_path);
 		cmd = cmd->next;
+		exit_status_holder(0, true);
 	}
 	// if (!destiny_path)
 	// 	builtins_cd_switch_home_dir();
-	exit_status_holder(0, true);
 	free(destiny_path);
 }
 
