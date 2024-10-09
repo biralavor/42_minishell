@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   13.lexer_utils.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/20 10:12:37 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/10/08 22:27:41 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/10/09 16:51:47 by tmalheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,9 +73,9 @@ int	check_single(char *str, int idx)
 	{
 		if (str[idx] == '\'')
 		{
-			if (str[idx + 1] && (str[idx] != '(') && (str[idx] != ')')
-				&& (str[idx] != '|') && (str[idx] != '&') && (str[idx] != '>')
-				&& (str[idx] != '<') && !(is_blank(str[idx])))
+			if (str[idx + 1] && (str[idx + 1] != '(') && (str[idx + 1] != ')')
+				&& (str[idx + 1] != '|') && (str[idx + 1] != '&') && (str[idx + 1] != '>')
+				&& (str[idx + 1] != '<') && !(is_blank(str[idx + 1])))
 				idx++;
 			else
 				break ;
