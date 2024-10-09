@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   34.expansion_env_var.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/27 12:39:23 by umeneses          #+#    #+#             */
-/*   Updated: 2024/10/04 15:41:53 by tmalheir         ###   ########.fr       */
+/*   Updated: 2024/10/08 21:00:18 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,8 +78,7 @@ static void	process_entry(char **arr_lex, size_t idx, bool *not_found)
 	{
 		env_key = ft_substr(arr_lex[idx], 0, c + 1);
 		env_table = lookup_table(env_holder(NULL, false, false), env_key);
-		if (!env_table && !ft_strncmp(arr_lex[idx], env_key,
-				ft_strlen(arr_lex[idx])))
+		if (!env_table && !ft_strcmp(arr_lex[idx], env_key))
 			*not_found = true;
 		else if (env_table && env_table->value)
 		{
