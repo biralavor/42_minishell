@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/04 10:20:13 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/10/09 10:07:39 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/10/09 14:02:14 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int	manage_redirect(t_tree *tree, int *flag)
 
 	new_fd = -1;
 	if (tree == NULL)
-		return (exit_status_holder(EXIT_SUCCESS, true));
+		return (exit_status_holder(0, false));
 	std_fd[0] = dup(STDIN_FILENO);
 	std_fd[1] = dup(STDOUT_FILENO);
 	if (is_redirect(tree->type))
@@ -32,12 +32,12 @@ int	manage_redirect(t_tree *tree, int *flag)
 	if (*flag == -1)
 	{
 		restore_standard_fds(std_fd);
-		return (exit_status_holder(EXIT_SUCCESS, true));
+		return (exit_status_holder(0, false));
 	}
 	if (try_open_redir(tree, &new_fd, flag, std_fd))
 		return (exit_status_holder(EXIT_FAILURE, true));
 	finalize_redirect(tree, flag, std_fd);
-	return (exit_status_holder(EXIT_SUCCESS, true));
+	return (exit_status_holder(0, false));
 }
 
 static int	apply_redirect(t_tree *tree, int *fd)
@@ -60,7 +60,7 @@ static int	apply_redirect(t_tree *tree, int *fd)
 		}
 		close(*fd);
 	}
-	return (exit_status_holder(EXIT_SUCCESS, true));
+	return (exit_status_holder(0, false));
 }
 
 static int	open_redir_file(t_tree *tree, int *fd)
@@ -83,10 +83,10 @@ static int	open_redir_file(t_tree *tree, int *fd)
 	{
 		perror(pathname);
 		free(pathname);
-		return (exit_status_holder(1, true));
+		return (exit_status_holder(EXIT_FAILURE, true));
 	}
 	free(pathname);
-	return (exit_status_holder(0, true));
+	return (exit_status_holder(EXIT_SUCCESS, true));
 }
 
 static int	try_open_redir(t_tree *tree, int *new_fd, int *flag, int *std_fd)
@@ -106,12 +106,12 @@ static int	finalize_redirect(t_tree *tree, int *flag, int *std_fd)
 	if (*flag > 0)
 	{
 		decrement_flag_and_close_fds(flag, std_fd);
-		return (exit_status_holder(EXIT_SUCCESS, true));
+		return (exit_status_holder(0, false));
 	}
 	while (tree->left)
 		tree = tree->left;
 	if (!is_redirect(tree->type))
 		tree_execution(tree, flag);
 	restore_standard_fds(std_fd);
-	return (exit_status_holder(EXIT_SUCCESS, true));
+	return (exit_status_holder(0, false));
 }
