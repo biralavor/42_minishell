@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 12:58:03 by umeneses          #+#    #+#             */
-/*   Updated: 2024/10/07 21:48:48 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/10/08 22:49:59 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,4 +72,18 @@ void	free_array(char **array)
 	}
 	free(array);
 	array = NULL;
+}
+
+t_env_entry	*lookup_table(t_env_entry *table, char *key)
+{
+	t_env_entry	*entry;
+
+	entry = goto_head_env_table(table);
+	while (entry != NULL)
+	{
+		if (ft_strcmp(entry->key, key) == 0)
+			return (entry);
+		entry = entry->next;
+	}
+	return (NULL);
 }

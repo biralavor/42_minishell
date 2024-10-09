@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 14:57:00 by umeneses          #+#    #+#             */
-/*   Updated: 2024/10/08 22:32:00 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/10/08 22:52:58 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,7 +106,7 @@ int				arg_handle_state_detector(int state, char *arg);
 void			replace_env_var(t_env_entry *env_vars, char *var_key,
 					char *var_value);
 
-t_env_entry	*copy_env_table(t_env_entry *env_vars);
+t_env_entry		*copy_env_table(t_env_entry *env_vars);
 
 /**
  * @brief: Runs the unset - remove an environment variable - builtin command.
