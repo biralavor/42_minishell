@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 14:57:00 by umeneses          #+#    #+#             */
-/*   Updated: 2024/10/08 23:37:47 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/10/08 23:48:04 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,10 @@ void			builtins_runner_pwd(t_token_list *lst);
  * @brief: Runs the cd - change directory - builtin command.
  * TODO: Implement update_envs() after calling chdir().
 */
-void			builtins_runner_cd(t_token_list *lst);
+void			builtins_manager_cd(t_token_list *lst);
+
+void			builtins_runner_cd(t_token_list *cmd, int destiny_len,
+					char *destiny_path);
 
 /**
  * @brief: Switches to the new directory.

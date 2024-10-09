@@ -6,13 +6,13 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 13:23:46 by umeneses          #+#    #+#             */
-/*   Updated: 2024/10/07 13:31:30 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/10/08 23:48:11 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	builtins_runner_cd(t_token_list *lst)
+void	builtins_manager_cd(t_token_list *lst)
 {
 	t_token_list	*cmd;
 	int				destiny_len;
@@ -31,6 +31,14 @@ void	builtins_runner_cd(t_token_list *lst)
 		exit_status_holder(1, true);
 		return ;
 	}
+	builtins_runner_cd(cmd, destiny_len, destiny_path);
+	if (!destiny_path)
+		builtins_cd_switch_home_dir();
+}
+
+void	builtins_runner_cd(t_token_list *cmd, int destiny_len,
+			char *destiny_path)
+{
 	while (cmd && cmd->type == WORD)
 	{
 		destiny_path = cmd->lexeme;
@@ -41,8 +49,6 @@ void	builtins_runner_cd(t_token_list *lst)
 			builtins_cd_switch_new_dir(destiny_path);
 		cmd = cmd->next;
 	}
-	if (!destiny_path)
-		builtins_cd_switch_home_dir();
 }
 
 void	builtins_cd_switch_new_dir(char *destiny_path)
