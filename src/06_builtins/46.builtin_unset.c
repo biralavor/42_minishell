@@ -6,7 +6,7 @@
 /*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/14 12:08:16 by umeneses          #+#    #+#             */
-/*   Updated: 2024/10/09 12:17:11 by tmalheir         ###   ########.fr       */
+/*   Updated: 2024/10/09 12:31:05 by tmalheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ void	builtins_runner_unset(char *arg)
 void	ft_lst_remove_node(t_env_entry *tmp, t_env_entry *next,
 	const char *var_key)
 {
+	next = tmp;
 	while (tmp)
 	{
 		if (ft_strcmp(var_key, tmp->key) == 0)
@@ -64,4 +65,5 @@ void	ft_lst_remove_node(t_env_entry *tmp, t_env_entry *next,
 		}
 		tmp = tmp->next;
 	}
+	free_env_table(&next);
 }
