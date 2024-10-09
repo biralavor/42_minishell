@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 09:47:06 by umeneses          #+#    #+#             */
-/*   Updated: 2024/10/09 17:44:37 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/10/09 19:56:20 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ void	signals_init(bool interactive)
 
 void	interrupt_signal_runner(int sig)
 {
-	(void)sig;
+	g_sigmonitor = sig;
 	if (child_process_is_running(false, true))
 		env_holder(NULL, false, true);
 	if (is_heredoc_running(false, true))
