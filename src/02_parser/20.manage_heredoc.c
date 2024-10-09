@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 18:23:53 by umeneses          #+#    #+#             */
-/*   Updated: 2024/10/09 10:49:20 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/10/09 12:10:29 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,17 +43,8 @@ void	check_heredoc(t_token_list *lst)
 			is_heredoc_running(true, true);
 			heredoc_input = readline(BLUE"(mini)heredoc> "RESET);
 			line++;
-			if (g_sigmonitor == SIGINT)
-			{
-				free(heredoc_input);
-				return ;
-			}
-			if (heredoc_input == NULL)
-			{
-				heredoc_forcing_exit_warning(heredoc_input, delimiter, line, heredoc_fd);
-				free_token_list(&tmp);
-				break ;
-			}
+			// if (heredoc_input == NULL)
+			// 	break ;
 			if (!check_delimiter(delimiter, heredoc_fd, heredoc_input, line))
 				break ;
 		}
@@ -95,13 +86,9 @@ int	check_delimiter(char *delimiter, int fd, char *input, int line)
 
 	if (delimiter == NULL)
 	{
-		while (input && ft_strlen(input))
-		{
-			if (input)
-				free (input);
-			input = readline(BLUE"(mini)heredoc> "RESET);
-		}
-		return (0);
+		free(input);
+		ft_putendl_fd(" syntax error near unexpected token `newline'", STDERR_FILENO);
+		return (exit_status_holder(2, true));
 	}
 	while (input && ft_strcmp(input, delimiter))
 	{
@@ -117,11 +104,6 @@ int	check_delimiter(char *delimiter, int fd, char *input, int line)
 		is_heredoc_running(true, true);
 		input = readline(BLUE"(mini)heredoc> "RESET);
 		line++;
-		if (g_sigmonitor == SIGINT)
-		{
-			free(input);
-			return (1);
-		}
 	}
 	if (g_sigmonitor == SIGQUIT)
 		heredoc_forcing_exit_warning(input, delimiter, line, fd);
