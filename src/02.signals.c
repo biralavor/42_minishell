@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 09:47:06 by umeneses          #+#    #+#             */
-/*   Updated: 2024/10/08 22:53:27 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/10/09 11:01:23 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,7 @@ void	interrupt_signal_runner(int sig)
 		env_holder(NULL, false, true);
 	if (is_heredoc_running(false, true))
 	{
+		token_list_holder(NULL, false, true);
 		close(STDIN_FILENO);
 		close(STDERR_FILENO);
 	}

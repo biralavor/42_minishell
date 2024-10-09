@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   20.manage_heredoc.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 18:23:53 by umeneses          #+#    #+#             */
-/*   Updated: 2024/10/08 15:42:48 by tmalheir         ###   ########.fr       */
+/*   Updated: 2024/10/09 10:49:20 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,7 +123,7 @@ int	check_delimiter(char *delimiter, int fd, char *input, int line)
 			return (1);
 		}
 	}
-	if (g_sigmonitor == SIGINT)
+	if (g_sigmonitor == SIGQUIT)
 		heredoc_forcing_exit_warning(input, delimiter, line, fd);
 	if (input)
 		free(input);
