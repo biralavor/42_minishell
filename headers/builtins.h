@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 14:57:00 by umeneses          #+#    #+#             */
-/*   Updated: 2024/10/08 22:52:58 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/10/08 23:14:47 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,9 @@ bool			builtins_detector(t_token_list *cmd);
 /**
  * @brief: Runs the echo - imitate words - builtin command.
 */
-void			builtins_runner_echo(t_token_list *lst, bool arg_option);
+void			builtins_manager_echo(t_token_list *lst, bool arg_option);
+
+void			builtins_runner_echo(t_token_list *lst);
 
 /**
  * @brief: Runs the pwd - print work directory - builtin command.
