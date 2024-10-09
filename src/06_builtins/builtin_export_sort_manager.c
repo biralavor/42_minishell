@@ -6,12 +6,11 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/08 23:27:05 by umeneses          #+#    #+#             */
-/*   Updated: 2024/10/08 23:27:13 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/10/08 23:53:06 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
 
 t_env_entry	*builtins_env_sort_manager(t_env_entry *current)
 {

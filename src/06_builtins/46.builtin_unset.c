@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/14 12:08:16 by umeneses          #+#    #+#             */
-/*   Updated: 2024/10/08 13:39:22 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/10/08 23:53:29 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,6 @@ void	ft_lst_remove_node(t_env_entry *tmp, t_env_entry *next,
 				return ;
 			}
 			tmp->prev->next = tmp->next;
-			// tmp->next->prev = tmp->prev;
 			if (tmp->value)
 				free(tmp->value);
 			free(tmp->key);
