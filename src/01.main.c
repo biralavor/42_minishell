@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 10:53:12 by umeneses          #+#    #+#             */
-/*   Updated: 2024/10/06 23:43:52 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/10/09 17:44:29 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,16 +19,16 @@ static void	extra_args(void)
 	exit (EXIT_FAILURE);
 }
 
-void	control_d_handler(char *input)
-{
-	if (input == NULL)
-	{
-		ft_putendl_fd("exit", STDOUT_FILENO);
-		env_holder(NULL, false, true);
-		free(input);
-		exit(exit_status_holder(0, true));
-	}
-}
+// void	control_d_handler(char *input)
+// {
+// 	if (input == NULL)
+// 	{
+// 		ft_putendl_fd("exit", STDOUT_FILENO);
+// 		// env_holder(NULL, false, true);
+// 		// free(input);
+// 		exit_status_holder(EXIT_SUCCESS, true);
+// 	}
+// }
 
 bool	addto_history_detector(const char *input)
 {
@@ -63,10 +63,19 @@ int	main(int ac, char **av, char **envp)
 	{
 		is_after_loop(false);
 		sigquit_activated();
-		// fprintf(stderr, BLUE"exit_status: %d\n"RESET, exit_status_holder(0, false));
-		// fprintf(stderr, YELLOW"g_sigmonitor na main: %d\n"RESET, g_sigmonitor);
+		fprintf(stderr, BLUE"exit_status: %d\n"RESET, exit_status_holder(0, false));
+		fprintf(stderr, YELLOW"g_sigmonitor na main: %d\n"RESET, g_sigmonitor);
 		input = readline(GREEN"<<< Born Again (mini) SHell >>>$ "RESET);
-		control_d_handler(input);
+		if (input == NULL)
+		{
+			ft_putendl_fd("exit", STDOUT_FILENO);
+			env_holder(NULL, false, true);
+			close(STDIN_FILENO);
+			close(STDOUT_FILENO);
+			close(STDERR_FILENO);
+			return (exit_status_holder(EXIT_SUCCESS, true));
+		}
+		// control_d_handler(input);
 		is_after_loop(true);
 		if (addto_history_detector(input))
 			add_history(input);
