@@ -6,7 +6,7 @@
 /*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/16 09:43:43 by umeneses          #+#    #+#             */
-/*   Updated: 2024/10/08 19:40:05 by tmalheir         ###   ########.fr       */
+/*   Updated: 2024/10/08 21:27:59 by tmalheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,8 @@ char	*testing_all_paths_with_cmd(char **all_paths, char *cmd_name)
 	to_execute = NULL;
 	path_with_slash = NULL;
 	idx = 0;
+	if (!all_paths)
+		return (ft_strdup(""));
 	while (all_paths[idx])
 	{
 		path_with_slash = ft_strjoin(all_paths[idx], "/");
