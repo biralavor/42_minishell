@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/10 08:02:42 by umeneses          #+#    #+#             */
-/*   Updated: 2024/10/10 08:04:33 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/10/10 08:07:15 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ static void	extra_args(void)
 	exit (EXIT_FAILURE);
 }
 
-void	control_d_handler(char *input)
+void	control_d_handler(void)
 {
 	ft_putendl_fd("exit", STDOUT_FILENO);
 	env_holder(NULL, false, true);

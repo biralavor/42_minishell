@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 10:53:12 by umeneses          #+#    #+#             */
-/*   Updated: 2024/10/10 08:04:53 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/10/10 08:07:19 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int	main(int ac, char **av, char **envp)
 		input = readline(GREEN"<<< Born Again (mini) SHell >>>$ "RESET);
 		if (input == NULL)
 		{
-			control_d_handler(input);
+			control_d_handler();
 			return (exit_status_holder(EXIT_SUCCESS, true));
 		}
 		is_after_loop(true);
