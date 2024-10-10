@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 10:53:20 by umeneses          #+#    #+#             */
-/*   Updated: 2024/10/09 20:50:47 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/10/10 08:08:17 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ void	tty_proprieties_manager(bool update);
 
 bool	is_after_loop(bool update);
 
-void	control_d_handler(char *input);
+void	control_d_handler(void);
 bool	addto_history_detector(const char *input);
 
 bool	is_interactive(void);
