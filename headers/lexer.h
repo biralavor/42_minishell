@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 13:32:19 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/10/09 10:58:57 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/10/09 21:38:08 by tmalheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -161,6 +161,8 @@ int		check_single(char *str, int idx);
 char	*inside_closed_quotes_remover(char *str);
 
 char	*update_str_if_inside_quotes(char *str);
+
+int		find_next_quote(char *str, int idx);
 
 /**
  * @todo APAGAR ESTA FUNÇÃO NO FINAL DO PROJETO.

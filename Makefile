@@ -60,6 +60,7 @@ SRC_FILES				+= ./01_lexer/10.state40_to_state60.c
 SRC_FILES				+= ./01_lexer/11.state61_to_state90.c
 SRC_FILES				+= ./01_lexer/12.error_manager_lexer.c
 SRC_FILES				+= ./01_lexer/13.lexer_utils.c
+SRC_FILES				+= ./01_lexer/lexer_utils_2.c
 SRC_FILES				+= ./02_parser/14.syntax_analysis.c
 SRC_FILES				+= ./02_parser/15.state100.c
 SRC_FILES				+= ./02_parser/16.state200_to_state300.c
