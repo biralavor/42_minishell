@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   20.manage_heredoc.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 18:23:53 by umeneses          #+#    #+#             */
-/*   Updated: 2024/10/10 18:45:18 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/10/10 19:45:28 by tmalheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,8 +98,8 @@ bool	check_eof_del(char *delimiter, int fd)
 		while (input && input[idx])
 		{
 			idx = check_dollar_sign_for_heredoc(input, idx, fd);
-			write(fd, &input[idx], 1);
-			idx++;
+			if (input[idx])
+				write(fd, &input[idx++], 1);
 		}
 		write(fd, "\n", 1);
 		free(input);
@@ -114,7 +114,7 @@ bool	check_eof_del(char *delimiter, int fd)
 		exit_status_holder(EXIT_SUCCESS, true);
 	if (input)
 		free(input);
-	free(delimiter);
+	// free(delimiter);
 	return (true);
 }
 

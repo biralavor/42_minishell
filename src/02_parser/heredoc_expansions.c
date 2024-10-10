@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   heredoc_expansions.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/09 20:54:18 by umeneses          #+#    #+#             */
-/*   Updated: 2024/10/10 18:43:10 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/10/10 19:40:18 by tmalheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,8 @@ int	check_dollar_sign_for_heredoc(char *input, int idx, int fd)
 			write(fd, &var[idx], 1);
 			idx++;
 		}
-		return (end);
 		free(var);
+		return (end);
 	}
 	else if (input[idx] == '$' && (input[idx + 1] && input[idx + 1] == '?'))
 		idx = check_question_mark_for_heredoc(idx, fd);
