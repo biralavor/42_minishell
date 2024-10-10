@@ -42,9 +42,10 @@
 - [x] Memory Leaks Management at: Lexer, Parser :tada: [https://github.com/biralavor/42_minishell/releases/tag/v0.9.8]
 - [x] Memory Leaks Management at: Expansion, Builtins :tada: [https://github.com/biralavor/42_minishell/releases/tag/v0.9.8]
 - [x] Memory Leaks Management at: Manage Single Command :tada: [https://github.com/biralavor/42_minishell/releases/tag/v0.9.8]
+- [x] Memory Leaks Management at: HereDoc, when Ctrl+C is activated :tada: [https://github.com/biralavor/42_minishell/releases/tag/v0.9.9.8]
+- [x] Signals Control -> Ctrl + \ :tada: [https://github.com/biralavor/42_minishell/releases/tag/v0.9.9.8]
 - Next Steps on Project Management:
-  - [ ] Memory Leaks Management at: HereDoc, when Ctrl+C is activated
-  - [ ] Signals Control -> Ctrl + \
+  - [ ] Norminette
 - Possible Bonus Development:
   - [ ] If `&&` were inside `()`, it should execute with priority (SUBSHELL)
   - [ ] If `||` were inside `()`, it should execute with priority (SUBSHELL)
