@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/10 08:02:42 by umeneses          #+#    #+#             */
-/*   Updated: 2024/10/10 16:06:06 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/10/10 17:15:45 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,13 @@ void	control_d_handler(void)
 {
 	ft_putendl_fd("exit", STDOUT_FILENO);
 	env_holder(NULL, false, true);
+	if (g_sigmonitor == SIGUSR1)
+	{
+		fprintf(stderr, RED">>>>>>>>>>>>>>>> 2nd SIGUSR1\n");
+		ft_lst_printer(token_list_holder(NULL, false, true));
+		ft_tree_printer(tree_holder(NULL, false));
+		g_sigmonitor = 0;
+	}
 	close(STDIN_FILENO);
 	close(STDOUT_FILENO);
 	close(STDERR_FILENO);

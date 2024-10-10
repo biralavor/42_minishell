@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/25 11:35:49 by umeneses          #+#    #+#             */
-/*   Updated: 2024/10/10 15:35:51 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/10/10 17:16:31 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	ft_lst_printer(t_token_list *lst)
 	aux = lst;
 	if (!aux)
 	{
-		fprintf(stderr, "\033[0;33mEmpty List\033[0m\n");
+		fprintf(stderr, "\033[0;33mEmpty Token List\033[0m\n");
 		return ;
 	}
 	lst_size = ft_lst_size(aux);
