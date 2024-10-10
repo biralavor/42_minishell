@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   37.builtin_detectors.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 19:09:05 by umeneses          #+#    #+#             */
-/*   Updated: 2024/10/10 12:40:20 by tmalheir         ###   ########.fr       */
+/*   Updated: 2024/10/10 18:01:02 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@ bool	builtins_detector(t_token_list *cmd)
 		if (!cmd->lexeme && cmd->next && cmd->next->type == WORD)
 			cmd = cmd->next;
 		if (cmd->lexeme && ((ft_strcmp(cmd->lexeme, "echo") == 0)
-			|| (ft_strcmp(cmd->lexeme, "cd") == 0)
-			|| (ft_strcmp(cmd->lexeme, "pwd") == 0)))
+				|| (ft_strcmp(cmd->lexeme, "cd") == 0)
+				|| (ft_strcmp(cmd->lexeme, "pwd") == 0)))
 			return (true);
 		cmd = cmd->next;
 	}

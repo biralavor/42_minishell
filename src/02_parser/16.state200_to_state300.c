@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   16.state200_to_state300.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/03 14:37:37 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/10/08 22:03:37 by tmalheir         ###   ########.fr       */
+/*   Updated: 2024/10/10 18:01:11 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,9 @@ static bool	is_valid(int type)
 
 int	state_200(t_token_list *lst, int syntax_state)
 {
-	if (lst->next && lst->prev && ((is_valid(lst->next->type) || is_redirect(lst->next->type))
-		&& (is_valid(lst->prev->type))))
+	if (lst->next && lst->prev
+			&& ((is_valid(lst->next->type) || is_redirect(lst->next->type))
+			&& (is_valid(lst->prev->type))))
 		syntax_state = 200;
 	else
 	{
