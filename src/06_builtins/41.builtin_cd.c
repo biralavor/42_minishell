@@ -6,7 +6,7 @@
 /*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 13:23:46 by umeneses          #+#    #+#             */
-/*   Updated: 2024/10/09 22:36:26 by tmalheir         ###   ########.fr       */
+/*   Updated: 2024/10/09 23:43:40 by tmalheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,14 +23,15 @@ static void	update_oldpwd(int alterable, char *str)
 	{
 		if (ft_strcmp(tmp->key, "OLDPWD") == 0)
 		{
+			free(tmp->value);
 			if (!alterable)
 			{
-				free(tmp->value);
+				// free(tmp->value);
 				tmp->value = ft_strdup(cwd);
 			}
 			else
 			{
-				free(tmp->value);
+				// free(tmp->value);
 				tmp->value = ft_strdup(str);
 			}
 			tmp = goto_head_env_table(tmp);
