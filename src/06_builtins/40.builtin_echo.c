@@ -3,14 +3,30 @@
 /*                                                        :::      ::::::::   */
 /*   40.builtin_echo.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 13:23:46 by umeneses          #+#    #+#             */
-/*   Updated: 2024/10/02 10:51:53 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/10/09 22:43:30 by tmalheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+static void	print_tokens(t_token_list *lst, short int *space)
+{
+	while (lst)
+	{
+		if (*space)
+			ft_putstr_fd(" ", STDOUT_FILENO);
+		else
+			(*space)++;
+		if (lst->lexeme != NULL)
+			ft_putstr_fd(lst->lexeme, STDOUT_FILENO);
+		if (NULL == lst->next)
+			break ;
+		lst = lst->next;
+	}
+}
 
 void	builtins_runner_echo(t_token_list *lst, bool arg_option)
 {
@@ -24,18 +40,7 @@ void	builtins_runner_echo(t_token_list *lst, bool arg_option)
 		return ;
 	}
 	lst = checking_cmd_arg_options(&lst, "-n");
-	while (lst)
-	{
-		if (space)
-			ft_putstr_fd(" ", STDOUT_FILENO);
-		else
-			space++;
-		if (lst->lexeme != NULL)
-			ft_putstr_fd(lst->lexeme, STDOUT_FILENO);
-		if (NULL == lst->next)
-			break ;
-		lst = lst->next;
-	}
+	print_tokens(lst, &space);
 	arg_option = arg_option_holder(false, true);
 	if (!arg_option)
 		write(STDOUT_FILENO, "\n", 1);

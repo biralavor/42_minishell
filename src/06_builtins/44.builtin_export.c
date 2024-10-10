@@ -3,18 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   44.builtin_export.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 13:23:46 by umeneses          #+#    #+#             */
-/*   Updated: 2024/10/08 17:08:34 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/10/09 22:34:53 by tmalheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-/**
- * TODO: fix memory leaks in this function.
- */
 void	builtins_runner_export(char *arg)
 {
 	int			state;
@@ -24,7 +21,6 @@ void	builtins_runner_export(char *arg)
 	state = 0;
 	env_sorted = NULL;
 	env_copy = copy_env_table(env_holder(NULL, false, false));
-	// env_copy = env_holder(NULL, false, false);
 	state = arg_handle_state_detector(state, arg);
 	if (state == 0)
 	{
@@ -33,11 +29,7 @@ void	builtins_runner_export(char *arg)
 		free_env_table(&env_sorted);
 	}
 	else if (state == 100 || state == 200)
-	{
 		arg_handle_runner(env_copy, arg);
-		// env_sorted = builtins_env_sort_manager(env_copy);
-		// free_env_table(&env_copy);
-	}
 	else if (state == 404)
 	{
 		ft_putstr_fd("minishell: export: `", STDERR_FILENO);
@@ -46,7 +38,6 @@ void	builtins_runner_export(char *arg)
 		free_env_table(&env_copy);
 		exit_status_holder(EXIT_FAILURE, true);
 	}
-	// env_holder(env_copy, true, false);
 }
 
 t_env_entry	*copy_env_table(t_env_entry *env_vars)
