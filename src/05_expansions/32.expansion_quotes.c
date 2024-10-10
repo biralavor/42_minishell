@@ -6,7 +6,7 @@
 /*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 13:41:21 by umeneses          #+#    #+#             */
-/*   Updated: 2024/10/08 13:18:54 by tmalheir         ###   ########.fr       */
+/*   Updated: 2024/10/09 22:15:01 by tmalheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ char	*single_quote_remover(char *lex)
 			if (idx)
 				idx--;
 		}
-		if(lex[idx] != '\'')
+		if (lex[idx] != '\'')
 			idx++;
 	}
 	return (lex);
@@ -85,7 +85,7 @@ char	*double_quote_remover(char *lex)
 			if (idx)
 				idx--;
 		}
-		if(lex[idx] != '"')
+		if (lex[idx] != '"')
 			idx++;
 	}
 	return (lex);
