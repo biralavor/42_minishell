@@ -55,6 +55,7 @@ SRC_FILES				+= 05.loop_routine.c
 SRC_FILES				+= tty_proprieties.c
 SRC_FILES				+= ./01_lexer/06.check_initial_errors.c
 SRC_FILES				+= ./01_lexer/07.token_list_functions.c
+SRC_FILES				+= ./01_lexer/token_list_utils.c
 SRC_FILES				+= ./01_lexer/08.get_state.c
 SRC_FILES				+= ./01_lexer/09.state10_to_state30.c
 SRC_FILES				+= ./01_lexer/10.state40_to_state60.c
