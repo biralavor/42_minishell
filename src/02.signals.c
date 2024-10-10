@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 09:47:06 by umeneses          #+#    #+#             */
-/*   Updated: 2024/10/10 10:09:42 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/10/10 10:44:02 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,17 +60,21 @@ void	interrupt_signal_runner(int sig)
 	ft_putstr_fd("\n", STDOUT_FILENO);
 	rl_on_new_line();
 	rl_replace_line("", 0);
-	if (!is_after_loop(false))
+	if (!is_after_loop(false, true))
 		rl_redisplay();
 	exit_status_holder(130, true);
 }
 
-bool	is_after_loop(bool update)
+bool	is_after_loop(bool update, bool caller)
 {
 	static bool	after_loop;
 
-	if (update)
+	if (update && caller)
 		after_loop = true;
+	else if (!update && caller)
+		return (after_loop);
+	else if (!update && !caller)
+		after_loop = false;
 	return (after_loop);
 }
 

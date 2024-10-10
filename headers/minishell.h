@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 10:53:20 by umeneses          #+#    #+#             */
-/*   Updated: 2024/10/10 08:27:50 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/10/10 10:43:30 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ void	interrupt_signal_runner(int sig);
 
 void	tty_proprieties_manager(bool update);
 
-bool	is_after_loop(bool update);
+bool	is_after_loop(bool update, bool caller);
 
 void	control_d_handler(void);
 bool	addto_history_detector(const char *input);

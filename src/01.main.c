@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 10:53:12 by umeneses          #+#    #+#             */
-/*   Updated: 2024/10/10 08:07:19 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/10/10 10:43:06 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	main(int ac, char **av, char **envp)
 	minishell_init(ac, av, envp);
 	while (true)
 	{
-		is_after_loop(false);
+		is_after_loop(false, false);
 		sigquit_activated();
 		input = readline(GREEN"<<< Born Again (mini) SHell >>>$ "RESET);
 		if (input == NULL)
@@ -27,7 +27,7 @@ int	main(int ac, char **av, char **envp)
 			control_d_handler();
 			return (exit_status_holder(EXIT_SUCCESS, true));
 		}
-		is_after_loop(true);
+		is_after_loop(true, true);
 		if (addto_history_detector(input))
 			add_history(input);
 		loop_routine(input);
