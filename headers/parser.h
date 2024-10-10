@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/27 12:53:52 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/10/08 22:45:42 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/10/09 20:57:48 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -133,5 +133,10 @@ void			heredoc_fd_reset(int *heredoc_fd);
 bool			is_heredoc_running(bool update, bool caller);
 void			heredoc_forcing_exit_warning(char *input, char *delimiter,
 					int line, int fd);
+
+int				check_dollar_sign_for_heredoc(char *input, int idx, int fd);
+int				check_question_mark_for_heredoc(int idx, int fd);
+int				heredoc_fd_error_runner(int heredoc_fd);
+void			heredoc_fd_reset(int *heredoc_fd);
 
 #endif
