@@ -6,7 +6,7 @@
 /*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 13:23:46 by umeneses          #+#    #+#             */
-/*   Updated: 2024/10/09 20:22:28 by tmalheir         ###   ########.fr       */
+/*   Updated: 2024/10/09 23:43:40 by tmalheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,19 +23,20 @@ static void	update_oldpwd(int alterable, char *str)
 	{
 		if (ft_strcmp(tmp->key, "OLDPWD") == 0)
 		{
+			free(tmp->value);
 			if (!alterable)
 			{
-				free(tmp->value);
+				// free(tmp->value);
 				tmp->value = ft_strdup(cwd);
 			}
 			else
 			{
-				free(tmp->value);
+				// free(tmp->value);
 				tmp->value = ft_strdup(str);
 			}
 			tmp = goto_head_env_table(tmp);
 			(void)env_holder(tmp, true, false);
-			break;
+			break ;
 		}
 		else
 			tmp = tmp->next;
@@ -73,28 +74,11 @@ void	builtins_runner_cd(t_token_list *lst)
 			break ;
 		}
 		update_oldpwd(1, actual_path);
-		// builtins_cd_switch_new_dir(destiny_path);
 		cmd = cmd->next;
 		exit_status_holder(0, true);
 	}
-	// if (!destiny_path)
-	// 	builtins_cd_switch_home_dir();
 	free(destiny_path);
 }
-
-// void	builtins_cd_switch_new_dir(char *destiny_path)
-// {
-// 	char	*actual_path;
-// 	int		err = 0;
-
-// 	actual_path = NULL;
-// 	actual_path = getcwd(actual_path, 100);
-// 	destiny_path = ft_strjoin(actual_path, "/");
-// 	chdir(destiny_path);
-// 	free(destiny_path);
-// 	free(actual_path);
-// 	exit_status_holder(0, true);
-// }
 
 void	builtins_cd_switch_home_dir(void)
 {
