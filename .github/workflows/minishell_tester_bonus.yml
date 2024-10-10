@@ -42,7 +42,7 @@ jobs:
         uses: actions/checkout@v4.1.4
 
       - name: Building Program with MiniShell Makefile
-        run: make
+        run: make bonus
 
       - name: Submodule Init
         run: git submodule init && git submodule update
