@@ -6,11 +6,21 @@
 /*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 13:23:46 by umeneses          #+#    #+#             */
-/*   Updated: 2024/10/09 23:43:40 by tmalheir         ###   ########.fr       */
+/*   Updated: 2024/10/10 18:43:37 by tmalheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+static bool	check_lst_next(t_token_list *lst)
+{
+	if (!lst->next)
+	{
+		builtins_cd_switch_home_dir();
+		return (false);
+	}
+	return (true);
+}
 
 static void	update_oldpwd(int alterable, char *str)
 {
@@ -25,15 +35,9 @@ static void	update_oldpwd(int alterable, char *str)
 		{
 			free(tmp->value);
 			if (!alterable)
-			{
-				// free(tmp->value);
 				tmp->value = ft_strdup(cwd);
-			}
 			else
-			{
-				// free(tmp->value);
 				tmp->value = ft_strdup(str);
-			}
 			tmp = goto_head_env_table(tmp);
 			(void)env_holder(tmp, true, false);
 			break ;
@@ -43,34 +47,37 @@ static void	update_oldpwd(int alterable, char *str)
 	}
 }
 
-void	builtins_runner_cd(t_token_list *lst)
+static bool	check_extra_args(t_token_list *cmd)
 {
-	t_token_list	*cmd;
-	int				destiny_len;
-	char			*destiny_path;
-	char			actual_path[PATH_MAX];
-
-	if (!lst->next)
-	{
-		builtins_cd_switch_home_dir();
-		return ;
-	}
-	cmd = lst->next;
-	destiny_path = NULL;
 	if (cmd->lexeme && cmd->next && cmd->next->lexeme)
 	{
 		write(STDERR_FILENO, "bash cd: too many arguments\n", 28);
 		exit_status_holder(1, true);
-		return ;
+		return (true);
 	}
+	return (false);
+}
+
+void	builtins_runner_cd(t_token_list *lst)
+{
+	t_token_list	*cmd;
+	char			*destiny_path;
+	char			actual_path[PATH_MAX];
+
+	if (!check_lst_next(lst))
+		return ;
+	cmd = lst->next;
+	destiny_path = NULL;
+	if (check_extra_args(cmd))
+		return ;
 	while (cmd && cmd->type == WORD)
 	{
 		destiny_path = ft_strdup(cmd->lexeme);
-		destiny_len = ft_strlen(destiny_path);
 		getcwd(actual_path, PATH_MAX);
 		if (chdir(destiny_path) != 0)
 		{
-			cd_error_msg(destiny_len, destiny_path, chdir(destiny_path));
+			cd_error_msg(ft_strlen(destiny_path), destiny_path,
+				chdir(destiny_path));
 			break ;
 		}
 		update_oldpwd(1, actual_path);
