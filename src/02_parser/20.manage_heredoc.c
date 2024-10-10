@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 18:23:53 by umeneses          #+#    #+#             */
-/*   Updated: 2024/10/09 22:13:42 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/10/09 22:45:04 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,8 @@ void	manage_heredoc(t_token_list *lst)
 				dup2(heredoc_fd, STDIN_FILENO);
 				break ;
 			}
-			if (!check_delimiter(delimiter, heredoc_fd, heredoc_input, line))
-				break ;
+			check_delimiter(delimiter, heredoc_fd, heredoc_input, line);
+			free(delimiter);
 		}
 		tmp = tmp->next;
 	}
@@ -53,8 +53,6 @@ void	manage_heredoc(t_token_list *lst)
 	dup2(original_stdin, STDIN_FILENO);
 	close(original_stdin);
 	is_heredoc_running(false, false);
-	if (delimiter != NULL)
-		free(delimiter);
 }
 
 void	path_file(t_token_list *lst)
@@ -71,9 +69,9 @@ void	path_file(t_token_list *lst)
 	{
 		if (tmp->type == REDIR_HDOC)
 		{
-			tmp->next->type = ARCHIVE;
 			free(tmp->next->lexeme);
 			tmp->next->lexeme = ft_strdup(pathname);
+			break ;
 		}
 		tmp = tmp->next;
 	}
