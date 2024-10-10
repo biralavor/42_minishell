@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/10 08:02:42 by umeneses          #+#    #+#             */
-/*   Updated: 2024/10/10 08:07:15 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/10/10 08:23:38 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	minishell_init(int ac, char **av, char **envp)
 {
 	if (ac > 1 && av)
 		extra_args();
-	signals_init(is_interactive());
+	signals_manager(is_interactive());
 	tty_proprieties_manager(false);
 	environment_init(envp);
 }

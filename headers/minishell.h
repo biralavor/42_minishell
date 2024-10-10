@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 10:53:20 by umeneses          #+#    #+#             */
-/*   Updated: 2024/10/10 08:10:05 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/10/10 08:22:16 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ void	minishell_init(int ac, char **av, char **envp);
 void	loop_routine(char *str);
 
 
-void	signals_init(bool interactive);
+void	signals_manager(bool interactive);
 
 void	interrupt_signal_runner(int sig);
 
@@ -72,5 +72,6 @@ bool	addto_history_detector(const char *input);
 
 bool	is_interactive(void);
 void	sigquit_activated(void);
+void	sigaction_error_manager(void);
 
 #endif
