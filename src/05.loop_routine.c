@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 09:20:45 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/10/09 11:41:38 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/10/09 22:02:55 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ void	loop_routine(char *str)
 		error_manager_lexer(LIST_NOT_CREATED);
 	if (lst && syntax_analysis(lst))
 	{
-		check_heredoc(lst);
+		manage_heredoc(lst);
 		token_tree = initiate_tree(token_list_holder(NULL, false, false));
 		tree_holder(token_tree, false);
 		tree_execution(token_tree, &flag);

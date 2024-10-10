@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/27 12:53:52 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/10/09 20:57:48 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/10/09 22:02:55 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,7 +124,7 @@ t_token_list	*find_src_node(t_token_list *lst, int src_idx);
 */
 t_token_list	*find_dst_node(t_token_list *lst, int dst_idx);
 
-void			check_heredoc(t_token_list *lst);
+void			manage_heredoc(t_token_list *lst);
 void			path_file(t_token_list *lst);
 int				check_delimiter(char *delimiter, int fd, char *input,
 					int line);

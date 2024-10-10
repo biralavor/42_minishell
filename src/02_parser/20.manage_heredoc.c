@@ -6,13 +6,13 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 18:23:53 by umeneses          #+#    #+#             */
-/*   Updated: 2024/10/09 20:57:35 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/10/09 22:13:42 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	check_heredoc(t_token_list *lst)
+void	manage_heredoc(t_token_list *lst)
 {
 	int				heredoc_fd;
 	int				flag;
