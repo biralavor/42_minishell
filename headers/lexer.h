@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   lexer.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 13:32:19 by tmalheir          #+#    #+#             */
 /*   Updated: 2024/10/09 21:38:08 by tmalheir         ###   ########.fr       */
@@ -55,6 +55,8 @@ enum e_token
  * @param str -> User input in command line.
 */
 bool	create_token_list(char *str, t_token_list **lst);
+
+t_token_list	*token_list_holder(t_token_list **lst, bool save, bool clear);
 
 /**
  * @brief Creates each token according to the present state.

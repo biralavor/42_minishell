@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 10:52:55 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/10/08 22:27:14 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/10/09 11:00:50 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,25 @@ bool	create_token_list(char *str, t_token_list **lst)
 		assign_lst_idx(*lst);
 	}
 	if (lst)
+	{
+		token_list_holder(lst, true, false);
 		return (true);
+	}
 	else
 		return (false);
+}
+
+t_token_list	*token_list_holder(t_token_list **lst, bool save, bool clear)
+{
+	static t_token_list	*token_list_holder = NULL;
+
+	if (save)
+		token_list_holder = *lst;
+	else if (clear)
+		free_token_list(&token_list_holder);
+	else if (!save && !clear)
+		return (token_list_holder);
+	return (NULL);
 }
 
 void	create_new_node(t_token_list **root, t_token_list *token)

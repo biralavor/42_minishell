@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 09:47:06 by umeneses          #+#    #+#             */
-/*   Updated: 2024/10/08 22:53:27 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/10/09 21:51:04 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,6 @@ void	signals_init(bool interactive)
 			perror("sigaction error");
 			exit(exit_status_holder(EXIT_FAILURE, true));
 		}
-		// fprintf(stderr, YELLOW"g_sigmonitor em signals init: %d\n"RESET, g_sigmonitor);
 	}
 	else
 	{
@@ -61,11 +60,13 @@ void	signals_init(bool interactive)
 
 void	interrupt_signal_runner(int sig)
 {
-	(void)sig;
+	g_sigmonitor = sig;
 	if (child_process_is_running(false, true))
 		env_holder(NULL, false, true);
 	if (is_heredoc_running(false, true))
 	{
+		token_list_holder(NULL, false, true);
+		is_heredoc_running(false, false);
 		close(STDIN_FILENO);
 		close(STDERR_FILENO);
 	}
@@ -117,7 +118,7 @@ void	sigquit_activated(void)
 {
 	if (exit_status_holder(0, false) == 131)
 	{
-		ft_putendl_fd(RED"^\\quit (core dumped) T.T"RESET, STDERR_FILENO);
+		ft_putendl_fd(RED" quit (core dumped) T.T"RESET, STDERR_FILENO);
 		tty_proprieties_manager(true);
 	}
 }
