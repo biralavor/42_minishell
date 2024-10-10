@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 10:53:20 by umeneses          #+#    #+#             */
-/*   Updated: 2024/10/10 10:43:30 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/10/10 18:35:30 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,7 @@ void	minishell_init(int ac, char **av, char **envp);
  * @param str -> User input in command line.
 */
 void	loop_routine(char *str);
+bool	heredoc_routine(t_token_list *lst);
 
 void	signals_manager(bool interactive);
 
