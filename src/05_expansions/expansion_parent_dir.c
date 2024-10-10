@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expansion_parent_dir.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/07 13:22:09 by umeneses          #+#    #+#             */
-/*   Updated: 2024/10/09 22:14:30 by tmalheir         ###   ########.fr       */
+/*   Updated: 2024/10/10 20:32:28 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,6 @@ char	*expansion_parent_dir_runner(char *lex)
 			parent_path[idx] = '\0';
 	}
 	free(lex);
-	exit_status_holder(0, true);
+	// exit_status_holder(0, true);
 	return (parent_path);
 }

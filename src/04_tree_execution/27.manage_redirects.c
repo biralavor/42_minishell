@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/04 10:20:13 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/10/10 16:22:05 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/10/10 20:25:58 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ int	manage_redirect(t_tree *tree, int *flag)
 		return (exit_status_holder(0, false));
 	}
 	if (try_open_redir(tree, &new_fd, flag, std_fd))
-		return (exit_status_holder(EXIT_FAILURE, true));
+		return (exit_status_holder(0, false));
 	finalize_redirect(tree, flag, std_fd);
 	return (exit_status_holder(0, false));
 }

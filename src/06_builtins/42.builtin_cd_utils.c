@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/02 10:19:07 by umeneses          #+#    #+#             */
-/*   Updated: 2024/09/21 14:56:56 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/10/10 20:33:50 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	cd_error_msg(int destiny_len, char *destiny_path, int chdir_status)
 		write(STDERR_FILENO, destiny_path, destiny_len);
 		write(STDERR_FILENO, ": Not a directory\n", 18);
 	}
-	exit_status_holder(1, true);
+	exit_status_holder(EXIT_FAILURE, true);
 }
 
 bool	is_path_a_directory(char *path)
