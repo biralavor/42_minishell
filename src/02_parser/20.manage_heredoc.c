@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 18:23:53 by umeneses          #+#    #+#             */
-/*   Updated: 2024/10/10 09:30:18 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/10/10 13:00:21 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,6 +113,8 @@ int	check_delimiter(char *delimiter, int fd)
 	}
 	if (input == NULL && is_heredoc_running(false, true) && g_sigmonitor != SIGINT)
 		heredoc_forcing_exit_warning(input, delimiter, line, fd);
+	else
+		exit_status_holder(EXIT_SUCCESS, true);
 	if (input)
 		free(input);
 	return (0);
