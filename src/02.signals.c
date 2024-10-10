@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 09:47:06 by umeneses          #+#    #+#             */
-/*   Updated: 2024/10/10 08:21:25 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/10/10 10:09:42 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,26 +16,26 @@ volatile sig_atomic_t	g_sigmonitor = 0;
 
 void	signals_manager(bool interactive)
 {
-	struct sigaction	signal;
+	struct sigaction	all_signals;
 
-	signal.sa_handler = interrupt_signal_runner;
-	sigemptyset(&signal.sa_mask);
-	signal.sa_flags = SA_RESTART;
-	if (sigaction(SIGINT, &signal, NULL) == -1)
+	all_signals.sa_handler = interrupt_signal_runner;
+	sigemptyset(&all_signals.sa_mask);
+	all_signals.sa_flags = SA_RESTART;
+	if (sigaction(SIGINT, &all_signals, NULL) == -1)
 		sigaction_error_manager();
 	if (interactive)
 	{
-		signal.sa_handler = SIG_IGN;
-		sigemptyset(&signal.sa_mask);
-		signal.sa_flags = SA_RESTART;
-		if (sigaction(SIGQUIT, &signal, NULL) == -1)
+		all_signals.sa_handler = SIG_IGN;
+		sigemptyset(&all_signals.sa_mask);
+		all_signals.sa_flags = SA_RESTART;
+		if (sigaction(SIGQUIT, &all_signals, NULL) == -1)
 			sigaction_error_manager();
 	}
 	else
-		signal.sa_handler = SIG_DFL;
-	sigemptyset(&signal.sa_mask);
-	signal.sa_flags = SA_RESTART;
-	if (sigaction(SIGQUIT, &signal, NULL) == -1)
+		all_signals.sa_handler = SIG_DFL;
+	sigemptyset(&all_signals.sa_mask);
+	all_signals.sa_flags = SA_RESTART;
+	if (sigaction(SIGQUIT, &all_signals, NULL) == -1)
 		sigaction_error_manager();
 }
 
