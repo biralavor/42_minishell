@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/10 08:02:42 by umeneses          #+#    #+#             */
-/*   Updated: 2024/10/10 17:15:45 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/10/10 17:43:44 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,10 @@ void	control_d_handler(void)
 	if (g_sigmonitor == SIGUSR1)
 	{
 		fprintf(stderr, RED">>>>>>>>>>>>>>>> 2nd SIGUSR1\n");
-		ft_lst_printer(token_list_holder(NULL, false, true));
+		ft_lst_printer(token_list_holder(NULL, false, false));
 		ft_tree_printer(tree_holder(NULL, false));
+		token_list_holder(NULL, false, true);
+		tree_holder(NULL, true);
 		g_sigmonitor = 0;
 	}
 	close(STDIN_FILENO);
