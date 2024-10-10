@@ -6,7 +6,7 @@
 /*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/20 10:35:11 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/10/09 16:52:44 by tmalheir         ###   ########.fr       */
+/*   Updated: 2024/10/09 21:41:23 by tmalheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,13 +88,7 @@ int	state_90(t_token_list **lst, char *str, int idx)
 		&& !(is_blank(str[idx])) && (str[idx]))
 	{
 		if (str[idx] == '"')
-		{
-			while(str[++idx] != '"')
-			{
-				if (str[idx] == '"')
-					break;
-			}
-		}
+			idx = find_next_quote(str, idx);
 		idx++;
 	}
 	end = (size_t)(idx - 1);
