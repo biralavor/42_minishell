@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 10:53:20 by umeneses          #+#    #+#             */
-/*   Updated: 2024/10/10 08:08:17 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/10/10 08:10:05 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,14 +46,18 @@
 # include "builtins.h"
 # include "expansion.h"
 
+extern volatile sig_atomic_t	g_sigmonitor;
+
 /*INITIAL FUNCTIONS*/
+
+void	minishell_init(int ac, char **av, char **envp);
+
 /**
  * @brief     -> main function that calls for lexer, parser and executor.
  * @param str -> User input in command line.
 */
 void	loop_routine(char *str);
 
-extern volatile sig_atomic_t	g_sigmonitor;
 
 void	signals_init(bool interactive);
 
