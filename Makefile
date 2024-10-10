@@ -47,7 +47,7 @@ LIBS					= $(LIBFT)
 NAME					= minishell
 
 SRC_FILES				= 01.main.c
-SRC_FILES				+= minishell_init.c
+SRC_FILES				+= 02.minishell_init.c
 SRC_FILES				+= 02.signals.c
 SRC_FILES				+= 03.env_init.c
 SRC_FILES				+= 04.env_init_utils.c
@@ -71,7 +71,7 @@ SRC_FILES				+= ./02_parser/18.check_redirects_utils.c
 SRC_FILES				+= ./02_parser/19.error_manager_parser.c
 SRC_FILES				+= ./02_parser/20.manage_heredoc.c
 SRC_FILES				+= ./02_parser/heredoc_expansions.c
-SRC_FILES				+= ./02_parser/heredoc_fds.c
+SRC_FILES				+= ./02_parser/heredoc_errors.c
 SRC_FILES				+= ./03_binary_tree/21.building_tree.c
 SRC_FILES				+= ./03_binary_tree/22.building_tree_utils.c
 SRC_FILES				+= ./04_tree_execution/23.tree_execution.c

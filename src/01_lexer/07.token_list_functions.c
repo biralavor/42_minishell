@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 10:52:55 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/10/10 17:54:20 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/10/10 18:20:27 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ t_token_list	*token_list_holder(t_token_list **lst, bool save, bool clear)
 	static t_token_list	*token_list_holder = NULL;
 
 	if (save)
-		token_list_holder = *lst;
+		token_list_holder = go_to_first_node(*lst);
 	else if (clear)
 		free_token_list(&token_list_holder);
 	else if (!save && !clear)

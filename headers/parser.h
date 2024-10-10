@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/27 12:53:52 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/10/10 09:28:11 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/10/10 18:46:57 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,12 +39,6 @@ int				state_200(t_token_list *lst, int syntax_state);
 int				state_300(t_token_list *lst, int syntax_state);
 
 /*SYNTAX ERROR CHECKING FUNCTIONS*/
-
-/**
- * @brief Check for single ampersand, semicolon and backlash.
- * @param lst -> the token list.
-*/
-bool			check_lexeme(t_token_list *lst);
 
 /**
  * @brief Auxiliar function to check for single &, semicolon and backlash.
@@ -124,9 +118,10 @@ t_token_list	*find_src_node(t_token_list *lst, int src_idx);
 */
 t_token_list	*find_dst_node(t_token_list *lst, int dst_idx);
 
+bool			heredoc_detector(t_token_list *lst);
 void			manage_heredoc(t_token_list *lst);
 void			path_file(t_token_list *lst);
-int				check_delimiter(char *delimiter, int fd);
+bool			check_eof_del(char *delimiter, int fd);
 
 void			heredoc_fd_reset(int *heredoc_fd);
 bool			is_heredoc_running(bool update, bool caller);
@@ -135,7 +130,9 @@ void			heredoc_forcing_exit_warning(char *input, char *delimiter,
 
 int				check_dollar_sign_for_heredoc(char *input, int idx, int fd);
 int				check_question_mark_for_heredoc(int idx, int fd);
-int				heredoc_fd_error_runner(int heredoc_fd);
-void			heredoc_fd_reset(int *heredoc_fd);
+bool			hd_fd_error_runner(int heredoc_fd);
+bool			is_demiliter_null(char *delimiter);
+bool			is_signal_sigint(int heredoc_fd);
+void			heredoc_cleanup(int hd_fd, int original_stdin, char *eof_del);
 
 #endif

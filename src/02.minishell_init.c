@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell_init.c                                   :+:      :+:    :+:   */
+/*   02.minishell_init.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/10 08:02:42 by umeneses          #+#    #+#             */
-/*   Updated: 2024/10/10 08:23:38 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/10/10 18:25:06 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,12 @@ void	control_d_handler(void)
 {
 	ft_putendl_fd("exit", STDOUT_FILENO);
 	env_holder(NULL, false, true);
+	if (g_sigmonitor == SIGUSR1)
+	{
+		token_list_holder(NULL, false, true);
+		tree_holder(NULL, true);
+		g_sigmonitor = 0;
+	}
 	close(STDIN_FILENO);
 	close(STDOUT_FILENO);
 	close(STDERR_FILENO);

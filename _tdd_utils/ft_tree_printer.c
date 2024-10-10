@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/06 11:33:44 by umeneses          #+#    #+#             */
-/*   Updated: 2024/08/16 09:48:05 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/10/10 17:13:55 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,10 @@ void	ft_tree_printer(t_tree *root)
 	t_token_list	*next_command;
 
 	if (root == NULL)
+	{
+		fprintf(stderr, "\033[0;33mEmpty Tree\033[0m\n");
 		return ;
+	}
 	if (root->type != 0)
 	{
 		fprintf(stderr, "|___________________________________________________|\n");

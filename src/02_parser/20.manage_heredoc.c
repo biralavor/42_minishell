@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 18:23:53 by umeneses          #+#    #+#             */
-/*   Updated: 2024/10/10 13:00:21 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/10/10 18:45:18 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,46 +14,39 @@
 
 void	manage_heredoc(t_token_list *lst)
 {
-	int				heredoc_fd;
-	int				flag;
-	char			*delimiter;
+	int				hd_fd;
+	char			*eof_del;
 	t_token_list	*tmp;
 	int				original_stdin;
-	
-	flag = 0;
-	heredoc_fd = -1;
-	delimiter = NULL;
+
+	hd_fd = -1;
+	eof_del = NULL;
 	tmp = lst;
 	original_stdin = dup(STDIN_FILENO);
 	while (tmp && tmp->next)
 	{
 		if (tmp->type == REDIR_HDOC)
 		{
-			delimiter = redir_quote_detector(ft_strdup(tmp->next->lexeme), &flag);
-			if (delimiter == NULL)
-			{
-				ft_putendl_fd(" syntax error near unexpected token `newline'", STDERR_FILENO);
-				exit_status_holder(2, true);
-				break ;
-			}
+			eof_del = redir_quote_detector(ft_strdup(tmp->next->lexeme), 0);
 			path_file(lst);
-			heredoc_fd_reset(&heredoc_fd);
-			heredoc_fd = open(tmp->next->lexeme, O_CREAT | O_RDWR | O_TRUNC, 0644);
-			if (heredoc_fd_error_runner(heredoc_fd))
+			heredoc_fd_reset(&hd_fd);
+			hd_fd = open(tmp->next->lexeme, O_CREAT | O_RDWR | O_TRUNC, 0644);
+			if (is_demiliter_null(eof_del) || hd_fd_error_runner(hd_fd)
+				|| !check_eof_del(eof_del, hd_fd) || is_signal_sigint(hd_fd))
 				break ;
-			check_delimiter(delimiter, heredoc_fd);
-			free(delimiter);
-			if (g_sigmonitor == SIGINT)
-			{
-				dup2(heredoc_fd, STDIN_FILENO);
-				break ;
-			}
 		}
 		tmp = tmp->next;
 	}
-	heredoc_fd_reset(&heredoc_fd);
+	heredoc_cleanup(hd_fd, original_stdin, eof_del);
+}
+
+void	heredoc_cleanup(int hd_fd, int original_stdin, char *eof_del)
+{
+	heredoc_fd_reset(&hd_fd);
 	dup2(original_stdin, STDIN_FILENO);
 	close(original_stdin);
+	if (eof_del)
+		free(eof_del);
 	is_heredoc_running(false, false);
 }
 
@@ -81,7 +74,7 @@ void	path_file(t_token_list *lst)
 	free(pathname);
 }
 
-int	check_delimiter(char *delimiter, int fd)
+bool	check_eof_del(char *delimiter, int fd)
 {
 	int		idx;
 	int		line;
@@ -111,13 +104,18 @@ int	check_delimiter(char *delimiter, int fd)
 		write(fd, "\n", 1);
 		free(input);
 	}
-	if (input == NULL && is_heredoc_running(false, true) && g_sigmonitor != SIGINT)
+	if (input == NULL && is_heredoc_running(false, true)
+		&& g_sigmonitor != SIGINT)
+	{
 		heredoc_forcing_exit_warning(input, delimiter, line, fd);
+		return (false);
+	}
 	else
 		exit_status_holder(EXIT_SUCCESS, true);
 	if (input)
 		free(input);
-	return (0);
+	free(delimiter);
+	return (true);
 }
 
 bool	is_heredoc_running(bool update, bool caller)
@@ -131,21 +129,4 @@ bool	is_heredoc_running(bool update, bool caller)
 	else if (!update && !caller)
 		heredoc_running = false;
 	return (heredoc_running);
-}
-
-void	heredoc_forcing_exit_warning(char *input, char *delimiter, int line, int fd)
-{
-	char	*line_as_str;
-
-	(void)fd;
-	line_as_str = ft_itoa(line);
-	ft_putstr_fd(" here-document at line ", STDERR_FILENO);
-	ft_putstr_fd(line_as_str, STDERR_FILENO);
-	ft_putstr_fd(" delimited by end-of-file (wanted `", STDERR_FILENO);
-	ft_putstr_fd(delimiter, STDERR_FILENO);
-	ft_putendl_fd("')", STDERR_FILENO);
-	env_holder(NULL, false, true);
-	free(input);
-	free(line_as_str);
-	exit_status_holder(EXIT_SUCCESS, true);
 }
