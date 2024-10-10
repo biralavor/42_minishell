@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 10:53:20 by umeneses          #+#    #+#             */
-/*   Updated: 2024/10/09 20:50:47 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/10/10 08:27:50 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,16 +46,19 @@
 # include "builtins.h"
 # include "expansion.h"
 
+extern volatile sig_atomic_t	g_sigmonitor;
+
 /*INITIAL FUNCTIONS*/
+
+void	minishell_init(int ac, char **av, char **envp);
+
 /**
  * @brief     -> main function that calls for lexer, parser and executor.
  * @param str -> User input in command line.
 */
 void	loop_routine(char *str);
 
-extern volatile sig_atomic_t	g_sigmonitor;
-
-void	signals_init(bool interactive);
+void	signals_manager(bool interactive);
 
 void	interrupt_signal_runner(int sig);
 
@@ -63,10 +66,11 @@ void	tty_proprieties_manager(bool update);
 
 bool	is_after_loop(bool update);
 
-void	control_d_handler(char *input);
+void	control_d_handler(void);
 bool	addto_history_detector(const char *input);
 
 bool	is_interactive(void);
 void	sigquit_activated(void);
+void	sigaction_error_manager(void);
 
 #endif

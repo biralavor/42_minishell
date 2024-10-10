@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 12:58:03 by umeneses          #+#    #+#             */
-/*   Updated: 2024/10/08 22:49:59 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/10/10 08:13:00 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ void	free_env_table(t_env_entry **table)
 		if (curr)
 			free(curr);
 		curr = tmp;
-    }
+	}
 	*table = NULL;
 }
 
