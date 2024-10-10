@@ -6,7 +6,7 @@
 /*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 13:23:46 by umeneses          #+#    #+#             */
-/*   Updated: 2024/10/09 22:34:53 by tmalheir         ###   ########.fr       */
+/*   Updated: 2024/10/09 23:29:39 by tmalheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,24 +46,18 @@ t_env_entry	*copy_env_table(t_env_entry *env_vars)
 	t_env_entry	*head;
 	t_env_entry	*curr;
 
-	if (!env_vars)
+	if (!env_vars || !env_vars->key || !env_vars->value || !env_vars->size)
 		return (NULL);
-	if (!env_vars->key || !env_vars->value || !env_vars->size)
-		return (NULL);
-	env_copy = create_new_entry(env_vars->key, env_vars->value, env_vars->size);
+	env_copy = create_entry_copy(env_vars);
 	if (!env_copy)
-	{
-		ft_putendl_fd("Error: Failed to create new entry", STDERR_FILENO);
 		return (NULL);
-	}
 	head = env_vars->next;
 	curr = env_copy;
 	while (head != NULL)
 	{
-		curr->next = create_new_entry(head->key, head->value, head->size);
+		curr->next = create_entry_copy(head);
 		if (!curr->next)
 		{
-			ft_putendl_fd("Error: Failed to create new entry", STDERR_FILENO);
 			free_env_table(&env_copy);
 			return (NULL);
 		}

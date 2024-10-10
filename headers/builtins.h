@@ -6,7 +6,7 @@
 /*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 14:57:00 by umeneses          #+#    #+#             */
-/*   Updated: 2024/10/09 12:03:59 by tmalheir         ###   ########.fr       */
+/*   Updated: 2024/10/09 23:29:27 by tmalheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,6 +101,8 @@ void		arg_handle_runner(t_env_entry *env_vars, char *arg);
  * @param state the handler state of the argument.
  */
 int			arg_handle_state_detector(int state, char *arg);
+
+t_env_entry	*create_entry_copy(t_env_entry *src);
 
 void		replace_env_var(t_env_entry *env_vars, char *var_key, char *var_value);
 

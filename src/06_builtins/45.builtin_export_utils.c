@@ -6,7 +6,7 @@
 /*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 13:23:46 by umeneses          #+#    #+#             */
-/*   Updated: 2024/10/09 22:57:37 by tmalheir         ###   ########.fr       */
+/*   Updated: 2024/10/09 23:29:49 by tmalheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,4 +105,14 @@ void	ft_env_printer_classic(t_env_entry *env_vars)
 			ft_putstr_fd("\n", STDOUT_FILENO);
 		tmp = tmp->next;
 	}
+}
+
+t_env_entry	*create_entry_copy(t_env_entry *src)
+{
+	t_env_entry	*new_entry;
+
+	new_entry = create_new_entry(src->key, src->value, src->size);
+	if (!new_entry)
+		ft_putendl_fd("Error: Failed to create new entry", STDERR_FILENO);
+	return (new_entry);
 }
