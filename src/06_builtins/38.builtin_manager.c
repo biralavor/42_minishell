@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   38.builtin_manager.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 13:23:46 by umeneses          #+#    #+#             */
-/*   Updated: 2024/10/08 15:34:35 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/10/09 15:04:36 by tmalheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ void	builtins_with_possible_args_manager(t_token_list *lst)
 	cmd = lst;
 	if (ft_strcmp(cmd->lexeme, "export") == 0)
 	{
-		if (cmd->next && cmd->next->type == WORD)
+		if (cmd->next && (cmd->next->type == WORD || cmd->next->type == SINGLE_QUOTES || cmd->next->type == DOUBLE_QUOTES))
 			execute_multiple_args(cmd->next, builtins_runner_export);
 		else
 			builtins_runner_export(NULL);
