@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 10:53:12 by umeneses          #+#    #+#             */
-/*   Updated: 2024/10/10 10:43:06 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/10/10 16:08:09 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,8 @@ int	main(int ac, char **av, char **envp)
 		if (addto_history_detector(input))
 			add_history(input);
 		loop_routine(input);
+		if (g_sigmonitor == SIGUSR1)
+			token_list_holder(NULL, false, true);
 		wait(NULL);
 		free(input);
 	}

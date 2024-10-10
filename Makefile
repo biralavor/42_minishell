@@ -47,7 +47,7 @@ LIBS					= $(LIBFT)
 NAME					= minishell
 
 SRC_FILES				= 01.main.c
-SRC_FILES				+= minishell_init.c
+SRC_FILES				+= 02.minishell_init.c
 SRC_FILES				+= 02.signals.c
 SRC_FILES				+= 03.env_init.c
 SRC_FILES				+= 04.env_init_utils.c
