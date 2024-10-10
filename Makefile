@@ -277,7 +277,7 @@ go:					all
 gdb:				all
 					gdb --tui -ex 'b main' -ex 'set detach-on-fork off' -ex 'info inferiors' -ex 'run > /dev/null 2>&1' ./$(NAME)
 
-val:				all
+val:				re
 					valgrind --leak-check=full --track-origins=yes --trace-children-skip='*/bin/*,*/sbin/*,/usr/bin/*' --trace-children=yes --track-fds=yes --show-reachable=yes --suppressions=readline.sup ./$(NAME)
 
 .PHONY:				all clean fclean re bonus min val gdb
