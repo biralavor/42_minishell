@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   02.signals.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 09:47:06 by umeneses          #+#    #+#             */
-/*   Updated: 2024/10/10 10:44:02 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/10/10 12:10:32 by tmalheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ void	sigaction_error_manager(void)
 void	interrupt_signal_runner(int sig)
 {
 	g_sigmonitor = sig;
-	if (child_process_is_running(false, true))
+	if (child_process_is_running(false, true) && !(isatty(STDIN_FILENO) && isatty(STDOUT_FILENO)))
 		env_holder(NULL, false, true);
 	if (is_heredoc_running(false, true))
 	{
