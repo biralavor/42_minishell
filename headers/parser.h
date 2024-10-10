@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/27 12:53:52 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/10/10 15:22:17 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/10/10 18:46:57 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,12 +39,6 @@ int				state_200(t_token_list *lst, int syntax_state);
 int				state_300(t_token_list *lst, int syntax_state);
 
 /*SYNTAX ERROR CHECKING FUNCTIONS*/
-
-/**
- * @brief Check for single ampersand, semicolon and backlash.
- * @param lst -> the token list.
-*/
-bool			check_lexeme(t_token_list *lst);
 
 /**
  * @brief Auxiliar function to check for single &, semicolon and backlash.

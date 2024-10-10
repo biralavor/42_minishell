@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 09:20:45 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/10/10 18:35:45 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/10/10 18:44:14 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ bool	heredoc_routine(t_token_list *lst)
 	if (heredoc_detector(lst))
 		manage_heredoc(lst);
 	if (g_sigmonitor == SIGUSR1
-	&& !child_process_is_running(false, true))
+		&& !child_process_is_running(false, true))
 	{
 		token_list_holder(&lst, true, false);
 		return (false);

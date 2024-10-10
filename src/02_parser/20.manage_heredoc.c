@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 18:23:53 by umeneses          #+#    #+#             */
-/*   Updated: 2024/10/10 16:33:08 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/10/10 18:45:18 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,7 +104,8 @@ bool	check_eof_del(char *delimiter, int fd)
 		write(fd, "\n", 1);
 		free(input);
 	}
-	if (input == NULL && is_heredoc_running(false, true) && g_sigmonitor != SIGINT)
+	if (input == NULL && is_heredoc_running(false, true)
+		&& g_sigmonitor != SIGINT)
 	{
 		heredoc_forcing_exit_warning(input, delimiter, line, fd);
 		return (false);
