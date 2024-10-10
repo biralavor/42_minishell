@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expansion_parent_dir.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/07 13:22:09 by umeneses          #+#    #+#             */
-/*   Updated: 2024/10/08 08:10:34 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/10/09 22:14:30 by tmalheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@ bool	expansion_parent_dir_detector(char *lex)
 
 	idx = 0;
 	if (lex)
-	{	
-		while(lex[idx])
+	{
+		while (lex[idx])
 		{
 			if (lex[idx] == '.' && lex[idx + 1] == '.')
 				return (true);
@@ -27,6 +27,22 @@ bool	expansion_parent_dir_detector(char *lex)
 		}
 	}
 	return (false);
+}
+
+static int	count_slashes(char *lex)
+{
+	int	count;
+	int	idx;
+
+	count = 0;
+	idx = 0;
+	while (lex[idx])
+	{
+		if (lex[idx] == '/')
+			count++;
+		idx++;
+	}
+	return (count + 1);
 }
 
 char	*expansion_parent_dir_runner(char *lex)
@@ -37,13 +53,7 @@ char	*expansion_parent_dir_runner(char *lex)
 	char	*parent_path;
 
 	idx = 0;
-	slash = 1;
-	while(lex[idx])
-	{
-		if (lex[idx] == '/')
-			slash++;
-		idx++;
-	}
+	slash = count_slashes(lex);
 	idx = 0;
 	actual_path = NULL;
 	parent_path = NULL;
