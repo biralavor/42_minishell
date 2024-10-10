@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   24.tree_execution_utils.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/28 14:37:28 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/09/12 14:37:37 by tmalheir         ###   ########.fr       */
+/*   Updated: 2024/10/10 20:26:59 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int	fork_error(void)
 {
 	ft_putstr_fd(strerror(errno), STDERR_FILENO);
-	return (-1);
+	return (exit_status_holder(EXIT_FAILURE, true));
 }
 
 bool	is_redir_out(int type)

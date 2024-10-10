@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   41.builtin_cd.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 13:23:46 by umeneses          #+#    #+#             */
-/*   Updated: 2024/10/10 20:35:15 by tmalheir         ###   ########.fr       */
+/*   Updated: 2024/10/11 01:19:17 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ void	builtins_runner_cd(t_token_list *lst)
 		}
 		update_oldpwd(1, actual_path);
 		cmd = cmd->next;
-		exit_status_holder(0, true);
+		// exit_status_holder(0, true);
 	}
 	free(destiny_path);
 }
@@ -100,5 +100,5 @@ void	builtins_cd_switch_home_dir(void)
 	home_path = ft_strjoin(home_path, "/");
 	chdir(home_path);
 	free(home_path);
-	exit_status_holder(0, true);
+	// exit_status_holder(0, true);
 }
