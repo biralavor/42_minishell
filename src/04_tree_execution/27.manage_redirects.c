@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/04 10:20:13 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/10/09 14:02:14 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/10/10 16:22:05 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int	manage_redirect(t_tree *tree, int *flag)
 	std_fd[1] = dup(STDOUT_FILENO);
 	if (is_redirect(tree->type))
 		process_left_redirect(tree, flag);
-	if (*flag == -1)
+	if (flag && *flag == -1)
 	{
 		restore_standard_fds(std_fd);
 		return (exit_status_holder(0, false));
@@ -103,7 +103,7 @@ static int	try_open_redir(t_tree *tree, int *new_fd, int *flag, int *std_fd)
 
 static int	finalize_redirect(t_tree *tree, int *flag, int *std_fd)
 {
-	if (*flag > 0)
+	if (flag && *flag > 0)
 	{
 		decrement_flag_and_close_fds(flag, std_fd);
 		return (exit_status_holder(0, false));
