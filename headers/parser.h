@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/27 12:53:52 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/10/09 22:02:55 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/10/10 09:28:11 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,8 +126,7 @@ t_token_list	*find_dst_node(t_token_list *lst, int dst_idx);
 
 void			manage_heredoc(t_token_list *lst);
 void			path_file(t_token_list *lst);
-int				check_delimiter(char *delimiter, int fd, char *input,
-					int line);
+int				check_delimiter(char *delimiter, int fd);
 
 void			heredoc_fd_reset(int *heredoc_fd);
 bool			is_heredoc_running(bool update, bool caller);

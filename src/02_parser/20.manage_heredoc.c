@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 18:23:53 by umeneses          #+#    #+#             */
-/*   Updated: 2024/10/09 22:47:33 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/10/10 09:30:18 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,36 +16,38 @@ void	manage_heredoc(t_token_list *lst)
 {
 	int				heredoc_fd;
 	int				flag;
-	char			*heredoc_input;
 	char			*delimiter;
 	t_token_list	*tmp;
-	int				line;
 	int				original_stdin;
-
-	line = 0;
+	
 	flag = 0;
 	heredoc_fd = -1;
-	heredoc_input = NULL;
 	delimiter = NULL;
 	tmp = lst;
 	original_stdin = dup(STDIN_FILENO);
-	while (tmp->next)
+	while (tmp && tmp->next)
 	{
 		if (tmp->type == REDIR_HDOC)
 		{
 			delimiter = redir_quote_detector(ft_strdup(tmp->next->lexeme), &flag);
-			path_file(tmp);
+			if (delimiter == NULL)
+			{
+				ft_putendl_fd(" syntax error near unexpected token `newline'", STDERR_FILENO);
+				exit_status_holder(2, true);
+				break ;
+			}
+			path_file(lst);
 			heredoc_fd_reset(&heredoc_fd);
 			heredoc_fd = open(tmp->next->lexeme, O_CREAT | O_RDWR | O_TRUNC, 0644);
 			if (heredoc_fd_error_runner(heredoc_fd))
 				break ;
+			check_delimiter(delimiter, heredoc_fd);
+			free(delimiter);
 			if (g_sigmonitor == SIGINT)
 			{
 				dup2(heredoc_fd, STDIN_FILENO);
 				break ;
 			}
-			check_delimiter(delimiter, heredoc_fd, heredoc_input, line);
-			free(delimiter);
 		}
 		tmp = tmp->next;
 	}
@@ -79,16 +81,14 @@ void	path_file(t_token_list *lst)
 	free(pathname);
 }
 
-int	check_delimiter(char *delimiter, int fd, char *input, int line)
+int	check_delimiter(char *delimiter, int fd)
 {
-	int	idx;
+	int		idx;
+	int		line;
+	char	*input;
 
-	if (delimiter == NULL)
-	{
-		free(input);
-		ft_putendl_fd(" syntax error near unexpected token `newline'", STDERR_FILENO);
-		return (exit_status_holder(2, true));
-	}
+	line = 0;
+	input = NULL;
 	while (true)
 	{
 		is_heredoc_running(true, true);
