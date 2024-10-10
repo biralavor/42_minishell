@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/09 20:56:22 by umeneses          #+#    #+#             */
-/*   Updated: 2024/10/10 15:28:01 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/10/10 18:42:25 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,8 @@ bool	is_demiliter_null(char *delimiter)
 {
 	if (delimiter == NULL)
 	{
-		ft_putendl_fd(" syntax error near unexpected token `newline'", STDERR_FILENO);
+		ft_putendl_fd(" syntax error near unexpected token `newline'",
+			STDERR_FILENO);
 		exit_status_holder(2, true);
 		return (true);
 	}
@@ -53,7 +54,8 @@ bool	is_signal_sigint(int heredoc_fd)
 	return (false);
 }
 
-void	heredoc_forcing_exit_warning(char *input, char *delimiter, int line, int fd)
+void	heredoc_forcing_exit_warning(char *input, char *delimiter,
+			int line, int fd)
 {
 	char	*line_as_str;
 

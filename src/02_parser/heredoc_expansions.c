@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/09 20:54:18 by umeneses          #+#    #+#             */
-/*   Updated: 2024/10/09 21:09:54 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/10/10 18:43:10 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,8 @@ int	check_dollar_sign_for_heredoc(char *input, int idx, int fd)
 		while (input[idx] && !is_blank(input[idx]))
 			idx++;
 		end = (size_t)idx;
-		var = expansion_env_var_runner((ft_substr(input, start, (end - start))), 0);
+		var = expansion_env_var_runner((ft_substr(input, start,
+				(end - start))), 0);
 		idx = 0;
 		while (var[idx])
 		{
