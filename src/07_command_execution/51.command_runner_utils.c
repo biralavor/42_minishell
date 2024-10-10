@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   51.command_runner_utils.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/16 09:43:43 by umeneses          #+#    #+#             */
-/*   Updated: 2024/10/08 21:27:59 by tmalheir         ###   ########.fr       */
+/*   Updated: 2024/10/10 12:06:37 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ char	**convert_envs_to_array(t_env_entry *env_vars)
 	idx = 0;
 	all_envs = NULL;
 	tmp = env_vars;
-	all_envs = (char **)ft_calloc(1, sizeof(char **) * (env_vars->size + 1));
+	all_envs = (char **)ft_calloc(1, sizeof(char **) * (env_vars->size + 2));
 	while (tmp)
 	{
 		updated_key = ft_strjoin(tmp->key, "=");
