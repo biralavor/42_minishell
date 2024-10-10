@@ -6,7 +6,7 @@
 /*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/07 13:22:09 by umeneses          #+#    #+#             */
-/*   Updated: 2024/10/09 22:14:30 by tmalheir         ###   ########.fr       */
+/*   Updated: 2024/10/10 20:23:37 by tmalheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,9 +59,9 @@ char	*expansion_parent_dir_runner(char *lex)
 	parent_path = NULL;
 	actual_path = getcwd(actual_path, 100);
 	parent_path = actual_path;
-	while (actual_path[idx])
+	while (actual_path && actual_path[idx])
 		idx++;
-	while (parent_path[--idx] && slash > 0)
+	while (parent_path && parent_path[--idx] && slash > 0)
 	{
 		if (parent_path[idx] == '/')
 			slash--;

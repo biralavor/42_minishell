@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   30.expansion_manager.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/26 18:31:10 by umeneses          #+#    #+#             */
-/*   Updated: 2024/10/08 19:17:07 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/10/10 20:21:26 by tmalheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,11 +52,11 @@ void	expansion_manager(t_token_list *cmd)
 		tmp->lexeme = quote_detector(tmp, tmp->lexeme, &flag);
 		if (!flag)
 		{
-			if (expansion_parent_dir_detector(tmp->lexeme))
+			if (tmp->lexeme && expansion_parent_dir_detector(tmp->lexeme))
 				tmp->lexeme = expansion_parent_dir_runner(tmp->lexeme);
-			if (expansion_tilde_detector(tmp->lexeme))
+			if (tmp->lexeme && expansion_tilde_detector(tmp->lexeme))
 				tmp->lexeme = expansion_tilde_to_home(tmp->lexeme);
-			if (expansion_dollar_sign_detector(tmp))
+			if (tmp->lexeme && expansion_dollar_sign_detector(tmp))
 			{
 				if (expansion_question_mark_detector(tmp->lexeme))
 					tmp->lexeme = expansion_question_mark(tmp->lexeme);
