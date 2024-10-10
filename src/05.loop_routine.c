@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 09:20:45 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/10/09 22:02:55 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/10/10 15:39:51 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,20 @@ bool	check_initial_errors(char *str)
 		return (false);
 	else
 		return (true);
+}
+
+bool	heredoc_detector(t_token_list *lst)
+{
+	t_token_list	*tmp;
+
+	tmp = lst;
+	while (tmp)
+	{
+		if (tmp->type == REDIR_HDOC)
+			return (true);
+		tmp = tmp->next;
+	}
+	return (false);
 }
 
 void	loop_routine(char *str)
@@ -41,7 +55,15 @@ void	loop_routine(char *str)
 		error_manager_lexer(LIST_NOT_CREATED);
 	if (lst && syntax_analysis(lst))
 	{
-		manage_heredoc(lst);
+		if (heredoc_detector(lst))
+			manage_heredoc(lst);
+		if (g_sigmonitor == SIGUSR1
+			&& !child_process_is_running(false, true))
+		{
+			free_token_list(&lst);
+			g_sigmonitor = 0;
+			return ;
+		}
 		token_tree = initiate_tree(token_list_holder(NULL, false, false));
 		tree_holder(token_tree, false);
 		tree_execution(token_tree, &flag);
