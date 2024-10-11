@@ -6,7 +6,7 @@
 #    By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/23 16:00:54 by umeneses          #+#    #+#              #
-#    Updated: 2024/10/11 05:20:16 by umeneses         ###   ########.fr        #
+#    Updated: 2024/10/11 05:27:20 by umeneses         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -50,7 +50,10 @@ jobs:
             python-version: '3.12'
 
       - name: Starting Carol_Ogata Minishell Tester
-        run: python tester.py
+        run: |
+          cp minishell our_minishell_tester
+          cd our_minishell_tester
+          python tester.py
 
 
 # :: source minishell_tester repository ::
