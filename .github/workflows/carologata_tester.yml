@@ -1,0 +1,53 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    carologata_tester.yml                              :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2024/09/23 16:00:54 by umeneses          #+#    #+#              #
+#    Updated: 2024/10/11 05:00:27 by umeneses         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
+name: minishell tester >> carologata_tester
+
+on:
+  push:
+    branches:
+    - main
+    - '**feature**'
+    - '**feat**'
+    - '**bugfix**'
+    - '**fix**'
+    - '**release**'
+  pull_request:
+    branches:
+    - main
+    - '**feature**'
+    - '**feat**'
+    - '**bugfix**'
+    - '**fix**'
+    - '**release**'
+
+jobs:
+  carologata_tester:
+    runs-on: ubuntu-latest
+    timeout-minutes: 7
+    defaults:
+      run:
+        working-directory: ./
+    steps:
+      - name: Building Program with MiniShell Makefile
+        run: make
+
+      - name: Starting Github Actions
+        uses: actions/checkout@v4.1.4
+        with:
+            python-version: '3.12' 
+        - run: python ./tester.py
+
+
+
+# :: source minishell_tester repository ::
+# https://github.com/carologata/our_minishell_tester/
