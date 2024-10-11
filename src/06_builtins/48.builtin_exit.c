@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   48.builtin_exit.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 13:23:46 by umeneses          #+#    #+#             */
-/*   Updated: 2024/10/10 20:38:00 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/10/11 02:26:14 by tmalheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,11 +28,6 @@ void	builtins_runner_exit(t_token_list *lst)
 			exit_code = exit_valid_code_manager(cmd->lexeme);
 	}
 	llong_min_status = long_long_min_detected(false, true);
-	if (exit_code == 1 && !llong_min_status)
-	{
-		exit_status_holder(1, true);
-		return ;
-	}
 	if (llong_min_status)
 		exit_code = 1;
 	clear_all_to_exit_smoothly();
