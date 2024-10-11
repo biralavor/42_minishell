@@ -1,3 +1,6 @@
 [submodule "minishell_tester"]
 	path = minishell_tester
 	url = https://github.com/LucasKuhn/minishell_tester.git
+[submodule "our_minishell_tester"]
+	path = our_minishell_tester
+	url = https://github.com/carologata/our_minishell_tester.git
