@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   34.expansion_env_var.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/27 12:39:23 by umeneses          #+#    #+#             */
-/*   Updated: 2024/10/08 21:00:18 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/10/10 21:17:46 by tmalheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,10 +28,22 @@ char	*expansion_env_var_runner(char *lexeme, int type)
 		else if (lexeme[c] == '$' && type != SINGLE_QUOTES
 			&& lexeme[c + 1] && (lexeme[c + 1] != '?'))
 		{
-			arr_lex = ft_split(lexeme, '$');
+			arr_lex = ft_split(lexeme + c, '$');
+			char j = lexeme[c];
+			lexeme[c] = 0;
+			char *copy = ft_strdup(lexeme);
+			lexeme[c] = j;
 			arr_lex = expand_var_from_array(arr_lex);
 			if (arr_lex)
 				merged_lex = merging_array_lexeme(arr_lex);
+			if (copy)
+			{
+				char *tmp = ft_strdup(merged_lex);
+				free (merged_lex);
+				merged_lex = ft_strjoin(copy, tmp);
+				free(copy);
+				free(tmp);
+			}
 			break ;
 		}
 		c++;
