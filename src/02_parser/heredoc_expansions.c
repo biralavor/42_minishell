@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/09 20:54:18 by umeneses          #+#    #+#             */
-/*   Updated: 2024/10/10 23:10:07 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/10/11 02:42:26 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,5 +73,6 @@ int	check_question_mark_for_heredoc(int idx, int fd)
 		write(fd, &exit_status[idx_exit_status], 1);
 		idx_exit_status++;
 	}
+	free(exit_status);
 	return (idx + 2);
 }
