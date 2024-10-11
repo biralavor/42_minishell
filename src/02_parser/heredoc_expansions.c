@@ -73,5 +73,6 @@ int	check_question_mark_for_heredoc(int idx, int fd)
 		write(fd, &exit_status[idx_exit_status], 1);
 		idx_exit_status++;
 	}
+	free(exit_status);
 	return (idx + 2);
 }
