@@ -3,13 +3,12 @@
 /*                                                        :::      ::::::::   */
 /*   expansion_parent_dir.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2024/10/11 01:22:44 by umeneses         ###   ########.fr       */
+/*   Created: 2024/10/11 02:35:23 by tmalheir          #+#    #+#             */
+/*   Updated: 2024/10/11 02:35:47 by tmalheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #include "minishell.h"
 
@@ -70,6 +69,5 @@ char	*expansion_parent_dir_runner(char *lex)
 			parent_path[idx] = '\0';
 	}
 	free(lex);
-	// exit_status_holder(0, true);
 	return (parent_path);
 }

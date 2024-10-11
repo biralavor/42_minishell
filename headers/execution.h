@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execution.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/05 13:56:37 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/10/07 22:27:23 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/10/11 03:14:31 by tmalheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,6 +123,8 @@ void			close_fds(int *fd);
 void			decrement_flag_and_close_fds(int *flag, int *std_fd);
 
 char			*redir_quote_detector(char *lexeme, int *flag);
+
+bool			check_pathname(char *pathname);
 
 /*PRINTING FUNCTIONS (TO DELETE)*/
 
