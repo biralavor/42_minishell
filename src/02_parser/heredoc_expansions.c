@@ -3,43 +3,62 @@
 /*                                                        :::      ::::::::   */
 /*   heredoc_expansions.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/09 20:54:18 by umeneses          #+#    #+#             */
-/*   Updated: 2024/10/10 19:40:18 by tmalheir         ###   ########.fr       */
+/*   Updated: 2024/10/10 23:10:07 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	check_dollar_sign_for_heredoc(char *input, int idx, int fd)
+void	dollarsign_heredoc_init(char *input, int fd)
+{
+	int	idx;
+
+	idx = 0;
+	while (input && input[idx])
+	{
+		idx = dollarsign_for_heredoc_manager(input, idx, fd);
+		if (input[idx])
+			write(fd, &input[idx++], 1);
+	}
+}
+
+int	dollarsign_for_heredoc_manager(char *input, int idx, int fd)
 {
 	size_t	start;
-	size_t	end;
-	char	*var;
 
 	start = idx;
-	end = 0;
-	var = NULL;
 	if (input[idx] == '$' && (input[idx + 1] && input[idx + 1] != '?'))
 	{
-		while (input[idx] && !is_blank(input[idx]))
-			idx++;
-		end = (size_t)idx;
-		var = expansion_env_var_runner((ft_substr(input, start,
-				(end - start))), 0);
-		idx = 0;
-		while (var[idx])
-		{
-			write(fd, &var[idx], 1);
-			idx++;
-		}
-		free(var);
-		return (end);
+		idx = dollarsign_for_heredoc_runner(input, idx + 1, start, fd);
 	}
 	else if (input[idx] == '$' && (input[idx + 1] && input[idx + 1] == '?'))
 		idx = check_question_mark_for_heredoc(idx, fd);
 	return (idx);
+}
+
+int	dollarsign_for_heredoc_runner(char *input, int idx, size_t start, int fd)
+{
+	char	*var;
+	size_t	end;
+
+	var = NULL;
+	end = 0;
+	while (input[idx] && !is_blank(input[idx]))
+		idx++;
+	end = (size_t)idx;
+	var = expansion_env_var_runner((ft_substr(input, start,
+					(end - start))), 0);
+	idx = 0;
+	while (var[idx])
+	{
+		write(fd, &var[idx], 1);
+		idx++;
+	}
+	free(var);
+	return (end);
 }
 
 int	check_question_mark_for_heredoc(int idx, int fd)

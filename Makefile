@@ -71,6 +71,7 @@ SRC_FILES				+= ./02_parser/18.check_redirects_utils.c
 SRC_FILES				+= ./02_parser/19.error_manager_parser.c
 SRC_FILES				+= ./02_parser/20.manage_heredoc.c
 SRC_FILES				+= ./02_parser/heredoc_expansions.c
+SRC_FILES				+= ./02_parser/manage_heredoc_eof.c
 SRC_FILES				+= ./02_parser/heredoc_errors.c
 SRC_FILES				+= ./03_binary_tree/21.building_tree.c
 SRC_FILES				+= ./03_binary_tree/22.building_tree_utils.c

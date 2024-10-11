@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   20.manage_heredoc.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 18:23:53 by umeneses          #+#    #+#             */
-/*   Updated: 2024/10/10 19:45:28 by tmalheir         ###   ########.fr       */
+/*   Updated: 2024/10/10 23:55:06 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	manage_heredoc(t_token_list *lst)
 			heredoc_fd_reset(&hd_fd);
 			hd_fd = open(tmp->next->lexeme, O_CREAT | O_RDWR | O_TRUNC, 0644);
 			if (is_demiliter_null(eof_del) || hd_fd_error_runner(hd_fd)
-				|| !check_eof_del(eof_del, hd_fd) || is_signal_sigint(hd_fd))
+				|| !eof_del_manager(eof_del, hd_fd) || is_signal_sigint(hd_fd))
 				break ;
 		}
 		tmp = tmp->next;
@@ -72,50 +72,6 @@ void	path_file(t_token_list *lst)
 	}
 	free(nbr);
 	free(pathname);
-}
-
-bool	check_eof_del(char *delimiter, int fd)
-{
-	int		idx;
-	int		line;
-	char	*input;
-
-	line = 0;
-	input = NULL;
-	while (true)
-	{
-		is_heredoc_running(true, true);
-		input = readline(BLUE"(mini)heredoc<< "RESET);
-		line++;
-		idx = 0;
-		if (!input)
-			break ;
-		if (!ft_strcmp(input, delimiter))
-		{
-			is_heredoc_running(false, false);
-			break ;
-		}
-		while (input && input[idx])
-		{
-			idx = check_dollar_sign_for_heredoc(input, idx, fd);
-			if (input[idx])
-				write(fd, &input[idx++], 1);
-		}
-		write(fd, "\n", 1);
-		free(input);
-	}
-	if (input == NULL && is_heredoc_running(false, true)
-		&& g_sigmonitor != SIGINT)
-	{
-		heredoc_forcing_exit_warning(input, delimiter, line, fd);
-		return (false);
-	}
-	else
-		exit_status_holder(EXIT_SUCCESS, true);
-	if (input)
-		free(input);
-	// free(delimiter);
-	return (true);
 }
 
 bool	is_heredoc_running(bool update, bool caller)
