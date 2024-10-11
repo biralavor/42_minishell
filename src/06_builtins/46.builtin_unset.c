@@ -6,11 +6,23 @@
 /*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/14 12:08:16 by umeneses          #+#    #+#             */
-/*   Updated: 2024/10/09 23:07:28 by tmalheir         ###   ########.fr       */
+/*   Updated: 2024/10/10 23:27:21 by tmalheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+static bool	last_is_equal(char *arg)
+{
+	int	idx;
+
+	idx = 0;
+	while (arg[idx])
+		idx++;
+	if (arg[idx - 1] == '=')
+		return (true);
+	return (false);
+}
 
 void	builtins_runner_unset(char *arg)
 {
@@ -27,6 +39,14 @@ void	builtins_runner_unset(char *arg)
 		arg--;
 		ft_lst_remove_node(tmp, next, var_key);
 		free(var_key);
+	}
+	else if (arg_handle_state_detector(0, arg) == 404 || last_is_equal(arg))
+	{
+		ft_putstr_fd("minishell: unset: `", STDERR_FILENO);
+		ft_putstr_fd(arg, STDERR_FILENO);
+		ft_putendl_fd("': not a valid identifier", STDERR_FILENO);
+		free_env_table(&tmp);
+		exit_status_holder(EXIT_FAILURE, true);
 	}
 	else
 		ft_lst_remove_node(tmp, next, arg);
