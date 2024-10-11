@@ -6,7 +6,7 @@
 #    By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/23 16:00:54 by umeneses          #+#    #+#              #
-#    Updated: 2024/10/11 05:27:20 by umeneses         ###   ########.fr        #
+#    Updated: 2024/10/11 05:28:45 by umeneses         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -43,6 +43,9 @@ jobs:
 
       - name: Building Program with MiniShell Makefile
         run: make
+
+      - name: Submodule Init
+        run: git submodule init && git submodule update
 
       - name: Starting Python
         uses: actions/setup-python@v5
