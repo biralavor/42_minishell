@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   50.command_runner.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 18:51:30 by umeneses          #+#    #+#             */
-/*   Updated: 2024/10/08 19:34:28 by tmalheir         ###   ########.fr       */
+/*   Updated: 2024/10/10 21:58:20 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,5 @@ void	command_runner(char **cmd)
 	if (path)
 	{
 		fork_and_execve(cmd, path);
-		// free(path);
 	}
 }
