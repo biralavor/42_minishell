@@ -6,7 +6,7 @@
 /*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 09:47:06 by umeneses          #+#    #+#             */
-/*   Updated: 2024/10/10 22:11:26 by tmalheir         ###   ########.fr       */
+/*   Updated: 2024/10/11 03:55:54 by tmalheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,11 +56,6 @@ void	interrupt_signal_runner(int sig)
 		token_list_holder(NULL, false, true);
 		is_heredoc_running(false, false);
 		close(STDIN_FILENO);
-		// Abrir o dup do stdin original aqui
-		/****teste
-		 * << a cat (Finaliza com CTRL + C)
-		 * << a cat (Finaliza com CTRL + C de novo)
-		 */
 		close(STDERR_FILENO);
 	}
 	ft_putstr_fd("\n", STDOUT_FILENO);

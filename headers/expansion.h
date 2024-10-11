@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expansion.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/28 13:55:02 by umeneses          #+#    #+#             */
-/*   Updated: 2024/10/07 14:42:19 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/10/11 04:17:22 by tmalheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,8 @@ bool	expansion_tilde_detector(char *lexeme);
 char	*expansion_tilde_to_home(char *lexeme);
 
 bool	expansion_dollar_sign_detector(t_token_list *cmd);
-char	*expansion_env_var_runner(char *lexeme, int type);
+char	*expansion_env_var_manager(char *lexeme, int type);
+char	*expansion_env_var_runner(char **arr_lex, char *lexeme, int idx);
 bool	expansion_env_var_detector(char *lexeme);
 bool	env_var_key_rules_at_start(char c);
 bool	env_var_key_rules_at_middle(char c);
@@ -54,5 +55,7 @@ char	*double_quote_remover(char *lex);
 
 bool	expansion_question_mark_detector(char *lexeme);
 char	*expansion_question_mark(char *lexeme);
+
+char	*process_single_quotes(char *lexeme, int type);
 
 #endif
