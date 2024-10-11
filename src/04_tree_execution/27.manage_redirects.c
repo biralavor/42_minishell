@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   27.manage_redirects.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/04 10:20:13 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/10/10 16:22:05 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/10/10 22:29:58 by tmalheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,11 @@ static int	open_redir_file(t_tree *tree, int *fd)
 	type = tree->type;
 	pathname = ft_strdup(tree->right->command->lexeme);
 	pathname = redir_quote_detector(pathname, &flag);
+	if (!pathname)
+	{
+		ft_putendl_fd("Ambiguous Redirect", STDERR_FILENO);
+		return (exit_status_holder(EXIT_FAILURE, true));
+	}
 	if (type == REDIR_IN || type == REDIR_HDOC)
 		*fd = open(pathname, O_RDONLY);
 	else if (type == REDIR_OUT)

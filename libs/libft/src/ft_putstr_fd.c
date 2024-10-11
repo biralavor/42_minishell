@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 09:11:02 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/09/03 00:17:17 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/10/10 22:47:48 by tmalheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,7 @@ int	ft_putstr_fd(char *str, int fd)
 		return (write(fd, "(null)", 6));
 	else
 	{
-		while (str && str[idx])
-		{
-			write(fd, &str[idx], sizeof(char));
-			idx++;
-		}
+		write(fd, &str[idx], ft_strlen(str));
 	}
 	return (idx);
 }

@@ -6,7 +6,7 @@
 /*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 13:23:46 by umeneses          #+#    #+#             */
-/*   Updated: 2024/10/10 18:43:37 by tmalheir         ###   ########.fr       */
+/*   Updated: 2024/10/10 20:35:15 by tmalheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,10 +68,13 @@ void	builtins_runner_cd(t_token_list *lst)
 		return ;
 	cmd = lst->next;
 	destiny_path = NULL;
+	ft_bzero(actual_path, PATH_MAX);
 	if (check_extra_args(cmd))
 		return ;
 	while (cmd && cmd->type == WORD)
 	{
+		if (!cmd->lexeme)
+			return ;
 		destiny_path = ft_strdup(cmd->lexeme);
 		getcwd(actual_path, PATH_MAX);
 		if (chdir(destiny_path) != 0)
