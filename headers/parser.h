@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/27 12:53:52 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/10/10 18:46:57 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/10/10 23:54:53 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,14 +121,19 @@ t_token_list	*find_dst_node(t_token_list *lst, int dst_idx);
 bool			heredoc_detector(t_token_list *lst);
 void			manage_heredoc(t_token_list *lst);
 void			path_file(t_token_list *lst);
-bool			check_eof_del(char *delimiter, int fd);
+bool			eof_del_manager(char *delimiter, int fd);
+bool			eof_ending_process(char *input, char *delimiter,
+					int line, int fd);
 
 void			heredoc_fd_reset(int *heredoc_fd);
 bool			is_heredoc_running(bool update, bool caller);
 void			heredoc_forcing_exit_warning(char *input, char *delimiter,
 					int line, int fd);
 
-int				check_dollar_sign_for_heredoc(char *input, int idx, int fd);
+void			dollarsign_heredoc_init(char *input, int fd);
+int				dollarsign_for_heredoc_manager(char *input, int idx, int fd);
+int				dollarsign_for_heredoc_runner(char *input, int idx,
+					size_t start, int fd);
 int				check_question_mark_for_heredoc(int idx, int fd);
 bool			hd_fd_error_runner(int heredoc_fd);
 bool			is_demiliter_null(char *delimiter);
