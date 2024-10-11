@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   47.builtin_env.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 13:23:46 by umeneses          #+#    #+#             */
-/*   Updated: 2024/10/09 22:55:23 by tmalheir         ###   ########.fr       */
+/*   Updated: 2024/10/10 20:35:01 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	builtins_runner_env(void)
 	{
 		ft_putendl_fd("Error: Could not find environment variables",
 			STDERR_FILENO);
-		exit_status_holder(1, true);
+		exit_status_holder(EXIT_FAILURE, true);
 		return ;
 	}
 	while (env_vars)
@@ -37,5 +37,5 @@ void	builtins_runner_env(void)
 		ft_putendl_fd(var_value, STDOUT_FILENO);
 		env_vars = env_vars->next;
 	}
-	exit_status_holder(0, true);
+	// exit_status_holder(0, true);
 }

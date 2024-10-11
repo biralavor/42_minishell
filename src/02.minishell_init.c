@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/10 08:02:42 by umeneses          #+#    #+#             */
-/*   Updated: 2024/10/10 18:25:06 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/10/10 20:16:44 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ static void	extra_args(void)
 {
 	ft_printf(RED"Error: minishell does not accept arguments.\n");
 	ft_printf(CYAN"It's a kind of magic, but not that much!\n"RESET);
-	exit (EXIT_FAILURE);
+	exit (exit_status_holder(EXIT_FAILURE, true));
 }
 
 void	control_d_handler(void)

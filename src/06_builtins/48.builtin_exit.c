@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 13:23:46 by umeneses          #+#    #+#             */
-/*   Updated: 2024/10/04 09:19:42 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/10/10 20:38:00 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	builtins_runner_exit(t_token_list *lst)
 	t_token_list	*cmd;
 
 	cmd = lst->next;
-	exit_code = 0;
+	exit_code = exit_status_holder(0, false);
 	ft_putendl_fd("exit", STDOUT_FILENO);
 	if (cmd && (cmd->type == WORD || cmd->type == DOUBLE_QUOTES))
 	{
