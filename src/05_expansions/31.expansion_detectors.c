@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/26 18:31:10 by umeneses          #+#    #+#             */
-/*   Updated: 2024/10/08 14:00:05 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/10/11 01:02:23 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ bool	expansion_dollar_sign_detector(t_token_list *cmd)
 
 	idx = 0;
 	if (cmd->prev)
-	{	
+	{
 		while (cmd->lexeme && cmd->lexeme[idx] != '\0')
 		{
 			if (cmd->lexeme[idx] == '$' && cmd->lexeme[idx + 1]
