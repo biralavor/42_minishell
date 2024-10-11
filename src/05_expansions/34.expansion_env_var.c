@@ -6,7 +6,7 @@
 /*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/27 12:39:23 by umeneses          #+#    #+#             */
-/*   Updated: 2024/10/10 21:17:46 by tmalheir         ###   ########.fr       */
+/*   Updated: 2024/10/10 21:21:13 by tmalheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,14 +36,14 @@ char	*expansion_env_var_runner(char *lexeme, int type)
 			arr_lex = expand_var_from_array(arr_lex);
 			if (arr_lex)
 				merged_lex = merging_array_lexeme(arr_lex);
-			if (copy)
+			if (copy && merged_lex)
 			{
 				char *tmp = ft_strdup(merged_lex);
 				free (merged_lex);
 				merged_lex = ft_strjoin(copy, tmp);
-				free(copy);
 				free(tmp);
 			}
+			free(copy);
 			break ;
 		}
 		c++;
