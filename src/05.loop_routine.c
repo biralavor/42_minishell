@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 09:20:45 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/10/11 00:39:17 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/10/11 03:19:24 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,14 +45,15 @@ bool	heredoc_routine(t_token_list *lst)
 		if (tmp->type == REDIR_HDOC)
 		{
 			manage_heredoc(tmp);
-			if (g_sigmonitor == SIGUSR1
-				&& !child_process_is_running(false, true))
+			if (g_sigmonitor == SIGUSR1 &&
+				!child_process_is_running(false, true))
 			{
 				token_list_holder(&lst, true, false);
 				return (false);
 			}
 		}
-		tmp = tmp->next;
+		if (tmp && tmp->next)
+			tmp = tmp->next;
 	}
 	return (true);
 }
@@ -77,8 +78,9 @@ void	loop_routine(char *str)
 		error_manager_lexer(LIST_NOT_CREATED);
 	if (lst && syntax_analysis(lst))
 	{
-		if (!heredoc_routine(lst))
-			return ;
+		// if (!heredoc_routine(lst))
+		// 	return ;
+		manage_heredoc(lst);
 		token_tree = initiate_tree(token_list_holder(NULL, false, false));
 		tree_holder(token_tree, false);
 		tree_execution(token_tree, &flag);

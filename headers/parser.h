@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/27 12:53:52 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/10/10 23:54:53 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/10/11 02:10:18 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,6 +120,7 @@ t_token_list	*find_dst_node(t_token_list *lst, int dst_idx);
 
 bool			heredoc_detector(t_token_list *lst);
 void			manage_heredoc(t_token_list *lst);
+int				original_stdin_holder(int fd, bool update, bool restore);
 void			path_file(t_token_list *lst);
 bool			eof_del_manager(char *delimiter, int fd);
 bool			eof_ending_process(char *input, char *delimiter,

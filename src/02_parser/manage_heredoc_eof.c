@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/10 23:55:08 by umeneses          #+#    #+#             */
-/*   Updated: 2024/10/10 23:55:17 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/10/11 03:43:40 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ bool	eof_del_manager(char *delimiter, int fd)
 		line++;
 		if (!input)
 			break ;
-		if (!ft_strcmp(input, delimiter))
+		if (ft_strcmp(delimiter, "\"\""))
 		{
 			is_heredoc_running(false, false);
 			break ;

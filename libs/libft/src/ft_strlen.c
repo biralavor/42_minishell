@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 12:27:00 by tmalheir          #+#    #+#             */
-/*   Updated: 2024/06/11 12:22:45 by tmalheir         ###   ########.fr       */
+/*   Updated: 2024/10/11 03:31:17 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ size_t	ft_strlen(const char *str)
 	int	idx;
 
 	idx = 0;
-	while (str[idx])
+	while (str && str[idx])
 		idx++;
 	return (idx);
 }
