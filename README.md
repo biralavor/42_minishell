@@ -1,7 +1,7 @@
-### This is a wip ```README``` of `minishell` project
 
 <img src="https://github.com/user-attachments/assets/aad813db-13ee-4665-bed0-d444a0c1dcdf" width="525" height="225" />
-<img src="https://github.com/user-attachments/assets/097957fc-e4e2-42bd-b6f4-89461aa860e5" width="160" height="160" />
+<img src="https://github.com/user-attachments/assets/097957fc-e4e2-42bd-b6f4-89461aa860e5" width="150" height="150" />
+<img src="https://github.com/user-attachments/assets/0ce0a786-43fb-4caf-bcdc-05776ca1ba92" width="150" height="150" />
 
 
 # Minishell, a tiny version of Bash -> B.orn A.gain SH.ell
