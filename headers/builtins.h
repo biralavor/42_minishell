@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtins.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 14:57:00 by umeneses          #+#    #+#             */
-/*   Updated: 2024/10/10 17:30:23 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/10/11 03:03:25 by tmalheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -197,5 +197,7 @@ void			clear_all_to_exit_smoothly(void);
  * @param call_status the call the statict arg status variable.
  */
 bool			arg_option_holder(bool update, bool call_status);
+
+void			update_oldpwd(int alterable, char *str);
 
 #endif

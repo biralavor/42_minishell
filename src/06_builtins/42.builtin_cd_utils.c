@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   42.builtin_cd_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/02 10:19:07 by umeneses          #+#    #+#             */
-/*   Updated: 2024/10/10 20:33:50 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/10/11 03:05:32 by tmalheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,4 +37,16 @@ bool	is_path_a_directory(char *path)
 		&& S_ISDIR(file_system_status.st_mode))
 		return (true);
 	return (false);
+}
+
+void	builtins_cd_switch_home_dir(void)
+{
+	char	*home_path;
+
+	update_oldpwd(0, NULL);
+	home_path = NULL;
+	home_path = lookup_table(env_holder(NULL, false, false), "HOME")->value;
+	home_path = ft_strjoin(home_path, "/");
+	chdir(home_path);
+	free(home_path);
 }

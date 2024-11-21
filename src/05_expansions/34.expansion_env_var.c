@@ -6,76 +6,64 @@
 /*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/27 12:39:23 by umeneses          #+#    #+#             */
-/*   Updated: 2024/10/10 21:21:13 by tmalheir         ###   ########.fr       */
+/*   Updated: 2024/10/11 04:30:45 by tmalheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-char	*expansion_env_var_runner(char *lexeme, int type)
+char	*expansion_env_var_manager(char *lexeme, int type)
 {
 	char	**arr_lex;
 	char	*merged_lex;
-	int		c;
+	int		idx;
 
-	c = 0;
+	idx = 0;
 	merged_lex = NULL;
 	arr_lex = NULL;
-	while (lexeme[c])
+	while (lexeme[idx])
 	{
-		if (lexeme[c] == '$' && type == SINGLE_QUOTES)
+		if (lexeme[idx] == '$' && type == SINGLE_QUOTES)
 			return (lexeme);
-		else if (lexeme[c] == '$' && type != SINGLE_QUOTES
-			&& lexeme[c + 1] && (lexeme[c + 1] != '?'))
+		else if (lexeme[idx] == '$' && lexeme[idx + 1]
+			&& (lexeme[idx + 1] != '?'))
 		{
-			arr_lex = ft_split(lexeme + c, '$');
-			char j = lexeme[c];
-			lexeme[c] = 0;
-			char *copy = ft_strdup(lexeme);
-			lexeme[c] = j;
-			arr_lex = expand_var_from_array(arr_lex);
-			if (arr_lex)
-				merged_lex = merging_array_lexeme(arr_lex);
-			if (copy && merged_lex)
-			{
-				char *tmp = ft_strdup(merged_lex);
-				free (merged_lex);
-				merged_lex = ft_strjoin(copy, tmp);
-				free(tmp);
-			}
-			free(copy);
+			merged_lex = expansion_env_var_runner(arr_lex, lexeme, idx);
 			break ;
 		}
-		c++;
+		idx++;
 	}
-	free_array(arr_lex);
 	free(lexeme);
 	return (merged_lex);
 }
 
-char	**array_lex_env_key_rules_manager(char **arr_lex, int arr_len)
+char	*expansion_env_var_runner(char **arr_lex, char *lexeme, int idx)
 {
-	size_t	idx;
-	size_t	pos;
-	char	**new_arr;
+	char	j;
+	char	*copy;
+	char	*merged_lex;
+	char	*tmp;
 
-	idx = -1;
-	new_arr = (char **)ft_calloc(2, sizeof(char *) * arr_len);
-	while (arr_lex[++idx])
+	merged_lex = NULL;
+	tmp = NULL;
+	arr_lex = ft_split(lexeme + idx, '$');
+	j = lexeme[idx];
+	lexeme[idx] = 0;
+	copy = ft_strdup(lexeme);
+	lexeme[idx] = j;
+	arr_lex = expand_var_from_array(arr_lex);
+	if (arr_lex)
+		merged_lex = merging_array_lexeme(arr_lex);
+	if (copy && merged_lex)
 	{
-		pos = 0;
-		if (env_var_key_rules_at_start(arr_lex[idx][pos]))
-			pos++;
-		while (env_var_key_rules_at_middle(arr_lex[idx][pos]))
-			pos++;
-		if (pos > 0 && arr_lex[idx][pos]
-			&& !env_var_key_rules_at_middle(arr_lex[idx][pos]))
-			new_arr = apply_rules_on_lex(new_arr, arr_lex[idx], pos);
-		else
-			new_arr = send_approved_var(new_arr, arr_lex[idx]);
+		tmp = ft_strdup(merged_lex);
+		free (merged_lex);
+		merged_lex = ft_strjoin(copy, tmp);
+		free(tmp);
 	}
-	new_arr = free_runner_for_env_rules_manager(arr_lex, new_arr);
-	return (new_arr);
+	free(copy);
+	free_array(arr_lex);
+	return (merged_lex);
 }
 
 static void	process_entry(char **arr_lex, size_t idx, bool *not_found)

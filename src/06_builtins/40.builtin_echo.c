@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   40.builtin_echo.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 13:23:46 by umeneses          #+#    #+#             */
-/*   Updated: 2024/10/10 20:33:07 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/10/11 02:42:16 by tmalheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,5 +45,4 @@ void	builtins_runner_echo(t_token_list *lst, bool arg_option)
 	if (!arg_option)
 		write(STDOUT_FILENO, "\n", 1);
 	arg_option_holder(false, false);
-	// exit_status_holder(EXIT_SUCCESS, true);
 }

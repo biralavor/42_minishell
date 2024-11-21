@@ -6,7 +6,7 @@
 /*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/26 18:31:10 by umeneses          #+#    #+#             */
-/*   Updated: 2024/10/10 20:21:26 by tmalheir         ###   ########.fr       */
+/*   Updated: 2024/10/11 03:59:40 by tmalheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ void	expansion_manager(t_token_list *cmd)
 				if (expansion_question_mark_detector(tmp->lexeme))
 					tmp->lexeme = expansion_question_mark(tmp->lexeme);
 				if (expansion_dollar_sign_detector(tmp))
-					tmp->lexeme = expansion_env_var_runner(tmp->lexeme,
+					tmp->lexeme = expansion_env_var_manager(tmp->lexeme,
 							tmp->type);
 			}
 		}
