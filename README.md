@@ -147,3 +147,5 @@ If the input isn't a Built-in, it runs `execve`. We have two built-in categories
 # 42sp Team Project:
 - Thais Malheiros -> https://github.com/Thais-Malheiros/
 - Bira Lavor -> https://github.com/biralavor/
+
+> All 42 Badges -- the astronomer Human Coder -- were done by Larissa Cristina [@mewmewdevart](https://github.com/mewmewdevart/42Badges)
