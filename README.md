@@ -1,12 +1,11 @@
+# Minishell, a tiny version of Bash -> B.orn A.gain SH.ell
 
 <img src="https://github.com/user-attachments/assets/aad813db-13ee-4665-bed0-d444a0c1dcdf" width="525" height="225" />
 <br>
-<img src="https://github.com/user-attachments/assets/097957fc-e4e2-42bd-b6f4-89461aa860e5" width="150" height="150" />
-<img src="https://github.com/user-attachments/assets/0ce0a786-43fb-4caf-bcdc-05776ca1ba92" width="150" height="150" />
-</br>
 
-# Minishell, a tiny version of Bash -> B.orn A.gain SH.ell
-> The terminal is a file, therefor it treats all inputs as `strings`
+| ![minishell_with_bonus_logo](https://github.com/user-attachments/assets/ea55cd2c-7a14-4d8d-9bb0-6f416f7982ba) | The terminal is a file, <br> therefor it treats all inputs as `strings` | ![minishell_grade_107](https://github.com/user-attachments/assets/fce51403-942a-4210-9385-7865ef74fa7f) |
+| :-: | :-: | :-: |
+
 
 > [!IMPORTANT]
 > ## Our Code Flow, in a Big Picture
