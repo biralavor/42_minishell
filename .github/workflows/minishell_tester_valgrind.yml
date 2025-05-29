@@ -40,6 +40,9 @@ jobs:
     steps:
       - name: Starting Github Actions
         uses: actions/checkout@v4.1.4
+      
+      - name: Install Dependencies
+        run: sudo apt-get update && sudo apt-get install -y libreadline-dev
 
       - name: Install Aptitude
         run: sudo apt-get install aptitude
