@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   34.expansion_env_var.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/27 12:39:23 by umeneses          #+#    #+#             */
-/*   Updated: 2024/10/11 04:30:45 by tmalheir         ###   ########.fr       */
+/*   Updated: 2026/02/18 18:57:59 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,11 +57,15 @@ char	*expansion_env_var_runner(char **arr_lex, char *lexeme, int idx)
 	if (copy && merged_lex)
 	{
 		tmp = ft_strdup(merged_lex);
-		free (merged_lex);
+		free(merged_lex);
 		merged_lex = ft_strjoin(copy, tmp);
 		free(tmp);
+		free(copy);
 	}
-	free(copy);
+	else if (copy && copy[0] != '\0')
+		merged_lex = copy;
+	else
+		free(copy);
 	free_array(arr_lex);
 	return (merged_lex);
 }
