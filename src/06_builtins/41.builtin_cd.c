@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 13:23:46 by umeneses          #+#    #+#             */
-/*   Updated: 2026/02/18 18:21:43 by umeneses         ###   ########.fr       */
+/*   Updated: 2026/02/18 18:26:17 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static bool	check_extra_args(t_token_list *cmd)
 {
 	if (cmd->lexeme && cmd->next && cmd->next->lexeme)
 	{
-		write(STDERR_FILENO, "bash cd: too many arguments\n", 28);
+		write(STDERR_FILENO, "bash: cd: too many arguments\n", 29);
 		exit_status_holder(1, true);
 		return (true);
 	}
