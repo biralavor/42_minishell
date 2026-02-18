@@ -6,11 +6,27 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 10:02:37 by umeneses          #+#    #+#             */
-/*   Updated: 2026/02/18 18:59:00 by umeneses         ###   ########.fr       */
+/*   Updated: 2026/02/18 19:08:29 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+char	**expand_var_from_array(char **arr_lex)
+{
+	size_t	idx;
+	bool	not_found;
+
+	idx = 0;
+	not_found = false;
+	while (arr_lex[idx])
+	{
+		process_entry(arr_lex, idx, &not_found);
+		handle_not_found(arr_lex, idx, not_found);
+		idx++;
+	}
+	return (arr_lex);
+}
 
 char	**free_runner_for_env_rules_manager(char **arr_lex, char **new_arr)
 {

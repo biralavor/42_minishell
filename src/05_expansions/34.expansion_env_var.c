@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/27 12:39:23 by umeneses          #+#    #+#             */
-/*   Updated: 2026/02/18 18:57:59 by umeneses         ###   ########.fr       */
+/*   Updated: 2026/02/18 19:08:22 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,15 +37,34 @@ char	*expansion_env_var_manager(char *lexeme, int type)
 	return (merged_lex);
 }
 
+static char	*merge_copy_and_expansion(char *copy, char *merged_lex)
+{
+	char	*tmp;
+	char	*result;
+
+	if (copy && merged_lex)
+	{
+		tmp = ft_strdup(merged_lex);
+		free(merged_lex);
+		result = ft_strjoin(copy, tmp);
+		free(tmp);
+		free(copy);
+		return (result);
+	}
+	else if (copy && copy[0] != '\0')
+		return (copy);
+	else
+		free(copy);
+	return (NULL);
+}
+
 char	*expansion_env_var_runner(char **arr_lex, char *lexeme, int idx)
 {
 	char	j;
 	char	*copy;
 	char	*merged_lex;
-	char	*tmp;
 
 	merged_lex = NULL;
-	tmp = NULL;
 	arr_lex = ft_split(lexeme + idx, '$');
 	j = lexeme[idx];
 	lexeme[idx] = 0;
@@ -54,18 +73,7 @@ char	*expansion_env_var_runner(char **arr_lex, char *lexeme, int idx)
 	arr_lex = expand_var_from_array(arr_lex);
 	if (arr_lex)
 		merged_lex = merging_array_lexeme(arr_lex);
-	if (copy && merged_lex)
-	{
-		tmp = ft_strdup(merged_lex);
-		free(merged_lex);
-		merged_lex = ft_strjoin(copy, tmp);
-		free(tmp);
-		free(copy);
-	}
-	else if (copy && copy[0] != '\0')
-		merged_lex = copy;
-	else
-		free(copy);
+	merged_lex = merge_copy_and_expansion(copy, merged_lex);
 	free_array(arr_lex);
 	return (merged_lex);
 }
@@ -107,20 +115,4 @@ static void	handle_not_found(char **arr_lex, size_t idx, bool not_found)
 		arr_lex[idx] = NULL;
 		exit_status_holder(0, true);
 	}
-}
-
-char	**expand_var_from_array(char **arr_lex)
-{
-	size_t	idx;
-	bool	not_found;
-
-	idx = 0;
-	not_found = false;
-	while (arr_lex[idx])
-	{
-		process_entry(arr_lex, idx, &not_found);
-		handle_not_found(arr_lex, idx, not_found);
-		idx++;
-	}
-	return (arr_lex);
 }

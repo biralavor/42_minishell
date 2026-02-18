@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 13:23:46 by umeneses          #+#    #+#             */
-/*   Updated: 2026/02/18 18:26:17 by umeneses         ###   ########.fr       */
+/*   Updated: 2026/02/18 19:09:31 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,11 +61,10 @@ void	update_oldpwd(int alterable, char *str)
 static void	process_cmd(t_token_list *cmd, char *actual_path)
 {
 	int		ret;
+	char	*dest_path;
 
 	while (cmd && cmd->type == WORD)
 	{
-		char	*dest_path;
-
 		if (!cmd->lexeme)
 			return ;
 		dest_path = ft_strdup(cmd->lexeme);
