@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/26 18:31:10 by umeneses          #+#    #+#             */
-/*   Updated: 2024/10/11 01:02:23 by umeneses         ###   ########.fr       */
+/*   Updated: 2026/02/18 19:00:54 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,28 +41,6 @@ bool	expansion_dollar_sign_detector(t_token_list *cmd)
 	return (false);
 }
 
-// bool	expansion_env_var_detector(char *lexeme)
-// {
-// 	int	idx;
-
-// 	idx = -1;
-// 	while (lexeme[++idx])
-// 	{
-// 		if (env_var_key_rules_at_start(lexeme[idx]))
-// 		{
-// 			idx++;
-// 			while (lexeme[idx])
-// 			{
-// 				if (env_var_key_rules_at_middle(lexeme[idx]))
-// 					if (lexeme[idx + 1] == '\0')
-// 						return (true);
-// 				idx++;
-// 			}
-// 		}
-// 	}
-// 	return (false);
-// }
-
 bool	quotes_detector(t_token_list *cmd)
 {
 	if (cmd->type == DOUBLE_QUOTES || cmd->type == SINGLE_QUOTES)
@@ -83,10 +61,3 @@ bool	expansion_question_mark_detector(char *lexeme)
 	}
 	return (false);
 }
-
-// bool	expansion_wildcard_detector(char *lexeme)
-// {
-// 	if (lexeme[1] == '*' && lexeme[2] == '\0')
-// 		return (true);
-// 	return (false);
-// }
