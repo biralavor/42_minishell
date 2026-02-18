@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   41.builtin_cd.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 13:23:46 by umeneses          #+#    #+#             */
-/*   Updated: 2024/10/11 03:05:20 by tmalheir         ###   ########.fr       */
+/*   Updated: 2026/02/18 18:21:43 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,23 +60,27 @@ void	update_oldpwd(int alterable, char *str)
 
 static void	process_cmd(t_token_list *cmd, char *actual_path)
 {
-	char	*dest_path;
+	int		ret;
 
 	while (cmd && cmd->type == WORD)
 	{
+		char	*dest_path;
+
 		if (!cmd->lexeme)
 			return ;
 		dest_path = ft_strdup(cmd->lexeme);
 		getcwd(actual_path, PATH_MAX);
-		if (chdir(dest_path) != 0)
+		ret = chdir(dest_path);
+		if (ret != 0)
 		{
-			cd_error_msg(ft_strlen(dest_path), dest_path, chdir(dest_path));
+			cd_error_msg(ft_strlen(dest_path), dest_path, ret);
+			free(dest_path);
 			break ;
 		}
 		update_oldpwd(1, actual_path);
+		free(dest_path);
 		cmd = cmd->next;
 	}
-	free(dest_path);
 }
 
 void	builtins_runner_cd(t_token_list *lst)
