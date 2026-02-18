@@ -6,7 +6,7 @@
 #    By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/23 16:00:54 by umeneses          #+#    #+#              #
-#    Updated: 2026/02/18 19:22:40 by umeneses         ###   ########.fr        #
+#    Updated: 2026/02/18 19:35:30 by umeneses         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -55,6 +55,9 @@ jobs:
 
       - name: Make Binary Executable
         run: chmod +x minishell
+
+      - name: Make Tester Executable
+        run: chmod +x minishell_tester/tester
 
       - name: Running Tester for Syntax
         run: cd minishell_tester && ./tester syntax
