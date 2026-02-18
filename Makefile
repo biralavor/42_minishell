@@ -82,6 +82,7 @@ SRC_FILES				+= ./04_tree_execution/26.manage_pipe.c
 SRC_FILES				+= ./04_tree_execution/manage_pipe_utils.c
 SRC_FILES				+= ./04_tree_execution/27.manage_redirects.c
 SRC_FILES				+= ./04_tree_execution/manage_redirects_utils.c
+SRC_FILES				+= ./04_tree_execution/manage_redirects_utils_2.c
 SRC_FILES				+= ./04_tree_execution/28.manage_subshell.c
 SRC_FILES				+= ./04_tree_execution/29.manage_single_cmd.c
 SRC_FILES				+= ./05_expansions/30.expansion_manager.c
@@ -90,7 +91,7 @@ SRC_FILES				+= ./05_expansions/32.expansion_quotes.c
 SRC_FILES				+= ./05_expansions/33.expansion_tilde.c
 SRC_FILES				+= ./05_expansions/34.expansion_env_var.c
 SRC_FILES				+= ./05_expansions/35.expansion_env_var_utils.c
-SRC_FILES				+= ./05_expansions/expansion_env_var_utils_2.c
+SRC_FILES				+= ./05_expansions/expansion_env_key_rules.c
 SRC_FILES				+= ./05_expansions/36.expansion_question.c
 SRC_FILES				+= ./05_expansions/expansion_parent_dir.c
 SRC_FILES				+= ./06_builtins/37.builtin_detectors.c
@@ -112,16 +113,17 @@ SRC_FILES				+= ./07_command_execution/execve_error_manager.c
 
 SRC_FILES_ALL			= $(addprefix $(SRC_D), $(SRC_FILES))
 
-TDD_FILES				= ft_lst_printer.c
-TDD_FILES				+= get_token_string.c
-TDD_FILES				+= ft_tree_printer.c
-TDD_FILES				+= ft_env_printer.c
-TDD_FILES				+= ft_array_printer.c
-TDD_FILES_ALL			= $(addprefix $(TDD_UTILS_D), $(TDD_FILES))
-TDD_OBJS_FILES			= $(addprefix $(BUILD_D), $(TDD_FILES_ALL:%.c=%.o))
+#TDD_FILES				= ft_lst_printer.c
+#TDD_FILES				+= get_token_string.c
+#TDD_FILES				+= ft_tree_printer.c
+#TDD_FILES				+= ft_env_printer.c
+#TDD_FILES				+= ft_array_printer.c
+#TDD_FILES_ALL			= $(addprefix $(TDD_UTILS_D), $(TDD_FILES))
+#TDD_OBJS_FILES			= $(addprefix $(BUILD_D), $(TDD_FILES_ALL:%.c=%.o))
 
 OBJS_FILES				= $(addprefix $(BUILD_D), $(SRC_FILES_ALL:%.c=%.o))
-OBJS_ALL				= $(TDD_OBJS_FILES) $(OBJS_FILES)
+OBJS_ALL				= $(OBJS_FILES)
+#OBJS_ALL				= $(TDD_OBJS_FILES) $(OBJS_FILES)
 
 # **************************** #
 #			BONUS			   #
@@ -185,7 +187,7 @@ define	project_title_bonus
 endef
 
 define					instructions
-						@echo "TODO: add instructions here"
+						@echo "This is our tiny version of shell"
 
 endef
 

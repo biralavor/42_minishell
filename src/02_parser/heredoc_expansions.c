@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   heredoc_expansions.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/09 20:54:18 by umeneses          #+#    #+#             */
-/*   Updated: 2024/10/11 02:42:26 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/10/11 03:59:40 by tmalheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ int	dollarsign_for_heredoc_runner(char *input, int idx, size_t start, int fd)
 	while (input[idx] && !is_blank(input[idx]))
 		idx++;
 	end = (size_t)idx;
-	var = expansion_env_var_runner((ft_substr(input, start,
+	var = expansion_env_var_manager((ft_substr(input, start,
 					(end - start))), 0);
 	idx = 0;
 	while (var[idx])
@@ -73,6 +73,5 @@ int	check_question_mark_for_heredoc(int idx, int fd)
 		write(fd, &exit_status[idx_exit_status], 1);
 		idx_exit_status++;
 	}
-	free(exit_status);
 	return (idx + 2);
 }
