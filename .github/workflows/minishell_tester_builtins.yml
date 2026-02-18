@@ -6,7 +6,7 @@
 #    By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/23 16:00:54 by umeneses          #+#    #+#              #
-#    Updated: 2024/09/24 09:13:00 by umeneses         ###   ########.fr        #
+#    Updated: 2026/02/18 19:22:40 by umeneses         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,24 +31,30 @@ on:
     - '**release**'
 
 jobs:
+  build:
+    uses: ./.github/workflows/build.yml
+
   builtins:
     runs-on: ubuntu-latest
+    needs: build
     timeout-minutes: 2
     defaults:
       run:
         working-directory: ./
     steps:
-      - name: Starting Github Actions
-        uses: actions/checkout@v4.1.4
+      - name: Download Minishell Binary
+        uses: actions/download-artifact@v4
+        with:
+          name: minishell-binary-${{ github.sha }}
 
-      - name: Install Dependencies
-        run: sudo apt-get update && sudo apt-get install -y libreadline-dev
+      - name: Download Test Suite
+        uses: actions/download-artifact@v4
+        with:
+          name: minishell-tester-${{ github.sha }}
+          path: minishell_tester
 
-      - name: Building Program with MiniShell Makefile
-        run: make
-
-      - name: Submodule Init
-        run: git submodule init && git submodule update
+      - name: Make Binary Executable
+        run: chmod +x minishell
 
       - name: Running Tester for Builtins
         run: cd minishell_tester && ./tester builtins

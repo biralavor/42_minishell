@@ -1,0 +1,87 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    build.yml                                          :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2026/02/18 19:00:00 by umeneses          #+#    #+#              #
+#    Updated: 2026/02/18 19:22:40 by umeneses         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
+name: Build Minishell
+
+on:
+  push:
+    branches:
+    - main
+    - '**feature**'
+    - '**feat**'
+    - '**bugfix**'
+    - '**fix**'
+    - '**release**'
+  pull_request:
+    branches:
+    - main
+    - '**feature**'
+    - '**feat**'
+    - '**bugfix**'
+    - '**fix**'
+    - '**release**'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    defaults:
+      run:
+        working-directory: ./
+    steps:
+      - name: Starting Github Actions
+        uses: actions/checkout@v4.1.4
+
+      - name: Install Dependencies
+        run: sudo apt-get update && sudo apt-get install -y libreadline-dev
+
+      - name: Submodule Init
+        run: git submodule init && git submodule update
+
+      - name: Building Program with MiniShell Makefile
+        run: make
+
+      - name: Building Bonus with MiniShell Makefile
+        run: make bonus || echo "No bonus target available"
+
+      - name: Upload Minishell Binary
+        uses: actions/upload-artifact@v4
+        with:
+          name: minishell-binary-${{ github.sha }}
+          path: minishell
+          retention-days: 1
+
+      - name: Upload Minishell Bonus Binary
+        uses: actions/upload-artifact@v4
+        with:
+          name: minishell-bonus-binary-${{ github.sha }}
+          path: minishell_bonus
+          retention-days: 1
+          if-no-files-found: ignore
+
+      - name: Upload Test Suite
+        uses: actions/upload-artifact@v4
+        with:
+          name: minishell-tester-${{ github.sha }}
+          path: minishell_tester/
+          retention-days: 1
+
+      - name: Upload Readline Suppression File
+        uses: actions/upload-artifact@v4
+        with:
+          name: readline-suppression-${{ github.sha }}
+          path: readline.sup
+          retention-days: 1
+
+
+# :: github actions documentation ::
+# https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions
