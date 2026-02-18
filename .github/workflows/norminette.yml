@@ -1,12 +1,12 @@
 # **************************************************************************** #
 #                                                                              #
 #                                                         :::      ::::::::    #
-#    program_builder.yml                                :+:      :+:    :+:    #
+#    norminette.yml                                     :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
 #    By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/12 11:04:11 by umeneses          #+#    #+#              #
-#    Updated: 2024/09/23 17:28:49 by umeneses         ###   ########.fr        #
+#    Updated: 2026/02/18 19:23:25 by umeneses         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,15 +40,6 @@ jobs:
     steps:
       - name: Starting Github Actions
         uses: actions/checkout@v4.1.4
-      
-      - name: Install Dependencies
-        run: sudo apt-get update && sudo apt-get install -y libreadline-dev
-
-      - name: Building Program with MiniShell Makefile
-        run: make
-
-      - name: Install Aptitude
-        run: sudo apt-get update && sudo apt install aptitude -y
 
       - name: Install Python for Norminette
         uses: actions/setup-python@v5.1.0
@@ -65,7 +56,10 @@ jobs:
         run: |
           failed_count=0
           for file in $(find ./headers ./libs ./src -name '*.c' -o -name '*.h'); do
-            if ! norminette -R CheckForbiddenSourceHeader "$file"; then
+            output=$(norminette -R CheckForbiddenSourceHeader "$file" 2>&1)
+            echo "$output"
+            # Only fail on Error, not on Notice
+            if echo "$output" | grep -q "Error:"; then
               failed_count=$((failed_count + 1))
             fi
           done

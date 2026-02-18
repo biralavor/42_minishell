@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/28 13:55:02 by umeneses          #+#    #+#             */
-/*   Updated: 2024/10/07 14:42:19 by umeneses         ###   ########.fr       */
+/*   Updated: 2026/02/18 19:13:11 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,22 +23,14 @@ typedef struct s_new_lex
 
 void	expansion_manager(t_token_list *cmd);
 int		next_char_counter(t_token_list *cmd);
-
 bool	quotes_detector(t_token_list *cmd);
-char	*remove_quotes_manager(t_token_list *cmd);
-char	*expansion_boundary_quotes_runner(char *lexeme, char *new_lexeme);
-char	*expansion_inside_quotes_runner(t_token_list *cmd, char *new_lexeme);
-void	expansion_merging_tokens(t_token_list *cmd, char *new_lexeme);
-
 bool	expansion_parent_dir_detector(char *lex);
 char	*expansion_parent_dir_runner(char *lex);
-
 bool	expansion_tilde_detector(char *lexeme);
 char	*expansion_tilde_to_home(char *lexeme);
-
 bool	expansion_dollar_sign_detector(t_token_list *cmd);
-char	*expansion_env_var_runner(char *lexeme, int type);
-bool	expansion_env_var_detector(char *lexeme);
+char	*expansion_env_var_manager(char *lexeme, int type);
+char	*expansion_env_var_runner(char **arr_lex, char *lexeme, int idx);
 bool	env_var_key_rules_at_start(char c);
 bool	env_var_key_rules_at_middle(char c);
 char	**array_lex_env_key_rules_manager(char **arr_lex, int arr_len);
@@ -51,8 +43,9 @@ bool	single_quote_detector(char *lexeme);
 char	*single_quote_remover(char *lexeme);
 bool	double_quote_detector(char *lexeme);
 char	*double_quote_remover(char *lex);
-
 bool	expansion_question_mark_detector(char *lexeme);
 char	*expansion_question_mark(char *lexeme);
+void	handle_not_found(char **arr_lex, size_t idx, bool not_found);
+void	process_entry(char **arr_lex, size_t idx, bool *not_found);
 
 #endif

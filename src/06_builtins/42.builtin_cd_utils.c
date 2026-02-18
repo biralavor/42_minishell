@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/02 10:19:07 by umeneses          #+#    #+#             */
-/*   Updated: 2024/10/10 20:33:50 by umeneses         ###   ########.fr       */
+/*   Updated: 2026/02/18 18:24:39 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,4 +37,16 @@ bool	is_path_a_directory(char *path)
 		&& S_ISDIR(file_system_status.st_mode))
 		return (true);
 	return (false);
+}
+
+void	builtins_cd_switch_home_dir(void)
+{
+	char	*home_path;
+	char	*home_with_slash;
+
+	update_oldpwd(0, NULL);
+	home_path = lookup_table(env_holder(NULL, false, false), "HOME")->value;
+	home_with_slash = ft_strjoin(home_path, "/");
+	chdir(home_with_slash);
+	free(home_with_slash);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   47.builtin_env.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 13:23:46 by umeneses          #+#    #+#             */
-/*   Updated: 2024/10/10 20:35:01 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/10/11 02:42:45 by tmalheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,5 +37,4 @@ void	builtins_runner_env(void)
 		ft_putendl_fd(var_value, STDOUT_FILENO);
 		env_vars = env_vars->next;
 	}
-	// exit_status_holder(0, true);
 }

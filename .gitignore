@@ -1,1 +1,5 @@
 minishell_tester/*
+build/
+libs/libft/build
+libs/libft/libft.a
+minishell

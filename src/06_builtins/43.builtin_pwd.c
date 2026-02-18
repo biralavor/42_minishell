@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   43.builtin_pwd.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 13:23:46 by umeneses          #+#    #+#             */
-/*   Updated: 2024/10/10 20:34:01 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/10/11 02:43:20 by tmalheir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,5 +26,4 @@ void	builtins_runner_pwd(t_token_list *lst)
 		ft_putstr_fd("\n", STDOUT_FILENO);
 	}
 	free(actual_path);
-	// exit_status_holder(0, true);
 }

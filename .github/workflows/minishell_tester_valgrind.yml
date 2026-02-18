@@ -1,12 +1,12 @@
 # **************************************************************************** #
 #                                                                              #
 #                                                         :::      ::::::::    #
-#    minishell_tester_syntax.yml                        :+:      :+:    :+:    #
+#    minishell_tester_valgrind.yml                      :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
 #    By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/23 16:00:54 by umeneses          #+#    #+#              #
-#    Updated: 2024/09/26 08:39:23 by umeneses         ###   ########.fr        #
+#    Updated: 2026/02/18 19:22:40 by umeneses         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,16 +31,33 @@ on:
     - '**release**'
 
 jobs:
+  build:
+    uses: ./.github/workflows/build.yml
+
   valgrind_for_all_segments:
     runs-on: ubuntu-latest
+    needs: build
     timeout-minutes: 7
     defaults:
       run:
         working-directory: ./
     steps:
-      - name: Starting Github Actions
-        uses: actions/checkout@v4.1.4
-      
+      - name: Download Minishell Binary
+        uses: actions/download-artifact@v4
+        with:
+          name: minishell-binary-${{ github.sha }}
+
+      - name: Download Test Suite
+        uses: actions/download-artifact@v4
+        with:
+          name: minishell-tester-${{ github.sha }}
+          path: minishell_tester
+
+      - name: Download Readline Suppression File
+        uses: actions/download-artifact@v4
+        with:
+          name: readline-suppression-${{ github.sha }}
+
       - name: Install Dependencies
         run: sudo apt-get update && sudo apt-get install -y libreadline-dev
 
@@ -50,11 +67,8 @@ jobs:
       - name: Install Valgrind
         run: sudo aptitude install -y valgrind
 
-      - name: Submodule Init
-        run: git submodule init && git submodule update
-
-      - name: Building Program with MiniShell Makefile
-        run: make
+      - name: Make Binary Executable
+        run: chmod +x minishell
 
       - name: Minishell_Tester Starting Up Simulation
         run: |
