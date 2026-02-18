@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   35.expansion_env_var_utils.c                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tmalheir <tmalheir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 10:02:37 by umeneses          #+#    #+#             */
-/*   Updated: 2024/10/11 04:31:32 by tmalheir         ###   ########.fr       */
+/*   Updated: 2026/02/18 18:59:00 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ char	*merging_array_lexeme(char **arr_lex)
 		merged_lex = ft_strdup(arr_lex[idx]);
 		idx++;
 	}
-	while (arr_lex[idx])
+	while (arr_lex && arr_lex[idx])
 	{
 		tmp = ft_strjoin(merged_lex, arr_lex[idx]);
 		free(merged_lex);
