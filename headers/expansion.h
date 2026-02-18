@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/28 13:55:02 by umeneses          #+#    #+#             */
-/*   Updated: 2026/02/18 19:01:28 by umeneses         ###   ########.fr       */
+/*   Updated: 2026/02/18 19:13:11 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,5 +45,7 @@ bool	double_quote_detector(char *lexeme);
 char	*double_quote_remover(char *lex);
 bool	expansion_question_mark_detector(char *lexeme);
 char	*expansion_question_mark(char *lexeme);
+void	handle_not_found(char **arr_lex, size_t idx, bool not_found);
+void	process_entry(char **arr_lex, size_t idx, bool *not_found);
 
 #endif

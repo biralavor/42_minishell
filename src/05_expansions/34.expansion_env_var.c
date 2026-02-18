@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/27 12:39:23 by umeneses          #+#    #+#             */
-/*   Updated: 2026/02/18 19:08:22 by umeneses         ###   ########.fr       */
+/*   Updated: 2026/02/18 19:13:05 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ char	*expansion_env_var_runner(char **arr_lex, char *lexeme, int idx)
 	return (merged_lex);
 }
 
-static void	process_entry(char **arr_lex, size_t idx, bool *not_found)
+void	process_entry(char **arr_lex, size_t idx, bool *not_found)
 {
 	t_env_entry	*env_table;
 	char		*env_key;
@@ -106,7 +106,7 @@ static void	process_entry(char **arr_lex, size_t idx, bool *not_found)
 	}
 }
 
-static void	handle_not_found(char **arr_lex, size_t idx, bool not_found)
+void	handle_not_found(char **arr_lex, size_t idx, bool not_found)
 {
 	if (not_found && (ft_array_len(arr_lex) == 1
 			|| (idx > 0 && !arr_lex[idx - 1])))
