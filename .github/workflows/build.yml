@@ -6,13 +6,14 @@
 #    By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/02/18 19:00:00 by umeneses          #+#    #+#              #
-#    Updated: 2026/02/18 19:22:40 by umeneses         ###   ########.fr        #
+#    Updated: 2026/02/18 19:31:16 by umeneses         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 name: Build Minishell
 
 on:
+  workflow_call:
   push:
     branches:
     - main
