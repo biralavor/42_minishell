@@ -142,7 +142,6 @@ If the input isn't a Built-in, it runs `execve`. We have two built-in categories
 ### 8.3 Command Manager
 ![Screenshot from 2024-09-12 12-49-23](https://github.com/user-attachments/assets/bd21e13a-79f9-4029-a767-9a48b5350555)
 
-
 # 42sp Team Project:
 - Thais Malheiros -> https://github.com/Thais-Malheiros/
 - Bira Lavor -> https://github.com/biralavor/
