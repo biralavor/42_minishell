@@ -6,7 +6,7 @@
 #    By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/12 11:04:11 by umeneses          #+#    #+#              #
-#    Updated: 2026/02/18 19:23:25 by umeneses         ###   ########.fr        #
+#    Updated: 2026/02/18 19:40:43 by umeneses         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -50,13 +50,14 @@ jobs:
         run: python -m pip install --upgrade pip setuptools
 
       - name: Install Norminette
-        run: python -m pip install norminette
+        run: python -m pip install norminette==3.3.51
 
       - name: Running Norminette with Failure Counter
         run: |
+          set +e  # Don't exit on error
           failed_count=0
-          for file in $(find ./headers ./libs ./src -name '*.c' -o -name '*.h'); do
-            output=$(norminette -R CheckForbiddenSourceHeader "$file" 2>&1)
+          for file in $(find ./headers ./libs ./src -name '*.c' -o -name '*.h' 2>/dev/null); do
+            output=$(norminette -R CheckForbiddenSourceHeader "$file" 2>&1 || true)
             echo "$output"
             # Only fail on Error, not on Notice
             if echo "$output" | grep -q "Error:"; then
